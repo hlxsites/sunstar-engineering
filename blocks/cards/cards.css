@@ -1,31 +1,98 @@
 .cards > ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 16px;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    flex-wrap: nowrap;
 }
 
 .cards > ul > li {
-  border: 1px solid var(--highlight-background-color);
-  background-color: var(--background-color)
+    box-sizing: border-box;
+    box-shadow: 0 2px 12px 0 rgba(60, 70, 80, 0.2);
+    width: 214px;
+    height: 262px;
+    padding: 20px 12px 0;
+    text-align: center;
+    border: none;
+    transition: all 0.15s ease-in-out;
+    margin: 0 16px
+}
+
+.cards > ul > li:hover {
+    box-shadow: 0 4px 16px 0 rgba(60, 70, 80, 0.4);
+}
+
+@media (max-width: 991.98px) {
+
+    .cards > ul {
+        flex-direction: column;
+    }
+
+    .cards > ul > li {
+        display: -ms-flexbox;
+        display: flex;
+        text-align: left;
+        -ms-flex-line-pack: center;
+        align-content: center;
+        -ms-flex-align: center;
+        align-items: center;
+        height: 80px;
+        width: 100%;
+        padding: 12px 1rem;
+        margin: 0;
+        margin-bottom: 1rem;
+    }
+
+    .cards .cards-card-image {
+        margin: 0 auto;
+        padding: 0;
+        display: block;
+        width: 56px;
+        height: 56px;
+    }
+
+    .cards .cards-card-image img {
+        margin: 0 auto;
+        padding: 0;
+        display: block;
+        width: 56px;
+        height: 56px;
+    }
 }
 
 .cards .cards-card-body {
-  margin: 16px;
+    margin: 0 auto;
+    padding: 0;
+    color: #007CAD;
+
+}
+
+.cards .cards-card-body a {
+    margin: 0 auto;
+    padding: 20px 0 0;
+    color: #007CAD;
+    text-decoration: none;
+    transition: all 0.15s ease-in-out;
+    border: 0;
+    background: none;
+    white-space: normal;
+    font-size: 1rem;
+    border-radius: 0;
+    line-height: 21px;
+    letter-spacing: 0
 }
 
 .cards .cards-card-image {
-  line-height: 0;
+    margin: 0 auto;
+    padding: 0;
+    display: block;
+    width: 140px;
+    height: 140px;
 }
 
-.cards .cards-card-body > *:first-child {
-  margin-top: 0;
-}
-
-.cards > ul > li img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+.cards .cards-card-image img {
+    margin: 0 auto;
+    padding: 0;
+    display: block;
+    width: 140px;
+    height: 140px;
 }
