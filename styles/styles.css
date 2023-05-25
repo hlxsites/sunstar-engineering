@@ -170,6 +170,8 @@ a.button:any-link, button {
 
 a.button[href*="youtu"]::after {
   content: " " url("../icons/play.svg");
+  position: relative;
+  top: 0.15em;
 }
 
 a.button:hover, a.button:focus, button:hover, button:focus  {
