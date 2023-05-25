@@ -12,11 +12,18 @@
 }
 
 .columns > div > .columns-img-col {
+  align-self: flex-start;
+  margin-top: 1em;
   order: 0;
 }
 
 .columns > div > .columns-img-col img {
   display: block;
+}
+
+.columns a.button.tertiary {
+  background-color: unset;
+  color: var(--link-color);
 }
 
 @media (min-width: 900px) {

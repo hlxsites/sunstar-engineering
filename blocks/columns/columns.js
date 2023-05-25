@@ -29,7 +29,7 @@ export default function decorate(block) {
               up.classList.add('button-container');
             }
             if (a.previousElementSibling?.tagName === 'A') {
-              a.className = 'button secondary';
+              a.className = 'button tertiary';
             } else {
               a.className = 'button primary';
             }
