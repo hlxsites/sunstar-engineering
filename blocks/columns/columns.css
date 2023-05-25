@@ -26,6 +26,12 @@
   color: var(--link-color);
 }
 
+.columns a.button.primary[href*="youtu"]::after {
+  content: " " url("../../icons/play.svg");
+  position: relative;
+  top: 0.15em;
+}
+
 @media (min-width: 900px) {
   .columns > div {
     align-items: center;
