@@ -168,10 +168,8 @@ a.button:any-link, button {
   border-radius: 2px;
 }
 
-a.button[href*="youtu"] {
-  background-image: url("../icons/play.svg");
-  background-repeat: no-repeat;
-  background-position: right 0.125em center;
+a.button[href*="youtu"]::after {
+  content: " " url("../icons/play.svg");
 }
 
 a.button:hover, a.button:focus, button:hover, button:focus  {
