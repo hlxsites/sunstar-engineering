@@ -97,6 +97,7 @@ h2 { font-size: var(--heading-font-size-xl) }
 h3 { font-size: var(--heading-font-size-l) }
 h4 { font-size: var(--heading-font-size-m) }
 h5 { font-size: var(--heading-font-size-s) }
+
 h6 {
     color: var(--title-color);
     font-size: var(--heading-font-size-xs);
@@ -168,7 +169,7 @@ a.button:any-link, button {
 }
 
 a.button[href*="youtu"] {
-  background-image: url(../icons/play.svg);
+  background-image: url("../icons/play.svg");
   background-repeat: no-repeat;
   background-position: right 0.125em center;
 }
