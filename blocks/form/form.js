@@ -36,8 +36,6 @@ function constructPayload(form) {
 
 async function submitForm(form) {
   const payload = constructPayload(form);
-  console.log(payload);
-  return false;
   const resp = await fetch(form.dataset.action, {
     method: 'POST',
     cache: 'no-cache',
@@ -148,6 +146,7 @@ function initRegionSelection(fieldWrapper, fd) {
   select.addEventListener('change', async () => {
     const addresses = await getAddresses(fieldWrapper, fd);
     const key = `region-${select.value.toLowerCase()}`;
+    // eslint-disable-next-line no-restricted-syntax
     for (const addr of addresses.children) {
       if (addr.classList.contains(key)) {
         addr.classList.remove('hidden');
@@ -170,7 +169,6 @@ function validateForm(form) {
   if (button) {
     if (form.checkValidity()) {
       button.removeAttribute('disabled');
-      console.log('form valid');
     } else {
       button.setAttribute('disabled', '');
     }
@@ -178,7 +176,6 @@ function validateForm(form) {
 }
 
 function validateField(el, fd) {
-  console.log('field changed', fd.Field, el.value);
   if (fd.Mandatory) {
     const wrapper = el.parentElement;
     if (el.value) {
