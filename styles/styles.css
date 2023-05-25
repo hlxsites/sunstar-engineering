@@ -12,14 +12,12 @@
 
  :root {
   /* colors */
-  --link-color: #007cad;
-  --link-hover-color: #0091cb;
+  --link-color: #035fe6;
+  --link-hover-color: #136ff6;
   --background-color: #fff;
   --overlay-background-color: #eee;
   --highlight-background-color: #ccc;
   --text-color: #000;
-  --title-color: #007cad;
-  --summary-color: #00587c;
 
   /* fonts */
   --body-font-family: 'helvetica neue', helvetica, ubuntu, roboto, noto, sans-serif;
@@ -83,7 +81,6 @@ header {
 
 h1, h2, h3,
 h4, h5, h6 {
-  color: var(--summary-color);
   font-family: var(--heading-font-family);
   font-weight: 600;
   line-height: 1.25;
@@ -99,7 +96,6 @@ h4 { font-size: var(--heading-font-size-m) }
 h5 { font-size: var(--heading-font-size-s) }
 
 h6 {
-    color: var(--title-color);
     font-size: var(--heading-font-size-xs);
     text-transform: uppercase;
 }
