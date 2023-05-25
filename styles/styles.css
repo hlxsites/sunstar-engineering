@@ -94,7 +94,10 @@ h2 { font-size: var(--heading-font-size-xl) }
 h3 { font-size: var(--heading-font-size-l) }
 h4 { font-size: var(--heading-font-size-m) }
 h5 { font-size: var(--heading-font-size-s) }
-h6 { font-size: var(--heading-font-size-xs) }
+h6 {
+    font-size: var(--heading-font-size-xs);
+    text-transform: uppercase;
+}
 
 p, dl, ol, ul, pre, blockquote {
   margin-top: 1em;
@@ -157,7 +160,13 @@ a.button:any-link, button {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  border-radius: 30px;
+  border-radius: 2px;
+}
+
+a.button[href*="youtu"] {
+  background-image: url(../icons/play.svg);
+  background-repeat: no-repeat;
+  background-position: right 0.125em center;
 }
 
 a.button:hover, a.button:focus, button:hover, button:focus  {
