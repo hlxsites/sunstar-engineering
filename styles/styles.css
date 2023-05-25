@@ -40,6 +40,13 @@
   /* nav height */
   --nav-height: 64px;
 
+  /* button */
+  --button-background-color: #007CAD;
+   --button-background-disabled-color: #ccc;
+  --button-padding: 0 1.5em;
+  --button-text-color: white;
+  --button-font-weight: 700;
+  --button-border-radius: 0;
 }
 
 @media (min-width: 900px) {

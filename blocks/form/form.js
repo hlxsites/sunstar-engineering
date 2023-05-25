@@ -36,6 +36,8 @@ function constructPayload(form) {
 
 async function submitForm(form) {
   const payload = constructPayload(form);
+  console.log(payload);
+  return false;
   const resp = await fetch(form.dataset.action, {
     method: 'POST',
     cache: 'no-cache',
@@ -45,7 +47,7 @@ async function submitForm(form) {
     body: JSON.stringify({ data: payload }),
   });
   await resp.text();
-  return payload;
+  return true;
 }
 
 function createButton(fd) {
@@ -58,9 +60,9 @@ function createButton(fd) {
       if (form.checkValidity()) {
         event.preventDefault();
         button.setAttribute('disabled', '');
-        await submitForm(form);
-        const redirectTo = fd.Extra;
-        window.location.href = redirectTo;
+        if (await submitForm(form)) {
+          window.location.href = fd.Extra;
+        }
       }
     });
   }
@@ -112,47 +114,45 @@ function createLabel(fd) {
   return label;
 }
 
-function createAddressInfo(fd, rules) {
-  // remove address info
-  const addrInfoWrapper = document.querySelector('.address-info-wrapper');
-  if (!addrInfoWrapper) {
-    return null;
-  }
-  addrInfoWrapper.remove();
-  const addrInfo = addrInfoWrapper.firstElementChild;
-  // eslint-disable-next-line no-restricted-syntax
-  for (const child of addrInfo.children) {
-    const key = child.firstElementChild.textContent.trim();
-    child.firstElementChild.remove();
-    const address = child.firstElementChild;
-    const fieldId = `region-${key.toLowerCase()}`;
-    address.classList.add(fieldId);
-    rules.push({
-      fieldId,
-      rule: {
-        type: 'visible',
-        condition: {
-          operator: 'eq',
-          value: key,
-          key: 'region',
-        },
-      },
-    });
+async function getAddresses(fieldWrapper, fd) {
+  let addrInfo = fieldWrapper.querySelector('.addresses');
+  if (!addrInfo) {
+    const resp = await fetch(`${fd.Extra}.plain.html`);
+    const fragment = document.createElement('div');
+    fragment.innerHTML = await resp.text();
+    addrInfo = fragment.querySelector('.addresses');
+    // eslint-disable-next-line no-restricted-syntax
+    for (const child of [...addrInfo.children]) {
+      const key = child.firstElementChild.textContent.trim();
+      const address = child.lastElementChild;
+      const fieldId = `region-${key.toLowerCase()}`;
+      address.classList.add(fieldId);
+      address.classList.add('hidden');
+      // move to parent
+      child.remove();
+      // add <p> if missing
+      if (!address.querySelector('p')) {
+        const p = document.createElement('p');
+        p.append(...address.childNodes);
+        address.append(p);
+      }
+      addrInfo.append(address);
+    }
+    fieldWrapper.append(addrInfo);
   }
   return addrInfo;
 }
 
-function applyRules(form, rules) {
-  const payload = constructPayload(form);
-  rules.forEach((field) => {
-    const { type, condition: { key, operator, value } } = field.rule;
-    if (type === 'visible') {
-      if (operator === 'eq') {
-        if (payload[key] === value) {
-          form.querySelector(`.${field.fieldId}`).classList.remove('hidden');
-        } else {
-          form.querySelector(`.${field.fieldId}`).classList.add('hidden');
-        }
+function initRegionSelection(fieldWrapper, fd) {
+  const select = fieldWrapper.querySelector('select');
+  select.addEventListener('change', async () => {
+    const addresses = await getAddresses(fieldWrapper, fd);
+    const key = `region-${select.value.toLowerCase()}`;
+    for (const addr of addresses.children) {
+      if (addr.classList.contains(key)) {
+        addr.classList.remove('hidden');
+      } else {
+        addr.classList.add('hidden');
       }
     }
   });
@@ -165,6 +165,18 @@ function createValidateLabel(msg) {
   return el;
 }
 
+function validateForm(form) {
+  const button = form.querySelector('.form-submit-wrapper > button');
+  if (button) {
+    if (form.checkValidity()) {
+      button.removeAttribute('disabled');
+      console.log('form valid');
+    } else {
+      button.setAttribute('disabled', '');
+    }
+  }
+}
+
 function validateField(el, fd) {
   console.log('field changed', fd.Field, el.value);
   if (fd.Mandatory) {
@@ -174,7 +186,39 @@ function validateField(el, fd) {
     } else {
       wrapper.classList.add('invalid');
     }
+    validateForm(el.closest('form'));
   }
+}
+
+window.captchaRenderCallback = () => {
+  // eslint-disable-next-line no-console
+  console.error('captcha not configured');
+};
+
+function createCaptcha(fd) {
+  const cc = document.createElement('div');
+
+  window.captchaRenderCallback = () => {
+    // eslint-disable-next-line no-undef
+    grecaptcha.enterprise.render(cc, {
+      // sitekey: '6Lf2Hz0mAAAAANNik9Pb_owynQOw4aBqt2eHnB5B', // failing key
+      sitekey: fd.Extra,
+      callback: (response) => {
+        if (response) {
+          validateForm(cc.closest('form'));
+        }
+      },
+    });
+    const resp = document.getElementById('g-recaptcha-response');
+    resp.setAttribute('required', 'required');
+  };
+
+  const script = document.createElement('script');
+  script.setAttribute('async', 'async');
+  script.setAttribute('defer', 'defer');
+  script.src = 'https://www.google.com/recaptcha/enterprise.js?onload=captchaRenderCallback&render=explicit';
+  document.head.appendChild(script);
+  return cc;
 }
 
 async function createForm(formURL) {
@@ -182,10 +226,10 @@ async function createForm(formURL) {
   const resp = await fetch(pathname);
   const json = await resp.json();
   const form = document.createElement('form');
-  const rules = [];
   // eslint-disable-next-line prefer-destructuring
   form.dataset.action = pathname.split('.json')[0];
-  json.data.forEach((fd) => {
+  // eslint-disable-next-line no-restricted-syntax
+  for (const fd of json.data) {
     fd.Type = fd.Type || 'text';
     const fieldWrapper = document.createElement('div');
     const style = fd.Style ? ` form-${fd.Style}` : '';
@@ -228,28 +272,21 @@ async function createForm(formURL) {
       case 'submit':
         append(createButton(fd));
         break;
-      case 'address-info':
-        append(createAddressInfo(fd, rules));
+      case 'captcha':
+        append(createCaptcha(fd));
         break;
       default:
         append(createLabel(fd));
         appendField(createInput);
     }
 
-    if (fd.Rules) {
-      try {
-        rules.push({ fieldId, rule: JSON.parse(fd.Rules) });
-      } catch (e) {
-        // eslint-disable-next-line no-console
-        console.warn(`Invalid Rule ${fd.Rules}: ${e}`);
-      }
+    // special logic for region selector
+    if (fd.Field === 'region') {
+      initRegionSelection(fieldWrapper, fd);
     }
     form.append(fieldWrapper);
-  });
-
-  form.addEventListener('change', () => applyRules(form, rules));
-  applyRules(form, rules);
-
+  }
+  validateForm(form);
   return (form);
 }
 
