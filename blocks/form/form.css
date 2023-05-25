@@ -1,25 +1,68 @@
+:root {
+    --form-invalid-color: #eb0000;
+    --form-input-color: #3C4650;
+    --form-input-bg-color: #F0F5F7;
+    --form-input-border-color: rgb(0 0 0 / 0%);
+    --form-input-focus-color: #007CAD;
+}
+
 main .form input,
 main .form textarea,
 main .form select {
-    border: 1px solid var(--overlay-background-color);
-    padding: 11px;
-    border-radius: 0;
+    border: 1px solid var(--form-input-border-color);
+    padding: 12px 1rem;
     width: 100%;
+    height: calc(1.5em + 24px + 2px);
     max-width: 50rem;
     box-sizing: border-box;
     margin-top: 4px;
     font-family: var(--body-font-family);
     font-size: var(--body-font-size-s);
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--form-input-color);
+    background-color: var(--form-input-bg-color);
+    background-clip: padding-box;
+    border-radius: 2px;
+    transition: border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
 }
 
 main .form textarea {
     min-height: 100px;
 }
 
+main .form .invalid > input,
+main .form .invalid > textarea,
+main .form .invalid > select {
+    border-color: var(--form-invalid-color);
+}
+
 main .form input:hover,
+main .form textarea:hover,
 main .form select:hover {
     border-color: var(--highlight-background-color);
 }
+
+main .form input:focus,
+main .form textarea:focus,
+main .form select:focus {
+    border-color: var(--form-input-focus-color);
+    outline: 0;
+}
+
+main .form .invalid > input:hover,
+main .form .invalid > textarea:hover,
+main .form .invalid > select:hover {
+    border-color: var(--form-invalid-color);
+}
+
+main .form .invalid > input:focus,
+main .form .invalid > textarea:focus,
+main .form .invalid > select:focus {
+    border-color: var(--form-invalid-color);
+    outline: 0;
+}
+
 
 main .form label {
     width: 100%;
@@ -36,14 +79,27 @@ main .form label > span {
     margin-left: 10px;
 }
 
-main .form label.required::after {
-    content: "*";
-    color: red;
-    padding-left: 5px;
-}
+/* main .form label.required::after { */
+
+/*    content: "*"; */
+
+/*    color: red; */
+
+/*    padding-left: 5px; */
+
+/* } */
 
 main .form .field-wrapper {
     margin-bottom: 20px;
+}
+
+main .form .form-validate-label {
+    color: var(--form-invalid-color);
+    display: none;
+}
+
+main .form .invalid > .form-validate-label {
+    display: block;
 }
 
 main .form .hidden {

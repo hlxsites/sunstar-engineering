@@ -158,6 +158,25 @@ function applyRules(form, rules) {
   });
 }
 
+function createValidateLabel(msg) {
+  const el = document.createElement('div');
+  el.className = 'form-validate-label';
+  el.textContent = msg;
+  return el;
+}
+
+function validateField(el, fd) {
+  console.log('field changed', fd.Field, el.value);
+  if (fd.Mandatory) {
+    const wrapper = el.parentElement;
+    if (el.value) {
+      wrapper.classList.remove('invalid');
+    } else {
+      wrapper.classList.add('invalid');
+    }
+  }
+}
+
 async function createForm(formURL) {
   const { pathname } = new URL(formURL);
   const resp = await fetch(pathname);
@@ -180,10 +199,20 @@ async function createForm(formURL) {
       }
     };
 
+    const appendField = (fn) => {
+      const el = fn(fd);
+      fieldWrapper.append(el);
+      if (fd.Mandatory) {
+        const msgEl = createValidateLabel(fd.Mandatory);
+        fieldWrapper.append(msgEl);
+        el.addEventListener('blur', () => validateField(el, fd));
+      }
+    };
+
     switch (fd.Type) {
       case 'select':
         append(createLabel(fd));
-        append(createSelect(fd));
+        appendField(createSelect);
         break;
       case 'heading':
         append(createHeading(fd));
@@ -194,7 +223,7 @@ async function createForm(formURL) {
         break;
       case 'text-area':
         append(createLabel(fd));
-        append(createTextArea(fd));
+        appendField(createTextArea);
         break;
       case 'submit':
         append(createButton(fd));
@@ -204,7 +233,7 @@ async function createForm(formURL) {
         break;
       default:
         append(createLabel(fd));
-        append(createInput(fd));
+        appendField(createInput);
     }
 
     if (fd.Rules) {
