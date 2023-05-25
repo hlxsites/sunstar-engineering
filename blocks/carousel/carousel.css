@@ -1,0 +1,344 @@
+.carousel {
+    overflow-x: hidden;
+    background-color: var(--dark-blue-color);
+    overflow-y: hidden;
+    /* font-family: 'Noto Sans Latin Regular'; */
+    /* display: flex;
+    background-color: #00587C; */
+    /* margin-right: auto;
+    margin-left: auto;
+    max-width: 1200px; */
+    /* position: relative;
+    width: 100%;
+    height: 700px;
+    max-width: 1200px; */
+}
+
+.carousel img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel h1 {
+    opacity: 0.7;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    font-size: var(--font-size-small);
+    letter-spacing: 0;
+    line-height: 1rem;
+    font-weight: var(--font-weight-bold);
+    margin-top: 0;
+}
+
+.carousel h2 {
+    margin-bottom: 1rem;
+    font-weight: 300;
+    font-size: 2.25rem;
+    line-height: 1.3em;
+    /* font-size: 2.25rem;
+    line-height: 1.3em;
+    margin-top: 0; */
+    /* font-family: 'Noto Sans Latin Regular'; */
+}
+
+@media (max-width: 1232px) {
+    .text-item {
+        width: 347px;
+    }
+
+    .section-container {
+        max-width: calc(872px + 32px);
+        /* padding-left: 16px;
+        padding-right: 16px; */
+    }
+
+    .hero-slider-controller {
+        max-width: 872px;
+        /* width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        max-width: 1200px;
+        position: relative; */
+    }
+
+    .control-container {
+        left: 0;
+    }
+
+}
+
+
+
+.carousel p {
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5em;
+    margin-bottom: 42px;
+}
+
+div.section.carousel-container > div > div > div.image > div:nth-child(1) {
+    /* height: 100%; */
+}
+
+.control-container {
+    /* display: flex;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: absolute;
+    z-index: 10;
+    left: 0;
+    bottom: 46px; */
+
+    /* display: flex;
+    align-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 10;
+    left: 0;
+    bottom: 100px; */
+    display: flex;
+    align-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 10;
+    /* left: 0; */
+    bottom: 46px;
+}
+
+.carousel .icon-right {
+    background-image: url(../../icons/right-white.svg);
+}
+
+.carousel .icon-left {
+    background-image: url(../../icons/left-white.svg);
+}
+
+.section > div.carousel-wrapper {
+    margin: 0;
+    max-width: unset;
+}
+
+.carousel .button {
+    padding: 0;
+}
+
+.carousel .text {
+    color: white;
+    /* flex-basis: 50%; */
+    padding-top: 160px;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+    width: 100%;
+    min-height: 300px;
+    max-height: 100%;
+    height: 462px;
+}
+
+.carousel .image {
+    color: white;
+    /* flex-basis: 50%; */
+}
+
+main .section.carousel-container {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.display-hide {
+    display: none;
+}
+
+.swip-left {
+    display: inline-flex;
+    outline: none;
+}
+
+.swip-right {
+    display: inline-flex;
+    outline: none;
+}
+
+.section-container {
+    height: 700px;
+    background-color: #00587C;
+    position: relative;
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: auto;
+    margin-left: auto;
+    /* max-width: 872px; */
+    max-width: 1200px;
+}
+
+.text-item {
+    position: absolute;
+    color: #fff;
+    /* padding-top: 160px; */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease-in-out;
+    width: 480px;
+}
+
+.text-item.unhide {
+    visibility: visible;
+}
+
+.image-item.unhide {
+    visibility: visible;
+}
+
+.hero-slider-controller {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 1200px;
+    position: relative;
+}
+
+
+@media (max-width: 1232px) {
+    .text-item {
+        width: 347px;
+    }
+
+    .section-container {
+        max-width: calc(872px + 32px);
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .hero-slider-controller {
+        max-width: 872px;
+        /* width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        max-width: 1200px;
+        position: relative; */
+    }
+
+    .control-container {
+        left: 0;
+    }
+
+  }
+
+.text-item.active {
+    opacity: 1;
+}
+
+.image-item {
+    width: 1024px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: calc(50% - 62px);
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    z-index: 1;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .125s linear;
+}
+
+.image-item.active {
+    opacity: 1;
+}
+
+.swiper-pagination-bullet {
+    height: 8px;
+    width: 8px;
+    display: inline-flex;
+    margin-right: 12px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 50%;
+}
+
+.swip-pagination {
+    display: inline-flex;
+    padding: 0 1.5rem;
+}
+
+.carousel .icon {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 18px;
+    width: 12px;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+}
+
+@media (max-width: 991.98px) {
+    .hero-slider-controller .swip-right, .hero-slider-controller .swip-left {
+        display: none;
+    }
+
+    .section-container {
+        display: flex;
+        flex-direction: column-reverse;
+        /* -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        height: auto;
+        -ms-flex-direction: column-reverse;
+        flex-direction: column-reverse;
+
+        height: auto;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        height: auto;
+        -ms-flex-direction: column-reverse;
+        flex-direction: column-reverse; */
+    }
+}
+
+.swiper-pagination-bullet:last-child {
+    margin-right: 0;
+}
+
+.swiper-pagination-bullet.active {
+    background-color: #fff;
+}
+
+.carousel .primary {
+    background: #007CAD;
+    color: #fff;
+}
+/*
+.carousel .button {
+    min-width: 160px;
+    height: 48px;
+    padding: 0 1.5em;
+    border: none;
+    font-weight: 700;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    line-height: 1;
+} */
+
+
+/* .carousel .text {
+    background-color: ;
+} */

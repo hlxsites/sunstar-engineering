@@ -20,7 +20,7 @@
   --text-color: #000;
 
   /* fonts */
-  --body-font-family: 'helvetica neue', helvetica, ubuntu, roboto, noto, sans-serif;
+  --body-font-family: 'Noto Sans Latin Regular';
   --heading-font-family: var(--body-font-family);
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
@@ -48,6 +48,11 @@
   /* nav height */
   --nav-height: 64px;
 
+  /* Colors */
+  --dark-blue-color: #00587C;
+
+  /* Font Sizes */
+  --font-size-small: 14px;
 }
 
 @media (min-width: 900px) {
@@ -141,7 +146,21 @@ a:hover {
 
 /* buttons */
 a.button:any-link, button {
-  font-family: var(--body-font-family);
+  min-width: 160px;
+    height: 48px;
+    padding: 0 1.5em;
+    border: none;
+    font-weight: 700;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    line-height: 1;
+  /* font-family: var(--body-font-family);
   display: inline-block;
   box-sizing: border-box;
   text-decoration: none;
@@ -157,7 +176,7 @@ a.button:any-link, button {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  border-radius: 30px;
+  border-radius: 30px; */
 }
 
 a.button:hover, a.button:focus, button:hover, button:focus  {
