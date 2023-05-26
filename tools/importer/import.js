@@ -38,12 +38,26 @@ const createMetadata = (main, document) => {
   return meta;
 };
 
-function customImportLogic(doc) {
+
+
+function removeCookiesBanner(document) {
   // remove the cookies banner
-  const cookieBanner = doc.querySelector('.cookies-wrapper.cookies-wrapper-js');
+  const cookieBanner = document.querySelector('.cookies-wrapper.cookies-wrapper-js');
   if (cookieBanner) {
     cookieBanner.remove();
   }
+}
+
+function convertBackgroundImgsToForegroundImgs(document) {
+  document.querySelectorAll('.background-image').forEach(bgImg => {
+    console.log(`inlining images for ${bgImg.outerHTML}`);
+    WebImporter.DOMUtils.replaceBackgroundByImg(bgImg, document);
+  });
+}
+
+function customImportLogic(document) {
+  convertBackgroundImgsToForegroundImgs(document);
+  removeCookiesBanner(document);
 }
 export default {
   /**
