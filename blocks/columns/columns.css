@@ -12,9 +12,10 @@
 }
 
 .columns > div > .columns-img-col {
+  align-self: flex-start;
+  flex-basis: 45%;
   margin-top: 1em;
   order: 0;
-  flex-basis: 45%;
 }
 
 .columns > div > .columns-img-col img {
