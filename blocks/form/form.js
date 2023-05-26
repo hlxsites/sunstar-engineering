@@ -202,8 +202,7 @@ function createCaptcha(fd) {
 
   window.captchaRenderCallback = () => {
     // eslint-disable-next-line no-undef
-    grecaptcha.enterprise.render(cc, {
-      // sitekey: '6Lf2Hz0mAAAAANNik9Pb_owynQOw4aBqt2eHnB5B', // failing key
+    grecaptcha.render(cc, {
       sitekey: fd.Extra,
       callback: (response) => {
         if (response) {
@@ -218,7 +217,7 @@ function createCaptcha(fd) {
   const script = document.createElement('script');
   script.setAttribute('async', 'async');
   script.setAttribute('defer', 'defer');
-  script.src = 'https://www.google.com/recaptcha/enterprise.js?onload=captchaRenderCallback&render=explicit';
+  script.src = 'https://www.google.com/recaptcha/api.js?onload=captchaRenderCallback&render=explicit';
   document.head.appendChild(script);
   return cc;
 }
