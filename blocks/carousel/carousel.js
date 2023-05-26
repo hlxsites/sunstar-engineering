@@ -1,9 +1,5 @@
-clearInterval(timer); 
-
-var timer;
-      
 function startTimer(block) {
-    timer = setInterval(function() {
+    setInterval(() => {
         const rightSwip = block.querySelector('.swip-right');
         rightSwip.click();
     }, 5000);
