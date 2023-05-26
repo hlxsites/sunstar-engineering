@@ -92,19 +92,25 @@
 }
 
 .carousel .icon-right {
-    background-image: url(../../icons/right-white.svg);
+    background-image: url('../../icons/right-white.svg');
     display: none;
     cursor: pointer;
 }
 
 .carousel .icon-left {
-    background-image: url(../../icons/left-white.svg);
+    background-image: url('../../icons/left-white.svg');
     display: none;
     cursor: pointer;
 }
 
 .swiper-pagination-bullet {
     cursor: pointer;
+    height: 0.5rem;
+    width: 0.5rem;
+    display: inline-flex;
+    margin-right: 0.75rem;
+    background: #ffffff1f;
+    border-radius: 50%;
 }
 
 .swiper-pagination-bullet:last-child {
@@ -121,15 +127,6 @@
     position: relative;
     bottom: 2.875rem;
     z-index: 10;
-}
-
-.swiper-pagination-bullet {
-    height: 0.5rem;
-    width: 0.5rem;
-    display: inline-flex;
-    margin-right: 0.75rem;
-    background: rgba(255,255,255,0.12);
-    border-radius: 50%;
 }
 
 .swip-pagination {
