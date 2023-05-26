@@ -12,9 +12,9 @@
 }
 
 .columns > div > .columns-img-col {
-  align-self: flex-start;
   margin-top: 1em;
   order: 0;
+  flex-basis: 45%;
 }
 
 .columns > div > .columns-img-col img {
@@ -36,11 +36,12 @@
   .columns > div {
     align-items: center;
     flex-direction: unset;
-    gap: 32px;
+    gap: 45px;
   }
 
   .columns > div > div {
     flex: 1;
     order: unset;
+    flex-basis: 55%;
   }
 }
