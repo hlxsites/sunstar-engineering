@@ -37,6 +37,14 @@
   --heading-font-size-s: 20px;
   --heading-font-size-xs: 18px;
 
+  /* Font Weight */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Font Style */
+  --font-style-normal: normal;
+
   /* nav height */
   --nav-height: 64px;
 
