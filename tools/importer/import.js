@@ -38,8 +38,6 @@ const createMetadata = (main, document) => {
   return meta;
 };
 
-
-
 function removeCookiesBanner(document) {
   // remove the cookies banner
   const cookieBanner = document.querySelector('.cookies-wrapper.cookies-wrapper-js');
@@ -49,7 +47,7 @@ function removeCookiesBanner(document) {
 }
 
 function convertBackgroundImgsToForegroundImgs(document) {
-  document.querySelectorAll('.background-image').forEach(bgImg => {
+  document.querySelectorAll('.background-image').forEach((bgImg) => {
     console.log(`inlining images for ${bgImg.outerHTML}`);
     WebImporter.DOMUtils.replaceBackgroundByImg(bgImg, document);
   });
