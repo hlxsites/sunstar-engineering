@@ -1,3 +1,13 @@
+function ensureParagraph(el) {
+  // add <p> if missing
+  if (!el.querySelector('p')) {
+    const p = document.createElement('p');
+    p.append(...el.childNodes);
+    el.append(p);
+  }
+  return el;
+}
+
 function createSelect(fd) {
   const select = document.createElement('select');
   select.id = fd.Field;
@@ -128,12 +138,7 @@ async function getAddresses(fieldWrapper, fd) {
       address.classList.add('hidden');
       // move to parent
       child.remove();
-      // add <p> if missing
-      if (!address.querySelector('p')) {
-        const p = document.createElement('p');
-        p.append(...address.childNodes);
-        address.append(p);
-      }
+      ensureParagraph(address);
       addrInfo.append(address);
     }
     fieldWrapper.append(addrInfo);
@@ -291,5 +296,11 @@ export default async function decorate(block) {
   const form = block.querySelector('a[href$=".json"]');
   if (form) {
     form.replaceWith(await createForm(form.href));
+  }
+  // convert 2nd row to form-note
+  const note = block.querySelector('div > div:nth-child(2) > div');
+  if (note) {
+    ensureParagraph(note);
+    note.classList.add('form-note');
   }
 }
