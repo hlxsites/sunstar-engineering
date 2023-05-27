@@ -13,9 +13,30 @@
 
 :root {
   /* colors */
+  --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #EB0000;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #fff;
+  --gray: #6c757d;
+  --gray-dark: #343a40;
+  --primary: #00587C;
+  --secondary: #007CAD;
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #EB0000;
+  --light: #f8f9fa;
+  --dark: #343a40;
   --link-color: #3C4650;
-  --link-hover-color: #136ff6;
-  --background-color: #fff;
+  --link-hover-color: var(--secondary);
+  --background-color: var(--white);
   --overlay-background-color: #eee;
   --highlight-background-color: #ccc;
   --text-color: #000;
@@ -27,8 +48,8 @@
 
   /* body sizes */
   --body-font-size-m: 16px;
-  --body-font-size-s: 18px;
-  --body-font-size-xs: 16px;
+  --body-font-size-s: 14px;
+  --body-font-size-xs: 12px;
 
   /* heading sizes */
   --heading-font-size-xxl: 48px;
@@ -47,19 +68,11 @@
   --font-style-normal: normal;
 
   /* nav height */
-  --nav-height: 64px;
+  --nav-top-height: 42px;
+  --nav-middle-height: 26px;
+  --nav-bottom-height: 52px;
+  --nav-total-height: calc(var(--nav-top-height) + var(--nav-middle-height) + var(--nav-bottom-height));
 
-}
-
-@media (min-width: 900px) {
-  :root {
-    --heading-font-size-xxl: 60px;
-    --heading-font-size-xl: 48px;
-    --heading-font-size-l: 36px;
-    --heading-font-size-m: 30px;
-    --heading-font-size-s: 24px;
-    --heading-font-size-xs: 22px;
-  }
 }
 
 body {
@@ -153,7 +166,7 @@ pre {
 }
 
 main {
-  margin-top: 300px;
+  margin-top: var(--nav-total-height);
 }
 
 main pre {
