@@ -38,6 +38,13 @@ const createMetadata = (main, document) => {
   return meta;
 };
 
+function customImportLogic(doc) {
+  // remove the cookies banner
+  const cookieBanner = doc.querySelector('.cookies-wrapper.cookies-wrapper-js');
+  if (cookieBanner) {
+    cookieBanner.remove();
+  }
+}
 export default {
   /**
    * Apply DOM operations to the provided document and return
@@ -61,7 +68,7 @@ export default {
       'footer',
       'noscript',
     ]);
-
+    customImportLogic(document);
     // create the metadata block and append it to the main element
     createMetadata(main, document);
 
