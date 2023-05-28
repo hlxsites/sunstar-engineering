@@ -1,6 +1,7 @@
 .carousel {
     background-color: var(--dark-blue-color);
     display: block;
+    overflow: hidden;
 }
 
 .image-item {
@@ -127,6 +128,7 @@
     position: relative;
     bottom: 2.875rem;
     z-index: 10;
+    justify-content: center;
 }
 
 .swip-pagination {
@@ -167,7 +169,6 @@ main .section.carousel-container {
 
     .text-item {
         position: absolute;
-        transition: all 0.5s ease-in-out;
         width: 21.688rem;
     }
 
@@ -200,6 +201,7 @@ main .section.carousel-container {
         position: absolute;
         transform: translateX(-50%);
         left: 50.5%;
+        justify-content: unset;
     }
 
     .carousel h2 {
