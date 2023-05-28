@@ -9,17 +9,17 @@ function commonOnClick(block, newIndex) {
   const activeEles = block.querySelectorAll('.active');
   const newEles = block.querySelectorAll(`[index='${newIndex}']`);
 
-  newEles.forEach((newEle) => {
-    newEle.classList.add('active');
-    if (!newEle.classList.contains('swiper-pagination-bullet')) {
-      newEle.classList.add('unhide');
-    }
-  });
-
   activeEles.forEach((activeEle) => {
     activeEle.classList.remove('active');
     if (!activeEle.classList.contains('swiper-pagination-bullet')) {
       activeEle.classList.remove('unhide');
+    }
+  });
+
+  newEles.forEach((newEle) => {
+    newEle.classList.add('active');
+    if (!newEle.classList.contains('swiper-pagination-bullet')) {
+      newEle.classList.add('unhide');
     }
   });
 }
@@ -35,12 +35,15 @@ function getPrevOrNextSwip(swipType, block, totalLength) {
 
   swip.onclick = () => {
     const activeEles = block.querySelectorAll('.active');
-    const index = Number(activeEles[0].getAttribute('index'));
-    let newIndex = ((index + 1) >= totalLength ? 0 : (index + 1));
-    if (swipType === 'left') {
-      newIndex = ((index - 1) < 0 ? (totalLength - 1) : (index - 1));
+    const activeEle = activeEles[0];
+    if (activeEle) {
+      const index = Number(activeEle.getAttribute('index'));
+      let newIndex = ((index + 1) >= totalLength ? 0 : (index + 1));
+      if (swipType === 'left') {
+        newIndex = ((index - 1) < 0 ? (totalLength - 1) : (index - 1));
+      }
+      commonOnClick(block, newIndex);
     }
-    commonOnClick(block, newIndex);
   };
 
   return swip;
