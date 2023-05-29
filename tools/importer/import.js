@@ -38,12 +38,25 @@ const createMetadata = (main, document) => {
   return meta;
 };
 
+function addBreadCrumb(doc) {
+  const breadcrumb = doc.querySelector('.section-breadcrumb');
+
+  if (breadcrumb) {
+    const cells = [['Breadcrumb']];
+    const table = WebImporter.DOMUtils.createTable(cells, doc);
+    breadcrumb.after(doc.createElement('hr'));
+    breadcrumb.replaceWith(table);
+  }
+}
+
 function customImportLogic(doc) {
   // remove the cookies banner
   const cookieBanner = doc.querySelector('.cookies-wrapper.cookies-wrapper-js');
   if (cookieBanner) {
     cookieBanner.remove();
   }
+
+  addBreadCrumb(doc);
 }
 export default {
   /**
