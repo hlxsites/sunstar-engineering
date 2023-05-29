@@ -46,16 +46,33 @@ function removeCookiesBanner(document) {
   }
 }
 
-function convertBackgroundImgsToForegroundImgs(document) {
-  document.querySelectorAll('.background-image').forEach((bgImg) => {
+function convertBackgroundImgsToForegroundImgs(node, document) {
+  const bgImgs = node.querySelectorAll('.background-image');
+  // workaround for inability of importer to handle styles
+  // with whitespace in the url
+  [...bgImgs].forEach((bgImg) => {
+    bgImg.getAttribute('style').split(';').forEach((style) => {
+      const [prop, value] = style.split(':');
+      if (prop === 'background-image') {
+        const withoutSpaces = value.replace(/\s/g, '');
+        bgImg.style.backgroundImage = withoutSpaces;
+      }
+    });
     console.log(`inlining images for ${bgImg.outerHTML}`);
     WebImporter.DOMUtils.replaceBackgroundByImg(bgImg, document);
   });
 }
 
+function createColumnBlockFromSection(document) {
+  // create a column block from the section
+  document.querySelectorAll('div.section-container').forEach((section) => {
+    convertBackgroundImgsToForegroundImgs(section, document);
+  });
+}
+
 function customImportLogic(document) {
-  convertBackgroundImgsToForegroundImgs(document);
   removeCookiesBanner(document);
+  createColumnBlockFromSection(document);
 }
 export default {
   /**
