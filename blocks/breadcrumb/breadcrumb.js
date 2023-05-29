@@ -18,8 +18,7 @@ function renderBreadcrumb(breadcrumbs, block) {
 
 async function createAutoBreadcrumb(block) {
   const pageIndex = (await fetchIndex('query-index')).data;
-  const pathname = "/drive/laser-cutting"; // TODO remove this line and uncomment next line
-  // const { pathname } = window.location;
+  const { pathname } = window.location;
   const pathSeparator = '/';
   // eslint-disable-next-line max-len
   const urlForIndex = (index) => prependSlash(pathname.split(pathSeparator).slice(1, index + 2).join(pathSeparator));
