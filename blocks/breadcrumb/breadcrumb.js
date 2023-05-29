@@ -1,0 +1,49 @@
+import { fetchIndex } from '../../scripts/scripts.js';
+
+function prependSlash(path) {
+  return path.startsWith('/') ? path : `/${path}`;
+}
+
+function renderBreadcrumb(breadcrumbs, block) {
+  const li = document.createElement('li');
+  li.classList.add('breadcrumb-item');
+
+  li.innerHTML = (breadcrumbs.category_url_path || breadcrumbs.url_path) ? `
+    <a href="${prependSlash(breadcrumbs.category_url_path ?? breadcrumbs.url_path)}">
+        ${breadcrumbs.category_name ?? breadcrumbs.name}
+    </a>
+  ` : `${breadcrumbs.category_name ?? breadcrumbs.name}`;
+  block.append(li);
+}
+
+async function createAutoBreadcrumb(block) {
+  const pageIndex = (await fetchIndex('query-index')).data;
+  const pathname = "/drive/laser-cutting"; // TODO remove this line and uncomment next line
+  // const { pathname } = window.location;
+  const pathSeparator = '/';
+  // eslint-disable-next-line max-len
+  const urlForIndex = (index) => prependSlash(pathname.split(pathSeparator).slice(1, index + 2).join(pathSeparator));
+  const pathSplit = pathname.split(pathSeparator);
+
+  const breadcrumbs = [
+    {
+      name: 'Home',
+      url_path: `${pathSeparator}`,
+    },
+    ...pathSplit.slice(1, -1).map((part, index) => ({
+      name: pageIndex.find((page) => page.path === urlForIndex(index))?.title ?? part,
+      url_path: urlForIndex(index),
+    })),
+    {
+      // eslint-disable-next-line max-len
+      name: pageIndex.find((page) => page.path === urlForIndex(pathSplit.length - 1))?.title ?? pathSplit[pathSplit.length - 1],
+    },
+  ];
+  breadcrumbs.forEach((crumb) => {
+    renderBreadcrumb(crumb, block);
+  });
+}
+
+export default async function decorate(block) {
+  await createAutoBreadcrumb(block);
+}

@@ -111,6 +111,44 @@ async function loadLazy(doc) {
   sampleRUM.observe(main.querySelectorAll('picture > img'));
 }
 
+export async function fetchIndex(indexFile, pageSize = 500) {
+  const handleIndex = async (offset) => {
+    const resp = await fetch(`/_drafts/piyush/${indexFile}.json?limit=${pageSize}&offset=${offset}`); // TODO Change path
+    const json = await resp.json();
+
+    const newIndex = {
+      complete: (json.limit + json.offset) === json.total,
+      offset: json.offset + pageSize,
+      promise: null,
+      data: [...window.index[indexFile].data, ...json.data],
+    };
+
+    return newIndex;
+  };
+
+  window.index = window.index || {};
+  window.index[indexFile] = window.index[indexFile] || {
+    data: [],
+    offset: 0,
+    complete: false,
+    promise: null,
+  };
+
+  if (window.index[indexFile].complete) {
+    return window.index[indexFile];
+  }
+
+  if (window.index[indexFile].promise) {
+    return window.index[indexFile].promise;
+  }
+
+  window.index[indexFile].promise = handleIndex(window.index[indexFile].offset);
+  const newIndex = await (window.index[indexFile].promise);
+  window.index[indexFile] = newIndex;
+
+  return newIndex;
+}
+
 /**
  * Loads everything that happens a lot later,
  * without impacting the user experience.

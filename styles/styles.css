@@ -260,6 +260,11 @@ main blockquote p::after {
   line-height: 0;
 }
 
+main .block {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 main img {
   max-width: 100%;
   width: auto;
