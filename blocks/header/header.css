@@ -8,7 +8,7 @@ header.header-wrapper {
   display: none;
 }
 
-@media (min-width: 77rem) {
+@media (min-width >= 77rem) {
   header.header-wrapper {
     display: block;
   }
