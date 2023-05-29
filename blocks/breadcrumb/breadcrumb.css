@@ -7,13 +7,13 @@
     display: none;
 }
 
-.breadcrumb {
+.block.breadcrumb {
     display: flex;
     list-style: none;
     padding: 10px 0;
 }
 
-.breadcrumb a {
+.block.breadcrumb a {
     color: var(--secondary);
 }
 
