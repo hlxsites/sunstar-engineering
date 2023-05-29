@@ -1,10 +1,8 @@
 /* header and nav layout */
 header.header-wrapper {
-  position: fixed;
   width: 100%;
-  top: 0;
   background-color: var(--background-color);
-
+  position: relative;
   /* TODO nav layout for mobile */
   display: none;
 }
@@ -85,6 +83,13 @@ header nav.nav-middle>h4 {
 header nav.nav-bottom {
   height: var(--nav-bottom-height);
   justify-content: space-between;
+  width: 100%;
+  background-color: var(--background-color);
+}
+
+header nav.nav-bottom.scrolled {
+  position: fixed;
+  top: 0;
 }
 
 header nav.nav-bottom>ul>li {

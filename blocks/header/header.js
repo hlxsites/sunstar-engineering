@@ -45,6 +45,13 @@ export default async function decorate(block) {
       navDecorators[navClass](nav);
       block.appendChild(nav);
     });
+    window.addEventListener('scroll', () => {
+      if (document.documentElement.scrollTop >= document.querySelector('nav.nav-top').offsetHeight + document.querySelector('nav.nav-middle').offsetHeight) {
+        block.querySelector('nav.nav-bottom').classList.add('scrolled');
+      } else {
+        block.querySelector('nav.nav-bottom').classList.remove('scrolled');
+      }
+    });
     decorateIcons(block);
   }
 }
