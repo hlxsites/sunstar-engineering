@@ -3,6 +3,7 @@ header.header-wrapper {
   width: 100%;
   background-color: var(--background-color);
   position: relative;
+  
   /* TODO nav layout for mobile */
   display: none;
 }
