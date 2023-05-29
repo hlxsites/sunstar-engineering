@@ -5,6 +5,7 @@
     font-weight: var(--font-weight-medium);
     line-height: 1;
     display: none;
+    height: 33.28px;
 }
 
 .block.breadcrumb {
@@ -37,7 +38,7 @@
     content: "";
 }
 
-@media (min-width: 992px) {
+@media (min-width: 62rem) {
     .section.breadcrumb-container {
         display: block;
     }
@@ -49,7 +50,7 @@
     }
 }
 
-@media (min-width: 1232px) {
+@media (min-width: 77rem) {
     .block.breadcrumb {
         padding-left: 0;
         padding-right: 0;

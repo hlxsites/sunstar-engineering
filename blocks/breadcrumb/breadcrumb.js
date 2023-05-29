@@ -1,4 +1,5 @@
 import { fetchIndex } from '../../scripts/scripts.js';
+import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 
 function prependSlash(path) {
   return path.startsWith('/') ? path : `/${path}`;
@@ -16,7 +17,7 @@ function renderBreadcrumb(breadcrumbs, block) {
   block.append(li);
 }
 
-async function createAutoBreadcrumb(block) {
+async function createAutoBreadcrumb(block, placeholders) {
   const pageIndex = (await fetchIndex('query-index')).data;
   const { pathname } = window.location;
   const pathSeparator = '/';
@@ -26,7 +27,7 @@ async function createAutoBreadcrumb(block) {
 
   const breadcrumbs = [
     {
-      name: 'Home',
+      name: placeholders.hometext,
       url_path: `${pathSeparator}`,
     },
     ...pathSplit.slice(1, -1).map((part, index) => ({
@@ -44,5 +45,6 @@ async function createAutoBreadcrumb(block) {
 }
 
 export default async function decorate(block) {
-  await createAutoBreadcrumb(block);
+  const placeholders = await fetchPlaceholders(); // TODO need to add locale in future here
+  createAutoBreadcrumb(block, placeholders);
 }
