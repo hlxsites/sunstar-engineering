@@ -29,7 +29,7 @@ export default async function decorate(block) {
   // fetch nav content
   const navMeta = getMetadata('nav');
   // TODO: remove this fallback once nav is in place
-  const navPath = navMeta ? new URL(navMeta).pathname : '/_drafts/satyam/nav';
+  const navPath = navMeta ? new URL(navMeta).pathname : '/nav';
   const resp = await fetch(`${navPath}.plain.html`);
 
   if (resp.ok) {
