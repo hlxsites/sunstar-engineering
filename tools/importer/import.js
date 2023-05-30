@@ -39,50 +39,59 @@ const createMetadata = (main, document) => {
 };
 
 function getCarouselItems(doc) {
-  const textItemsFromDoc = doc.querySelectorAll('.info-content');
-  let textItems = textItemsFromDoc.length ? [...textItemsFromDoc] : [];
-  textItems = textItems.map((x) => {
-    const div = document.createElement('div');
-    const h1 = document.createElement('h1');
-    h1.textContent = x.querySelector('h6').textContent;
+  const heroSlider = doc.querySelector('.hero-one-slider');
 
-    const h2 = document.createElement('h2');
-    h2.textContent = x.querySelector('h2').textContent;
+  if (heroSlider) {
+    const textItemsFromDoc = doc.querySelectorAll('.info-content');
+    let textItems = textItemsFromDoc.length ? [...textItemsFromDoc] : [];
+    textItems = textItems.map((x) => {
+      const div = document.createElement('div');
+      if (x.querySelector('h6')) {
+        const h1 = document.createElement('h1');
+        h1.textContent = x.querySelector('h6').textContent;
+        div.appendChild(h1);
+      }
 
-    const p = document.createElement('p');
-    p.textContent = x.querySelector('p').textContent;
+      if (x.querySelector('h2')) {
+        const h2 = document.createElement('h2');
+        h2.textContent = x.querySelector('h2').textContent;
+        div.appendChild(h2);
+      }
 
-    const a = document.createElement('a');
-    a.textContent = x.querySelector('a').textContent;
-    a.href = x.querySelector('a').href;
+      if (x.querySelector('p')) {
+        const p = document.createElement('p');
+        p.textContent = x.querySelector('p').textContent;
+        div.appendChild(p);
+      }
 
-    div.appendChild(h1);
-    div.appendChild(h2);
-    div.appendChild(p);
-    div.appendChild(a);
+      if (x.querySelector('a')) {
+        const a = document.createElement('a');
+        a.textContent = x.querySelector('a').textContent;
+        a.href = x.querySelector('a').href;
+        div.appendChild(a);
+      }
 
-    return div;
-  });
+      return div;
+    });
 
-  const imageItemsFromDoc = doc.querySelectorAll('.img-content');
-  let imageItems = imageItemsFromDoc.length ? [...imageItemsFromDoc].slice(1, -1) : [];
-  imageItems = imageItems.map((x) => {
-    const div = document.createElement('div');
-    const img = document.createElement('img');
-    img.src = x.style.backgroundImage.slice(4, -1).replace(/"/g, '');
-    div.appendChild(img);
-    return div;
-  });
+    const imageItemsFromDoc = doc.querySelectorAll('.img-content');
+    let imageItems = imageItemsFromDoc.length ? [...imageItemsFromDoc].slice(1, -1) : [];
+    imageItems = imageItems.map((x) => {
+      const div = document.createElement('div');
+      div.appendChild(WebImporter.DOMUtils.replaceBackgroundByImg(x, document));
+      return div;
+    });
 
-  const cells = [['Carousel']];
+    const cells = [['Carousel']];
 
-  textItems.forEach((item, index) => {
-    cells.push([item.innerHTML, imageItems[index].innerHTML]);
-  });
+    textItems.forEach((item, index) => {
+      cells.push([item.innerHTML, imageItems[index].innerHTML]);
+    });
 
-  const table = WebImporter.DOMUtils.createTable(cells, doc);
-  doc.querySelector('.hero-one-slider').after(doc.createElement('hr'));
-  doc.querySelector('.hero-one-slider').replaceWith(table);
+    const table = WebImporter.DOMUtils.createTable(cells, doc);
+    heroSlider.after(doc.createElement('hr'));
+    heroSlider.replaceWith(table);
+  }
 }
 
 function customImportLogic(doc) {

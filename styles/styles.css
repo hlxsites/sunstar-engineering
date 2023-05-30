@@ -75,12 +75,6 @@
   --nav-bottom-height: 52px;
   --nav-total-height: calc(var(--nav-top-height) + var(--nav-middle-height) + var(--nav-bottom-height));
 
-  /* Colors */
-  --dark-blue-color: #00587C;
-  --methyle-blue-color: #007CAD;
-  --pacific-blue-color: #0092CC;
-  --white-color: #fff;
-
   /* Font Sizes */
   --font-size-small: 14px;
   --font-size-xsmall: 12px;
@@ -150,6 +144,12 @@ blockquote {
   padding: 0;
 }
 
+p {
+  font-weight: var(--font-weight-medium);
+  font-size: var(--body-font-size-m);
+  line-height: 1.5em;
+}
+
 ul {
   list-style: none;
 }
@@ -195,32 +195,28 @@ a:any-link {
 }
 
 /* buttons */
-a.button:any-link,
-button {
-  font-family: var(--body-font-family);
-  display: inline-block;
-  box-sizing: border-box;
-  text-decoration: none;
-  border: 2px solid transparent;
-  padding: 5px 30px;
-  text-align: center;
-  font-style: normal;
-  font-weight: 600;
-  cursor: pointer;
-  color: var(--background-color);
-  background-color: var(--link-color);
-  margin: 16px 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  border-radius: 30px;
+a.button:any-link, button {
+  min-width: 160px;
+  height: 48px;
+  border: none;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+a.button.primary {
+  background: var(--secondary);
+  color: var(--white);
 }
 
 a.button:hover,
 a.button:focus,
 button:hover,
 button:focus {
-  background-color: var(--link-hover-color);
+  background-color: #0092CC;
   cursor: pointer;
 }
 

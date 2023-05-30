@@ -1,16 +1,16 @@
 .carousel {
-    background-color: var(--dark-blue-color);
+    background-color: var(--primary);
     display: block;
     overflow: hidden;
 }
 
-.image-item {
+.carousel .image-item {
     opacity: 0;
     display: none;
     height: 100%;
 }
 
-.text-item {
+.carousel .text-item {
     padding: 1.5rem 1rem 5.5rem;
     opacity: 0;
     display: none;
@@ -18,7 +18,7 @@
 }
 
 .carousel .text {
-    color: var(--white-color);
+    color: var(--white);
     display: flex;
 }
 
@@ -33,11 +33,11 @@
     flex-direction: column-reverse;
 }
 
-.text-item.active, .image-item.active {
+.carousel .text-item.active, .carousel .image-item.active {
     opacity: 1;
 }
 
-.text-item.unhide, .image-item.unhide {
+.carousel .text-item.unhide, .carousel .image-item.unhide {
     display: block;
 }
 
@@ -47,40 +47,17 @@
     text-transform: uppercase;
     font-size: var(--heading-font-size-xxs);
     letter-spacing: 0;
-    line-height: 1rem;
     font-weight: var(--font-weight-bold);
-    margin-top: 0;
 }
 
 .carousel h2 {
     margin-bottom: 1rem;
     font-weight: var(--font-weight-small);
     font-size: var(--heading-font-size-m);
-    line-height: 1.3em;
-    margin-top: 0;
 }
 
 .carousel p {
-    font-weight: var(--font-weight-medium);
-    font-size: 1rem;
-    line-height: 1.5em;
-    margin-top: 0;
-}
-
-.carousel a.button.primary {
-    background: var(--methyle-blue-color);
-    border: none;
-    padding: 0 1.5em;
-    align-items: center;
-    justify-content: center;
-    height: 3rem;
-    display: inline-flex;
-    border-radius: 0%;
-    min-width: 10rem;
-}
-
-.carousel a.button.primary:hover {
-    background: var(--pacific-blue-color);
+    margin-bottom: 42px;
 }
 
 .carousel .icon {
@@ -104,7 +81,7 @@
     cursor: pointer;
 }
 
-.swiper-pagination-bullet {
+.carousel .swiper-pagination-bullet {
     cursor: pointer;
     height: 0.5rem;
     width: 0.5rem;
@@ -114,15 +91,15 @@
     border-radius: 50%;
 }
 
-.swiper-pagination-bullet:last-child {
+.carousel .swiper-pagination-bullet:last-child {
     margin-right: 0;
 }
 
-.swiper-pagination-bullet.active {
-    background-color: var(--white-color);
+.carousel .swiper-pagination-bullet.active {
+    background-color: var(--white);
 }
 
-.control-container {
+.carousel .control-container {
     display: flex;
     align-items: center;
     position: relative;
@@ -131,7 +108,7 @@
     justify-content: center;
 }
 
-.swip-pagination {
+.carousel .swip-pagination {
     display: inline-flex;
     padding: 0 1.5rem;
 }
@@ -167,7 +144,7 @@ main .section.carousel-container {
         height: 100%;
     }
 
-    .text-item {
+    .carousel .text-item {
         position: absolute;
         width: 21.688rem;
     }
@@ -188,13 +165,13 @@ main .section.carousel-container {
         max-width: unset;
     }
 
-    .hero-slider-controller {
+    .carousel .hero-slider-controller {
         width: 56.375rem;
         margin: auto;
         position: relative;
     }
 
-    .control-container {
+    .carousel .control-container {
         margin: auto;
         width: 100%;
         padding-left: 1rem;
@@ -210,7 +187,7 @@ main .section.carousel-container {
 }
 
 @media (min-width: 77rem) {
-    .hero-slider-controller {
+    .carousel .hero-slider-controller {
         width: 75rem;
     }
 
@@ -218,11 +195,11 @@ main .section.carousel-container {
         width: 75rem;
     }
 
-    .text-item {
+    .carousel .text-item {
         width: 30rem;
     }
 
-    .control-container {
+    .carousel .control-container {
         width: 100%;
     }   
 }
