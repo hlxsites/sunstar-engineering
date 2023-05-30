@@ -38,6 +38,73 @@ const createMetadata = (main, document) => {
   return meta;
 };
 
+function addCarouselItems(doc) {
+  const heroSlider = doc.querySelector('.hero-one-slider');
+
+  if (heroSlider) {
+    const textItemsFromDoc = doc.querySelectorAll('.info-content');
+    let textItems = textItemsFromDoc.length ? [...textItemsFromDoc] : [];
+    textItems = textItems.map((x) => {
+      const div = document.createElement('div');
+      if (x.querySelector('h6')) {
+        const h1 = document.createElement('h1');
+        h1.textContent = x.querySelector('h6').textContent;
+        div.appendChild(h1);
+      }
+
+      if (x.querySelector('h2')) {
+        const h2 = document.createElement('h2');
+        h2.textContent = x.querySelector('h2').textContent;
+        div.appendChild(h2);
+      }
+
+      if (x.querySelector('p')) {
+        const p = document.createElement('p');
+        p.textContent = x.querySelector('p').textContent;
+        div.appendChild(p);
+      }
+
+      if (x.querySelector('a')) {
+        const a = document.createElement('a');
+        a.textContent = x.querySelector('a').textContent;
+        a.href = x.querySelector('a').href;
+        div.appendChild(a);
+      }
+
+      return div;
+    });
+
+    const imageItemsFromDoc = doc.querySelectorAll('.img-content');
+    let imageItems = imageItemsFromDoc.length ? [...imageItemsFromDoc].slice(1, -1) : [];
+    imageItems = imageItems.map((x) => {
+      const div = document.createElement('div');
+      div.appendChild(WebImporter.DOMUtils.replaceBackgroundByImg(x, document));
+      return div;
+    });
+
+    const cells = [['Carousel']];
+
+    textItems.forEach((item, index) => {
+      cells.push([item.innerHTML, imageItems[index].innerHTML]);
+    });
+
+    const table = WebImporter.DOMUtils.createTable(cells, doc);
+    heroSlider.after(doc.createElement('hr'));
+    heroSlider.replaceWith(table);
+  }
+}
+
+function addBreadCrumb(doc) {
+  const breadcrumb = doc.querySelector('.section-breadcrumb');
+
+  if (breadcrumb) {
+    const cells = [['Breadcrumb']];
+    const table = WebImporter.DOMUtils.createTable(cells, doc);
+    breadcrumb.after(doc.createElement('hr'));
+    breadcrumb.replaceWith(table);
+  }
+}
+
 function removeCookiesBanner(document) {
   // remove the cookies banner
   const cookieBanner = document.querySelector('.cookies-wrapper.cookies-wrapper-js');
@@ -100,10 +167,14 @@ function createColumnBlockFromSection(document) {
   });
 }
 
-function customImportLogic(document) {
-  removeCookiesBanner(document);
-  createColumnBlockFromSection(document);
-  convertBackgroundImgsToForegroundImgs(document);
+function customImportLogic(doc) {
+  removeCookiesBanner(doc);
+
+  addBreadCrumb(doc);
+  addCarouselItems(doc);
+
+  createColumnBlockFromSection(doc);
+  convertBackgroundImgsToForegroundImgs(doc);
 }
 
 export default {
