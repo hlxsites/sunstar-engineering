@@ -63,16 +63,19 @@ export function decorateMain(main) {
  * @param {Element} element The element to decorate
  * @returns {void}
  */
-export function decorateYouTube(element = document) {
+export function decorateVideoLinks(element = document) {
   const anchors = element.getElementsByTagName('a');
-  const youTubeAnchors = Array.from(anchors).filter((a) =>
-    a.href.includes('youtu')
+  // currently only youtube links are supported
+  const youTubeAnchors = Array.from(anchors).filter(
+    (a) => a.href.includes('youtu'),
   );
 
-  youTubeAnchors.forEach(a => {
-    a.addClass('video-link');
-    a.addClass('youtube');
-  });
+  if (youTubeAnchors.length) {
+    youTubeAnchors.forEach((a) => {
+      a.className += ' video-link';
+      a.className += ' youtube';
+    });
+  }
 }
 
 /**
@@ -143,6 +146,8 @@ async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
+
+  decorateVideoLinks();
 }
 
 loadPage();
