@@ -38,7 +38,7 @@ const createMetadata = (main, document) => {
   return meta;
 };
 
-function getCarouselItems(doc) {
+function addCarouselItems(doc) {
   const heroSlider = doc.querySelector('.hero-one-slider');
 
   if (heroSlider) {
@@ -94,6 +94,17 @@ function getCarouselItems(doc) {
   }
 }
 
+function addBreadCrumb(doc) {
+  const breadcrumb = doc.querySelector('.section-breadcrumb');
+
+  if (breadcrumb) {
+    const cells = [['Breadcrumb']];
+    const table = WebImporter.DOMUtils.createTable(cells, doc);
+    breadcrumb.after(doc.createElement('hr'));
+    breadcrumb.replaceWith(table);
+  }
+}
+
 function customImportLogic(doc) {
   // remove the cookies banner
   const cookieBanner = doc.querySelector('.cookies-wrapper.cookies-wrapper-js');
@@ -101,7 +112,8 @@ function customImportLogic(doc) {
     cookieBanner.remove();
   }
 
-  getCarouselItems(doc);
+  addBreadCrumb(doc);
+  addCarouselItems(doc);
 }
 export default {
   /**
