@@ -72,8 +72,8 @@ export function decorateVideoLinks(element = document) {
 
   if (youTubeAnchors.length) {
     youTubeAnchors.forEach((a) => {
-      a.className += ' video-link';
-      a.className += ' youtube';
+      a.classList.add('video-link');
+      a.classList.add('youtube');
     });
   }
 }

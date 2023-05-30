@@ -28,9 +28,10 @@
 }
 
 .columns a.button.primary.video-link::after {
-  content: " " url("../../icons/play.svg");
+  content: url("../../icons/play.svg");
   position: relative;
-  top: 0.15em;
+  top: 0.1em;
+  left: 0.3em;
 }
 
 @media (min-width: 900px) {
