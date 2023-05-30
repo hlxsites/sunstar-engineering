@@ -4,6 +4,7 @@ header.header-wrapper {
   width: 100%;
   top: 0;
   background-color: var(--background-color);
+  z-index: 100;
 
   /* TODO nav layout for mobile */
   display: none;

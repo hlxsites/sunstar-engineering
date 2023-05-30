@@ -58,8 +58,10 @@
   --heading-font-size-m: 24px;
   --heading-font-size-s: 20px;
   --heading-font-size-xs: 18px;
+  --heading-font-size-xxs: 14px;
 
   /* Font Weight */
+  --font-weight-small: 300;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-bold: 700;
@@ -73,6 +75,9 @@
   --nav-bottom-height: 52px;
   --nav-total-height: calc(var(--nav-top-height) + var(--nav-middle-height) + var(--nav-bottom-height));
 
+  /* Font Sizes */
+  --font-size-small: 14px;
+  --font-size-xsmall: 12px;
 }
 
 body {
@@ -85,6 +90,7 @@ body {
   color: var(--text-color);
   background-color: var(--background-color);
   display: none;
+  -webkit-font-smoothing: antialiased;
 }
 
 body.appear {
@@ -139,6 +145,12 @@ blockquote {
   padding: 0;
 }
 
+p {
+  font-weight: var(--font-weight-medium);
+  font-size: var(--body-font-size-m);
+  line-height: 1.5em;
+}
+
 ul {
   list-style: none;
 }
@@ -184,32 +196,29 @@ a:any-link {
 }
 
 /* buttons */
-a.button:any-link,
-button {
-  font-family: var(--body-font-family);
-  display: inline-block;
-  box-sizing: border-box;
-  text-decoration: none;
-  border: 2px solid transparent;
-  padding: 5px 30px;
-  text-align: center;
-  font-style: normal;
-  font-weight: 600;
-  cursor: pointer;
-  color: var(--background-color);
-  background-color: var(--link-color);
-  margin: 16px 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+a.button:any-link, button {
+  min-width: 160px;
+  height: 48px;
+  border: none;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  line-height: 1;
   border-radius: 2px;
+}
+
+a.button.primary {
+  background: var(--secondary);
+  color: var(--white);
 }
 
 a.button:hover,
 a.button:focus,
 button:hover,
 button:focus {
-  background-color: var(--link-hover-color);
+  background-color: #0092CC;
   cursor: pointer;
 }
 
@@ -259,6 +268,11 @@ main blockquote p::before {
 main blockquote p::after {
   content: "”";
   line-height: 0;
+}
+
+main .block {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 main img {
