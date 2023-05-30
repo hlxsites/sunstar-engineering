@@ -77,10 +77,17 @@ function createColumnBlockFromSection(document) {
   document.querySelectorAll('div.section-container').forEach((section) => {
     const block = [['Columns']];
     // create a column block from the section
-    // but only if it contains two columns
+    // but only if it contains two columns and isn't a hero section
+    const heroParent = Array.from(section.parentElement.classList)
+      .filter((s) => /hero/.test(s)).length;
     const contentColumns = Array.from(section.children)
-      .filter((el) => el.tagName === 'DIV');
-    if (contentColumns && contentColumns.length === 2 && section.children.length === 2) {
+      .filter(
+        (el) => (el.tagName === 'DIV' || el.tagName === 'FIGURE' || el.tagName === 'IMG'),
+      );
+    if (!heroParent && contentColumns
+      && contentColumns.length === 2
+      && section.children.length === 2
+      && section.querySelectorAll('p').length !== 0) {
       const columnItem = [];
       contentColumns.forEach((column) => {
         columnItem.push(column);
