@@ -46,8 +46,14 @@ function removeCookiesBanner(document) {
   }
 }
 
-function convertBackgroundImgsToForegroundImgs(node, document) {
-  const bgImgs = node.querySelectorAll('.background-image');
+/**
+ * Extract background images from the source node and
+ * replace them with foreground images in the target node.
+ * @param {Node} sourceNode The node to extract background images from
+ * @param {Node} targetNode The node to use for inlining the images
+ */
+function convertBackgroundImgsToForegroundImgs(sourceNode, targetNode = sourceNode) {
+  const bgImgs = sourceNode.querySelectorAll('.background-image');
   // workaround for inability of importer to handle styles
   // with whitespace in the url
   [...bgImgs].forEach((bgImg) => {
@@ -59,21 +65,40 @@ function convertBackgroundImgsToForegroundImgs(node, document) {
       }
     });
     console.log(`inlining images for ${bgImg.outerHTML}`);
-    WebImporter.DOMUtils.replaceBackgroundByImg(bgImg, document);
+    WebImporter.DOMUtils.replaceBackgroundByImg(bgImg, targetNode);
   });
 }
 
+/**
+ * Creates a column block from a section if it contains two columns _only_
+ * @param {HTMLDocument} document The document
+ */
 function createColumnBlockFromSection(document) {
-  // create a column block from the section
   document.querySelectorAll('div.section-container').forEach((section) => {
-    convertBackgroundImgsToForegroundImgs(section, document);
+    const block = [['Columns']];
+    // create a column block from the section
+    // but only if it contains two columns
+    const contentColumns = Array.from(section.children)
+      .filter((el) => el.tagName === 'DIV');
+    if (contentColumns && contentColumns.length === 2 && section.children.length === 2) {
+      const columnItem = [];
+      contentColumns.forEach((column) => {
+        columnItem.push(column);
+      });
+      block.push(columnItem);
+      const table = WebImporter.DOMUtils.createTable(block, document);
+      convertBackgroundImgsToForegroundImgs(table, document);
+      section.replaceWith(table);
+    }
   });
 }
 
 function customImportLogic(document) {
   removeCookiesBanner(document);
   createColumnBlockFromSection(document);
+  convertBackgroundImgsToForegroundImgs(document);
 }
+
 export default {
   /**
    * Apply DOM operations to the provided document and return
