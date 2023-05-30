@@ -27,7 +27,7 @@
   color: var(--link-color);
 }
 
-.columns a.button.primary[href*="youtu"]::after {
+.columns a.button.primary.video-link::after {
   content: " " url("../../icons/play.svg");
   position: relative;
   top: 0.15em;

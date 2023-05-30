@@ -58,6 +58,24 @@ export function decorateMain(main) {
 }
 
 /**
+ * decorates anchors with video links
+ * for styling updates via CSS
+ * @param {Element} element The element to decorate
+ * @returns {void}
+ */
+export function decorateYouTube(element = document) {
+  const anchors = element.getElementsByTagName('a');
+  const youTubeAnchors = Array.from(anchors).filter((a) =>
+    a.href.includes('youtu')
+  );
+
+  youTubeAnchors.forEach(a => {
+    a.addClass('video-link');
+    a.addClass('youtube');
+  });
+}
+
+/**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
  */
