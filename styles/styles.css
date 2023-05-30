@@ -53,7 +53,7 @@
 
   /* heading sizes */
   --heading-font-size-xxl: 48px;
-  --heading-font-size-xl: 40px;
+  --heading-font-size-xl: 2.625rem;
   --heading-font-size-l: 32px;
   --heading-font-size-m: 24px;
   --heading-font-size-s: 20px;
@@ -104,8 +104,8 @@ h3,
 h4,
 h5,
 h6 {
+  color: #00587C;
   font-family: var(--heading-font-family);
-  font-weight: 600;
   line-height: 1.25;
   scroll-margin: calc(var(--nav-height) + 1em);
   margin: 0;
@@ -116,7 +116,10 @@ h1 {
 }
 
 h2 {
-  font-size: var(--heading-font-size-xl)
+  font-size: var(--heading-font-size-xl);
+  margin: 4rem 0 3rem;
+  font-weight: 500;
+  line-height: 1.3em;
 }
 
 h3 {
