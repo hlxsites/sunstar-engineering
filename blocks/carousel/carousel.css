@@ -1,0 +1,205 @@
+.carousel {
+    background-color: var(--primary);
+    display: block;
+    overflow: hidden;
+}
+
+.carousel .image-item {
+    opacity: 0;
+    display: none;
+    height: 100%;
+}
+
+.carousel .text-item {
+    padding: 1.5rem 1rem 5.5rem;
+    opacity: 0;
+    display: none;
+    height: 100%;
+}
+
+.carousel .text {
+    color: var(--white);
+    display: flex;
+}
+
+.carousel img {
+    height: 15.3rem;
+    width: 100%;
+    object-fit: cover;
+}
+
+.carousel .section-container {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.carousel .text-item.active, .carousel .image-item.active {
+    opacity: 1;
+}
+
+.carousel .text-item.unhide, .carousel .image-item.unhide {
+    display: block;
+}
+
+.carousel h1 {
+    opacity: 0.7;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    font-size: var(--heading-font-size-xxs);
+    letter-spacing: 0;
+    font-weight: var(--font-weight-bold);
+}
+
+.carousel h2 {
+    margin-bottom: 1rem;
+    font-weight: var(--font-weight-small);
+    font-size: var(--heading-font-size-m);
+}
+
+.carousel p {
+    margin-bottom: 42px;
+}
+
+.carousel .icon {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 18px;
+    width: 12px;
+    display: inline-flex;
+}
+
+.carousel .icon-right {
+    background-image: url('../../icons/right-white.svg');
+    display: none;
+    cursor: pointer;
+}
+
+.carousel .icon-left {
+    background-image: url('../../icons/left-white.svg');
+    display: none;
+    cursor: pointer;
+}
+
+.carousel .swiper-pagination-bullet {
+    cursor: pointer;
+    height: 0.5rem;
+    width: 0.5rem;
+    display: inline-flex;
+    margin-right: 0.75rem;
+    background: #ffffff1f;
+    border-radius: 50%;
+}
+
+.carousel .swiper-pagination-bullet:last-child {
+    margin-right: 0;
+}
+
+.carousel .swiper-pagination-bullet.active {
+    background-color: var(--white);
+}
+
+.carousel .control-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    bottom: 2.875rem;
+    z-index: 10;
+    justify-content: center;
+}
+
+.carousel .swip-pagination {
+    display: inline-flex;
+    padding: 0 1.5rem;
+}
+
+main .section.carousel-container {
+    padding: 0
+}
+
+@media (min-width: 62rem) {
+    .carousel {
+        display: flex;
+        flex-direction: column;
+        height: 43.75rem;
+    }
+
+    .carousel .icon-right {
+        display: block;
+    }
+    
+    .carousel .icon-left {
+        display: block;
+    }
+
+    .carousel .section-container {
+        flex-direction: row;
+        height: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        width: 56.375rem;
+    }
+
+    .carousel img {
+        height: 100%;
+    }
+
+    .carousel .text-item {
+        position: absolute;
+        width: 21.688rem;
+    }
+
+    .carousel .text {
+        padding-top: 10rem;
+        position: relative;
+    }
+
+    .carousel .image {
+        left: 50%;
+        height: 43.75rem;
+        position: absolute;
+    }
+
+    .section > div.carousel-wrapper {
+        margin: 0;
+        max-width: unset;
+    }
+
+    .carousel .hero-slider-controller {
+        width: 56.375rem;
+        margin: auto;
+        position: relative;
+    }
+
+    .carousel .control-container {
+        margin: auto;
+        width: 100%;
+        padding-left: 1rem;
+        position: absolute;
+        transform: translateX(-50%);
+        left: 50.5%;
+        justify-content: unset;
+    }
+
+    .carousel h2 {
+        font-size: 2.25rem;
+    }
+}
+
+@media (min-width: 77rem) {
+    .carousel .hero-slider-controller {
+        width: 75rem;
+    }
+
+    .carousel .section-container {
+        width: 75rem;
+    }
+
+    .carousel .text-item {
+        width: 30rem;
+    }
+
+    .carousel .control-container {
+        width: 100%;
+    }   
+}
