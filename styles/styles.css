@@ -206,7 +206,8 @@ a:any-link {
 }
 
 /* buttons */
-a.button:any-link, button {
+a.button:any-link,
+button {
   min-width: 160px;
   height: 48px;
   border: none;
@@ -306,19 +307,35 @@ main img {
 }
 
 main .section {
-  padding: 64px 16px;
+  max-width: 100%;
+  padding-left: 0;
+  padding-right: 0
 }
 
-@media (min-width: 600px) {
+main .section.full-width {
+  max-width: 100%;
+  padding-left: 0;
+  padding-right: 0
+}
+
+
+@media (width >=62rem) {
   main .section {
-    padding: 64px 32px;
+    max-width: calc(872px + 32px);
+    padding-left: 16px;
+    padding-right: 16px
   }
 }
 
-@media (min-width: 900px) {
-  .section>div {
-    max-width: 1200px;
-    margin: auto;
+@media (width >=77rem) {
+  main .section {
+    position: relative;
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 1200px
   }
 }
 
