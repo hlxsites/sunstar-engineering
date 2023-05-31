@@ -74,8 +74,8 @@ function addCarouselItems(doc) {
       return div;
     });
 
-    const imageItemsFromDoc = doc.querySelectorAll('.img-content');
-    let imageItems = imageItemsFromDoc.length ? [...imageItemsFromDoc].slice(1, -1) : [];
+    const imageItemsFromDoc = doc.querySelectorAll('.swiper-slide:not(.swiper-slide-duplicate) .img-content');
+    let imageItems = imageItemsFromDoc.length ? [...imageItemsFromDoc] : [];
     imageItems = imageItems.map((x) => {
       const div = document.createElement('div');
       div.appendChild(WebImporter.DOMUtils.replaceBackgroundByImg(x, document));
