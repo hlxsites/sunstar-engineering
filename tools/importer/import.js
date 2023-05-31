@@ -32,6 +32,17 @@ const createMetadata = (main, document) => {
     meta.Image = el;
   }
 
+  const breadcrumb = document.querySelector('.section-breadcrumb');
+  if (breadcrumb) {
+    const breadcrumbItems = breadcrumb.querySelectorAll('.ss-breadcrumb .breadcrumb-item');
+    if (breadcrumbItems && breadcrumbItems.length) {
+      const breadcrumbText = breadcrumbItems[breadcrumbItems.length - 1].textContent.trim();
+      meta.BreadcrumbTitle = breadcrumbText;
+    }
+
+    breadcrumb.remove();
+  }
+
   const block = WebImporter.Blocks.getMetadataBlock(document, meta);
   main.append(block);
 
@@ -98,10 +109,11 @@ function addBreadCrumb(doc) {
   const breadcrumb = doc.querySelector('.section-breadcrumb');
 
   if (breadcrumb) {
+    // Not removing breadcrumb section from here because we need to extract breadcrumb title.
     const cells = [['Breadcrumb']];
     const table = WebImporter.DOMUtils.createTable(cells, doc);
     breadcrumb.after(doc.createElement('hr'));
-    breadcrumb.replaceWith(table);
+    breadcrumb.after(table);
   }
 }
 
@@ -115,6 +127,7 @@ function customImportLogic(doc) {
   addBreadCrumb(doc);
   addCarouselItems(doc);
 }
+
 export default {
   /**
    * Apply DOM operations to the provided document and return
