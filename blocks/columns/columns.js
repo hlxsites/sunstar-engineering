@@ -28,10 +28,11 @@ export default function decorate(block) {
             if (up.tagName === 'P') {
               up.classList.add('button-container');
             }
+            a.classList.add('button');
             if (a.previousElementSibling?.tagName === 'A') {
-              a.className = 'button tertiary';
+              a.classList.add('tertiary');
             } else {
-              a.className = 'button primary';
+              a.classList.add('primary');
             }
           }
         });

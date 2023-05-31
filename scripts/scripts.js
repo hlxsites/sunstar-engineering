@@ -51,6 +51,7 @@ function buildAutoBlocks(main) {
 export function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
+  decorateVideoLinks(main);
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
@@ -184,8 +185,6 @@ async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
-
-  decorateVideoLinks();
 }
 
 loadPage();
