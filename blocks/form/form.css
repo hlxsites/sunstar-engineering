@@ -1,0 +1,185 @@
+:root {
+  --form-invalid-color: #eb0000;
+  --form-input-color: #3C4650;
+  --form-input-bg-color: #F0F5F7;
+  --form-input-border-color: rgb(0 0 0 / 0%);
+  --form-input-focus-color: #007CAD;
+}
+
+main .form-container {
+  position: relative;
+  width: 100%;
+  padding-right: 0;
+  padding-left: 0;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 560px;
+}
+
+main .form input,
+main .form textarea,
+main .form select {
+  border: 1px solid var(--form-input-border-color);
+  padding: 12px 1rem;
+  width: 100%;
+  height: calc(1.5em + 24px + 2px);
+  max-width: 50rem;
+  box-sizing: border-box;
+  margin-top: 4px;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--form-input-color);
+  background-color: var(--form-input-bg-color);
+  background-clip: padding-box;
+  border-radius: 2px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+main .form textarea {
+  min-height: 240px;
+}
+
+main .form .invalid > input,
+main .form .invalid > textarea,
+main .form .invalid > select {
+  border-color: var(--form-invalid-color);
+}
+
+main .form input:hover,
+main .form textarea:hover,
+main .form select:hover {
+  border-color: var(--highlight-background-color);
+}
+
+main .form input:focus,
+main .form textarea:focus,
+main .form select:focus {
+  border-color: var(--form-input-focus-color);
+  outline: 0;
+}
+
+main .form .invalid > input:hover,
+main .form .invalid > textarea:hover,
+main .form .invalid > select:hover {
+  border-color: var(--form-invalid-color);
+}
+
+main .form .invalid > input:focus,
+main .form .invalid > textarea:focus,
+main .form .invalid > select:focus {
+  border-color: var(--form-invalid-color);
+  outline: 0;
+}
+
+
+main .form label {
+  width: 100%;
+  display: block;
+  font-size: var(--body-font-size-xs);
+  text-transform: uppercase;
+  box-sizing: border-box;
+  font-weight: 800;
+}
+
+main .form label > span {
+  color: #888; /* TODO: use var ? */
+  font-weight: normal;
+  margin-left: 10px;
+}
+
+main .form .field-wrapper {
+  margin-bottom: 1.5rem;
+}
+
+main .form .form-validate-label {
+  color: var(--form-invalid-color);
+  display: none;
+}
+
+main .form .invalid > .form-validate-label {
+  display: block;
+}
+
+main .form .hidden {
+  display: none;
+}
+
+main .form .form-checkbox-wrapper {
+  display: flex;
+}
+
+main .form .form-checkbox-wrapper input[type='checkbox'] {
+  display: none;
+}
+
+main .form .form-checkbox-wrapper input[type='checkbox'] + label::before {
+  float: left;
+  margin-top: 2px;
+  margin-right: 5px;
+  height: 30px;
+  width: 30px;
+  content: ' ';
+  background: url('./checkbox.svg');
+  background-size: contain;
+}
+
+main .form .form-checkbox-wrapper input[type='checkbox']:checked + label::before {
+  background: url('./checkbox-checked.svg');
+  background-size: contain;
+  content: ' ';
+}
+
+main .form .form-checkbox-wrapper label {
+  font-weight: normal;
+  text-transform: none;
+  display: block;
+}
+
+main .form .button {
+  cursor: pointer;
+  background: var(--button-background-color);
+  color: var(--button-text-color);
+  padding: var(--button-padding);
+  font-weight: var(--button-font-weight);
+  border-radius: var(--button-border-radius);
+  min-width: 160px;
+  height: 48px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+main .form .button:disabled {
+  background: var(--button-background-disabled-color);
+  cursor: initial;
+}
+
+main .form .form-note > p {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgb(60 70 80 / 50%);
+  line-height: 1.3;
+  margin-bottom: 0;
+  letter-spacing: normal;
+}
+
+main .form .addresses p {
+  margin-top: 1.5rem;
+  font-weight: var(--font-weight-regular);
+  font-size: var(--body-font-size-m);
+  font-family: var(--body-font-family);
+  line-height: 1.5em;
+  color: #3C4650;
+}
+
+main .form .addresses  p strong {
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  display: inline-block;
+  margin-bottom: 0.5rem
+}

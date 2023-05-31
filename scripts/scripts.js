@@ -44,6 +44,27 @@ function buildAutoBlocks(main) {
 }
 
 /**
+ * decorates anchors with video links
+ * for styling updates via CSS
+ * @param {Element} element The element to decorate
+ * @returns {void}
+ */
+export function decorateVideoLinks(element = document) {
+  const anchors = element.getElementsByTagName('a');
+  // currently only youtube links are supported
+  const youTubeAnchors = Array.from(anchors).filter(
+    (a) => a.href.includes('youtu'),
+  );
+
+  if (youTubeAnchors.length) {
+    youTubeAnchors.forEach((a) => {
+      a.classList.add('video-link');
+      a.classList.add('youtube');
+    });
+  }
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -51,6 +72,7 @@ function buildAutoBlocks(main) {
 export function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
+  decorateVideoLinks(main);
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
@@ -109,6 +131,44 @@ async function loadLazy(doc) {
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
+}
+
+export async function fetchIndex(indexFile, pageSize = 500) {
+  const handleIndex = async (offset) => {
+    const resp = await fetch(`/_drafts/piyush/${indexFile}.json?limit=${pageSize}&offset=${offset}`); // TODO Change path
+    const json = await resp.json();
+
+    const newIndex = {
+      complete: (json.limit + json.offset) === json.total,
+      offset: json.offset + pageSize,
+      promise: null,
+      data: [...window.index[indexFile].data, ...json.data],
+    };
+
+    return newIndex;
+  };
+
+  window.index = window.index || {};
+  window.index[indexFile] = window.index[indexFile] || {
+    data: [],
+    offset: 0,
+    complete: false,
+    promise: null,
+  };
+
+  if (window.index[indexFile].complete) {
+    return window.index[indexFile];
+  }
+
+  if (window.index[indexFile].promise) {
+    return window.index[indexFile].promise;
+  }
+
+  window.index[indexFile].promise = handleIndex(window.index[indexFile].offset);
+  const newIndex = await (window.index[indexFile].promise);
+  window.index[indexFile] = newIndex;
+
+  return newIndex;
 }
 
 /**

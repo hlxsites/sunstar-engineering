@@ -46,10 +46,10 @@ export default async function decorate(block) {
       block.appendChild(nav);
     });
     window.addEventListener('scroll', () => {
-      if (document.documentElement.scrollTop >= document.querySelector('nav.nav-top').offsetHeight + document.querySelector('nav.nav-middle').offsetHeight) {
-        block.querySelector('nav.nav-bottom').classList.add('scrolled');
+      if (document.documentElement.scrollTop > document.querySelector('nav.nav-top').offsetHeight + document.querySelector('nav.nav-middle').offsetHeight) {
+        document.querySelector('header').classList.add('fixed');
       } else {
-        block.querySelector('nav.nav-bottom').classList.remove('scrolled');
+        document.querySelector('header').classList.remove('fixed');
       }
     });
     decorateIcons(block);

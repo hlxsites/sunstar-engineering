@@ -3,12 +3,18 @@ header.header-wrapper {
   width: 100%;
   background-color: var(--background-color);
   position: relative;
+  z-index: 100;
 
   /* TODO nav layout for mobile */
   display: none;
 }
 
-@media (width >= 77rem) {
+header.header-wrapper.fixed {
+  position: fixed;
+  top: 0;
+}
+
+@media (width >=77rem) {
   header.header-wrapper {
     display: block;
   }
@@ -45,8 +51,8 @@ header .social>ul>li>a {
 }
 
 header .social svg {
-width: 24px;
-height: 24px;
+  width: 24px;
+  height: 24px;
 }
 
 header .nav-wrapper {
@@ -62,6 +68,11 @@ header nav {
 header nav.nav-top {
   justify-content: flex-end;
   height: var(--nav-top-height);
+}
+
+header.fixed nav.nav-top,
+header.fixed nav.nav-middle {
+  display: none;
 }
 
 header nav.nav-top>ul {
@@ -121,4 +132,3 @@ header nav.nav-top>ul>li>a:first-of-type {
   padding: 0 0.5rem;
   text-decoration: none;
 }
-
