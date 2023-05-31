@@ -44,21 +44,6 @@ function buildAutoBlocks(main) {
 }
 
 /**
- * Decorates the main element.
- * @param {Element} main The main element
- */
-// eslint-disable-next-line import/prefer-default-export
-export function decorateMain(main) {
-  // hopefully forward compatible button decoration
-  decorateButtons(main);
-  decorateVideoLinks(main);
-  decorateIcons(main);
-  buildAutoBlocks(main);
-  decorateSections(main);
-  decorateBlocks(main);
-}
-
-/**
  * decorates anchors with video links
  * for styling updates via CSS
  * @param {Element} element The element to decorate
@@ -77,6 +62,21 @@ export function decorateVideoLinks(element = document) {
       a.classList.add('youtube');
     });
   }
+}
+
+/**
+ * Decorates the main element.
+ * @param {Element} main The main element
+ */
+// eslint-disable-next-line import/prefer-default-export
+export function decorateMain(main) {
+  // hopefully forward compatible button decoration
+  decorateButtons(main);
+  decorateVideoLinks(main);
+  decorateIcons(main);
+  buildAutoBlocks(main);
+  decorateSections(main);
+  decorateBlocks(main);
 }
 
 /**
