@@ -6,7 +6,7 @@
   --form-input-focus-color: #007CAD;
 }
 
-main .form-container {
+main .section.form-container {
   position: relative;
   width: 100%;
   padding-right: 0;
