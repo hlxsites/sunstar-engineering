@@ -11,10 +11,16 @@
   order: 1;
 }
 
+.columns > div > div > h2 {
+  margin-top: 2.5rem;
+}
+
+.columns > div > div > p {
+  margin-top: 2rem;
+}
+
 .columns > div > .columns-img-col {
-  align-self: flex-start;
   flex-basis: 45%;
-  margin-top: 1em;
   order: 0;
 }
 
@@ -24,26 +30,26 @@
 
 .columns a.button.tertiary {
   background-color: unset;
-  color: var(--link-color);
+  color: var(--tertiary);
 }
 
 .columns a.button.primary.video-link::after {
   content: url("../../icons/play.svg");
   position: relative;
-  top: 0.1em;
-  left: 0.3em;
+  top: 0.1rem;
+  left: 0.3rem;
 }
 
 @media (width >= 992px) {
   .columns > div {
-    align-items: center;
+    align-items: flex-start;
     flex-direction: unset;
-    gap: 45px;
+    gap: 3rem;
   }
 
   .columns > div > div {
     flex: 1;
     order: unset;
-    flex-basis: 55%;
+    flex-basis: 50%;
   }
 }
