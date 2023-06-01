@@ -39,8 +39,6 @@ const createMetadata = (main, document) => {
       const breadcrumbText = breadcrumbItems[breadcrumbItems.length - 1].textContent.trim();
       meta.BreadcrumbTitle = breadcrumbText;
     }
-
-    breadcrumb.remove();
   }
 
   const block = WebImporter.Blocks.getMetadataBlock(document, meta);
@@ -113,7 +111,7 @@ function addBreadCrumb(doc) {
     const cells = [['Breadcrumb']];
     const table = WebImporter.DOMUtils.createTable(cells, doc);
     breadcrumb.after(doc.createElement('hr'));
-    breadcrumb.after(table);
+    breadcrumb.replaceWith(table);
   }
 }
 
@@ -212,9 +210,9 @@ export default {
       'footer',
       'noscript',
     ]);
-    customImportLogic(document);
     // create the metadata block and append it to the main element
     createMetadata(main, document);
+    customImportLogic(document);
 
     return main;
   },
