@@ -16,8 +16,11 @@ function decorateTopNav(nav) {
 function decorateMiddleNav() {
 }
 
-function decorateBottomNav() {
-
+function decorateBottomNav(nav) {
+  const hamburger = document.createElement('span');
+  hamburger.classList.add('mobile-icon');
+  hamburger.innerHTML = Array.from({ length: 4 }, () => '<i></i>').join(' ');
+  nav.prepend(hamburger);
 }
 
 const navDecorators = { 'nav-top': decorateTopNav, 'nav-middle': decorateMiddleNav, 'nav-bottom': decorateBottomNav };
@@ -52,6 +55,5 @@ export default async function decorate(block) {
         document.querySelector('header').classList.remove('fixed');
       }
     });
-    decorateIcons(block);
   }
 }
