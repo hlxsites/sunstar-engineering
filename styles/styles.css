@@ -189,8 +189,8 @@ pre {
   overflow: scroll;
 }
 
-main {
-  margin-top: var(--nav-total-height);
+header {
+  height: var(--nav-total-height);
 }
 
 main pre {

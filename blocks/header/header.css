@@ -1,16 +1,21 @@
 /* header and nav layout */
-header.header-wrapper {
-  position: fixed;
+header {
   width: 100%;
-  top: 0;
   background-color: var(--background-color);
+  position: relative;
   z-index: 100;
 
   /* TODO nav layout for mobile */
   display: none;
 }
 
-@media (min-width: 1232px) {
+header.header-wrapper.fixed {
+  position: fixed;
+  top: 0;
+  height: var(--nav-bottom-height);
+}
+
+@media (width >=77rem) {
   header.header-wrapper {
     display: block;
   }
@@ -47,8 +52,8 @@ header .social>ul>li>a {
 }
 
 header .social svg {
-width: 24px;
-height: 24px;
+  width: 24px;
+  height: 24px;
 }
 
 header .nav-wrapper {
@@ -66,13 +71,18 @@ header nav.nav-top {
   height: var(--nav-top-height);
 }
 
-header nav.nav-top>ul {
-  display: flex;
-}
-
 header nav.nav-middle {
   justify-content: space-between;
   height: var(--nav-middle-height);
+}
+
+header.fixed nav.nav-top,
+header.fixed nav.nav-middle {
+  display: none;
+}
+
+header nav.nav-top>ul {
+  display: flex;
 }
 
 header nav.nav-middle>h4 {
@@ -116,4 +126,3 @@ header nav.nav-top>ul>li>a:first-of-type {
   padding: 0 0.5rem;
   text-decoration: none;
 }
-

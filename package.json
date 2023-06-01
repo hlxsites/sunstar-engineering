@@ -32,6 +32,6 @@
     "@web/test-runner-commands": "0.7.0",
     "sinon": "15.1.0",
     "stylelint": "15.6.2",
-    "stylelint-config-standard": "30.0.1"
+    "stylelint-config-standard": "33.0.0"
   }
 }
