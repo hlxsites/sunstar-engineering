@@ -117,7 +117,7 @@ main .section.carousel-container {
     padding: 0
 }
 
-@media (min-width: 62rem) {
+@media (width >= 62rem) {
     .carousel {
         display: flex;
         flex-direction: column;
@@ -127,7 +127,7 @@ main .section.carousel-container {
     .carousel .icon-right {
         display: block;
     }
-    
+
     .carousel .icon-left {
         display: block;
     }
@@ -186,7 +186,7 @@ main .section.carousel-container {
     }
 }
 
-@media (min-width: 77rem) {
+@media (width >= 77rem) {
     .carousel .hero-slider-controller {
         width: 75rem;
     }
@@ -201,5 +201,5 @@ main .section.carousel-container {
 
     .carousel .control-container {
         width: 100%;
-    }   
+    }
 }
