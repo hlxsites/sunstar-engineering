@@ -31,12 +31,12 @@ async function createAutoBreadcrumb(block, placeholders) {
       url_path: `${pathSeparator}`,
     },
     ...pathSplit.slice(1, -1).map((part, index) => ({
-      name: pageIndex.find((page) => page.path === urlForIndex(index))?.title ?? part,
+      name: pageIndex.find((page) => page.path === urlForIndex(index))?.breadcrumbtitle ?? part,
       url_path: urlForIndex(index),
     })),
     {
       // eslint-disable-next-line max-len
-      name: pageIndex.find((page) => page.path === urlForIndex(pathSplit.length - 1))?.title ?? pathSplit[pathSplit.length - 1],
+      name: pageIndex.find((page) => page.path === urlForIndex(pathSplit.length - 1))?.breadcrumbtitle ?? pathSplit[pathSplit.length - 1],
     },
   ];
   breadcrumbs.forEach((crumb) => {

@@ -12,6 +12,9 @@
 }
 
 .columns > div > .columns-img-col {
+  align-self: flex-start;
+  flex-basis: 45%;
+  margin-top: 1em;
   order: 0;
 }
 
@@ -19,15 +22,28 @@
   display: block;
 }
 
-@media (min-width: 900px) {
+.columns a.button.tertiary {
+  background-color: unset;
+  color: var(--link-color);
+}
+
+.columns a.button.primary.video-link::after {
+  content: url("../../icons/play.svg");
+  position: relative;
+  top: 0.1em;
+  left: 0.3em;
+}
+
+@media (min-width: 992px) {
   .columns > div {
     align-items: center;
     flex-direction: unset;
-    gap: 32px;
+    gap: 45px;
   }
 
   .columns > div > div {
     flex: 1;
     order: unset;
+    flex-basis: 55%;
   }
 }

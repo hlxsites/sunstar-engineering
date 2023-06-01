@@ -15,4 +15,28 @@ export default function decorate(block) {
       }
     });
   });
+
+  // stylize anchors
+  [...block.firstElementChild.children].forEach((row) => {
+    [...row.children].forEach((col) => {
+      const anchors = col.querySelectorAll('a');
+      if (anchors.length) {
+        [...anchors].forEach((a) => {
+          a.title = a.title || a.textContent;
+          const up = a.parentElement;
+          if (!a.querySelector('img')) {
+            if (up.tagName === 'P') {
+              up.classList.add('button-container');
+            }
+            a.classList.add('button');
+            if (a.previousElementSibling?.tagName === 'A') {
+              a.classList.add('tertiary');
+            } else {
+              a.classList.add('primary');
+            }
+          }
+        });
+      }
+    });
+  });
 }

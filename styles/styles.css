@@ -142,7 +142,8 @@ h5 {
 }
 
 h6 {
-  font-size: var(--heading-font-size-xs)
+  font-size: var(--heading-font-size-xs);
+  text-transform: uppercase;
 }
 
 p,
@@ -217,6 +218,7 @@ button {
   align-content: center;
   justify-content: center;
   line-height: 1;
+  border-radius: 2px;
 }
 
 a.button.primary {

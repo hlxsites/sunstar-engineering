@@ -44,6 +44,27 @@ function buildAutoBlocks(main) {
 }
 
 /**
+ * decorates anchors with video links
+ * for styling updates via CSS
+ * @param {Element} element The element to decorate
+ * @returns {void}
+ */
+export function decorateVideoLinks(element = document) {
+  const anchors = element.getElementsByTagName('a');
+  // currently only youtube links are supported
+  const youTubeAnchors = Array.from(anchors).filter(
+    (a) => a.href.includes('youtu'),
+  );
+
+  if (youTubeAnchors.length) {
+    youTubeAnchors.forEach((a) => {
+      a.classList.add('video-link');
+      a.classList.add('youtube');
+    });
+  }
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -51,6 +72,7 @@ function buildAutoBlocks(main) {
 export function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
+  decorateVideoLinks(main);
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
