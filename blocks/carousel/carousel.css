@@ -48,16 +48,23 @@
     font-size: var(--heading-font-size-xxs);
     letter-spacing: 0;
     font-weight: var(--font-weight-bold);
+    color: var(--white);
 }
 
 .carousel h2 {
     margin-bottom: 1rem;
     font-weight: var(--font-weight-small);
     font-size: var(--heading-font-size-m);
+    margin-top: 0;
+    color: var(--white);
 }
 
 .carousel p {
-    margin-bottom: 42px;
+    margin-bottom: 30px;
+}
+
+.carousel p.button-container {
+    margin-bottom: 0;
 }
 
 .carousel .icon {
@@ -147,15 +154,20 @@ main .section.carousel-container {
     .carousel .text-item {
         position: absolute;
         width: 21.688rem;
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 0;
+        height: unset;
     }
 
     .carousel .text {
         padding-top: 10rem;
         position: relative;
+        flex-basis: 100%;
     }
 
     .carousel .image {
-        left: 50%;
+        left: calc(50% - 62px);
         height: 43.75rem;
         position: absolute;
     }
@@ -174,10 +186,9 @@ main .section.carousel-container {
     .carousel .control-container {
         margin: auto;
         width: 100%;
-        padding-left: 1rem;
         position: absolute;
         transform: translateX(-50%);
-        left: 50.5%;
+        left: 50%;
         justify-content: unset;
     }
 
