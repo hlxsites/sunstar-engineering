@@ -47,6 +47,14 @@ const createMetadata = (main, document) => {
   return meta;
 };
 
+function createSectionMetadata(cfg, doc) {
+  const cells = [['Section Metadata']];
+  Object.keys(cfg).forEach((key) => {
+    cells.push([key, cfg[key]]);
+  });
+  return WebImporter.DOMUtils.createTable(cells, doc);
+}
+
 function addCarouselItems(doc) {
   const heroSlider = doc.querySelector('.hero-one-slider');
 
@@ -99,6 +107,7 @@ function addCarouselItems(doc) {
 
     const table = WebImporter.DOMUtils.createTable(cells, doc);
     heroSlider.after(doc.createElement('hr'));
+    heroSlider.after(createSectionMetadata({ Style: 'Full Width ' }, doc));
     heroSlider.replaceWith(table);
   }
 }
