@@ -318,19 +318,19 @@ main img {
 .icon.icon-sunstar-logo {
   width: 134px;
   height: 20px;
-  background-image: url(/icons/sunstar-logo.svg);
+  background-image: url('/icons/sunstar-logo.svg');
 }
 
 .icon.icon-linkedin {
-  background-image: url(/icons/linkedin.svg);
+  background-image: url('/icons/linkedin.svg');
 }
 
 .icon.icon-youtube {
-  background-image: url(/icons/youtube.svg);
+  background-image: url('/icons/youtube.svg');
 }
 
 .icon.icon-link-black {
-  background-image: url(/icons/link-black.svg);
+  background-image: url('/icons/link-black.svg');
   display: inline-flex;
   height: 20px;
   width: 20px;

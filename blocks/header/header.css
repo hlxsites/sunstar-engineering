@@ -125,8 +125,8 @@ header nav.nav-middle>h4 {
 header nav.nav-bottom {
   height: var(--nav-bottom-height);
   justify-content: space-between;
-  border-top: 1px solid rgba(60, 70, 80, 0.12);
-  border-bottom: 1px solid rgba(60, 70, 80, 0.12);
+  border-top: 1px solid rgba(60 70 80 / 12%);
+  border-bottom: 1px solid rgba(60 70 80 / 12%);
 }
 
 header nav.nav-bottom>ul {
