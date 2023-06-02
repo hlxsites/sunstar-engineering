@@ -7,16 +7,16 @@
   width: 100%;
 }
 
-.columns > div > div {
-  order: 1;
+.columns h2 {
+  font-size: var(--heading-font-size-m);
 }
 
-.columns > div > div > h2 {
-  margin-top: 2.5rem;
+.columns h6 {
+  font-size: var(--heading-font-size-xxxs);
 }
 
-.columns > div > div > p {
-  margin-top: 2rem;
+.columns p.button-container {
+  display: inline-grid;
 }
 
 .columns > div > .columns-img-col {
@@ -26,6 +26,22 @@
 
 .columns > div > .columns-img-col img {
   display: block;
+}
+
+.columns > div > div {
+  order: 1;
+}
+
+.columns > div > div > h2 {
+  margin: 2rem 0;
+}
+
+.columns > div > div > p {
+  margin: 2rem 0 3rem;
+}
+
+.columns > div > div.non-singleton-img {
+  margin: 2rem 1rem;
 }
 
 .columns a.button.tertiary {
@@ -41,6 +57,18 @@
 }
 
 @media (width >= 992px) {
+  .columns h2 {
+    font-size: var(--heading-font-size-xl);
+  }
+
+  .columns h6 {
+    font-size: var(--heading-font-size-xxs);
+  }
+
+  .columns p.button-container {
+    display: block;
+  }
+
   .columns > div {
     align-items: flex-start;
     flex-direction: unset;
@@ -51,5 +79,9 @@
     flex: 1;
     order: unset;
     flex-basis: 50%;
+  }
+
+  .columns > div > div.non-singleton-img {
+    margin: 0;
   }
 }
