@@ -17,7 +17,7 @@ const createMetadata = (main, document) => {
 
   const title = document.querySelector('title');
   if (title) {
-    meta.Title = title.innerHTML.replace(/[\n\t]/gm, '');
+    meta.Title = title.textContent.replace(/[\n\t]/gm, '');
   }
 
   const desc = document.querySelector('[property="og:description"]');
