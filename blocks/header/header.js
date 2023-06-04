@@ -1,4 +1,5 @@
 import { getMetadata, decorateIcons } from '../../scripts/lib-franklin.js';
+import { getSearchWidget } from '../../scripts/scripts.js';
 
 function decorateSocial(social) {
   social.classList.add('social');
@@ -16,8 +17,8 @@ function decorateTopNav(nav) {
 function decorateMiddleNav() {
 }
 
-function decorateBottomNav() {
-
+function decorateBottomNav(nav) {
+  nav.append(getSearchWidget());
 }
 
 const navDecorators = { 'nav-top': decorateTopNav, 'nav-middle': decorateMiddleNav, 'nav-bottom': decorateBottomNav };
@@ -43,8 +44,10 @@ export default async function decorate(block) {
       nav.classList.add(navClass);
       nav.innerHTML = fetchedNav.querySelectorAll(':scope>div')[idx].innerHTML;
       navDecorators[navClass](nav);
+
       block.appendChild(nav);
     });
+
     window.addEventListener('scroll', () => {
       if (document.documentElement.scrollTop > document.querySelector('nav.nav-top').offsetHeight + document.querySelector('nav.nav-middle').offsetHeight) {
         document.querySelector('header').classList.add('fixed');
@@ -52,6 +55,7 @@ export default async function decorate(block) {
         document.querySelector('header').classList.remove('fixed');
       }
     });
+
     decorateIcons(block);
   }
 }

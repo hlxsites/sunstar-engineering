@@ -126,3 +126,58 @@ header nav.nav-top>ul>li>a:first-of-type {
   padding: 0 0.5rem;
   text-decoration: none;
 }
+
+header form.search div {
+  border-bottom: 1px solid var(--background-color);
+  box-sizing: border-box;
+  padding: 2px;
+  line-height: 1.5;
+  position: relative;
+}
+
+header form.search input.search-text {
+  display: none;
+  border: 0;
+  box-sizing: border-box;
+  color: var(--link-color);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-m);
+  font-weight: var(--font-weight-medium);
+  height: 32px;
+  padding: 8px 18px 8px 0;
+  width: 100%;
+}
+
+header form.search input.search-text:focus {
+  outline: none;
+}
+
+header form.search input.search-text::placeholder {
+  color: var(--transparent-grey-color);
+}
+
+header form.search button.search-icon {
+  background-color: var(--background-color);
+  background-image: url('/icons/search.svg');
+  background-size: contain;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  bottom: 8px;
+  right: 0;
+  height: 14px;
+  width: 14px;
+  min-width: 14px;
+}
+
+@media (width >= 77rem) {
+  header form.search div {
+    min-width: 200px;
+    border-bottom-color: var(--transparent-grey-light-color);
+  }
+
+  header form.search input.search-text {
+    display: block;
+  }
+}

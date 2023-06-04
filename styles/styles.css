@@ -41,6 +41,8 @@
   --overlay-background-color: #eee;
   --highlight-background-color: #ccc;
   --text-color: #3c4350;
+  --transparent-grey-color: #3c465080;
+  --transparent-grey-light-color: #3c46501f;
 
   /* fonts */
   --body-font-family: "Noto Sans";
@@ -162,6 +164,7 @@ p {
   font-weight: var(--font-weight-medium);
   font-size: var(--body-font-size-m);
   line-height: 1.5em;
+  text-size-adjust: 100%;
 }
 
 ul {
@@ -296,6 +299,9 @@ main img {
 }
 
 .icon {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   display: inline-block;
   height: 20px;
   width: 20px;
