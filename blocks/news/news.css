@@ -12,7 +12,7 @@ div.news {
   max-width: 1200px;
 }
 
-.news a, .news a:visited {
+.news a:link, .news a:visited {
   color: var(--link-hover-color);
 }
 
