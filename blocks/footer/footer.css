@@ -4,7 +4,7 @@ footer {
   font-size: var(--body-font-size-s);
 }
 
-footer .primary li:not(:first-child) {
+footer .primary ul {
   display: none;
 }
 

@@ -25,7 +25,6 @@ export default async function decorate(block) {
     footer.innerHTML = html;
     await decorateSections(footer);
     updateSectionsStatus(footer);
-    // decorateFooter(footer);
 
     block.append(footer);
     decorateButtons(block);
