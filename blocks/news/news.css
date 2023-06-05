@@ -1,0 +1,21 @@
+div.news-wrapper {
+  background-color: #F0F5F7;
+}
+
+div.news {
+  font-size: var(--body-font-size-s);
+  font-weight: 500;
+  padding: 16px 46px;
+}
+
+.news a, .news a:visited {
+  color: var(--link-hover-color);
+}
+
+.news a:hover {
+  text-decoration: underline;
+}
+
+.news span {
+  margin-right: 16px;
+}

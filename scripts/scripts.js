@@ -135,7 +135,7 @@ async function loadLazy(doc) {
 
 export async function fetchIndex(indexFile, pageSize = 500) {
   const handleIndex = async (offset) => {
-    const resp = await fetch(`/_drafts/piyush/${indexFile}.json?limit=${pageSize}&offset=${offset}`); // TODO Change path
+    const resp = await fetch(`/${indexFile}.json?limit=${pageSize}&offset=${offset}`);
     const json = await resp.json();
 
     const newIndex = {
