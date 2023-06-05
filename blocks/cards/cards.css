@@ -84,8 +84,7 @@
     margin: 0;
 }
 
-
-@media (width >= 62rem) and (width < 77rem) {
+@media (min-width: 62rem) and (max-width: 77rem) {
     main div.cards-container {
         margin: 0 auto;
     }
@@ -135,7 +134,7 @@
     }
 }
 
-@media (width >= 77rem) {
+@media screen and (min-width: 77rem) {
     div.cards > ul {
         display: flex;
         flex-flow: row nowrap;
