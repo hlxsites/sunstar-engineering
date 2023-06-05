@@ -1,5 +1,5 @@
 footer {
-  padding: 3rem 1rem 2rem;
+  padding: 1rem 1rem 2rem;
   background-color: var(--primary);
   font-size: var(--body-font-size-s);
 }
@@ -14,6 +14,7 @@ footer .primary a, .nav-links li a, .social p>a, .groups p>a {
   line-height: 2.5rem;
   font-size: var(--body-font-size-s);
   font-weight: var(--font-weight-bold);
+  letter-spacing: -0.006rem;
 }
 
 footer .social {
@@ -28,6 +29,13 @@ footer .social a.button.primary {
   display: flex;
   font-weight: var(--font-weight-medium);
   font-size: var(--body-font-size-m);
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 48rem) {
+  footer .social a.button.primary {
+    margin-bottom: 0;
+  }
 }
 
 footer .social a::after {
@@ -47,6 +55,12 @@ footer .social h1 {
   font-size: 1rem;
   margin-bottom: 1rem;
   letter-spacing: 0;
+}
+
+@media (min-width: 48rem) {
+  footer .social h1 {
+    margin-bottom: 0.5rem;
+  }
 }
 
 footer .social p {
@@ -69,15 +83,25 @@ footer .social .icon-linkedin {
   background-image: url("../../icons/linkedin.svg");;
 }
 
-footer .copyright>div {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+@media (min-width: 48rem) {
+  footer .copyright>div {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
 }
 
 footer .copyright p {
-  font-size: var(--body-font-size-xs);
-  line-height: 2;
+  font-size: 0.625rem;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 48rem) {
+  footer .copyright p {
+    font-size: var(--body-font-size-xs);
+    line-height: 2;
+    margin-bottom: 0;
+  }  
 }
 
 footer .copyright a {
@@ -98,14 +122,40 @@ footer .copyright .icon-link-white {
 }
 
 footer .groups img {
-  max-width: 10rem;
-  max-height: 1.5rem;
-  margin-bottom: 0;
+  max-width: 8.375rem;
+  max-height: 1.25rem;
+}
+
+@media (min-width: 48rem) {
+  footer .groups img {
+    max-width: 10rem;
+    max-height: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
 }
 
 footer .groups p:not(:first-child) {
   color: var(--off-white);
   margin-bottom: 1rem;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+}
+
+@media (min-width: 48rem) {
+  footer .groups p:not(:first-child) {
+    font-size: 1rem;
+    line-height: 1.5em;
+  }
+}
+
+footer .groups p br {
+  display: none;
+}
+
+@media (min-width: 48rem) {
+  footer .groups p br {
+    display: block;
+  }
 }
 
 footer .groups p>a {
