@@ -189,12 +189,43 @@ function createColumnBlockFromSection(document) {
   });
 }
 
+/**
+ * Creates a column block from a section if it contains two columns _only_
+ * @param {HTMLDocument} document The document
+ */
+function createCardsBlockFromSection(document) {
+  document.querySelectorAll('div.section-container').forEach((section) => {
+    const block = [['Cards']];
+    // create a cards block from the section
+
+    const sectionIsCard = section.parentElement.className.includes('wp-block-sunstar-blocks-home-engineering-solution');
+    if (sectionIsCard) {
+      const contentCards = Array.from(section.children)
+        .filter(
+          (el) => (el.tagName === 'DIV' || el.tagName === 'FIGURE' || el.tagName === 'IMG'),
+        );
+      const headerContainer = contentCards[0];
+      const cardsContainer = contentCards[1];
+      Array.from(cardsContainer.children).forEach((card) => {
+        const img = card.querySelector('img');
+        const title = card.querySelector('h6').textContent;
+        card.replaceChildren(title);
+        block.push([img, card]);
+      });
+      const table = WebImporter.DOMUtils.createTable(block, document);
+      convertBackgroundImgsToForegroundImgs(table, document);
+      section.replaceWith(headerContainer, table);
+    }
+  });
+}
+
 function customImportLogic(doc) {
   removeCookiesBanner(doc);
 
   addBreadCrumb(doc);
   addCarouselItems(doc);
 
+  createCardsBlockFromSection(doc);
   createColumnBlockFromSection(doc);
   convertBackgroundImgsToForegroundImgs(doc);
 }

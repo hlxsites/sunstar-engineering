@@ -1,9 +1,12 @@
+main div.cards {
+    margin: 0 auto 60px;
+}
+
 .cards > ul {
     display: flex;
     justify-content: center;
     list-style: none;
     flex-flow: column nowrap;
-    margin: 0;
     padding: 0;
     padding-inline-start: 0;
 }
@@ -85,16 +88,11 @@
 }
 
 @media (min-width: 62rem) and (max-width: 77rem) {
-    main div.cards-container {
-        margin: 0 auto;
-    }
-
     div.cards > ul {
         display: flex;
         flex-flow: row nowrap;
         justify-content: center;
         list-style: none;
-        margin: 0;
         padding: 0;
         padding-inline-start: 0;
     }
