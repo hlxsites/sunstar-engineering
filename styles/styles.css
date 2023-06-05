@@ -75,8 +75,8 @@
   --font-style-normal: normal;
 
   /* nav height */
-  --nav-top-height: 42px;
-  --nav-middle-height: 26px;
+  --nav-top-height: 0;
+  --nav-middle-height: 60px;
   --nav-bottom-height: 52px;
   --nav-total-height: calc(var(--nav-top-height) + var(--nav-middle-height) + var(--nav-bottom-height));
 
@@ -92,6 +92,15 @@
   --font-size-small: 14px;
   --font-size-xsmall: 12px;
 }
+
+@media (width >= 77rem) {
+  :root {
+    --nav-top-height: 42px;
+    --nav-middle-height: 26px;
+    --nav-bottom-height: 52px;
+  }
+}
+
 
 body {
   font-size: var(--body-font-size-m);
@@ -304,8 +313,8 @@ main img {
   background-position: center;
   background-size: cover;
   display: inline-block;
-  height: 20px;
-  width: 20px;
+  height: 16px;
+  width: 16px;
 }
 
 .icon svg {
@@ -313,9 +322,34 @@ main img {
 }
 
 .icon.icon-sunstar-logo {
-  width: unset;
-  height: 26px;
+  width: 134px;
+  height: 20px;
+  background-image: url('/icons/sunstar-logo.svg');
 }
+
+.icon.icon-linkedin {
+  background-image: url('/icons/linkedin.svg');
+}
+
+.icon.icon-youtube {
+  background-image: url('/icons/youtube.svg');
+}
+
+.icon.icon-link-black {
+  background-image: url('/icons/link-black.svg');
+  display: inline-flex;
+  height: 20px;
+  width: 20px;
+}
+
+@media (width >=77rem) {
+  .icon.icon-sunstar-logo {
+    width: 175px;
+    height: 26px;
+    display: inline-flex;
+  }
+}
+
 
 main .section {
   max-width: 100%;

@@ -18,6 +18,10 @@ function decorateMiddleNav() {
 }
 
 function decorateBottomNav(nav) {
+  const hamburger = document.createElement('span');
+  hamburger.classList.add('mobile-icon');
+  hamburger.innerHTML = Array.from({ length: 4 }, () => '<i></i>').join(' ');
+  nav.prepend(hamburger);
   nav.append(getSearchWidget());
 }
 
