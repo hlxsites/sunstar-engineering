@@ -29,7 +29,7 @@
 .cards > ul > li > a.button {
     margin: 0;
     height: 100%;
-    color: #007CAD;
+    color: var(--card-text-color);
     text-decoration: none;
     transition: all 0.15s ease-in-out;
     border: 0;
@@ -55,11 +55,11 @@
 }
 
 .cards .cards-card-body {
+    width: calc(100% - 1rem - 56px);
     margin: 0 auto;
     padding-left: 10px;
     padding-right: 10px;
-    padding-top: 20px;
-    color: #007CAD;
+    padding-top: 0;
 }
 
 .cards .cards-card-image img {
@@ -82,16 +82,12 @@
 .cards .cards-card-body div {
     height: 100%;
     margin: 0;
-    overflow: clip;
-    text-overflow: ellipsis;
 }
 
 
 @media (width >= 62rem) and (width < 77rem) {
     main div.cards-container {
         margin: 0 auto;
-
-        /* max-width: revert; */
     }
 
     div.cards > ul {
@@ -107,51 +103,20 @@
     .cards > ul > li {
         width: 162px;
         height: 222px;
-        box-sizing: border-box;
-        box-shadow: 0 2px 12px 0 rgb(60 70 80 / 20%);
         padding: 0;
         text-align: center;
-        border: none;
-        transition: all 0.15s ease-in-out;
         margin: 0 7px
     }
 
-    .cards > ul > li:hover {
-        box-shadow: 0 4px 16px 0 rgb(60 70 80 / 40%);
-    }
-
     .cards > ul > li > a.button {
-        margin: 0;
         padding: 16px 6px 0;
         display: block;
-        height: 100%;
-        color: #007CAD;
-        text-decoration: none;
-        transition: all 0.15s ease-in-out;
-        border: 0;
-        background: none;
-        white-space: normal;
-        font-size: var(--body-font-size-s);
-        border-radius: 0;
-        line-height: 21px;
-        letter-spacing: 0;
-    }
-
-    .cards > ul > li > a {
-        text-decoration: none;
-    }
-
-    .cards > ul > li > a:hover {
-        text-decoration: none;
-        background-color: initial;
     }
 
     .cards .cards-card-body {
-        margin: 0 auto;
-        padding-left: 0;
-        padding-right: 6px;
+        width: initial;
+        margin: 0;
         padding-top: 10px;
-        color: #007CAD;
     }
 
     .cards .cards-card-image {
@@ -171,11 +136,6 @@
 }
 
 @media (width >= 77rem) {
-    main div.cards-container {
-        margin: 0 auto;
-        max-width: revert;
-    }
-
     div.cards > ul {
         display: flex;
         flex-flow: row nowrap;
@@ -189,51 +149,15 @@
     .cards > ul > li {
         width: 214px;
         height: 262px;
-        box-sizing: border-box;
-        box-shadow: 0 2px 12px 0 rgb(60 70 80 / 20%);
         padding: 0;
         text-align: center;
-        border: none;
-        transition: all 0.15s ease-in-out;
-        margin: 0 16px
-    }
-
-    .cards > ul > li:hover {
-        box-shadow: 0 4px 16px 0 rgb(60 70 80 / 40%);
+        margin: 0 16px;
     }
 
     .cards > ul > li > a.button {
-        margin: 0;
         padding: 20px 0 0;
         display: block;
-        height: 100%;
-        color: #007CAD;
-        text-decoration: none;
-        transition: all 0.15s ease-in-out;
-        border: 0;
-        background: none;
-        white-space: normal;
-        font-size: var(--body-font-size-s);
-        border-radius: 0;
-        line-height: 21px;
-        letter-spacing: 0;
-    }
-
-    .cards > ul > li > a {
-        text-decoration: none;
-    }
-
-    .cards > ul > li > a:hover {
-        text-decoration: none;
-        background-color: initial;
-    }
-
-    .cards .cards-card-body {
-        margin: 0 auto;
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 20px;
-        color: #007CAD;
+        box-sizing: border-box;
     }
 
     .cards .cards-card-image {
@@ -242,13 +166,11 @@
         height: 140px;
     }
 
-    .cards .cards-card-image img {
-        width: 100%;
-        height: 100%;
-    }
-
-    .cards .cards-card-body u {
-        text-decoration: none;
+    .cards .cards-card-body {
+        width: initial;
+        margin: 0;
+        padding-top: 20px;
+        font-size: 1rem;
     }
 }
 

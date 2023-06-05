@@ -36,6 +36,7 @@
   --light: #f8f9fa;
   --dark: #343a40;
   --link-color: #3C4650;
+  --card-text-color: var(--secondary);
   --link-hover-color: var(--secondary);
   --background-color: var(--white);
   --overlay-background-color: #eee;
