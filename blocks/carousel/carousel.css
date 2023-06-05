@@ -124,7 +124,7 @@ main .section.carousel-container {
     padding: 0
 }
 
-@media (width >= 62rem) {
+@media (min-width: 62rem) {
     .carousel {
         display: flex;
         flex-direction: column;
@@ -197,7 +197,7 @@ main .section.carousel-container {
     }
 }
 
-@media (width >= 77rem) {
+@media (min-width: 77rem) {
     .carousel .hero-slider-controller {
         width: 75rem;
     }
