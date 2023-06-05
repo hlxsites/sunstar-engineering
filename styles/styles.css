@@ -75,7 +75,7 @@
   --font-style-normal: normal;
 
   /* nav height */
-  --nav-top-height: 0;
+  --nav-top-height: 0px;
   --nav-middle-height: 60px;
   --nav-bottom-height: 52px;
   --nav-total-height: calc(var(--nav-top-height) + var(--nav-middle-height) + var(--nav-bottom-height));
