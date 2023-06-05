@@ -1,18 +1,30 @@
 /* eslint-disable no-unused-expressions */
-/* global describe it */
+/* global describe before it */
 
-import './testmode.js'; // select test mode
+import { readFile } from '@web/test-runner-commands';
 import { expect } from '@esm-bundle/chai';
-import { getSearchWidget, htmlToElement } from '../../scripts/scripts.js';
+
+const scripts = {};
+
+document.body.innerHTML = await readFile({ path: './dummy.html' });
 
 describe('Scripts', () => {
+  before(async () => {
+    const mod = await import('../../scripts/scripts.js');
+    Object
+      .keys(mod)
+      .forEach((func) => {
+        scripts[func] = mod[func];
+      });
+  });
+
   it('Converts HTML to an element', () => {
-    const el = htmlToElement('<div>hi</div>');
+    const el = scripts.htmlToElement('<div>hi</div>');
     expect(el.constructor.name).to.equal('HTMLDivElement');
   });
 
   it('Creates the Search widget without value', () => {
-    const form = getSearchWidget();
+    const form = scripts.getSearchWidget();
     expect(form.action.endsWith('/search')).to.be.true;
 
     const div = form.children[0];
@@ -22,7 +34,7 @@ describe('Scripts', () => {
   });
 
   it('Creates the Search widget with value', () => {
-    const form = getSearchWidget('hello');
+    const form = scripts.getSearchWidget('hello');
 
     const div = form.children[0];
     const it = div.getElementsByClassName('search-text');

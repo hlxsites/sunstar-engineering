@@ -215,6 +215,4 @@ export function getSearchWidget(initialVal) {
   return htmlToElement(getSearchWidgetHTML(initialVal));
 }
 
-if (!window.testmode) {
-  loadPage();
-}
+loadPage();
