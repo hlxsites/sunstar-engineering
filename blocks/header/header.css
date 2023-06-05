@@ -224,7 +224,6 @@ header form.search div {
 }
 
 header form.search input.search-text {
-  display: none;
   border: 0;
   box-sizing: border-box;
   color: var(--link-color);
@@ -253,10 +252,10 @@ header form.search button.search-icon {
   padding: 0;
   position: absolute;
   bottom: 8px;
-  right: 0;
-  height: 14px;
-  width: 14px;
-  min-width: 14px;
+  height: 16px;
+  width: 16px;
+  min-width: 16px;
+  right: 16px;
 }
 
 @media (width >= 77rem) {
@@ -265,7 +264,10 @@ header form.search button.search-icon {
     border-bottom-color: var(--transparent-grey-light-color);
   }
 
-  header form.search input.search-text {
-    display: block;
+  header form.search button.search-icon {
+    right: 0;
+    height: 14px;
+    width: 14px;
+    min-width: 14px;
   }
 }

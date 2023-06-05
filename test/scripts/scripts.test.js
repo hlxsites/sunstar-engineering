@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-expressions */
 /* global describe it */
 
+import './testmode.js'; // select test mode
 import { expect } from '@esm-bundle/chai';
 import { getSearchWidget, htmlToElement } from '../../scripts/scripts.js';
 
@@ -16,6 +17,7 @@ describe('Scripts', () => {
 
     const div = form.children[0];
     const it = div.getElementsByClassName('search-text');
+    expect(it[0].type).to.equal('search');
     expect(it[0].value).to.equal('');
   });
 
