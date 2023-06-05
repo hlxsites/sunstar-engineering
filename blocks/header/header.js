@@ -1,4 +1,4 @@
-import { getMetadata, decorateIcons } from '../../scripts/lib-franklin.js';
+import { getMetadata } from '../../scripts/lib-franklin.js';
 import { getSearchWidget } from '../../scripts/scripts.js';
 
 function decorateSocial(social) {
@@ -55,7 +55,5 @@ export default async function decorate(block) {
         document.querySelector('header').classList.remove('fixed');
       }
     });
-
-    decorateIcons(block);
   }
 }

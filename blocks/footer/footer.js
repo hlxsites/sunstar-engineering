@@ -1,4 +1,9 @@
-import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
+import {
+  readBlockConfig,
+  decorateButtons,
+  decorateSections,
+  updateSectionsStatus,
+} from '../../scripts/lib-franklin.js';
 
 /**
  * loads and decorates the footer
@@ -9,7 +14,7 @@ export default async function decorate(block) {
   block.textContent = '';
 
   // fetch footer content
-  const footerPath = cfg.footer || '/footer';
+  const footerPath = cfg.footer || '/_drafts/piyush/footer';
   const resp = await fetch(`${footerPath}.plain.html`, window.location.pathname.endsWith('/footer') ? { cache: 'reload' } : {});
 
   if (resp.ok) {
@@ -18,8 +23,11 @@ export default async function decorate(block) {
     // decorate footer DOM
     const footer = document.createElement('div');
     footer.innerHTML = html;
+    await decorateSections(footer);
+    updateSectionsStatus(footer);
+    // decorateFooter(footer);
 
-    decorateIcons(footer);
     block.append(footer);
+    decorateButtons(block);
   }
 }

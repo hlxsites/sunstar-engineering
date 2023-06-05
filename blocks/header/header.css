@@ -42,6 +42,7 @@ header .social>ul {
   align-items: center;
 }
 
+
 header .social>ul>li {
   margin-right: .5rem;
   display: flex;
@@ -51,9 +52,17 @@ header .social>ul>li>a {
   display: flex;
 }
 
-header .social svg {
-  width: 24px;
-  height: 24px;
+header .social .icon {
+  width: 16px;
+  height: 16px;
+}
+
+header .social span.icon-youtube {
+  background-image: url("../../icons/youtube.svg");
+}
+
+header .social span.icon-linkedin {
+  background-image: url("../../icons/linkedin.svg");
 }
 
 header .nav-wrapper {
