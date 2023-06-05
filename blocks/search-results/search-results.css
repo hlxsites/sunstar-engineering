@@ -1,0 +1,92 @@
+.search-results-container h2 {
+  font-size: var(--heading-font-size-l);
+  margin-bottom: 20px;
+}
+
+.search-results form.search > div {
+  display: flex;
+  border-bottom: 1px solid var(--transparent-grey-light-color);
+  padding: 0;
+}
+
+.search-results input.search-text {
+  border: 0;
+  color: var(--link-color);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-m);
+  font-weight: var(--font-weight-medium);
+  padding: 8px 18px 6px 1px;
+  width: 462px;
+  margin: 0;
+}
+
+.search-results input.search-text:focus {
+  outline: none;
+}
+
+.search-results input.search-text::placeholder {
+  color: var(--transparent-grey-color);
+}
+
+.search-results button.search-icon {
+  align-self: center;
+  background-color: var(--background-color);
+  background-image: url('/icons/search.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  height: 14px;
+  width: 14px;
+  min-width: 14px;
+}
+
+.search-results .search-summary {
+  border-bottom: 1px solid var(--transparent-grey-light-color);
+  color: var(--link-color);
+  font-family: var(--body-font-family);
+  font-size: var(--heading-font-size-s);
+  font-weight: var(--font-weight-medium);
+  padding-top: 32px;
+  padding-bottom: 64px;
+}
+
+.search-results .search-result {
+  border-bottom: 1px solid var(--transparent-grey-light-color);
+  padding-top: 26px;
+  padding-bottom: 28px;
+}
+
+.search-results .search-result h3 {
+  line-height: 1.6rem;
+  padding-bottom: 12px;
+}
+
+.search-results .search-result a {
+  color: var(--secondary);
+  font-family: var(--body-font-family);
+  font-size: var(--heading-font-size-s);
+  font-weight: var(--font-weight-medium);
+}
+
+@media (width >= 30rem) {
+  .search-results form.search > div {
+    width: 30rem;
+  }
+}
+
+@media (width >= 62rem) {
+  .search-results-container h2 {
+    font-size: var(--heading-font-size-xl);
+  }
+
+  .search-results .search-summary {
+    font-size: var(--heading-font-size-m);
+  }
+
+  .search-results .search-result a {
+    font-size: var(--heading-font-size-m);
+  }
+}

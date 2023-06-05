@@ -28,6 +28,7 @@
   --gray-dark: #343a40;
   --primary: #00587C;
   --secondary: #007CAD;
+  --tertiary: var(--secondary);
   --success: #28a745;
   --info: #17a2b8;
   --warning: #ffc107;
@@ -39,7 +40,9 @@
   --background-color: var(--white);
   --overlay-background-color: #eee;
   --highlight-background-color: #ccc;
-  --text-color: #000;
+  --text-color: #3c4350;
+  --transparent-grey-color: #3c465080;
+  --transparent-grey-light-color: #3c46501f;
 
   /* fonts */
   --body-font-family: "Noto Sans";
@@ -59,6 +62,7 @@
   --heading-font-size-s: 20px;
   --heading-font-size-xs: 18px;
   --heading-font-size-xxs: 14px;
+  --heading-font-size-xxxs: 12px;
 
   /* Font Weight */
   --font-weight-small: 300;
@@ -151,7 +155,7 @@ h5 {
 }
 
 h6 {
-  font-size: var(--heading-font-size-xs);
+  font-size: var(--heading-font-size-xxs);
   text-transform: uppercase;
 }
 
@@ -169,6 +173,7 @@ p {
   font-weight: var(--font-weight-medium);
   font-size: var(--body-font-size-m);
   line-height: 1.5em;
+  text-size-adjust: 100%;
 }
 
 ul {
@@ -303,6 +308,9 @@ main img {
 }
 
 .icon {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   display: inline-block;
   background-size: contain;
   background-repeat: no-repeat;

@@ -7,14 +7,36 @@
   width: 100%;
 }
 
-.columns > div > div {
-  order: 1;
+.columns h2 {
+  font-size: var(--heading-font-size-m);
+}
+
+.columns h6 {
+  font-size: var(--heading-font-size-xxxs);
+}
+
+.columns p.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 11rem;
+}
+
+.columns a.button.tertiary {
+  background-color: unset;
+  color: var(--tertiary);
+  justify-content: flex-start;
+}
+
+.columns a.button.primary.video-link::after {
+  content: url("../../icons/play.svg");
+  position: relative;
+  top: 0.1rem;
+  left: 0.3rem;
 }
 
 .columns > div > .columns-img-col {
-  align-self: flex-start;
   flex-basis: 45%;
-  margin-top: 1em;
   order: 0;
 }
 
@@ -22,28 +44,53 @@
   display: block;
 }
 
-.columns a.button.tertiary {
-  background-color: unset;
-  color: var(--link-color);
+.columns > div > div {
+  order: 1;
 }
 
-.columns a.button.primary.video-link::after {
-  content: url("../../icons/play.svg");
-  position: relative;
-  top: 0.1em;
-  left: 0.3em;
+.columns > div > div > h2 {
+  margin: 2rem 0;
+}
+
+.columns > div > div > p {
+  margin: 2rem 0 3rem;
+}
+
+.columns > div > div.non-singleton-img {
+  margin: 2rem 1rem;
 }
 
 @media (width >= 992px) {
+  .columns h2 {
+    font-size: var(--heading-font-size-xl);
+  }
+
+  .columns h6 {
+    font-size: var(--heading-font-size-xxs);
+  }
+
+  .columns p.button-container {
+    flex-direction: row;
+    gap: 2rem;
+  }
+
+  .columns a.button.primary {
+    min-width: 11rem;
+  }
+
   .columns > div {
-    align-items: center;
+    align-items: flex-start;
     flex-direction: unset;
-    gap: 45px;
+    gap: 3rem;
   }
 
   .columns > div > div {
     flex: 1;
     order: unset;
-    flex-basis: 55%;
+    flex-basis: 50%;
+  }
+
+  .columns > div > div.non-singleton-img {
+    margin: 0;
   }
 }

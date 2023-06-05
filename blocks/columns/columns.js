@@ -16,6 +16,14 @@ export default function decorate(block) {
     });
   });
 
+  // decorate columns with non-singleton-image content
+  [...block.children].forEach((row) => {
+    const content = row.querySelector('div:not(.columns-img-col)');
+    if (content) {
+      content.classList.add('non-singleton-img');
+    }
+  });
+
   // stylize anchors
   [...block.firstElementChild.children].forEach((row) => {
     [...row.children].forEach((col) => {
