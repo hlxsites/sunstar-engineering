@@ -3,9 +3,13 @@ div.news-wrapper {
 }
 
 div.news {
+  display: flex;
+  flex-direction: column;
   font-size: var(--body-font-size-s);
-  font-weight: 500;
-  padding: 16px 46px;
+  font-weight: var(--font-weight-small);
+  line-height: 14px;
+  padding: 16px;
+  max-width: 1200px;
 }
 
 .news a, .news a:visited {
@@ -17,5 +21,26 @@ div.news {
 }
 
 .news span {
-  margin-right: 16px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.news span:first-of-type {
+  font-weight: var(--font-weight-bold);
+}
+
+@media (min-width:62rem) {
+  div.news {
+    flex-direction: row;
+    font-weight: var(--font-weight-medium);
+    line-height: 24px;
+  }
+
+  .news span {
+    margin-bottom: 0;
+  }
+
+  .news span:first-of-type {
+    font-weight: var(--font-weight-small);
+  }
 }
