@@ -75,7 +75,7 @@
 }
 
 
-@media (max-width: 990px) {
+@media (min-width >= 990px) {
     .cards > ul {
         flex-direction: column;
     }
