@@ -8,6 +8,16 @@ footer .primary ul {
   display: none;
 }
 
+footer .social a.button.primary {
+  background: unset;
+  justify-content: unset;
+  align-items: center;
+  display: flex;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--body-font-size-m);
+  margin-bottom: 1rem;
+}
+
 footer .primary a, .nav-links li a, .social p>a, .groups p>a.button.primary {
   background: unset;
   color: var(--white);
@@ -25,16 +35,6 @@ footer .groups p>a.button.primary {
 footer .social {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
-}
-
-footer .social a.button.primary {
-  background: unset;
-  justify-content: unset;
-  align-items: center;
-  display: flex;
-  font-weight: var(--font-weight-medium);
-  font-size: var(--body-font-size-m);
-  margin-bottom: 1rem;
 }
 
 footer .social a::after {
