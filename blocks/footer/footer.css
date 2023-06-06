@@ -8,13 +8,18 @@ footer .primary ul {
   display: none;
 }
 
-footer .primary a, .nav-links li a, .social p>a, .groups p>a {
+footer .primary a, .nav-links li a, .social p>a, .groups p>a.button.primary {
+  background: unset;
   color: var(--white);
   display: block;
   line-height: 2.5rem;
   font-size: var(--body-font-size-s);
   font-weight: var(--font-weight-bold);
   letter-spacing: -0.006rem;
+}
+
+footer .groups p>a.button.primary {
+  font-weight: var(--font-weight-medium);
 }
 
 footer .social {
