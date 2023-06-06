@@ -33,6 +33,7 @@ header .social>ul {
   align-items: center;
 }
 
+
 header .social>ul>li {
   margin-right: .5rem;
   display: flex;
@@ -42,9 +43,17 @@ header .social>ul>li>a {
   display: flex;
 }
 
-header .social svg {
-  width: 24px;
-  height: 24px;
+header .social .icon {
+  width: 16px;
+  height: 16px;
+}
+
+header .social span.icon-youtube {
+  background-image: url("../../icons/youtube.svg");
+}
+
+header .social span.icon-linkedin {
+  background-image: url("../../icons/linkedin.svg");
 }
 
 header .nav-wrapper {
@@ -224,7 +233,6 @@ header form.search div {
 }
 
 header form.search input.search-text {
-  display: none;
   border: 0;
   box-sizing: border-box;
   color: var(--link-color);
@@ -253,10 +261,10 @@ header form.search button.search-icon {
   padding: 0;
   position: absolute;
   bottom: 8px;
-  right: 0;
-  height: 14px;
-  width: 14px;
-  min-width: 14px;
+  height: 16px;
+  width: 16px;
+  min-width: 16px;
+  right: 16px;
 }
 
 @media (min-width: 77rem) {
@@ -265,7 +273,10 @@ header form.search button.search-icon {
     border-bottom-color: var(--transparent-grey-light-color);
   }
 
-  header form.search input.search-text {
-    display: block;
+  header form.search button.search-icon {
+    right: 0;
+    height: 14px;
+    width: 14px;
+    min-width: 14px;
   }
 }
