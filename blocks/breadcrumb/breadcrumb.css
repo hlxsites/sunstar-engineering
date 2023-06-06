@@ -38,7 +38,7 @@
     content: "";
 }
 
-@media (width >= 62rem) {
+@media (min-width: 62rem) {
     .section.breadcrumb-container {
         display: block;
     }
@@ -50,7 +50,7 @@
     }
 }
 
-@media (width >= 77rem) {
+@media (min-width: 77rem) {
     .block.breadcrumb {
         padding-left: 0;
         padding-right: 0;

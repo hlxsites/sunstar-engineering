@@ -36,6 +36,7 @@
   --light: #f8f9fa;
   --dark: #343a40;
   --link-color: #3C4650;
+  --card-text-color: var(--secondary);
   --link-hover-color: var(--secondary);
   --background-color: var(--white);
   --overlay-background-color: #eee;
@@ -74,7 +75,7 @@
   --font-style-normal: normal;
 
   /* nav height */
-  --nav-top-height: 0;
+  --nav-top-height: 0px;
   --nav-middle-height: 60px;
   --nav-bottom-height: 52px;
   --nav-total-height: calc(var(--nav-top-height) + var(--nav-middle-height) + var(--nav-bottom-height));
@@ -92,7 +93,7 @@
   --font-size-xsmall: 12px;
 }
 
-@media (width >= 77rem) {
+@media (min-width: 77rem) {
   :root {
     --nav-top-height: 42px;
     --nav-middle-height: 26px;
@@ -341,7 +342,7 @@ main img {
   width: 20px;
 }
 
-@media (width >=77rem) {
+@media (min-width:77rem) {
   .icon.icon-sunstar-logo {
     width: 175px;
     height: 26px;
@@ -363,7 +364,7 @@ main .section.full-width {
 }
 
 
-@media (width >=62rem) {
+@media (min-width:62rem) {
   main .section {
     max-width: calc(872px + 32px);
     padding-left: 16px;
@@ -371,7 +372,7 @@ main .section.full-width {
   }
 }
 
-@media (width >=77rem) {
+@media (min-width:77rem) {
   main .section {
     position: relative;
     width: 100%;
