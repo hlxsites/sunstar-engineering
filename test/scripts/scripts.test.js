@@ -29,15 +29,16 @@ describe('Scripts', () => {
 
     const div = form.children[0];
     const it = div.getElementsByClassName('search-text');
-    expect(it[0].type).to.equal('search');
+    expect(it[0].type).to.equal('text');
     expect(it[0].value).to.equal('');
   });
 
   it('Creates the Search widget with value', () => {
-    const form = scripts.getSearchWidget('hello');
+    const form = scripts.getSearchWidget('hello', true);
 
     const div = form.children[0];
     const it = div.getElementsByClassName('search-text');
+    expect(it[0].type).to.equal('search');
     expect(it[0].value).to.equal('hello');
   });
 });
