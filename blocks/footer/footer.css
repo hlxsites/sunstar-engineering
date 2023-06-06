@@ -32,12 +32,6 @@ footer .social a.button.primary {
   margin-bottom: 1rem;
 }
 
-@media (min-width: 48rem) {
-  footer .social a.button.primary {
-    margin-bottom: 0;
-  }
-}
-
 footer .social a::after {
   content: "";
   height: 0.625rem;
@@ -55,12 +49,6 @@ footer .social h1 {
   font-size: 1rem;
   margin-bottom: 1rem;
   letter-spacing: 0;
-}
-
-@media (min-width: 48rem) {
-  footer .social h1 {
-    margin-bottom: 0.5rem;
-  }
 }
 
 footer .social p {
@@ -83,25 +71,9 @@ footer .social .icon-linkedin {
   background-image: url("../../icons/linkedin.svg");;
 }
 
-@media (min-width: 48rem) {
-  footer .copyright>div {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-}
-
 footer .copyright p {
   font-size: 0.625rem;
   margin-bottom: 1rem;
-}
-
-@media (min-width: 48rem) {
-  footer .copyright p {
-    font-size: var(--body-font-size-xs);
-    line-height: 2;
-    margin-bottom: 0;
-  }  
 }
 
 footer .copyright a {
@@ -115,23 +87,16 @@ footer .copyright p:not(:first-child) {
 
 footer .copyright .icon-link-white {
   background-image: url("../../icons/link-white.svg");
-  height: 0.938rem;
-  width: 0.938rem;
+  height: 0.625rem;
+  width: 0.625rem;
   margin-left: 0.125rem;
   vertical-align: middle;
+  margin-bottom: 0.25rem;
 }
 
 footer .groups img {
   max-width: 8.375rem;
   max-height: 1.25rem;
-}
-
-@media (min-width: 48rem) {
-  footer .groups img {
-    max-width: 10rem;
-    max-height: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
 }
 
 footer .groups p:not(:first-child) {
@@ -141,27 +106,15 @@ footer .groups p:not(:first-child) {
   line-height: 1.25rem;
 }
 
-@media (min-width: 48rem) {
-  footer .groups p:not(:first-child) {
-    font-size: 1rem;
-    line-height: 1.5em;
-  }
-}
-
 footer .groups p br {
   display: none;
-}
-
-@media (min-width: 48rem) {
-  footer .groups p br {
-    display: block;
-  }
 }
 
 footer .groups p>a {
   display: inline-block;
   line-height: 1;
   font-weight: var(--font-weight-medium);
+  margin-bottom: 1rem;
 }
 
 footer .groups .icon-link-white {
@@ -170,4 +123,136 @@ footer .groups .icon-link-white {
   width: 1.125rem;
   margin-left: 0.125rem;
   vertical-align: middle;
+  margin-bottom: 0.313rem;
+}
+
+@media (min-width: 48rem) {
+  footer .social a.button.primary {
+    margin-bottom: 0;
+  }
+
+  footer .social h1 {
+    margin-bottom: 0.5rem;
+  }
+
+  footer .copyright>div {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  footer .copyright p {
+    font-size: var(--body-font-size-xs);
+    line-height: 2;
+    margin-bottom: 0;
+  }
+
+  footer .copyright .icon-link-white {
+    height: 0.938rem;
+    width: 0.938rem;
+  }
+
+  footer .groups p br {
+    display: block;
+  }
+
+  footer .groups img {
+    max-width: 10rem;
+    max-height: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  footer .groups p:not(:first-child) {
+    font-size: 1rem;
+    line-height: 1.5em;
+  }
+}
+
+@media (min-width: 62rem) {
+  footer {
+    padding-top: 3rem;
+  }
+
+  footer .footer {
+    max-width: 75rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  footer .primary ul {
+    display: unset;
+  }
+
+  footer .primary>div {
+    display: flex;
+    margin: 0 -2rem;
+  }
+
+  footer .primary .primary-items h4 {
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.5rem;
+    letter-spacing: -0.006rem;
+    margin-bottom: 0.938rem;
+  }
+
+  footer .primary .primary-items {
+    width: calc(100% / 5 - 3rem);
+    margin: 0 2rem;
+  }
+
+  footer .primary li {
+    margin-bottom: 1rem;
+  }
+
+  footer .primary a {
+    line-height: 1.5rem;
+  }
+
+  footer .primary li a {
+    font-weight: var(--font-weight-medium);
+  }
+
+  footer .nav-links {
+    padding-top: 1.563rem;
+    width: 84%;
+  }
+
+  footer .nav-links ul {
+    display: flex;
+  }
+
+  footer .nav-links li a {
+    margin-right: 2rem;
+    font-size: var(--body-font-size-m);
+  }
+
+  footer .social-nav {
+    display: flex;
+  }
+
+  footer .social {
+    width: 16%;
+  }
+
+  footer .social>div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  footer .groups {
+    margin-top: -2.688rem;
+  }
+
+  footer .groups .icon-link-white {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+}
+
+@media (min-width: 77rem) {
+  footer .primary .primary-items h4 {
+    text-transform: uppercase;
+  }
 }

@@ -5,6 +5,46 @@ import {
   updateSectionsStatus,
 } from '../../scripts/lib-franklin.js';
 
+function wrapSocialAndNavLinks(block) {
+  const socialNavWrapper = document.createElement('div');
+  socialNavWrapper.classList.add('social-nav');
+  const navLinks = block.querySelector('.nav-links');
+  const social = block.querySelector('.social');
+
+  socialNavWrapper.appendChild(navLinks);
+  socialNavWrapper.appendChild(social);
+
+  block.querySelector('.primary').after(socialNavWrapper);
+}
+
+function decorateFooter(block) {
+  wrapSocialAndNavLinks(block);
+
+  const primaryFooter = block.querySelector('.section.primary>div');
+  const itemsList = [];
+  const childrens = [...primaryFooter.children];
+  let index = 0;
+
+  while (index < childrens.length) {
+    const navItem = document.createElement('div');
+    navItem.classList.add('primary-items');
+    navItem.appendChild(childrens[index]);
+    if (childrens[index + 1] && childrens[index + 1].tagName === 'UL') {
+      navItem.appendChild(childrens[index + 1]);
+      index += 2;
+    } else {
+      index += 1;
+    }
+
+    itemsList.push(navItem);
+  }
+
+  primaryFooter.innerHTML = '';
+  itemsList.forEach((item) => {
+    primaryFooter.appendChild(item);
+  });
+}
+
 /**
  * loads and decorates the footer
  * @param {Element} block The footer block element
@@ -28,5 +68,6 @@ export default async function decorate(block) {
 
     block.append(footer);
     decorateButtons(block);
+    decorateFooter(block);
   }
 }
