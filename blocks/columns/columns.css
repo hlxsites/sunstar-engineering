@@ -60,7 +60,7 @@
   margin: 2rem 1rem;
 }
 
-@media (width >= 992px) {
+@media (min-width: 992px) {
   .columns h2 {
     font-size: var(--heading-font-size-xl);
   }

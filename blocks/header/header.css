@@ -72,7 +72,7 @@ header nav.nav-top {
   display: none;
 }
 
-@media (width >=77rem) {
+@media (min-width:77rem) {
   header nav.nav-top {
     display: flex;
   }
@@ -103,7 +103,7 @@ header nav.nav-middle {
   padding: 0 1rem;
 }
 
-@media (width >=77rem) {
+@media (min-width:77rem) {
   header nav.nav-middle {
     padding: 0;
   }
@@ -142,7 +142,7 @@ header nav.nav-bottom>ul {
   display: none;
 }
 
-@media (width >=77rem) {
+@media (min-width:77rem) {
   header nav.nav-bottom {
     border-top: unset;
     border-bottom: unset;
@@ -216,7 +216,7 @@ header .mobile-icon>i:nth-child(4) {
   left: 2px
 }
 
-@media (width >=77rem) {
+@media (min-width:77rem) {
   header .mobile-icon {
     display: none;
   }
@@ -268,7 +268,7 @@ header form.search button.search-icon {
   min-width: 14px;
 }
 
-@media (width >= 77rem) {
+@media (min-width: 77rem) {
   header form.search div {
     min-width: 200px;
     border-bottom-color: var(--transparent-grey-light-color);

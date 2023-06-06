@@ -206,7 +206,7 @@ function getSearchWidgetHTML(initialVal) {
       <div>
         <input type="hidden" name="lang" value="en">
         <input type="text" name="s" value="${initialVal ?? ''}" class="search-text" placeholder="Search" required="true" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('The Search field cannot be empty')">
-        <button class="icon search-icon"></button>
+        <button class="icon search-icon" aria-label="Search"></button>
       </div>
     </form>`;
 }

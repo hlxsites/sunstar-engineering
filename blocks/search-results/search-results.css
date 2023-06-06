@@ -71,13 +71,13 @@
   font-weight: var(--font-weight-medium);
 }
 
-@media (width >= 30rem) {
+@media (min-width: 30rem) {
   .search-results form.search > div {
     width: 30rem;
   }
 }
 
-@media (width >= 62rem) {
+@media (min-width: 62rem) {
   .search-results-container h2 {
     font-size: var(--heading-font-size-xl);
   }
