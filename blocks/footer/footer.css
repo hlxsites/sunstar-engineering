@@ -241,6 +241,7 @@ footer .groups .icon-link-white {
     width: 16%;
   }
 
+  /* stylelint-disable-next-line no-descending-specificity */
   footer .social>div {
     display: flex;
     flex-direction: column;
