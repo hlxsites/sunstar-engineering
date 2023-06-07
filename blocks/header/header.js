@@ -22,6 +22,10 @@ function decorateBottomNav(nav) {
   hamburger.classList.add('mobile-icon');
   hamburger.innerHTML = Array.from({ length: 4 }, () => '<i></i>').join(' ');
   nav.prepend(hamburger);
+
+  hamburger.addEventListener('click', () => {
+    nav.querySelector('ul').classList.toggle('open');
+  });
   nav.append(getSearchWidget());
 }
 
