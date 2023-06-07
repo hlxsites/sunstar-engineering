@@ -352,13 +352,7 @@ main img {
 }
 
 
-main .section {
-  max-width: 100%;
-  padding-left: 0;
-  padding-right: 0
-}
-
-main .section.full-width {
+main .section-container {
   max-width: 100%;
   padding-left: 0;
   padding-right: 0
@@ -366,7 +360,7 @@ main .section.full-width {
 
 
 @media (min-width:62rem) {
-  main .section {
+  main .section-container {
     max-width: calc(872px + 32px);
     padding-left: 16px;
     padding-right: 16px
@@ -374,7 +368,7 @@ main .section.full-width {
 }
 
 @media (min-width:77rem) {
-  main .section {
+  main .section-container {
     position: relative;
     width: 100%;
     padding-right: 0;
@@ -383,9 +377,13 @@ main .section.full-width {
     margin-left: auto;
     max-width: 1200px
   }
+
+  main .section.full-width > .section-container {
+    max-width: 100%;
+  }
 }
 
 /* section metadata */
-main .section.highlight {
+main .section-container.highlight {
   background-color: var(--highlight-background-color);
 }

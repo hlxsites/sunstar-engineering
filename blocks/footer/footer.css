@@ -189,7 +189,7 @@ footer .groups .icon-link-white {
     display: unset;
   }
 
-  footer .primary>div {
+  footer .primary>div>div {
     display: flex;
     margin: 0 -2rem;
   }

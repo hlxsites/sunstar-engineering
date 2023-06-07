@@ -28,7 +28,7 @@
     object-fit: cover;
 }
 
-.carousel .section-container {
+.carousel .carousel-items-container {
     display: flex;
     flex-direction: column-reverse;
 }
@@ -139,7 +139,7 @@ main .section.carousel-container {
         display: block;
     }
 
-    .carousel .section-container {
+    .carousel .carousel-items-container {
         flex-direction: row;
         height: 100%;
         margin-left: auto;
@@ -172,7 +172,7 @@ main .section.carousel-container {
         position: absolute;
     }
 
-    .section > div.carousel-wrapper {
+    .section-container > div.carousel-wrapper {
         margin: 0;
         max-width: unset;
     }
@@ -202,7 +202,7 @@ main .section.carousel-container {
         width: 75rem;
     }
 
-    .carousel .section-container {
+    .carousel .carousel-items-container {
         width: 75rem;
     }
 

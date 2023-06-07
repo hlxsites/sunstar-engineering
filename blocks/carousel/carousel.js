@@ -109,7 +109,7 @@ export default async function decorate(block) {
   });
 
   const container = document.createElement('div');
-  container.classList.add('section-container');
+  container.classList.add('carousel-items-container');
 
   block.innerHTML = '';
 
