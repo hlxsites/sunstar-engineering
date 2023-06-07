@@ -65,6 +65,7 @@
 .columns > div > div.non-singleton-img {
   margin: 0 1rem;
 }
+
 .columns.constrain-width > div > div.columns-img-col {
   margin: 0 1rem;
 }
