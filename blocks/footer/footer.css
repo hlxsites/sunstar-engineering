@@ -141,7 +141,7 @@ footer .groups .icon-link-white {
     margin-bottom: 0.5rem;
   }
 
-  footer .copyright>div {
+  footer .copyright>div>div {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -242,7 +242,7 @@ footer .groups .icon-link-white {
   }
 
   /* stylelint-disable-next-line no-descending-specificity */
-  footer .social>div {
+  footer .social>div>div {
     display: flex;
     flex-direction: column;
     margin-top: 10px;
