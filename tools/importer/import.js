@@ -179,6 +179,9 @@ function createColumnBlockFromSection(document) {
         columnItem.push(column);
       });
       block.push(columnItem);
+      if (section.querySelectorAll('.background-image').length) {
+        block[0][0] += ' (constrain-width)';
+      }
       const table = WebImporter.DOMUtils.createTable(block, document);
       convertBackgroundImgsToForegroundImgs(table, document);
       section.replaceWith(table);
