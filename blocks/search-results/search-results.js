@@ -69,7 +69,7 @@ export default async function decorate(block) {
   const searchTerm = getSearchParams();
 
   block.innerHTML = '';
-  block.append(getSearchWidget(searchTerm));
+  block.append(getSearchWidget(searchTerm, true));
 
   if (searchTerm) {
     const results = await searchPages(searchTerm);
