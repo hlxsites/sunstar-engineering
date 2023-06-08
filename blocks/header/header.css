@@ -183,6 +183,7 @@ header nav.nav-bottom>ul>li>a {
   line-height: 1.5;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 header nav.nav-bottom>ul>li>ul {
   /* TODO Second level menu */
   display: none;
