@@ -1,3 +1,7 @@
+.columns {
+  margin: 2rem 0;
+}
+
 .columns > div {
   display: flex;
   flex-direction: column;
@@ -12,7 +16,9 @@
 }
 
 .columns h6 {
+  color: var(--secondary);
   font-size: var(--heading-font-size-xxxs);
+  margin-top: 2rem;
 }
 
 .columns p.button-container {
@@ -49,7 +55,7 @@
 }
 
 .columns > div > div > h2 {
-  margin: 2rem 0;
+  margin: 1.5rem 0;
 }
 
 .columns > div > div > p {
@@ -57,10 +63,18 @@
 }
 
 .columns > div > div.non-singleton-img {
-  margin: 2rem 1rem;
+  margin: 0 1rem;
+}
+
+.columns.constrain-width > div > div.columns-img-col {
+  margin: 0 1rem;
 }
 
 @media (min-width: 992px) {
+  .columns {
+    margin-bottom: 7.5rem;
+  }
+
   .columns h2 {
     font-size: var(--heading-font-size-xl);
   }
@@ -79,7 +93,7 @@
   }
 
   .columns > div {
-    align-items: flex-start;
+    align-items: center;
     flex-direction: unset;
     gap: 3rem;
   }

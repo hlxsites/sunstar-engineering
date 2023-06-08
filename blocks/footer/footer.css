@@ -141,7 +141,7 @@ footer .groups .icon-link-white {
     margin-bottom: 0.5rem;
   }
 
-  footer .copyright>div {
+  footer .copyright>div>div {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -189,7 +189,7 @@ footer .groups .icon-link-white {
     display: unset;
   }
 
-  footer .primary>div {
+  footer .primary>div>div {
     display: flex;
     margin: 0 -2rem;
   }
@@ -241,7 +241,8 @@ footer .groups .icon-link-white {
     width: 16%;
   }
 
-  footer .social>div {
+  /* stylelint-disable-next-line no-descending-specificity */
+  footer .social>div>div {
     display: flex;
     flex-direction: column;
     margin-top: 10px;

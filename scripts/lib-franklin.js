@@ -338,6 +338,11 @@ export function decorateSections(main) {
       });
       sectionMeta.parentNode.remove();
     }
+
+    const sectionContainer = document.createElement('div');
+    sectionContainer.classList.add('section-container');
+    sectionContainer.append(...section.children);
+    section.append(sectionContainer);
   });
 }
 
@@ -369,7 +374,7 @@ export function updateSectionsStatus(main) {
  */
 export function decorateBlocks(main) {
   main
-    .querySelectorAll('div.section > div > div')
+    .querySelectorAll('div.section-container > div > div')
     .forEach(decorateBlock);
 }
 

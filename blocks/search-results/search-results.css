@@ -1,3 +1,7 @@
+.search-results-container {
+  margin: 16px;
+}
+
 .search-results-container h2 {
   font-size: var(--heading-font-size-l);
   margin-bottom: 20px;

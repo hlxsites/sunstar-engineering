@@ -20,7 +20,7 @@ function wrapSocialAndNavLinks(block) {
 function decorateFooter(block) {
   wrapSocialAndNavLinks(block);
 
-  const primaryFooter = block.querySelector('.section.primary>div');
+  const primaryFooter = block.querySelector('.section.primary>.section-container>div');
   const itemsList = [];
   const childrens = [...primaryFooter.children];
   let index = 0;

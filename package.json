@@ -24,14 +24,14 @@
     "@babel/core": "7.22.1",
     "@babel/eslint-parser": "7.21.8",
     "chai": "4.3.7",
-    "eslint": "8.41.0",
+    "eslint": "8.42.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-import": "2.27.5",
     "@esm-bundle/chai": "4.3.4-fix.0",
     "@web/test-runner": "0.16.1",
     "@web/test-runner-commands": "0.7.0",
     "sinon": "15.1.0",
-    "stylelint": "15.6.2",
+    "stylelint": "15.7.0",
     "stylelint-config-standard": "33.0.0"
   }
 }
