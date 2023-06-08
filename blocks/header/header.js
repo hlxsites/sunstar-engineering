@@ -24,7 +24,8 @@ function decorateBottomNav(nav) {
   nav.prepend(hamburger);
 
   hamburger.addEventListener('click', () => {
-    nav.querySelector('ul').classList.toggle('open');
+    nav.classList.toggle('open');
+    document.body.classList.toggle('no-scroll');
   });
   nav.append(getSearchWidget());
 }
@@ -61,6 +62,19 @@ export default async function decorate(block) {
         document.querySelector('header').classList.add('fixed');
       } else {
         document.querySelector('header').classList.remove('fixed');
+      }
+    });
+
+    // remove small screen classes
+    window.addEventListener('resize', () => {
+      // eslint-disable-next-line max-len
+      const screenSize = window.innerWidth / parseFloat(getComputedStyle(document.documentElement).fontSize);
+
+      if (screenSize > 77) {
+        block.querySelectorAll('.open').forEach((el) => {
+          el.classList.remove('open');
+        });
+        document.body.classList.remove('no-scroll');
       }
     });
   }

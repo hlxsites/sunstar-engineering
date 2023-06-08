@@ -120,6 +120,16 @@ body.appear {
   display: unset;
 }
 
+body.no-scroll {
+  overflow-y: hidden;
+}
+
+@media (min-width: 77rem) {
+  body.no-scroll {
+    overflow-y: auto;
+  }
+}
+
 h1,
 h2,
 h3,
