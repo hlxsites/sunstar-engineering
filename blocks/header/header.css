@@ -271,7 +271,8 @@ header .nav-bottom.open .mobile-icon>i:nth-child(1) {
   left: 50%
 }
 
-header .nav-bottom.open .mobile-icon>i:nth-child(2) {
+header .nav-bottom.open .mobile-icon>i:nth-child(2),
+header .nav-bottom.open .mobile-icon>i:nth-child(3) {
   top: 11px;
   left: 0;
   width: 23.5px;
