@@ -1,5 +1,7 @@
 main .block.cards {
     margin: 0 auto 60px;
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
 .cards > ul {
@@ -88,6 +90,11 @@ main .block.cards {
 }
 
 @media screen and (min-width: 62rem)  {
+    main .block.cards {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
     div.cards > ul {
         flex-flow: row nowrap;
     }
