@@ -196,7 +196,13 @@ header nav.nav-bottom>ul>li>ul {
     border-bottom: unset;
   }
 
-  header nav.nav-bottom>ul {
+  header nav.nav-bottom.open {
+    position: relative;
+    width: unset;
+  }
+
+  header nav.nav-bottom>ul,
+  header nav.nav-bottom.open>ul {
     display: flex;
     position: static;
     height: unset;

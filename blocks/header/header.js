@@ -64,18 +64,5 @@ export default async function decorate(block) {
         document.querySelector('header').classList.remove('fixed');
       }
     });
-
-    // remove small screen classes
-    window.addEventListener('resize', () => {
-      // eslint-disable-next-line max-len
-      const screenSize = window.innerWidth / parseFloat(getComputedStyle(document.documentElement).fontSize);
-
-      if (screenSize > 77) {
-        block.querySelectorAll('.open').forEach((el) => {
-          el.classList.remove('open');
-        });
-        document.body.classList.remove('no-scroll');
-      }
-    });
   }
 }
