@@ -168,7 +168,11 @@ function createColumnBlockFromSection(document) {
       .filter((s) => /hero/.test(s)).length;
     const contentColumns = Array.from(section.children)
       .filter(
-        (el) => (el.tagName === 'DIV' || el.tagName === 'FIGURE' || el.tagName === 'IMG'),
+        (el) => (
+          (el.tagName === 'DIV'
+          || el.tagName === 'FIGURE'
+          || el.tagName === 'IMG')
+        && (el.querySelector('.wp-block-embed')) === 0),
       );
     if (!heroParent && contentColumns
       && contentColumns.length === 2
