@@ -162,15 +162,22 @@ function convertBackgroundImgsToForegroundImgs(sourceNode, targetNode = sourceNo
 function createColumnBlockFromSection(document) {
   document.querySelectorAll('div.section-container').forEach((section) => {
     const block = [['Columns']];
-    // create a column block from the section
-    // but only if it contains two columns and isn't a hero section
+    /* create a column block from the section
+       but only if it contains
+       * two columns
+       * isn't a hero section
+       * doesn't have an embed
+     */
     const heroParent = Array.from(section.parentElement.classList)
       .filter((s) => /hero/.test(s)).length;
+    const hasEmbed = !!section.querySelector('.wp-block-embed');
     const contentColumns = Array.from(section.children)
       .filter(
-        (el) => (el.tagName === 'DIV' || el.tagName === 'FIGURE' || el.tagName === 'IMG'),
+        (el) => (el.tagName === 'DIV'
+          || el.tagName === 'FIGURE'
+          || el.tagName === 'IMG'),
       );
-    if (!heroParent && contentColumns
+    if (!heroParent && !hasEmbed && contentColumns
       && contentColumns.length === 2
       && section.children.length === 2
       && section.querySelectorAll('p').length !== 0) {
@@ -189,12 +196,43 @@ function createColumnBlockFromSection(document) {
   });
 }
 
+/**
+ * Creates a column block from a section if it contains two columns _only_
+ * @param {HTMLDocument} document The document
+ */
+function createCardsBlockFromSection(document) {
+  document.querySelectorAll('div.section-container').forEach((section) => {
+    const block = [['Cards']];
+    // create a cards block from the section
+
+    const sectionIsCard = section.parentElement.className.includes('wp-block-sunstar-blocks-home-engineering-solution');
+    if (sectionIsCard) {
+      const contentCards = Array.from(section.children)
+        .filter(
+          (el) => (el.tagName === 'DIV' || el.tagName === 'FIGURE' || el.tagName === 'IMG'),
+        );
+      const headerContainer = contentCards[0];
+      const cardsContainer = contentCards[1];
+      Array.from(cardsContainer.children).forEach((card) => {
+        const img = card.querySelector('img');
+        const title = card.querySelector('h6').textContent;
+        card.replaceChildren(title);
+        block.push([img, card]);
+      });
+      const table = WebImporter.DOMUtils.createTable(block, document);
+      convertBackgroundImgsToForegroundImgs(table, document);
+      section.replaceWith(headerContainer, table);
+    }
+  });
+}
+
 function customImportLogic(doc) {
   removeCookiesBanner(doc);
 
   addBreadCrumb(doc);
   addCarouselItems(doc);
 
+  createCardsBlockFromSection(doc);
   createColumnBlockFromSection(doc);
   convertBackgroundImgsToForegroundImgs(doc);
 }

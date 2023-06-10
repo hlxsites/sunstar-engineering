@@ -1,9 +1,14 @@
+main .block.cards {
+    margin: 0 auto 60px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
 .cards > ul {
     display: flex;
     justify-content: center;
     list-style: none;
     flex-flow: column nowrap;
-    margin: 0;
     padding: 0;
     padding-inline-start: 0;
 }
@@ -84,19 +89,14 @@
     margin: 0;
 }
 
-@media (min-width: 62rem) and (max-width: 77rem) {
-    main div.cards-container {
-        margin: 0 auto;
+@media screen and (min-width: 62rem)  {
+    main .block.cards {
+        padding-left: 0;
+        padding-right: 0;
     }
 
     div.cards > ul {
-        display: flex;
         flex-flow: row nowrap;
-        justify-content: center;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        padding-inline-start: 0;
     }
 
     .cards > ul > li {
@@ -119,7 +119,7 @@
     }
 
     .cards .cards-card-image {
-        margin: 0 auto;
+        margin: auto;
         width: 120px;
         height: 120px;
     }
@@ -128,46 +128,25 @@
         width: 100%;
         height: 100%;
     }
-
-    .cards .cards-card-body u {
-        text-decoration: none;
-    }
 }
 
 @media screen and (min-width: 77rem) {
-    div.cards > ul {
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: center;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        padding-inline-start: 0;
-    }
-
     .cards > ul > li {
         width: 214px;
         height: 262px;
-        padding: 0;
-        text-align: center;
         margin: 0 16px;
     }
 
     .cards > ul > li > a.button {
         padding: 20px 0 0;
-        display: block;
-        box-sizing: border-box;
     }
 
     .cards .cards-card-image {
-        margin: 0 auto;
         width: 140px;
         height: 140px;
     }
 
     .cards .cards-card-body {
-        width: initial;
-        margin: 0;
         padding-top: 20px;
         font-size: 1rem;
     }
