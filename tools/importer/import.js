@@ -112,6 +112,27 @@ function addCarouselItems(doc) {
   }
 }
 
+function extractEmbed(doc) {
+  const embedItems = doc.querySelectorAll('.wp-block-embed');
+
+  if (embedItems && embedItems.length) {
+    embedItems.forEach((embedItem) => {
+      const iframes = embedItem.getElementsByTagName('iframe');
+
+      if (iframes && iframes.length) {
+        const cells = [['Embed']];
+        const anchor = document.createElement('a');
+        anchor.href = iframes[0].src;
+        cells.push([anchor]);
+
+        const table = WebImporter.DOMUtils.createTable(cells, doc);
+        embedItem.after(doc.createElement('hr'));
+        embedItem.replaceWith(table);
+      }
+    });
+  }
+}
+
 function addBreadCrumb(doc) {
   const breadcrumb = doc.querySelector('.section-breadcrumb');
 
@@ -150,7 +171,6 @@ function convertBackgroundImgsToForegroundImgs(sourceNode, targetNode = sourceNo
         bgImg.style.backgroundImage = withoutSpaces;
       }
     });
-    console.log(`inlining images for ${bgImg.outerHTML}`);
     WebImporter.DOMUtils.replaceBackgroundByImg(bgImg, targetNode);
   });
 }
@@ -234,6 +254,7 @@ function customImportLogic(doc) {
 
   createCardsBlockFromSection(doc);
   createColumnBlockFromSection(doc);
+  extractEmbed(doc);
   convertBackgroundImgsToForegroundImgs(doc);
 }
 
