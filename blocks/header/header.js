@@ -6,6 +6,46 @@ function decorateSocial(social) {
   social.innerHTML = social.innerHTML.replace(/\[social\]/, '');
 }
 
+function addLevels(root) {
+  const ulElements = root.querySelectorAll('ul');
+
+  ulElements.forEach((ul) => {
+    let level = 1;
+    let currentElement = ul;
+
+    while (currentElement.parentElement) {
+      if (currentElement.parentElement.tagName === 'UL') {
+        level += 1;
+      }
+
+      currentElement = currentElement.parentElement;
+    }
+
+    ul.classList.add(`menu-level-${level}`);
+    ul.querySelectorAll(':scope>li').forEach((li) => {
+      li.classList.add(`menu-level-${level}-item`);
+    });
+  });
+}
+
+function buildDropDownMenu(parent) {
+  if (parent.querySelectorAll('ul').length === 0) return;
+  const dropDownMenu = document.createElement('div');
+  dropDownMenu.classList.add('dropdown-menu');
+  const dropDownHeader = document.createElement('div');
+  dropDownHeader.classList.add('dropdown-menu-header');
+  dropDownHeader.innerHTML = `
+    <a href="/global-network">
+      Learn about regional availability
+      <span class="icon icon-ang-white"></span>
+    </a>
+    <h2>${parent.querySelector('a').innerHTML}</h2>
+  `;
+  dropDownMenu.appendChild(dropDownHeader);
+  dropDownMenu.appendChild(parent.querySelector('ul'));
+  parent.appendChild(dropDownMenu);
+}
+
 function decorateTopNav(nav) {
   nav.querySelectorAll(':scope>ul>li').forEach((li) => {
     if (li.textContent.trim() === '[social]') {
@@ -18,6 +58,10 @@ function decorateMiddleNav() {
 }
 
 function decorateBottomNav(nav) {
+  addLevels(nav);
+  nav.querySelectorAll(':scope>ul>li').forEach((li) => {
+    buildDropDownMenu(li);
+  });
   const hamburger = document.createElement('span');
   hamburger.classList.add('mobile-icon');
   hamburger.innerHTML = Array.from({ length: 4 }, () => '<i></i>').join(' ');
@@ -38,8 +82,7 @@ const navDecorators = { 'nav-top': decorateTopNav, 'nav-middle': decorateMiddleN
 export default async function decorate(block) {
   // fetch nav content
   const navMeta = getMetadata('nav');
-  // TODO: remove this fallback once nav is in place
-  const navPath = navMeta ? new URL(navMeta).pathname : '/nav';
+  const navPath = navMeta || '/nav';
   const resp = await fetch(`${navPath}.plain.html`);
 
   if (resp.ok) {
