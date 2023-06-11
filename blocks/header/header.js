@@ -44,6 +44,20 @@ function buildDropDownMenu(parent) {
   dropDownMenu.appendChild(dropDownHeader);
   dropDownMenu.appendChild(parent.querySelector('ul'));
   parent.appendChild(dropDownMenu);
+
+  // Create an intersection observer instance for the dropdown menu
+  // Bring the backdrop in and out of view depending on the dropdown menu's visibility
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        document.querySelector('.backdrop').classList.add('visible');
+      } else {
+        document.querySelector('.backdrop').classList.remove('visible');
+      }
+    });
+  });
+
+  observer.observe(dropDownMenu);
 }
 
 function decorateTopNav(nav) {
@@ -107,5 +121,9 @@ export default async function decorate(block) {
         document.querySelector('header').classList.remove('fixed');
       }
     });
+
+    const backdrop = document.createElement('div');
+    backdrop.classList.add('backdrop');
+    document.body.appendChild(backdrop);
   }
 }
