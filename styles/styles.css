@@ -228,7 +228,7 @@ header {
   height: 100%;
   width: 100%;
   display: none;
-  background: rgba(60, 70, 80, 0.7);
+  background: var(--transparent-grey-color);
   z-index: 1;
 }
 

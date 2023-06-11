@@ -187,7 +187,7 @@ header nav.nav-bottom .menu-level-1-item>a {
 header nav.nav-bottom .menu-level-1-item>.dropdown-menu {
   display: none;
   width: 100vw;
-  height: 480px;
+  height: 30rem;
   position: absolute;
   top: var(--nav-total-height);
   left: 0;
@@ -208,45 +208,41 @@ header nav.nav-bottom .menu-level-1-item .dropdown-menu>.dropdown-menu-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 1200px;
+  width: 75rem;
   margin: 0 auto;
 }
 
 header nav.nav-bottom .menu-level-2 {
   display: flex;
   justify-content: space-between;
-  width: 1200px;
+  width: 75rem;
   margin: 0 auto;
 }
 
 header nav.nav-bottom .menu-level-2-item {
-  width: calc(100%/5 - 40px);
+  width: calc(100%/5 - 2.5rem);
   margin-right: 3.5rem;
   display: flex;
   flex-direction: column;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 header nav.nav-bottom .menu-level-2-item>a {
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 1.5;
+  font-size: var(--body-font-size-s);
+  font-weight: var(--font-weight-bold);
   letter-spacing: 0;
   margin-bottom: 1rem;
-  color: #fff;
   text-transform: uppercase;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 header nav.nav-bottom .menu-level-3-item>a {
-  line-height: 21px;
-  font-size: 14px;
-  margin-bottom: 20px;
-  width: 100%;
-  color: #fff;
+  font-size: var(--body-font-size-s);
+  margin-bottom: 1.25rem;
   text-decoration: none;
   padding-left: 1rem;
   position: relative;
   display: inline-flex;
-  -ms-flex-line-pack: center;
   align-content: center;
   word-break: break-word;
 }
@@ -257,7 +253,7 @@ header nav.nav-bottom .menu-level-3-item>a::before {
   left: 0;
   display: inline-block;
   width: 2px;
-  height: calc(100% + 23px);
+  height: calc(100% + 1.375rem);
   background: #009cbd;
 }
 
@@ -290,7 +286,7 @@ header nav.nav-bottom .menu-level-3-item>a::before {
   header nav.nav-bottom .menu-level-1-item>a {
     padding: 1rem 0;
     line-height: 1;
-    border-bottom: 4px solid transparent;
+    border-bottom: 0.25rem solid transparent;
     text-decoration: none;
     color: var(--text-color);
     white-space: nowrap;

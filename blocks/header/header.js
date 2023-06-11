@@ -1,4 +1,4 @@
-import { getMetadata } from '../../scripts/lib-franklin.js';
+import { fetchPlaceholders, getMetadata } from '../../scripts/lib-franklin.js';
 import { getSearchWidget } from '../../scripts/scripts.js';
 
 function decorateSocial(social) {
@@ -6,6 +6,7 @@ function decorateSocial(social) {
   social.innerHTML = social.innerHTML.replace(/\[social\]/, '');
 }
 
+/* Add levels to the menu items */
 function addLevels(root) {
   const ulElements = root.querySelectorAll('ul');
 
@@ -28,7 +29,7 @@ function addLevels(root) {
   });
 }
 
-function buildDropDownMenu(parent) {
+function buildDropDownMenu(parent, placeholders) {
   if (parent.querySelectorAll('ul').length === 0) return;
   const dropDownMenu = document.createElement('div');
   dropDownMenu.classList.add('dropdown-menu');
@@ -36,7 +37,7 @@ function buildDropDownMenu(parent) {
   dropDownHeader.classList.add('dropdown-menu-header');
   dropDownHeader.innerHTML = `
     <a href="/global-network">
-      Learn about regional availability
+      ${placeholders['learn-about-regional-availability']}
       <span class="icon icon-ang-white"></span>
     </a>
     <h2>${parent.querySelector('a').innerHTML}</h2>
@@ -71,10 +72,10 @@ function decorateTopNav(nav) {
 function decorateMiddleNav() {
 }
 
-function decorateBottomNav(nav) {
+function decorateBottomNav(nav, placeholders) {
   addLevels(nav);
-  nav.querySelectorAll(':scope>ul>li').forEach((li) => {
-    buildDropDownMenu(li);
+  nav.querySelectorAll(':scope .menu-level-1-item').forEach((li) => {
+    buildDropDownMenu(li, placeholders);
   });
   const hamburger = document.createElement('span');
   hamburger.classList.add('mobile-icon');
@@ -100,6 +101,8 @@ export default async function decorate(block) {
   const resp = await fetch(`${navPath}.plain.html`);
 
   if (resp.ok) {
+    // TODO: localize
+    const placeholders = await fetchPlaceholders();
     block.innerHTML = '';
     const html = await resp.text();
     const fetchedNav = document.createElement('div');
@@ -109,7 +112,7 @@ export default async function decorate(block) {
       const nav = document.createElement('nav');
       nav.classList.add(navClass);
       nav.innerHTML = fetchedNav.querySelectorAll(':scope>div')[idx].innerHTML;
-      navDecorators[navClass](nav);
+      navDecorators[navClass](nav, placeholders);
 
       block.appendChild(nav);
     });
