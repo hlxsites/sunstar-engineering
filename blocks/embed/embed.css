@@ -2,7 +2,7 @@ main .embed {
   width: unset;
   text-align: center;
   max-width: 800px;
-  margin: 32px auto;
+  margin: 32px auto 0;
 }
   
 main .embed > div {
@@ -59,4 +59,16 @@ main .embed .embed-placeholder-play button::before {
   border-left: 6px solid;
   top: 4px;
   left: 7px;
+}
+
+main .embed-container .default-content-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+main .embed-container p {
+  margin-top: 13px;
+  font-size: 0.88rem;
+  line-height: 1.7em;
+  color: var(--gray);
 }
