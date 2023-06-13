@@ -1,5 +1,5 @@
 import { fetchPlaceholders, getMetadata } from '../../scripts/lib-franklin.js';
-import { getSearchWidget } from '../../scripts/scripts.js';
+import { getSearchWidget, getWindowSize } from '../../scripts/scripts.js';
 
 function decorateSocial(social) {
   social.classList.add('social');
@@ -59,6 +59,13 @@ function buildDropDownMenu(parent, placeholders) {
   });
 
   observer.observe(dropDownMenu);
+
+  parent.addEventListener('click', (evt) => {
+    if (getWindowSize().width < 1232) {
+      evt.preventDefault();
+      parent.classList.toggle('open');
+    }
+  });
 }
 
 function decorateTopNav(nav) {

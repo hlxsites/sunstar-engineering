@@ -64,6 +64,19 @@ export function decorateVideoLinks(element = document) {
   }
 }
 
+// Function to get the current window size
+export function getWindowSize() {
+  const windowWidth = window.innerWidth
+  || document.documentElement.clientWidth
+  || document.body.clientWidth;
+  const windowHeight = window.innerHeight
+  || document.documentElement.clientHeight
+  || document.body.clientHeight;
+  return {
+    width: windowWidth,
+    height: windowHeight,
+  };
+}
 /**
  * Decorates the main element.
  * @param {Element} main The main element
