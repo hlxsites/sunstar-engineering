@@ -63,7 +63,23 @@ function buildDropDownMenu(parent, placeholders) {
   parent.addEventListener('click', (evt) => {
     if (getWindowSize().width < 1232) {
       evt.preventDefault();
+      evt.stopPropagation();
       parent.classList.toggle('open');
+      document.querySelector('.menu-back-btn').classList.toggle('visible');
+      document.querySelector('.mobile-icon').classList.toggle('visible');
+    }
+  });
+
+  dropDownMenu.addEventListener('click', (evt) => {
+    if (getWindowSize().width < 1232) {
+      if (evt.target.parentElement.classList.contains('menu-level-2-item')) {
+        const level3Menu = evt.target.parentElement.querySelector('ul');
+        if (level3Menu) {
+          evt.preventDefault();
+          level3Menu.classList.toggle('open');
+        }
+      }
+      evt.stopPropagation();
     }
   });
 }
@@ -86,6 +102,7 @@ function decorateBottomNav(nav, placeholders) {
   });
   const hamburger = document.createElement('span');
   hamburger.classList.add('mobile-icon');
+  hamburger.classList.add('visible');
   hamburger.innerHTML = Array.from({ length: 4 }, () => '<i></i>').join(' ');
   nav.prepend(hamburger);
 
@@ -93,6 +110,28 @@ function decorateBottomNav(nav, placeholders) {
     nav.classList.toggle('open');
     document.body.classList.toggle('no-scroll');
   });
+
+  const menuBackBtn = document.createElement('div');
+  menuBackBtn.classList.add('menu-back-btn');
+  menuBackBtn.innerHTML = '<span class="icon icon-ang-white"></span><span>Back To Menu</span>';
+  nav.prepend(menuBackBtn);
+
+  menuBackBtn.addEventListener('click', () => {
+    menuBackBtn.classList.remove('visible');
+    hamburger.classList.add('visible');
+    nav.querySelectorAll(':scope .menu-level-1-item.open').forEach((item) => {
+      item.classList.remove('open');
+    });
+
+    nav.querySelectorAll(':scope .menu-level-2-item.open').forEach((item) => {
+      item.classList.remove('open');
+    });
+
+    nav.querySelectorAll(':scope .menu-level-3.open').forEach((item) => {
+      item.classList.remove('open');
+    });
+  });
+
   nav.append(getSearchWidget());
 }
 

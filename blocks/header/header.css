@@ -125,7 +125,7 @@ header nav.nav-bottom {
 }
 
 header nav.nav-bottom.open {
-  position: fixed;
+  position: absolute;
   top: 0;
   width: 100%;
   background-color: var(--background-color);
@@ -135,7 +135,7 @@ header nav.nav-bottom.open {
 
 header nav.nav-bottom>.menu-level-1 {
   display: none;
-  position: fixed;
+  position: absolute;
   top: var(--nav-bottom-height);
   height: calc(100% - var(--nav-bottom-height));
   min-height: calc(100vh - var(--nav-bottom-height));
@@ -157,7 +157,6 @@ header nav.nav-bottom .menu-level-1-item {
   height: 3rem;
   border-bottom: 1px solid var(--transparent-white-color);
   margin-right: auto;
-  position: relative;
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
@@ -177,7 +176,7 @@ header nav.nav-bottom .menu-level-1-item>.dropdown-menu {
   width: 100vw;
   height: 30rem;
   position: absolute;
-  top: var(--nav-total-height);
+  top: 0;
   left: 0;
   right: 0;
   background-color: var(--primary);
@@ -192,6 +191,7 @@ header nav.nav-bottom .menu-level-1-item>.dropdown-menu * {
   color: var(--white);
 }
 
+header nav.nav-bottom .menu-level-1-item:hover>.dropdown-menu,
 header.fixed nav.nav-bottom .menu-level-1-item:hover>.dropdown-menu {
   top: var(--nav-bottom-height);
 }
@@ -222,13 +222,23 @@ header nav.nav-bottom .menu-level-2-item>a {
 header nav.nav-bottom .menu-level-3 {
   display: none;
 }
+
+header nav.nav-bottom .menu-level-3.open {
+  display: block;
+  position: absolute;
+  top: 0;
+  opacity: 1;
+  z-index: 3000;
+  background-color: var(--primary);
+  width: 100%;
+}
+
 /* stylelint-disable-next-line no-descending-specificity */
 header nav.nav-bottom .menu-level-3-item>a {
   font-size: var(--body-font-size-s);
   margin-bottom: 1.25rem;
   text-decoration: none;
   padding-left: 1rem;
-  position: relative;
   display: inline-flex;
   align-content: center;
   word-break: break-word;
@@ -244,59 +254,14 @@ header nav.nav-bottom .menu-level-3-item>a::before {
   background: #009cbd;
 }
 
-<<<<<<< Updated upstream
-@media (min-width:77rem) {
-  header nav.nav-bottom {
-    border-top: unset;
-    border-bottom: unset;
-  }
-
-  header nav.nav-bottom.open {
-    position: unset;
-    width: unset;
-  }
-
-  header nav.nav-bottom>.menu-level-1,
-  header nav.nav-bottom.open>.menu-level-1 {
-    display: flex;
-    position: static;
-    height: unset;
-    min-height: unset;
-    width: unset;
-    overflow-y: unset;
-    background: var(--background-color);
-  }
-
-  header nav.nav-bottom .menu-level-1-item {
-    margin-right: 1.9rem;
-  }
-
-  header nav.nav-bottom .menu-level-1-item>a {
-    padding: 1rem 0;
-    line-height: 1;
-    border-bottom: 0.25rem solid transparent;
-    text-decoration: none;
-    color: var(--text-color);
-    white-space: nowrap;
-  }
-
-  header nav.nav-bottom .menu-level-1-item>a:hover {
-    color: var(--link-hover-color);
-    border-bottom: 0.25rem solid transparent;
-    border-bottom-color: var(--secondary);
-  }
-
-  header nav.nav-bottom .menu-level-1-item:hover>.dropdown-menu {
-    display: block;
-  }
-
-  header nav.nav-bottom .menu-level-1-item:hover>.dropdown-menu {
-    display: block;
-  }
+header .nav-bottom .menu-back-btn {
+  display: none;
 }
 
-=======
->>>>>>> Stashed changes
+header .nav-bottom .menu-back-btn.visible {
+  display: inline-block;
+}
+
 /* Mobile icon styles */
 header .nav-bottom .mobile-icon {
   width: 24px;
@@ -305,8 +270,12 @@ header .nav-bottom .mobile-icon {
   transform: rotate(0deg);
   transition: .5s ease-in-out;
   cursor: pointer;
-  display: inline-block;
+  display: none;
   margin: 13px 16px;
+}
+
+header .nav-bottom .mobile-icon.visible {
+  display: inline-block;
 }
 
 header .nav-bottom .mobile-icon>i {
@@ -428,7 +397,10 @@ header form.search button.search-icon {
     width: unset;
   }
 
-  header .nav-bottom .mobile-icon {
+  header .nav-bottom .mobile-icon,
+  header .nav-bottom .mobile-icon.visible,
+  header .nav-bottom .menu-back-btn,
+  header .nav-bottom .menu-back-btn.visible {
     display: none;
   }
 
@@ -463,6 +435,7 @@ header form.search button.search-icon {
 
   header nav.nav-bottom .menu-level-1-item:hover>.dropdown-menu {
     display: block;
+    top: var(--nav-total-height);
   }
 
   header nav.nav-bottom .menu-level-1-item .dropdown-menu>.dropdown-menu-header {
