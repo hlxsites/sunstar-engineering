@@ -36,11 +36,11 @@ function buildDropDownMenu(parent, placeholders) {
   const dropDownHeader = document.createElement('div');
   dropDownHeader.classList.add('dropdown-menu-header');
   dropDownHeader.innerHTML = `
+    <h2>${parent.querySelector('a').innerHTML}</h2>
     <a href="/global-network">
       ${placeholders['learn-about-regional-availability']}
       <span class="icon icon-ang-white"></span>
     </a>
-    <h2>${parent.querySelector('a').innerHTML}</h2>
   `;
   dropDownMenu.appendChild(dropDownHeader);
   dropDownMenu.appendChild(parent.querySelector('ul'));

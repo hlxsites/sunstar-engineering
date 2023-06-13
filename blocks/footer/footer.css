@@ -77,17 +77,25 @@ footer .social .icon-linkedin {
   background-image: url("../../icons/linkedin.svg");;
 }
 
-footer .copyright p {
-  font-size: 0.625rem;
-  margin-bottom: 1rem;
-}
-
 footer .copyright a {
   color: #ffffffb3;
   margin-right: 1rem;
+  margin-bottom: 1rem;
 }
 
-footer .copyright p:not(:first-child) {
+
+footer .copyright p {
+  font-size: 0.625rem;
+  line-height: 2;
+}
+
+footer .copyright p:first-child {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+}
+
+footer .copyright p:last-child {
   color: var(--off-white);
 }
 
@@ -130,6 +138,10 @@ footer .groups .icon-link-white {
   margin-left: 0.125rem;
   vertical-align: middle;
   margin-bottom: 0.313rem;
+}
+
+footer .copyright p>a:last-child {
+  margin-right: 0;
 }
 
 @media (min-width: 48rem) {

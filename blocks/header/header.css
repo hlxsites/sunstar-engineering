@@ -294,6 +294,12 @@ header nav.nav-bottom .menu-level-3-item>a::before {
 
   header nav.nav-bottom .menu-level-1-item>a:hover {
     color: var(--link-hover-color);
+    border-bottom: 0.25rem solid transparent;
+    border-bottom-color: var(--secondary);
+  }
+
+  header nav.nav-bottom .menu-level-1-item:hover>.dropdown-menu {
+    display: block;
   }
 
   header nav.nav-bottom .menu-level-1-item:hover>.dropdown-menu {
