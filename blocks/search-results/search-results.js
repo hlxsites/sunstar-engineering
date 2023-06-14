@@ -48,6 +48,17 @@ async function searchPages(term) {
     const link = document.createElement('a');
     setResultValue(link, line.title, term);
     link.href = line.path;
+    const path = line.path || '';
+    const parentPath = path && path.lastIndexOf('/') > -1 ? path.slice(0, path.lastIndexOf('/')) : '';
+
+    if (parentPath) {
+      const filtered = json.data.filter((x) => x.path === parentPath);
+      if (filtered && filtered.length) {
+        const span = document.createElement('span');
+        span.innerHTML = filtered[0].breadcrumbtitle;
+        res.appendChild(span);
+      }
+    }
 
     header.appendChild(link);
     res.appendChild(header);

@@ -75,6 +75,16 @@
   font-weight: var(--font-weight-medium);
 }
 
+.search-result span {
+  font-weight: var(--font-weight-medium);
+  color: #3C46507F;
+  font-size: var(--font-size-small);
+  margin-bottom: 0.875rem;
+  display: inline-block;
+  width: 100%;
+  line-height: 1;
+}
+
 @media (min-width: 30rem) {
   .search-results form.search > div {
     width: 30rem;
