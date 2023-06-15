@@ -172,6 +172,20 @@ header nav.nav-bottom .menu-level-1-item>a {
   justify-content: space-between;
 }
 
+header nav.nav-bottom .menu-level-1-item:first-of-type >a::after {
+  content: "";
+  display: inline-flex;
+  position: absolute;
+  right: 16px;
+  top: 18px;
+  height: 15px;
+  width: 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-image: url(../../icons/angle-white-70.svg);
+}
+
 /* stylelint-disable-next-line no-descending-specificity */
 header nav.nav-bottom .menu-level-1-item>.dropdown-menu {
   display: none;
@@ -458,6 +472,21 @@ header form.search button.search-icon {
     text-decoration: none;
     color: var(--text-color);
     white-space: nowrap;
+  }
+
+  header nav.nav-bottom .menu-level-1-item:first-of-type >a::after {
+    content: "";
+    height: 15px;
+    width: 12px;
+    display: inline-flex;
+    background-image: url(../../icons/arrow-down-header.svg);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    vertical-align: bottom;
+    margin-left: 8px;
+    position: unset;
   }
 
   header nav.nav-bottom .menu-level-1-item>a:hover {
