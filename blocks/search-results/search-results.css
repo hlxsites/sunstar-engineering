@@ -75,14 +75,18 @@
   font-weight: var(--font-weight-medium);
 }
 
-.search-result span {
-  font-weight: var(--font-weight-medium);
+.search-result p.parent-detail {
   color: #3C46507F;
   font-size: var(--font-size-small);
   margin-bottom: 0.875rem;
   display: inline-block;
-  width: 100%;
   line-height: 1;
+}
+
+.search-result p.parent-detail span.news-date {
+  padding-right: 0.5rem;
+  margin-right: 0.5rem;
+  border-right: 0.063rem solid var(--transparent-grey-light-color);
 }
 
 @media (min-width: 30rem) {

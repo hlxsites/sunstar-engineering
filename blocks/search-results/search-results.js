@@ -53,10 +53,22 @@ async function searchPages(term) {
 
     if (parentPath) {
       const filtered = json.data.filter((x) => x.path === parentPath);
-      if (filtered && filtered.length) {
+
+      if (filtered && filtered.length && filtered[0].breadcrumbtitle) {
+        const p = document.createElement('p');
+        p.classList.add('parent-detail');
         const span = document.createElement('span');
-        span.innerHTML = filtered[0].breadcrumbtitle;
-        res.appendChild(span);
+        span.textContent = filtered[0].breadcrumbtitle;
+        p.appendChild(span);
+
+        if (filtered[0].newsdate) {
+          const dateSpan = document.createElement('span');
+          dateSpan.textContent = filtered[0].newsdate;
+          span.classList.add('news-date');
+          p.appendChild(dateSpan);
+        }
+
+        res.appendChild(p);
       }
     }
 
