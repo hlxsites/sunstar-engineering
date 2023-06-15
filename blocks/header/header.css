@@ -282,11 +282,11 @@ header .nav-bottom .menu-back-btn {
 
 header .nav-bottom .menu-back-btn.visible {
   display: flex;
-  font-size: 14px;
+  font-size: var(--body-font-size-s);
   font-weight: 500;
   line-height: 1;
   color: var(--secondary);
-  padding: 13px 16px;
+  padding: 0.8125rem 1rem;
 }
 
 /* Mobile icon styles */
@@ -499,6 +499,7 @@ header form.search button.search-icon {
     border-bottom: unset;
   }
 
+  /* stylelint-disable-next-line no-descending-specificity */
   header nav.nav-bottom .menu-level-2-item>a {
     display: unset;
   }
