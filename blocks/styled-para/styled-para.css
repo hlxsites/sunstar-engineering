@@ -8,6 +8,19 @@
   font-size: var(--heading-font-size-m);
 }
 
+.styled-para a.button.tertiary {
+  background-color: unset;
+  color: var(--tertiary);
+  justify-content: flex-start;
+}
+
+.styled-para a.button.tertiary::after {
+  content: url("../../icons/link.svg");
+  position: relative;
+  top: 0.1rem;
+  left: 0.3rem;
+}
+
 .styled-para > div {
   margin: 1.5rem 0;
 }
@@ -28,19 +41,6 @@
   justify-content: center;
 }
 
-.styled-para a.button.tertiary {
-  background-color: unset;
-  color: var(--tertiary);
-  justify-content: flex-start;
-}
-
-.styled-para a.button.tertiary::after {
-  content: url("../../icons/link.svg");
-  position: relative;
-  top: 0.1rem;
-  left: 0.3rem;
-}
-
 .styled-para .heading > h2 {
   margin: 1.5rem 0;
   text-align: center;
@@ -57,13 +57,13 @@
 }
 
 @media (min-width: 992px) {
+  .styled-para h2 {
+    font-size: var(--heading-font-size-xl);
+  }
+
   .styled-para .wide {
     display: block;
     justify-content: center;
-  }
-
-  .styled-para h2 {
-    font-size: var(--heading-font-size-xl);
   }
 
   .styled-para .narrow {
@@ -73,5 +73,13 @@
   .styled-para .content {
     text-align: center;
     width: 70%;
+  }
+
+  .styled-para .styled-para-background-container {
+    height: 30rem;
+    align-items: center;
+    display: flex;
+    background-image: url("images/timeline-triangle-background.png");
+    background-size: cover;
   }
 }
