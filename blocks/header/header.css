@@ -424,6 +424,10 @@ header form.search button.search-icon {
     width: unset;
   }
 
+  header nav.nav-bottom .dropdown-menu.open {
+    display: none;
+  }
+
   header .nav-bottom .mobile-icon,
   header .nav-bottom .mobile-icon.visible,
   header .nav-bottom .menu-back-btn,
@@ -490,6 +494,10 @@ header form.search button.search-icon {
     margin: 0 auto;
   }
 
+  header nav.nav-bottom .menu-level-2.open {
+    flex-direction: row;
+  }
+
   header nav.nav-bottom .menu-level-2-item {
     width: calc(100%/5 - 2.5rem);
     padding: unset;
@@ -504,7 +512,13 @@ header form.search button.search-icon {
     display: unset;
   }
 
-  header nav.nav-bottom .menu-level-3 {
+  header nav.nav-bottom .menu-level-2-item-header,
+  header nav.nav-bottom .menu-level-3-item-header {
+    display: none;
+  }
+
+  header nav.nav-bottom .menu-level-3,
+  header nav.nav-bottom .menu-level-3.open {
     display: block;
     position: unset;
     width: auto;
