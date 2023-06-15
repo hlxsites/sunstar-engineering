@@ -168,6 +168,8 @@ header nav.nav-bottom .menu-level-1-item>a {
   color: var(--white);
   border-bottom: none;
   line-height: 1.5;
+  display: flex;
+  justify-content: space-between;
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
@@ -223,6 +225,11 @@ header nav.nav-bottom .menu-level-3-item-header {
   padding: 0 1rem;
 }
 
+header nav.nav-bottom .menu-level-2-item-header .icon,
+header nav.nav-bottom .menu-level-3-item-header .icon {
+  display: none;
+}
+
 /* stylelint-disable-next-line no-descending-specificity */
 header nav.nav-bottom .menu-level-2-item>a {
   font-size: var(--body-font-size-s);
@@ -231,10 +238,8 @@ header nav.nav-bottom .menu-level-2-item>a {
   text-transform: uppercase;
   margin-top: auto;
   margin-bottom: auto;
-}
-
-header nav.nav-bottom .menu-level-2-item>a>.icon {
-  float: right;
+  display: flex;
+  justify-content: space-between;
 }
 
 header nav.nav-bottom .menu-level-3 {
@@ -276,7 +281,12 @@ header .nav-bottom .menu-back-btn {
 }
 
 header .nav-bottom .menu-back-btn.visible {
-  display: inline-block;
+  display: flex;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--secondary);
+  padding: 13px 16px;
 }
 
 /* Mobile icon styles */
@@ -468,6 +478,10 @@ header form.search button.search-icon {
     margin: 0 auto;
   }
 
+  header nav.nav-bottom .menu-level-1-item .dropdown-menu>.dropdown-menu-header h2 .icon {
+    display: none;
+  }
+
   header nav.nav-bottom .menu-level-2 {
     display: flex;
     flex-direction: row;
@@ -478,10 +492,15 @@ header form.search button.search-icon {
 
   header nav.nav-bottom .menu-level-2-item {
     width: calc(100%/5 - 2.5rem);
+    padding: unset;
     margin-right: 3.5rem;
     display: flex;
     flex-direction: column;
     border-bottom: unset;
+  }
+
+  header nav.nav-bottom .menu-level-2-item>a {
+    display: unset;
   }
 
   header nav.nav-bottom .menu-level-3 {
@@ -491,13 +510,17 @@ header form.search button.search-icon {
     height: auto;
   }
 
+  header nav.nav-bottom .menu-level-3-item {
+    border-bottom: unset;
+  }
+
   header nav.nav-bottom .menu-level-3-item>a::before {
     content: "";
     position: absolute;
     left: 0;
     display: inline-block;
     width: 2px;
-    height: calc(100% + 1.375rem);
+    height: calc(115% + 1.375rem);
     background: #009cbd;
   }
 

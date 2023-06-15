@@ -136,7 +136,7 @@ function decorateBottomNav(nav, placeholders) {
 
   const menuBackBtn = document.createElement('div');
   menuBackBtn.classList.add('menu-back-btn');
-  menuBackBtn.innerHTML = '<span class="icon icon-ang-white"></span><span>Back To Menu</span>';
+  menuBackBtn.innerHTML = `<span class="icon icon-angle-left"></span><a>${placeholders['back-to-menu']}</a>`;
   nav.prepend(menuBackBtn);
   nav.append(getSearchWidget());
 

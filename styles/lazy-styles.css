@@ -168,3 +168,14 @@
   background-size: contain;
   padding-left: 0.3125rem;
 }
+
+.icon-angle-left {
+  background-image: url("../icons/angle-left.svg");
+  display: inline-flex;
+  width: 10px;
+  height: 15px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  margin-right: 8px;
+}
