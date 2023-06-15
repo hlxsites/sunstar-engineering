@@ -1,7 +1,7 @@
 :root {
   --form-invalid-color: #eb0000;
   --form-input-color: #3C4650;
-  --form-input-bg-color: #F0F5F7;
+  --form-input-bg-color: var(--transparent-blue-light-color);
   --form-input-border-color: rgb(0 0 0 / 0%);
   --form-input-focus-color: #007CAD;
 }
@@ -41,9 +41,9 @@ main .form textarea {
   min-height: 240px;
 }
 
-main .form .invalid > input,
-main .form .invalid > textarea,
-main .form .invalid > select {
+main .form .invalid>input,
+main .form .invalid>textarea,
+main .form .invalid>select {
   border-color: var(--form-invalid-color);
 }
 
@@ -60,15 +60,15 @@ main .form select:focus {
   outline: 0;
 }
 
-main .form .invalid > input:hover,
-main .form .invalid > textarea:hover,
-main .form .invalid > select:hover {
+main .form .invalid>input:hover,
+main .form .invalid>textarea:hover,
+main .form .invalid>select:hover {
   border-color: var(--form-invalid-color);
 }
 
-main .form .invalid > input:focus,
-main .form .invalid > textarea:focus,
-main .form .invalid > select:focus {
+main .form .invalid>input:focus,
+main .form .invalid>textarea:focus,
+main .form .invalid>select:focus {
   border-color: var(--form-invalid-color);
   outline: 0;
 }
@@ -83,8 +83,10 @@ main .form label {
   font-weight: 800;
 }
 
-main .form label > span {
-  color: #888; /* TODO: use var ? */
+main .form label>span {
+  color: #888;
+
+  /* TODO: use var ? */
   font-weight: normal;
   margin-left: 10px;
 }
@@ -98,7 +100,7 @@ main .form .form-validate-label {
   display: none;
 }
 
-main .form .invalid > .form-validate-label {
+main .form .invalid>.form-validate-label {
   display: block;
 }
 
@@ -114,7 +116,7 @@ main .form .form-checkbox-wrapper input[type='checkbox'] {
   display: none;
 }
 
-main .form .form-checkbox-wrapper input[type='checkbox'] + label::before {
+main .form .form-checkbox-wrapper input[type='checkbox']+label::before {
   float: left;
   margin-top: 2px;
   margin-right: 5px;
@@ -125,7 +127,7 @@ main .form .form-checkbox-wrapper input[type='checkbox'] + label::before {
   background-size: contain;
 }
 
-main .form .form-checkbox-wrapper input[type='checkbox']:checked + label::before {
+main .form .form-checkbox-wrapper input[type='checkbox']:checked+label::before {
   background: url('./checkbox-checked.svg');
   background-size: contain;
   content: ' ';
@@ -159,7 +161,7 @@ main .form .button:disabled {
   cursor: initial;
 }
 
-main .form .form-note > p {
+main .form .form-note>p {
   font-size: 12px;
   font-weight: 500;
   color: rgb(60 70 80 / 50%);
@@ -177,7 +179,7 @@ main .form .addresses p {
   color: #3C4650;
 }
 
-main .form .addresses  p strong {
+main .form .addresses p strong {
   font-weight: var(--font-weight-bold);
   line-height: 1;
   display: inline-block;

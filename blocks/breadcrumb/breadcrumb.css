@@ -1,5 +1,5 @@
 .section.breadcrumb-container {
-    background: #F0F5F7;
+    background: var(--transparent-blue-light-color);
     padding: 0;
     font-size: var(--body-font-size-xs);
     font-weight: var(--font-weight-medium);
@@ -18,7 +18,7 @@
     color: var(--secondary);
 }
 
-.breadcrumb-item + .breadcrumb-item {
+.breadcrumb-item+.breadcrumb-item {
     padding-left: 8px;
 }
 
@@ -33,7 +33,7 @@
     background-position: center;
 }
 
-.breadcrumb-item + .breadcrumb-item::before {
+.breadcrumb-item+.breadcrumb-item::before {
     display: inline-block;
     content: "";
 }
@@ -57,6 +57,6 @@
     }
 
     main .breadcrumb.block {
-      max-width: var(--section-max-width);
+        max-width: var(--section-max-width);
     }
 }

@@ -1,0 +1,66 @@
+main .table {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: auto repeat(calc(var(--row) - 1), minmax(50px, max-content));
+    grid-template-rows: repeat(var(--col), auto);
+    grid-gap: 1px;
+    margin-bottom: 2rem;
+    border: 1px solid var(--transparent-grey-light-color);
+    background-color: var(--transparent-grey-light-color);
+}
+
+main .table div {
+    font-size: var(--body-font-size-s);
+    line-height: 1.7em;
+    font-weight: var(--font-weight-medium);
+    padding: 0.5em 0.6em;
+    text-align: center;
+    vertical-align: middle;
+    background-color: var(--white);
+}
+
+main .table.fixed {
+    display: inline-grid;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(var(--col), auto);
+    grid-template-rows: repeat(var(--row), auto);
+}
+
+main .table.fixed div {
+    padding: 0.5em 1em;
+}
+
+main .table .table-head {
+    text-align: left;
+    background: var(--transparent-blue-light-color);
+}
+
+main .table.fixed .table-head {
+    text-align: center;
+}
+
+main .table sup {
+    top: -0.5em;
+    position: relative;
+    font-size: 75%;
+    line-height: 0;
+    vertical-align: baseline;
+}
+
+@media (min-width: 62rem) {
+    main .table {
+        display: inline-grid;
+        grid-auto-flow: row;
+        grid-template-columns: repeat(var(--col), auto);
+        grid-template-rows: repeat(var(--row), auto);
+        margin-bottom: 2rem;
+    }
+
+    main .table div {
+        padding: 0.5em 1em;
+    }
+
+    main .table .table-head {
+        text-align: center;
+    }
+}

@@ -44,6 +44,7 @@
   --text-color: #3c4350;
   --transparent-grey-color: #3c465080;
   --transparent-grey-light-color: #3c46501f;
+  --transparent-blue-light-color: #F0F5F7FF;
   --transparent-white-color: #ffffff1e;
   --off-white: #ffffff80;
 
@@ -130,7 +131,6 @@ body.no-scroll {
     overflow-y: auto;
   }
 }
-
 
 h1,
 h2,

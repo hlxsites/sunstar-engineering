@@ -55,11 +55,11 @@ function createSectionMetadata(cfg, doc) {
   return WebImporter.DOMUtils.createTable(cells, doc);
 }
 
-function addCarouselItems(doc) {
-  const heroSlider = doc.querySelector('.hero-one-slider');
+function addCarouselItems(document) {
+  const heroSlider = document.querySelector('.hero-one-slider');
 
   if (heroSlider) {
-    const textItemsFromDoc = doc.querySelectorAll('.info-content');
+    const textItemsFromDoc = document.querySelectorAll('.info-content');
     let textItems = textItemsFromDoc.length ? [...textItemsFromDoc] : [];
     textItems = textItems.map((x) => {
       const div = document.createElement('div');
@@ -91,7 +91,7 @@ function addCarouselItems(doc) {
       return div;
     });
 
-    const imageItemsFromDoc = doc.querySelectorAll('.swiper-slide:not(.swiper-slide-duplicate) .img-content');
+    const imageItemsFromDoc = document.querySelectorAll('.swiper-slide:not(.swiper-slide-duplicate) .img-content');
     let imageItems = imageItemsFromDoc.length ? [...imageItemsFromDoc] : [];
     imageItems = imageItems.map((x) => {
       const div = document.createElement('div');
@@ -105,10 +105,45 @@ function addCarouselItems(doc) {
       cells.push([item.innerHTML, imageItems[index].innerHTML]);
     });
 
-    const table = WebImporter.DOMUtils.createTable(cells, doc);
-    heroSlider.after(doc.createElement('hr'));
-    heroSlider.after(createSectionMetadata({ Style: 'Full Width ' }, doc));
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    heroSlider.after(document.createElement('hr'));
+    heroSlider.after(createSectionMetadata({ Style: 'Full Width ' }, document));
     heroSlider.replaceWith(table);
+  }
+}
+
+function extractEmbed(document) {
+  const embedItems = document.querySelectorAll('.wp-block-embed');
+
+  if (embedItems && embedItems.length) {
+    embedItems.forEach((embedItem, index) => {
+      const iframes = embedItem.getElementsByTagName('iframe');
+
+      if (iframes && iframes.length) {
+        const cells = [['Embed']];
+        const anchor = document.createElement('a');
+        anchor.href = iframes[0].src;
+        anchor.textContent = iframes[0].src;
+        cells.push([anchor]);
+
+        const table = WebImporter.DOMUtils.createTable(cells, document);
+        embedItem.before(document.createElement('hr'));
+        embedItem.replaceWith(table);
+
+        if (embedItem.querySelector('figcaption')) {
+          const p = document.createElement('p');
+          p.textContent = embedItem.querySelector('figcaption').textContent;
+          table.after(p);
+          if (index === embedItems.length - 1) {
+            // To Handle insertion of hr after last element is caption is present.
+            p.after(document.createElement('hr'));
+          }
+        } else if (index === embedItems.length - 1) {
+          // To Handle insertion of hr after last element also
+          table.after(document.createElement('hr'));
+        }
+      }
+    });
   }
 }
 
@@ -150,7 +185,6 @@ function convertBackgroundImgsToForegroundImgs(sourceNode, targetNode = sourceNo
         bgImg.style.backgroundImage = withoutSpaces;
       }
     });
-    console.log(`inlining images for ${bgImg.outerHTML}`);
     WebImporter.DOMUtils.replaceBackgroundByImg(bgImg, targetNode);
   });
 }
@@ -234,6 +268,7 @@ function customImportLogic(doc) {
 
   createCardsBlockFromSection(doc);
   createColumnBlockFromSection(doc);
+  extractEmbed(doc);
   convertBackgroundImgsToForegroundImgs(doc);
 }
 

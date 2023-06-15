@@ -1,5 +1,5 @@
 div.news-banner-wrapper {
-  background-color: #F0F5F7;
+  background-color: var(--transparent-blue-light-color);
 }
 
 div.news-banner {
@@ -12,7 +12,8 @@ div.news-banner {
   max-width: 1200px;
 }
 
-.news-banner a:link, .news-banner a:visited {
+.news-banner a:link,
+.news-banner a:visited {
   color: var(--link-hover-color);
 }
 
