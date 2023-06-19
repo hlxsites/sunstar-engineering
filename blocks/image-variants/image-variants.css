@@ -1,7 +1,3 @@
-.section.image-variants-container .context-content {
-  text-align: center;
-}
-
 .section.image-variants-container h2 {
   margin: 0;
   font-size: var(--heading-font-size-m);
@@ -32,6 +28,7 @@
   flex-direction: column;
   justify-content: center;
   margin: 0 1rem;
+  text-align: center;
 }
 
 .image-variants {

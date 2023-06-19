@@ -5,11 +5,9 @@ export default async function decorate(block) {
   });
 
   const section = block.closest('.section');
-  const containedBlocks = [...section.classList].filter((c) => {
-    return c.endsWith('-container');
-  });
+  const containedBlocks = [...section.classList].filter((c) => c.endsWith('-container'));
 
-  if (containedBlocks.length == 1 && containedBlocks.includes('image-variants-container')) {
+  if (containedBlocks.length === 1 && containedBlocks.includes('image-variants-container')) {
     section.querySelectorAll('div').forEach((row) => {
       row.querySelectorAll('p').forEach((p) => {
         p?.parentElement?.classList.add('content', 'context-content');
