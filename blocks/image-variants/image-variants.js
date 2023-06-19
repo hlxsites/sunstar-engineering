@@ -5,18 +5,25 @@ export default async function decorate(block) {
   });
 
   const section = block.closest('.section');
-  const containedBlocks = [...section.classList].filter((c) => c.endsWith('-container'));
-
-  if (containedBlocks.length === 1 && containedBlocks.includes('image-variants-container')) {
-    section.querySelectorAll('div').forEach((row) => {
-      row.querySelectorAll('p').forEach((p) => {
-        p?.parentElement?.classList.add('content', 'context-content');
-      });
-      row.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
-        h?.parentElement?.classList.add('heading', 'context-content');
-      });
-    });
+  const shouldCenter = [...section.classList].includes('centered');
+  const addClassToParent = (name, el) => {
+    el.parentElement.classList.add(name);
   }
+
+  section.querySelectorAll('div').forEach((row) => {
+    if (shouldCenter && row.classList.contains('section-container')) {
+      row.classList.add('centered');
+    }
+    row.querySelectorAll('p').forEach((p) => {
+      addClassToParent('para', p);
+      addClassToParent('section-content', p);
+    });
+    row.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
+      addClassToParent('heading', h);
+      addClassToParent('section-content', h);
+    });
+
+  });
 
   section.querySelectorAll('.button-container > .button').forEach((a) => {
     a.classList.remove('primary', 'secondary', 'tertiary');

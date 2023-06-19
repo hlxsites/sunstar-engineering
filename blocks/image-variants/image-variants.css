@@ -17,17 +17,18 @@
 }
 
 .section.image-variants-container > div {
-  align-items: center;
   display: flex;
   flex-direction: column;
 }
 
-.section.image-variants-container .context-content {
-  align-items: center;
+.section.image-variants-container .section-content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   margin: 0 1rem;
+}
+
+.section.image-variants-container .centered {
+  align-items: center;
   text-align: center;
 }
 
@@ -49,7 +50,7 @@
     font-size: var(--heading-font-size-xl);
   }
 
-  .section.image-variants-container .context-content {
+  .section.image-variants-container .para {
     width: 70%;
   }
 
