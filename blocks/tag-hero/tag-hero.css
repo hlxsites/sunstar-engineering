@@ -1,0 +1,200 @@
+.tag-hero.block {
+    position: relative;
+    height: 208px;
+    margin-bottom: 2rem;
+}
+
+.tag-hero-bg {
+    display: flex;
+    flex-flow: row wrap;
+    position: absolute;
+    width: 100%;
+}
+
+.tag-hero .tag-hero-bg .tag-hero-taglist {
+    display: block;
+    width: 100%;
+    height: 3rem;
+    font-weight: var(--font-weight-bold);
+    line-height: 1.5;
+    background-color: var(--primary);
+    border: none;
+}
+
+.tag-hero .tag-hero-bg .tag-hero-taglist::before {
+    content: '';
+    display: inline-flex;
+    position: absolute;
+    right: 16px;
+    top: 18px;
+    height: 15px;
+    width: 20px;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    background-position: center;
+    background-image: url('../../icons/arrow-down-white.svg');
+}
+
+.tag-hero .tag-hero-bg .tag-hero-taglist.visible::before {
+    transform: rotate(-180deg);
+}
+
+.tag-hero .tag-hero-bg .tag-hero-taglist .tag-hero-dropdown-title {
+    display: inline-block;
+    color: var(--white);
+    line-height: 3rem;
+    padding-left: 1rem;
+}
+
+.tag-hero .tag-hero-bg .tag-hero-taglist ul {
+    display: none;
+}
+
+.tag-hero .tag-hero-bg .tag-hero-taglist ul.visible {
+    position: relative;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    z-index: 1;
+    background: var(--blue-light-color);
+}
+
+.tag-hero .tag-hero-bg .tag-hero-taglist ul li {
+    padding: 3px;
+}
+
+.tag-hero .tag-hero-bg .tag-hero-taglist ul li.active {
+    text-decoration: underline;
+    text-underline-offset: 6px;
+}
+
+.tag-hero .tag-hero-bg .tag-hero-taglist ul li.active a {
+    color: var(--white);
+}
+
+.tag-hero .tag-hero-bg .tag-hero-background-image {
+    position: relative;
+    height: 160px;
+    width: 100%;
+}
+
+.tag-hero-background-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tag-hero-content {
+    position: absolute;
+    bottom: 0;
+    top: auto;
+}
+
+.tag-hero-content div:first-child {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 20px;
+    padding-left: 1rem;
+}
+
+.tag-hero-content h6 {
+    font-size: 12px;
+    letter-spacing: 0.6px;
+    color: #FFFFFFB2;
+    margin-bottom: 11px;
+}
+
+.tag-hero-content h2 {
+    color: var(--white);
+    font-size: 40px;
+    line-height: 3rem;
+    font-weight: var(--font-weight-small);
+    margin: 0;
+}
+
+@media (min-width: 62rem) {
+    .tag-hero.block {
+        position: relative;
+        height: 360px;
+        margin-bottom: 2rem;
+    }
+
+    .tag-hero-bg {
+        flex-flow: nowrap;
+    }
+
+    .tag-hero .tag-hero-bg .tag-hero-taglist {
+        flex-basis: calc(50% - 196px);
+        height: auto;
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    .tag-hero .tag-hero-bg .tag-hero-taglist .tag-hero-dropdown-title {
+        display: none;
+    }
+
+    .tag-hero .tag-hero-bg .tag-hero-taglist .tag-hero-dropdown-left {
+        width: 30%;
+        height: 360px;
+    }
+
+    .tag-hero .tag-hero-bg .tag-hero-taglist ul {
+        display: flex;
+        flex-flow: column wrap;
+        width: 70%;
+    }
+
+    .tag-hero .tag-hero-bg .tag-hero-taglist ul li {
+        flex-grow: 1;
+        padding: 0;
+    }
+
+    .tag-hero .tag-hero-bg .tag-hero-taglist ul li.active {
+        text-decoration: none;
+    }
+
+    .tag-hero-taglist ul li a {
+        display: flex;
+        align-items: center;
+        align-content: center;
+        padding-left: 16px;
+        height: 100%;
+        color: var(--blue-light-color);
+        font-weight: var(--font-weight-medium);
+    }
+
+    .tag-hero-taglist ul li a:hover,
+    .tag-hero .tag-hero-bg .tag-hero-taglist ul li.active a {
+        font-weight: var(--font-weight-bold);
+        color: var(--white);
+        background: var(--blue-deep-color);
+    }
+
+    .tag-hero .tag-hero-bg .tag-hero-background-image {
+        height: 360px;
+    }
+
+    .tag-hero-content h6 {
+        font-size: 14px;
+        letter-spacing: 0.7px;
+        margin-bottom: 0;
+        text-transform: uppercase;
+    }
+
+    .tag-hero-content h2 {
+        color: var(--white);
+        font-size: 80px;
+        line-height: 109px;
+        margin-bottom: 0;
+        font-weight: var(--font-weight-small);
+    }
+}
+
+@media (min-width: 77rem) {
+    .tag-hero .tag-hero-bg .tag-hero-taglist {
+        flex-basis: calc(50% - 360px);
+    }
+}
