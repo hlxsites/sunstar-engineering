@@ -169,10 +169,26 @@ function createValidateLabel(msg) {
   return el;
 }
 
+let captchaElement;
+
+/**
+ * Checks if the captcha is consent bt the consent manager. returns true if there is no
+ * captcha defined on the form.
+ *
+ * note: this relies on the fact that the consent manager removes the captcha if it is not
+ *       consented.
+ */
+function hasCaptchaConsent() {
+  if (!captchaElement) {
+    return true;
+  }
+  return !!document.getElementById('g-recaptcha-response');
+}
+
 function validateForm(form) {
   const button = form.querySelector('.form-submit-wrapper > button');
   if (button) {
-    if (form.checkValidity()) {
+    if (form.checkValidity() && hasCaptchaConsent()) {
       button.removeAttribute('disabled');
     } else {
       button.setAttribute('disabled', '');
@@ -198,15 +214,15 @@ window.captchaRenderCallback = () => {
 };
 
 function createCaptcha(fd) {
-  const cc = document.createElement('div');
+  captchaElement = document.createElement('div');
 
   window.captchaRenderCallback = () => {
     // eslint-disable-next-line no-undef
-    grecaptcha.render(cc, {
+    grecaptcha.render(captchaElement, {
       sitekey: fd.Extra,
       callback: (response) => {
         if (response) {
-          validateForm(cc.closest('form'));
+          validateForm(captchaElement.closest('form'));
         }
       },
     });
@@ -219,7 +235,10 @@ function createCaptcha(fd) {
   script.setAttribute('defer', 'defer');
   script.src = 'https://www.google.com/recaptcha/api.js?onload=captchaRenderCallback&render=explicit';
   document.head.appendChild(script);
-  return cc;
+
+  // todo: append captcha consent text if consent management doesn't allow captcha
+
+  return captchaElement;
 }
 
 async function createForm(formURL) {
