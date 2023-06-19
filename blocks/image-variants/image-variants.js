@@ -5,15 +5,20 @@ export default async function decorate(block) {
   });
 
   const section = block.closest('.section');
-
-  section.querySelectorAll('div').forEach((row) => {
-    row.querySelectorAll('p').forEach((p) => {
-      p?.parentElement?.classList.add('content', 'context-content');
-    });
-    row.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
-      h?.parentElement?.classList.add('heading', 'context-content');
-    });
+  const containedBlocks = [...section.classList].filter((c) => {
+    return c.endsWith('-container');
   });
+
+  if (containedBlocks.length == 1 && containedBlocks.includes('image-variants-container')) {
+    section.querySelectorAll('div').forEach((row) => {
+      row.querySelectorAll('p').forEach((p) => {
+        p?.parentElement?.classList.add('content', 'context-content');
+      });
+      row.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
+        h?.parentElement?.classList.add('heading', 'context-content');
+      });
+    });
+  }
 
   section.querySelectorAll('.button-container > .button').forEach((a) => {
     a.classList.remove('primary', 'secondary', 'tertiary');

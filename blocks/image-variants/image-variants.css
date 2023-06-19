@@ -1,15 +1,4 @@
-.image-variants {
-  margin: 1.5rem 0;
-}
-
-.section.image-variants-container > div {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-}
-
-.section.image-variants-container .heading,
-.section.image-variants-container .content {
+.section.image-variants-container .context-content {
   text-align: center;
 }
 
@@ -31,12 +20,22 @@
   left: 0.3rem;
 }
 
+.section.image-variants-container > div {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
 .section.image-variants-container .context-content {
   align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 0 1rem;
+}
+
+.image-variants {
+  margin: 1.5rem 0;
 }
 
 .image-variants .wide {
@@ -48,24 +47,9 @@
   justify-content: center;
 }
 
-.section.image-variants-container .content > .button-container {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-}
-
 @media (min-width: 992px) {
   .section.image-variants-container h2 {
     font-size: var(--heading-font-size-xl);
-  }
-
-  .image-variants .wide {
-    display: block;
-    justify-content: center;
-  }
-
-  .image-variants .narrow {
-    display: none;
   }
 
   .section.image-variants-container .context-content {
@@ -78,5 +62,14 @@
     display: flex;
     background-image: url("bg-imgs/timeline-triangle-background.png");
     background-size: cover;
+  }
+
+  .image-variants .wide {
+    display: block;
+    justify-content: center;
+  }
+
+  .image-variants .narrow {
+    display: none;
   }
 }
