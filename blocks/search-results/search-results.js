@@ -1,7 +1,7 @@
 import { fetchIndex, getSearchWidget } from '../../scripts/scripts.js';
 
-function getSearchParams() {
-  let curPage = new URLSearchParams(window.location.search).get('pg');
+export function getSearchParams(searchParams) {
+  let curPage = new URLSearchParams(searchParams).get('pg');
   if (!curPage) {
     curPage = 0;
   } else {
@@ -9,7 +9,7 @@ function getSearchParams() {
     curPage = parseInt(curPage, 10);
   }
 
-  const searchTerm = new URLSearchParams(window.location.search).get('s');
+  const searchTerm = new URLSearchParams(searchParams).get('s');
   return { searchTerm, curPage };
 }
 
@@ -32,49 +32,57 @@ function setResultValue(el, value, term) {
   el.innerHTML = txtHTML.replaceAll(regex, '<strong>$1</strong>');
 }
 
-function addPagingWidget(div, curpage, totalPages) {
-  const queryParams = new URLSearchParams(window.location.search);
+export function addPagingWidget(
+  div,
+  curpage,
+  totalPages,
+  doc = document,
+  curLocation = window.location,
+) {
+  const queryParams = new URLSearchParams(curLocation.search);
 
-  const nav = document.createElement('ul');
+  const nav = doc.createElement('ul');
   nav.classList.add('pagination');
 
-  const lt = document.createElement('li');
-  lt.classList.add('page', 'prev');
-  const lta = document.createElement('a');
+  const lt = doc.createElement('li');
+  lt.classList.add('page');
+  lt.classList.add('prev');
+  const lta = doc.createElement('a');
   if (curpage === 0) {
     lt.classList.add('disabled');
   } else {
     queryParams.set('pg', curpage - 1);
-    lta.href = `${window.location.pathname}?${queryParams}`;
+    lta.href = `${curLocation.pathname}?${queryParams}`;
   }
   lt.appendChild(lta);
 
   nav.appendChild(lt);
 
   for (let i = 0; i < totalPages; i += 1) {
-    const numli = document.createElement('li');
+    const numli = doc.createElement('li');
     if (i === curpage) {
       numli.classList.add('active');
     }
 
-    const a = document.createElement('a');
+    const a = doc.createElement('a');
     a.innerText = i + 1;
 
     queryParams.set('pg', i);
-    a.href = `${window.location.pathname}?${queryParams}`;
+    a.href = `${curLocation.pathname}?${queryParams}`;
     numli.appendChild(a);
 
     nav.appendChild(numli);
   }
 
-  const rt = document.createElement('li');
-  rt.classList.add('page', 'next');
-  const rta = document.createElement('a');
+  const rt = doc.createElement('li');
+  rt.classList.add('page');
+  rt.classList.add('next');
+  const rta = doc.createElement('a');
   if (curpage === totalPages - 1) {
     rt.classList.add('disabled');
   } else {
     queryParams.set('pg', curpage + 1);
-    rta.href = `${window.location.pathname}?${queryParams}`;
+    rta.href = `${curLocation.pathname}?${queryParams}`;
   }
   rt.appendChild(rta);
 
@@ -131,8 +139,8 @@ async function searchPages(term, page) {
  * decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
-export default async function decorate(block) {
-  const { searchTerm, curPage } = getSearchParams();
+export default async function decorate(block, curLocation = window.location) {
+  const { searchTerm, curPage } = getSearchParams(curLocation.search);
 
   block.innerHTML = '';
   block.append(getSearchWidget(searchTerm, true));
