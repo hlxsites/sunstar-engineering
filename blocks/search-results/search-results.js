@@ -1,8 +1,5 @@
 import { fetchIndex, getSearchWidget } from '../../scripts/scripts.js';
 
-// Exclude these path prefixes from the search results
-const searchExcludedPrefixes = ['/nav', '/_drafts/'];
-
 function getSearchParams() {
   let curPage = new URLSearchParams(window.location.search).get('pg');
   if (!curPage) {
@@ -93,15 +90,6 @@ async function searchPages(term, page) {
   const startResult = page * resultsPerPage;
 
   const result = json.data
-    .filter((entry) => {
-      // eslint-disable-next-line no-restricted-syntax
-      for (const ex of searchExcludedPrefixes) {
-        if (entry.path.startsWith(ex)) {
-          return false;
-        }
-      }
-      return true;
-    })
     .filter((entry) => `${entry.description} ${entry.title}`.toLowerCase()
       .includes(term.toLowerCase()));
 

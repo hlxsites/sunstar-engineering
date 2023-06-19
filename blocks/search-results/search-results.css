@@ -97,6 +97,7 @@
   background-color: var(--gray);
   background-repeat: no-repeat;
   background-position: center;
+   /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask: url('/icons/search-arrow.svg') no-repeat center;
   mask: url('/icons/search-arrow.svg') no-repeat center;
 }
