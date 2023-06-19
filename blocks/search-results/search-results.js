@@ -1,8 +1,19 @@
-import { getSearchWidget } from '../../scripts/scripts.js';
+import { fetchIndex, getSearchWidget } from '../../scripts/scripts.js';
+
+// Exclude these path prefixes from the search results
+const searchExcludedPrefixes = ['/nav', '/_drafts/'];
 
 function getSearchParams() {
+  let curPage = new URLSearchParams(window.location.search).get('pg');
+  if (!curPage) {
+    curPage = 0;
+  } else {
+    // convert the current page to a number
+    curPage = parseInt(curPage, 10);
+  }
+
   const searchTerm = new URLSearchParams(window.location.search).get('s');
-  return searchTerm;
+  return { searchTerm, curPage };
 }
 
 /**
@@ -24,11 +35,73 @@ function setResultValue(el, value, term) {
   el.innerHTML = txtHTML.replaceAll(regex, '<strong>$1</strong>');
 }
 
-async function searchPages(term) {
-  const resp = await fetch(`${window.location.origin}/query-index.json`);
-  const json = await resp.json();
+function addPagingWidget(div, curpage, totalPages) {
+  const queryParams = new URLSearchParams(window.location.search);
+
+  const nav = document.createElement('ul');
+  nav.classList.add('pagination');
+
+  const lt = document.createElement('li');
+  lt.classList.add('page', 'prev');
+  const lta = document.createElement('a');
+  if (curpage === 0) {
+    lt.classList.add('disabled');
+  } else {
+    queryParams.set('pg', curpage - 1);
+    lta.href = `${window.location.pathname}?${queryParams}`;
+  }
+  lt.appendChild(lta);
+
+  nav.appendChild(lt);
+
+  for (let i = 0; i < totalPages; i += 1) {
+    const numli = document.createElement('li');
+    if (i === curpage) {
+      numli.classList.add('active');
+    }
+
+    const a = document.createElement('a');
+    a.innerText = i + 1;
+
+    queryParams.set('pg', i);
+    a.href = `${window.location.pathname}?${queryParams}`;
+    numli.appendChild(a);
+
+    nav.appendChild(numli);
+  }
+
+  const rt = document.createElement('li');
+  rt.classList.add('page', 'next');
+  const rta = document.createElement('a');
+  if (curpage === totalPages - 1) {
+    rt.classList.add('disabled');
+  } else {
+    queryParams.set('pg', curpage + 1);
+    rta.href = `${window.location.pathname}?${queryParams}`;
+  }
+  rt.appendChild(rta);
+
+  nav.appendChild(rt);
+
+  div.appendChild(nav);
+}
+
+async function searchPages(term, page) {
+  const json = await fetchIndex('query-index', 50);
+
+  const resultsPerPage = 10;
+  const startResult = page * resultsPerPage;
 
   const result = json.data
+    .filter((entry) => {
+      // eslint-disable-next-line no-restricted-syntax
+      for (const ex of searchExcludedPrefixes) {
+        if (entry.path.startsWith(ex)) {
+          return false;
+        }
+      }
+      return true;
+    })
     .filter((entry) => `${entry.description} ${entry.title}`.toLowerCase()
       .includes(term.toLowerCase()));
 
@@ -39,9 +112,9 @@ async function searchPages(term) {
   summary.innerHTML = `${result.length} result${result.length === 1 ? '' : 's'} found for "<strong>${term}</strong>"`;
   div.appendChild(summary);
 
-  const firstPage = result.slice(0, 10);
+  const curPage = result.slice(startResult, startResult + resultsPerPage);
 
-  firstPage.forEach((line) => {
+  curPage.forEach((line) => {
     const res = document.createElement('div');
     res.classList.add('search-result');
     const header = document.createElement('h3');
@@ -58,6 +131,11 @@ async function searchPages(term) {
     div.appendChild(res);
   });
 
+  const totalResults = result.length;
+  const totalPages = Math.ceil(totalResults / resultsPerPage);
+
+  addPagingWidget(div, page, totalPages);
+
   return div.children;
 }
 
@@ -66,13 +144,13 @@ async function searchPages(term) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  const searchTerm = getSearchParams();
+  const { searchTerm, curPage } = getSearchParams();
 
   block.innerHTML = '';
   block.append(getSearchWidget(searchTerm, true));
 
   if (searchTerm) {
-    const results = await searchPages(searchTerm);
+    const results = await searchPages(searchTerm, curPage);
     block.append(...results);
   }
 }
