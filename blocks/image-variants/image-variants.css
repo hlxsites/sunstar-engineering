@@ -1,0 +1,82 @@
+.image-variants {
+  margin: 1.5rem 0;
+}
+
+.section.image-variants-container > div {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.section.image-variants-container .heading,
+.section.image-variants-container .content {
+  text-align: center;
+}
+
+.section.image-variants-container h2 {
+  margin: 0;
+  font-size: var(--heading-font-size-m);
+}
+
+.section.image-variants-container a.button.tertiary {
+  background-color: unset;
+  color: var(--tertiary);
+  justify-content: flex-start;
+}
+
+.section.image-variants-container a.button.tertiary::after {
+  content: url("../../icons/link.svg");
+  position: relative;
+  top: 0.1rem;
+  left: 0.3rem;
+}
+
+.section.image-variants-container .context-content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 1rem;
+}
+
+.image-variants .wide {
+  display: none;
+}
+
+.image-variants .narrow {
+  display: block;
+  justify-content: center;
+}
+
+.section.image-variants-container .content > .button-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 992px) {
+  .section.image-variants-container h2 {
+    font-size: var(--heading-font-size-xl);
+  }
+
+  .image-variants .wide {
+    display: block;
+    justify-content: center;
+  }
+
+  .image-variants .narrow {
+    display: none;
+  }
+
+  .section.image-variants-container .context-content {
+    width: 70%;
+  }
+
+  .image-variants .image-variants-background-container {
+    height: 20rem;
+    align-items: center;
+    display: flex;
+    background-image: url("bg-imgs/timeline-triangle-background.png");
+    background-size: cover;
+  }
+}
