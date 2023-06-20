@@ -3,6 +3,8 @@ indices:
   site:
     include:
       - '/**'
+    exclude:
+      - '/_drafts/**'
     target: /query-index.json
     properties:
       lastModified:
