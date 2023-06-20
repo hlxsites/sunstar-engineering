@@ -41,6 +41,11 @@ const createMetadata = (main, document) => {
     }
   }
 
+  const newsDate = document.querySelector('.news-details-container .news-date');
+  if (newsDate) {
+    meta.NewsDate = newsDate.textContent;
+  }
+
   const block = WebImporter.Blocks.getMetadataBlock(document, meta);
   main.append(block);
 
