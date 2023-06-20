@@ -26,7 +26,7 @@ function buildTaglist(taglist, block) {
     taglist.classList.toggle('visible');
   });
 
-  window.addEventListener('click', (evt) => {
+  document.addEventListener('click', (evt) => {
     if (!evt.target.classList.contains('hero-vertical-tabs-taglist')
       && ul.classList.contains('visible')) {
       ul.classList.remove('visible');
