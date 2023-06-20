@@ -230,4 +230,16 @@ export function getSearchWidget(initialVal, searchbox) {
   return htmlToElement(getSearchWidgetHTML(initialVal, searchbox));
 }
 
+/*
+  * Returns the environment type based on the hostname.
+*/
+export function getEnvType(hostname) {
+  const fqdnToEnvType = {
+    'sunstar-engineering.com': 'live',
+    'main--sunstar-engineering--hlxsites.hlx.page': 'preview',
+    'main--sunstar-engineering--hlxsites.hlx.live': 'live',
+  };
+  return fqdnToEnvType[hostname] || 'dev';
+}
+
 loadPage();
