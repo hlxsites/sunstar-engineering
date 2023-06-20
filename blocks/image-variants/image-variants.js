@@ -5,15 +5,11 @@ export default async function decorate(block) {
   });
 
   const section = block.closest('.section');
-  const shouldCenter = [...section.classList].includes('centered');
   const addClassToParent = (name, el) => {
     el.parentElement.classList.add(name);
   };
 
   section.querySelectorAll('div').forEach((row) => {
-    if (shouldCenter && row.classList.contains('section-container')) {
-      row.classList.add('centered');
-    }
     row.querySelectorAll('p').forEach((p) => {
       addClassToParent('para', p);
       addClassToParent('section-content', p);

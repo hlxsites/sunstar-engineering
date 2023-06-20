@@ -377,7 +377,7 @@ main img {
   }
 }
 
-.section-container.centered {
+.section.centered div {
   align-items: center;
   text-align: center;
 }
