@@ -1,17 +1,13 @@
-.tag-hero.block {
+.hero-vertical-tabs.block {
     position: relative;
-    height: 208px;
-    margin-bottom: 2rem;
-}
-
-.tag-hero-bg {
     display: flex;
     flex-flow: row wrap;
-    position: absolute;
+    height: 208px;
+    margin-bottom: 2rem;
     width: 100%;
 }
 
-.tag-hero .tag-hero-bg .tag-hero-taglist {
+.hero-vertical-tabs .hero-vertical-tabs-taglist {
     display: block;
     width: 100%;
     height: 3rem;
@@ -21,7 +17,7 @@
     border: none;
 }
 
-.tag-hero .tag-hero-bg .tag-hero-taglist::before {
+.hero-vertical-tabs .hero-vertical-tabs-taglist::before {
     content: '';
     display: inline-flex;
     position: absolute;
@@ -35,62 +31,62 @@
     background-image: url('../../icons/arrow-down-white.svg');
 }
 
-.tag-hero .tag-hero-bg .tag-hero-taglist.visible::before {
+.hero-vertical-tabs .hero-vertical-tabs-taglist.visible::before {
     transform: rotate(-180deg);
 }
 
-.tag-hero .tag-hero-bg .tag-hero-taglist .tag-hero-dropdown-title {
+.hero-vertical-tabs .hero-vertical-tabs-taglist .hero-vertical-tabs-dropdown-title {
     display: inline-block;
     color: var(--white);
     line-height: 3rem;
     padding-left: 1rem;
 }
 
-.tag-hero .tag-hero-bg .tag-hero-taglist ul {
+.hero-vertical-tabs .hero-vertical-tabs-taglist ul {
     display: none;
 }
 
-.tag-hero .tag-hero-bg .tag-hero-taglist ul.visible {
+.hero-vertical-tabs .hero-vertical-tabs-taglist ul.visible {
     position: relative;
     display: flex;
     flex-flow: column wrap;
     align-items: center;
     z-index: 1;
-    background: var(--blue-light-color);
+    background: var(--hero-vertical-tabs-blue-light-color);
 }
 
-.tag-hero .tag-hero-bg .tag-hero-taglist ul li {
+.hero-vertical-tabs .hero-vertical-tabs-taglist ul li {
     padding: 3px;
 }
 
-.tag-hero .tag-hero-bg .tag-hero-taglist ul li.active {
+.hero-vertical-tabs .hero-vertical-tabs-taglist ul li.active {
     text-decoration: underline;
     text-underline-offset: 6px;
 }
 
-.tag-hero .tag-hero-bg .tag-hero-taglist ul li.active a {
+.hero-vertical-tabs .hero-vertical-tabs-taglist ul li.active a {
     color: var(--white);
 }
 
-.tag-hero .tag-hero-bg .tag-hero-background-image {
+.hero-vertical-tabs .hero-vertical-tabs-background-image {
     position: relative;
     height: 160px;
     width: 100%;
 }
 
-.tag-hero-background-image img {
+.hero-vertical-tabs-background-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.tag-hero-content {
+.hero-vertical-tabs-content {
     position: absolute;
     bottom: 0;
     top: auto;
 }
 
-.tag-hero-content div:first-child {
+.hero-vertical-tabs-content div:first-child {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -99,14 +95,14 @@
     padding-left: 1rem;
 }
 
-.tag-hero-content h6 {
+.hero-vertical-tabs-content h6 {
     font-size: 12px;
     letter-spacing: 0.6px;
     color: #FFFFFFB2;
     margin-bottom: 11px;
 }
 
-.tag-hero-content h2 {
+.hero-vertical-tabs-content h2 {
     color: var(--white);
     font-size: 40px;
     line-height: 3rem;
@@ -115,76 +111,73 @@
 }
 
 @media (min-width: 62rem) {
-    .tag-hero.block {
+    .hero-vertical-tabs.block {
         position: relative;
         height: 360px;
         margin-bottom: 2rem;
-    }
-
-    .tag-hero-bg {
         flex-flow: nowrap;
     }
 
-    .tag-hero .tag-hero-bg .tag-hero-taglist {
+    .hero-vertical-tabs .hero-vertical-tabs-taglist {
         flex-basis: calc(50% - 196px);
         height: auto;
         display: flex;
         flex-flow: row wrap;
     }
 
-    .tag-hero .tag-hero-bg .tag-hero-taglist .tag-hero-dropdown-title {
+    .hero-vertical-tabs .hero-vertical-tabs-taglist .hero-vertical-tabs-dropdown-title {
         display: none;
     }
 
-    .tag-hero .tag-hero-bg .tag-hero-taglist .tag-hero-dropdown-left {
+    .hero-vertical-tabs .hero-vertical-tabs-taglist .hero-vertical-tabs-dropdown-left {
         width: 30%;
         height: 360px;
     }
 
-    .tag-hero .tag-hero-bg .tag-hero-taglist ul {
+    .hero-vertical-tabs .hero-vertical-tabs-taglist ul {
         display: flex;
         flex-flow: column wrap;
         width: 70%;
     }
 
-    .tag-hero .tag-hero-bg .tag-hero-taglist ul li {
+    .hero-vertical-tabs .hero-vertical-tabs-taglist ul li {
         flex-grow: 1;
         padding: 0;
     }
 
-    .tag-hero .tag-hero-bg .tag-hero-taglist ul li.active {
+    .hero-vertical-tabs .hero-vertical-tabs-taglist ul li.active {
         text-decoration: none;
     }
 
-    .tag-hero-taglist ul li a {
+    .hero-vertical-tabs-taglist ul li a {
         display: flex;
         align-items: center;
         align-content: center;
         padding-left: 16px;
         height: 100%;
-        color: var(--blue-light-color);
+        color: var(--hero-vertical-tabs-blue-light-color);
         font-weight: var(--font-weight-medium);
     }
 
-    .tag-hero-taglist ul li a:hover,
-    .tag-hero .tag-hero-bg .tag-hero-taglist ul li.active a {
+    .hero-vertical-tabs-taglist ul li a:hover,
+    .hero-vertical-tabs .hero-vertical-tabs-taglist ul li.active a {
         font-weight: var(--font-weight-bold);
         color: var(--white);
-        background: var(--blue-deep-color);
+        background: var(--hero-vertical-tabs-blue-deep-color);
     }
 
-    .tag-hero .tag-hero-bg .tag-hero-background-image {
+    .hero-vertical-tabs .hero-vertical-tabs-background-image {
         height: 360px;
     }
 
-    .tag-hero-content h6 {
+    .hero-vertical-tabs-content h6 {
         font-size: 14px;
         letter-spacing: 0.7px;
         margin-bottom: 0;
         text-transform: uppercase;
     }
 
-    .tag-hero-content h2 {
+    .hero-vertical-tabs-content h2 {
         color: var(--white);
         font-size: 80px;
         line-height: 109px;
@@ -194,7 +187,7 @@
 }
 
 @media (min-width: 77rem) {
-    .tag-hero .tag-hero-bg .tag-hero-taglist {
+    .hero-vertical-tabs .hero-vertical-tabs-taglist {
         flex-basis: calc(50% - 360px);
     }
 }
