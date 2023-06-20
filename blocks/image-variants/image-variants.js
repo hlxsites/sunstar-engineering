@@ -8,7 +8,7 @@ export default async function decorate(block) {
   const shouldCenter = [...section.classList].includes('centered');
   const addClassToParent = (name, el) => {
     el.parentElement.classList.add(name);
-  }
+  };
 
   section.querySelectorAll('div').forEach((row) => {
     if (shouldCenter && row.classList.contains('section-container')) {
@@ -22,7 +22,6 @@ export default async function decorate(block) {
       addClassToParent('heading', h);
       addClassToParent('section-content', h);
     });
-
   });
 
   section.querySelectorAll('.button-container > .button').forEach((a) => {
