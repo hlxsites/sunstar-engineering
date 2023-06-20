@@ -377,6 +377,10 @@ main img {
   }
 }
 
+.section-container.centered {
+  align-items: center;
+  text-align: center;
+}
 
 main .section-container {
   max-width: 100%;
