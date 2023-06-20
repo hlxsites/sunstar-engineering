@@ -32,6 +32,21 @@ function setResultValue(el, value, term) {
   el.innerHTML = txtHTML.replaceAll(regex, '<strong>$1</strong>');
 }
 
+/**
+ * Add a paging widget to the div. The paging widget looks like this:
+ * <pre><code>
+ * &lt; 1 2 3 &gt;
+ * </code></pre>
+ * The numbers are hyperlinks to the repective pages and the &lt; and &gt;
+ * buttons are links to next and previous pages. If this is the first page
+ * then the &lt; link has the style 'disabled' and if this is the lase one
+ * the &gt: link is disabled.
+ * @param {HTMLElement} div - The div to add the widget to
+ * @param {number} curpage - The current page number (starting at 0)
+ * @param {number} totalPages - The total number of pages
+ * @param {Document} doc - The current Document
+ * @param {Location} curLocation - THe current window.location to use
+ */
 export function addPagingWidget(
   div,
   curpage,
@@ -92,7 +107,7 @@ export function addPagingWidget(
 }
 
 async function searchPages(term, page) {
-  const json = await fetchIndex('query-index', 50);
+  const json = await fetchIndex('query-index');
 
   const resultsPerPage = 10;
   const startResult = page * resultsPerPage;
