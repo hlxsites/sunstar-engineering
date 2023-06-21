@@ -402,6 +402,7 @@ main .section.full-width>.section-container {
 @media (min-width:62rem) {
   main .section-container {
     max-width: calc(872px + 32px);
+    margin-inline: auto;
     padding-left: 16px;
     padding-right: 16px
   }
