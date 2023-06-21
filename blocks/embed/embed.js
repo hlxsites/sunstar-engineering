@@ -10,10 +10,21 @@ const getDefaultEmbed = (url) => `<div style="left: 0; width: 100%; height: 0; p
     </iframe>
   </div>`;
 
-const embedYoutube = (url, autoplay) => {
+const embedYoutube = (url) => {
   const usp = new URLSearchParams(url.search);
-  const suffix = autoplay ? '&muted=1&autoplay=1' : '';
+  let suffix = '';
   let vid = usp.get('v');
+  const autoplayParam = usp.get('autoplay');
+  const mutedParam = usp.get('muted');
+
+  if (autoplayParam && mutedParam) {
+    suffix += `&autoplay=${autoplayParam}&muted=${mutedParam}`;
+  } else if (autoplayParam) {
+    suffix += `&autoplay=${autoplayParam}&muted=1`;
+  } else if (mutedParam) {
+    suffix += `&muted=${mutedParam}`;
+  }
+
   const embed = url.pathname;
   if (url.origin.includes('youtu.be')) {
     [, vid] = url.pathname.split('/');
@@ -25,7 +36,7 @@ const embedYoutube = (url, autoplay) => {
   return embedHTML;
 };
 
-const loadEmbed = (block, link, autoplay) => {
+const loadEmbed = (block, link) => {
   if (block.classList.contains('embed-is-loaded')) {
     return;
   }
@@ -40,7 +51,7 @@ const loadEmbed = (block, link, autoplay) => {
   const config = EMBEDS_CONFIG.find((e) => e.match.some((match) => link.includes(match)));
   const url = new URL(link);
   if (config) {
-    block.innerHTML = config.embed(url, autoplay);
+    block.innerHTML = config.embed(url);
     block.classList = `block embed embed-${config.match[0]}`;
   } else {
     block.innerHTML = getDefaultEmbed(url);
