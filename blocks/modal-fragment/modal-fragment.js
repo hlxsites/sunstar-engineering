@@ -16,7 +16,6 @@ const openModal = async (a, url, block, hasSearchParam = false) => {
     e.preventDefault();
     if (globalmodalWrapper) {
       block.append(globalmodalWrapper);
-      globalmodalWrapper = null;
     }
 
     const path = new URL(url).pathname;
@@ -52,7 +51,6 @@ const openModal = async (a, url, block, hasSearchParam = false) => {
       globalmodalWrapper = wrapper;
       const close = modal.querySelector('.modal-close');
       close.addEventListener('click', () => {
-        wrapper.classList.remove('visible');
         wrapper.remove();
       });
     } else {
