@@ -52,7 +52,7 @@
     flex-flow: column wrap;
     align-items: center;
     z-index: 1;
-    background: var(--hero-vertical-tabs-blue-light-color);
+    background: var(--primary);
 }
 
 .hero-vertical-tabs .hero-vertical-tabs-taglist ul li {
@@ -63,6 +63,11 @@
     text-decoration: underline;
     text-decoration-color: var(--white);
     text-underline-offset: 6px;
+}
+
+.hero-vertical-tabs-taglist ul li a {
+    color: var(--tab-content-color);
+    font-weight: var(--font-weight-medium);
 }
 
 .hero-vertical-tabs .hero-vertical-tabs-taglist ul li.active a {
@@ -156,15 +161,13 @@
         align-content: center;
         padding-left: 16px;
         height: 100%;
-        color: var(--hero-vertical-tabs-blue-light-color);
-        font-weight: var(--font-weight-medium);
     }
 
     .hero-vertical-tabs-taglist ul li a:hover,
     .hero-vertical-tabs .hero-vertical-tabs-taglist ul li.active a {
         font-weight: var(--font-weight-bold);
         color: var(--white);
-        background: var(--hero-vertical-tabs-blue-deep-color);
+        background: var(--tab-default-color);
     }
 
     .hero-vertical-tabs .hero-vertical-tabs-background-image {

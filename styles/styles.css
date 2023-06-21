@@ -42,8 +42,10 @@
   --overlay-background-color: #eee;
   --highlight-background-color: #ccc;
   --text-color: #3c4350;
-  --hero-vertical-tabs-blue-deep-color: #044764;
-  --hero-vertical-tabs-blue-light-color: #90BFDC;
+  --blue-light-color: #90BFDC;
+  --blue-deep-color: #044764;
+  --tab-content-color: var(--blue-light-color);
+  --tab-default-color: var(--blue-deep-color);
   --transparent-grey-color: #3c465080;
   --transparent-grey-light-color: #3c46501f;
   --transparent-blue-light-color: #F0F5F7FF;
