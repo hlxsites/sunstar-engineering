@@ -106,8 +106,36 @@ export function addPagingWidget(
   div.appendChild(nav);
 }
 
+function replaceZeroWithEmptyString(val) {
+  if (val === '0') {
+    return '';
+  }
+  return val;
+}
+
+function fixExcelFilterZeroesInLine(line) {
+  line.description = replaceZeroWithEmptyString(line.description);
+  line.breadcrumbtitle = replaceZeroWithEmptyString(line.breadcrumbtitle);
+  line.newsdate = replaceZeroWithEmptyString(line.newsdate);
+}
+
+/**
+ * Results returned from {@link fetchIndex} come from a derived Excel sheet that is constructed
+ * with the FILTER function. This FILTER function has the unwanted side effect of returning '0' in
+ * cells that are empty in the original sheet.
+ *
+ * This function replaces those '0' values with empty cells again.
+ *
+ * @see fetchIndex
+ * @param {Object} data - the data returned from the fetchIndex function.
+ */
+export function fixExcelFilterZeroes(data) {
+  data.forEach((l) => fixExcelFilterZeroesInLine(l));
+}
+
 async function searchPages(term, page) {
   const json = await fetchIndex('query-index');
+  fixExcelFilterZeroes(json.data);
 
   const resultsPerPage = 10;
   const startResult = page * resultsPerPage;
