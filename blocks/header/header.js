@@ -1,9 +1,28 @@
 import { fetchPlaceholders, getMetadata } from '../../scripts/lib-franklin.js';
-import { getSearchWidget, getWindowSize } from '../../scripts/scripts.js';
+import { getLanguage, getSearchWidget, getWindowSize } from '../../scripts/scripts.js';
 
 function decorateSocial(social) {
   social.classList.add('social');
   social.innerHTML = social.innerHTML.replace(/\[social\]/, '');
+}
+
+function decorateLangPicker(langPicker) {
+  const lang = getLanguage() || '';
+  let langName = 'English'; // default to English
+  langPicker.classList.add('lang-picker');
+  langPicker.innerHTML = langPicker.innerHTML.replace(/\[languages\]/, '');
+  langPicker.querySelectorAll(':scope>ul>li').forEach((li) => {
+    li.classList.add('lang-picker-item');
+    if (li.querySelector('a').getAttribute('href') === `/${lang}/`
+    || li.querySelector('a').getAttribute('href') === `/${lang}`) {
+      langName = li.querySelector('a').innerHTML;
+      li.remove();
+    }
+  });
+  const a = document.createElement('a');
+  a.setAttribute('href', '#');
+  a.textContent = langName;
+  langPicker.prepend(a);
 }
 
 /* Add levels to the menu items */
@@ -110,6 +129,8 @@ function decorateTopNav(nav) {
   nav.querySelectorAll(':scope>ul>li').forEach((li) => {
     if (li.textContent.trim() === '[social]') {
       decorateSocial(li);
+    } else if (li.textContent.includes('[languages]')) {
+      decorateLangPicker(li);
     }
   });
 }
@@ -174,7 +195,8 @@ const navDecorators = { 'nav-top': decorateTopNav, 'nav-middle': decorateMiddleN
 export default async function decorate(block) {
   // fetch nav content
   const navMeta = getMetadata('nav');
-  const navPath = navMeta || '/nav';
+  // TODO: Revert tp /nav before merging
+  const navPath = navMeta || '/_drafts/satyam/nav';
   const resp = await fetch(`${navPath}.plain.html`);
 
   if (resp.ok) {

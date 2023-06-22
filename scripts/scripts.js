@@ -14,7 +14,30 @@ import {
 } from './lib-franklin.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
+const LANGUAGES = new Set(['en', 'de', 'cn', 'th', 'id', 'it', 'ja']);
 
+let language;
+
+export function getLanguageFromPath(pathname, resetCache = false) {
+  if (resetCache) {
+    language = undefined;
+  }
+
+  if (language !== undefined) return language;
+
+  const segs = pathname.split('/');
+  if (segs.length > 1) {
+    const l = segs[1];
+    if (LANGUAGES.has(l)) {
+      language = l;
+    }
+  }
+  return language;
+}
+
+export function getLanguage() {
+  return getLanguageFromPath(window.location.pathname);
+}
 /**
  * Builds hero block and prepends to main in a new section.
  * @param {Element} main The container element
