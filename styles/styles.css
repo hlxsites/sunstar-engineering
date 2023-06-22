@@ -42,6 +42,10 @@
   --overlay-background-color: #eee;
   --highlight-background-color: #ccc;
   --text-color: #3c4350;
+  --blue-light-color: #90BFDC;
+  --blue-deep-color: #044764;
+  --tab-content-color: var(--blue-light-color);
+  --tab-default-color: var(--blue-deep-color);
   --transparent-grey-color: #3c465080;
   --transparent-grey-light-color: #3c46501f;
   --transparent-blue-light-color: #F0F5F7FF;
@@ -378,6 +382,10 @@ main img {
   }
 }
 
+.section.centered div {
+  align-items: center;
+  text-align: center;
+}
 
 main .section-container {
   max-width: 100%;
@@ -394,6 +402,7 @@ main .section.full-width>.section-container {
 @media (min-width:62rem) {
   main .section-container {
     max-width: calc(872px + 32px);
+    margin-inline: auto;
     padding-left: 16px;
     padding-right: 16px
   }

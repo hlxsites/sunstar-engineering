@@ -1,0 +1,76 @@
+main .embed-container .section-container {
+  max-width: unset;
+  padding: unset;
+}
+
+.modal-fragment-container .modal-wrapper {
+  background-color: #000000B2;
+  display: flex;
+  position: fixed;
+  inset: 0;
+  transition: all 0.1s ease-out;
+  z-index: -1;
+  opacity: 0; 
+}
+
+.modal-fragment-container .modal-wrapper.visible {
+  opacity: 1;
+  z-index: 1005;
+  padding: 1rem;
+}
+ 
+.modal-fragment-container .modal-fragment .modal {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.modal-fragment-container .modal .embed {
+  max-width: unset;
+  margin: unset;
+  width: 90vw;
+}
+
+.modal-fragment-container .modal .embed-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.modal-fragment-container .modal .modal-close {
+  top: 2rem;
+  right: 2rem;
+  position: absolute;
+  cursor: pointer;
+}
+
+.modal-fragment-container .modal .modal-close::before, .modal-fragment-container .modal .modal-close::after {
+  content: "";
+  height: 1.5rem;
+  width: 0.188rem;
+  background: var(--white);
+  position: absolute;
+}
+
+.modal-fragment-container .modal .modal-close::before {
+  transform: rotate(45deg);
+}
+
+.modal-fragment-container .modal .modal-close::after {
+  transform: rotate(-45deg);
+}
+
+@media (min-width: 62rem) {
+  .modal-fragment-container .modal .embed {
+    width: 60.125rem;
+  }
+
+  .modal-fragment-container .modal .modal-close {
+    top: 4.5rem;
+    right: 4.5rem;
+  }
+
+  .modal-fragment-container .modal .modal-close::before, .modal-fragment-container .modal .modal-close::after {
+    height: 3.75rem;
+    width: 0.313rem;
+  }
+}

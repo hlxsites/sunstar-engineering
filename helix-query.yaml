@@ -3,6 +3,8 @@ indices:
   site:
     include:
       - '/**'
+    exclude:
+      - '/_drafts/**'
     target: /query-index.json
     properties:
       lastModified:
@@ -16,4 +18,10 @@ indices:
         value: attribute(el, "content")
       breadcrumbtitle:
         select: head > meta[name="breadcrumbtitle"]
+        value: attribute(el, "content")
+      newsdate:
+        select: head > meta[name="newsdate"]
+        value: attribute(el, "content")
+      robots:
+        select: head > meta[name="robots"]
         value: attribute(el, "content")

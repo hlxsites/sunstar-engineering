@@ -1,0 +1,197 @@
+.hero-vertical-tabs.block {
+    position: relative;
+    display: flex;
+    flex-flow: row wrap;
+    height: 208px;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.hero-vertical-tabs .hero-vertical-tabs-taglist {
+    display: block;
+    width: 100%;
+    height: 3rem;
+    font-weight: var(--font-weight-bold);
+    line-height: 1.5;
+    background-color: var(--primary);
+    border: none;
+}
+
+.hero-vertical-tabs .hero-vertical-tabs-taglist::before {
+    content: '';
+    display: inline-flex;
+    position: absolute;
+    right: 16px;
+    top: 18px;
+    height: 15px;
+    width: 20px;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    background-position: center;
+    background-image: url('../../icons/arrow-down-white.svg');
+}
+
+.hero-vertical-tabs .hero-vertical-tabs-taglist.visible::before {
+    transform: rotate(-180deg);
+}
+
+.hero-vertical-tabs .hero-vertical-tabs-taglist .hero-vertical-tabs-dropdown-title {
+    display: inline-block;
+    color: var(--white);
+    line-height: 3rem;
+    padding-left: 1rem;
+}
+
+.hero-vertical-tabs .hero-vertical-tabs-taglist ul {
+    display: none;
+}
+
+.hero-vertical-tabs .hero-vertical-tabs-taglist ul.visible {
+    position: relative;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    z-index: 1;
+    background: var(--primary);
+}
+
+.hero-vertical-tabs .hero-vertical-tabs-taglist ul li {
+    padding: 3px;
+}
+
+.hero-vertical-tabs .hero-vertical-tabs-taglist ul li.active {
+    text-decoration: underline;
+    text-decoration-color: var(--white);
+    text-underline-offset: 6px;
+}
+
+.hero-vertical-tabs-taglist ul li a {
+    color: var(--tab-content-color);
+    font-weight: var(--font-weight-medium);
+}
+
+.hero-vertical-tabs .hero-vertical-tabs-taglist ul li.active a {
+    color: var(--white);
+}
+
+.hero-vertical-tabs .hero-vertical-tabs-background-image {
+    position: relative;
+    height: 160px;
+    width: 100%;
+}
+
+.hero-vertical-tabs-background-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-vertical-tabs-content {
+    position: absolute;
+    bottom: 0;
+    top: auto;
+}
+
+.hero-vertical-tabs-content div:first-child {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 20px;
+    padding-left: 1rem;
+}
+
+.hero-vertical-tabs-content h6 {
+    font-size: 12px;
+    letter-spacing: 0.6px;
+    color: #FFFFFFB2;
+    margin-bottom: 11px;
+}
+
+.hero-vertical-tabs-content h2 {
+    color: var(--white);
+    font-size: 40px;
+    line-height: 3rem;
+    font-weight: var(--font-weight-small);
+    margin: 0;
+}
+
+@media (min-width: 62rem) {
+    .hero-vertical-tabs.block {
+        position: relative;
+        height: 360px;
+        margin-bottom: 2rem;
+        flex-flow: nowrap;
+    }
+
+    .hero-vertical-tabs .hero-vertical-tabs-taglist {
+        flex-basis: calc(50% - 196px);
+        height: auto;
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    .hero-vertical-tabs .hero-vertical-tabs-taglist .hero-vertical-tabs-dropdown-title {
+        display: none;
+    }
+
+    .hero-vertical-tabs .hero-vertical-tabs-taglist .hero-vertical-tabs-dropdown-left {
+        width: 30%;
+        height: 360px;
+    }
+
+    .hero-vertical-tabs .hero-vertical-tabs-taglist ul {
+        display: flex;
+        flex-flow: column wrap;
+        width: 70%;
+    }
+
+    .hero-vertical-tabs .hero-vertical-tabs-taglist ul li {
+        flex-grow: 1;
+        padding: 0;
+    }
+
+    .hero-vertical-tabs .hero-vertical-tabs-taglist ul li.active {
+        text-decoration: none;
+    }
+
+    .hero-vertical-tabs-taglist ul li a {
+        display: flex;
+        align-items: center;
+        align-content: center;
+        padding-left: 16px;
+        height: 100%;
+    }
+
+    .hero-vertical-tabs-taglist ul li a:hover,
+    .hero-vertical-tabs .hero-vertical-tabs-taglist ul li.active a {
+        font-weight: var(--font-weight-bold);
+        color: var(--white);
+        background: var(--tab-default-color);
+    }
+
+    .hero-vertical-tabs .hero-vertical-tabs-background-image {
+        height: 360px;
+    }
+
+    .hero-vertical-tabs-content h6 {
+        font-size: 14px;
+        letter-spacing: 0.7px;
+        margin-bottom: 0;
+        text-transform: uppercase;
+    }
+
+    .hero-vertical-tabs-content h2 {
+        color: var(--white);
+        font-size: 80px;
+        line-height: 109px;
+        margin-bottom: 0;
+        font-weight: var(--font-weight-small);
+    }
+}
+
+@media (min-width: 77rem) {
+    .hero-vertical-tabs .hero-vertical-tabs-taglist {
+        flex-basis: calc(50% - 360px);
+    }
+}
