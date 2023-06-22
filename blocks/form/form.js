@@ -172,7 +172,7 @@ function createValidateLabel(msg) {
 let captchaElement;
 
 /**
- * Checks if the captcha is consent bt the consent manager. returns true if there is no
+ * Checks if the captcha is allowed by the consent manager. returns true if there is no
  * captcha defined on the form.
  *
  * note: this relies on the fact that the consent manager removes the captcha if it is not
