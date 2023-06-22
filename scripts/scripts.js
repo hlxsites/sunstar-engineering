@@ -146,16 +146,6 @@ async function loadLazy(doc) {
   sampleRUM.observe(main.querySelectorAll('picture > img'));
 }
 
-function replaceZeroWithEmptyString(val) {
-  return val === '0' ? '' : val;
-}
-
-function fixExcelFilterZeroesInLine(line) {
-  line.description = replaceZeroWithEmptyString(line.description);
-  line.breadcrumbtitle = replaceZeroWithEmptyString(line.breadcrumbtitle);
-  line.newsdate = replaceZeroWithEmptyString(line.newsdate);
-}
-
 /**
  * Results returned from {@link fetchIndex} come from a derived Excel sheet that is constructed
  * with the FILTER function. This FILTER function has the unwanted side effect of returning '0' in
@@ -167,7 +157,11 @@ function fixExcelFilterZeroesInLine(line) {
  * @param {Object} data - the data returned from the fetchIndex function.
  */
 export function fixExcelFilterZeroes(data) {
-  data.forEach((l) => fixExcelFilterZeroesInLine(l));
+  data.forEach((line) => {
+    Object.keys(line).forEach((k) => {
+      line[k] = line[k] === '0' ? '' : line[k];
+    });
+  });
 }
 
 export async function fetchIndex(indexFile, pageSize = 500) {
