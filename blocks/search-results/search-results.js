@@ -1,4 +1,4 @@
-import { fetchIndex, getSearchWidget } from '../../scripts/scripts.js';
+import { fetchIndex, fixExcelFilterZeroes, getSearchWidget } from '../../scripts/scripts.js';
 
 export function getSearchParams(searchParams) {
   let curPage = new URLSearchParams(searchParams).get('pg');
@@ -108,6 +108,7 @@ export function addPagingWidget(
 
 async function searchPages(term, page) {
   const json = await fetchIndex('query-index');
+  fixExcelFilterZeroes(json.data);
 
   const resultsPerPage = 10;
   const startResult = page * resultsPerPage;

@@ -67,11 +67,11 @@ export function decorateVideoLinks(element = document) {
 // Function to get the current window size
 export function getWindowSize() {
   const windowWidth = window.innerWidth
-  || document.documentElement.clientWidth
-  || document.body.clientWidth;
+    || document.documentElement.clientWidth
+    || document.body.clientWidth;
   const windowHeight = window.innerHeight
-  || document.documentElement.clientHeight
-  || document.body.clientHeight;
+    || document.documentElement.clientHeight
+    || document.body.clientHeight;
   return {
     width: windowWidth,
     height: windowHeight,
@@ -144,6 +144,24 @@ async function loadLazy(doc) {
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
+}
+
+/**
+ * Results returned from {@link fetchIndex} come from a derived Excel sheet that is constructed
+ * with the FILTER function. This FILTER function has the unwanted side effect of returning '0' in
+ * cells that are empty in the original sheet.
+ *
+ * This function replaces those '0' values with empty cells again.
+ *
+ * @see fetchIndex
+ * @param {Object} data - the data returned from the fetchIndex function.
+ */
+export function fixExcelFilterZeroes(data) {
+  data.forEach((line) => {
+    Object.keys(line).forEach((k) => {
+      line[k] = line[k] === '0' ? '' : line[k];
+    });
+  });
 }
 
 export async function fetchIndex(indexFile, pageSize = 500) {
@@ -228,6 +246,18 @@ function getSearchWidgetHTML(initialVal, searchbox) {
 
 export function getSearchWidget(initialVal, searchbox) {
   return htmlToElement(getSearchWidgetHTML(initialVal, searchbox));
+}
+
+/*
+  * Returns the environment type based on the hostname.
+*/
+export function getEnvType(hostname) {
+  const fqdnToEnvType = {
+    'sunstar-engineering.com': 'live',
+    'main--sunstar-engineering--hlxsites.hlx.page': 'preview',
+    'main--sunstar-engineering--hlxsites.hlx.live': 'live',
+  };
+  return fqdnToEnvType[hostname] || 'dev';
 }
 
 export async function loadFragment(path) {
