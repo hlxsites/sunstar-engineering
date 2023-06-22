@@ -37,10 +37,13 @@ export default async function decorate(block) {
   });
 
   block.querySelectorAll('.background').forEach((row) => {
-    const backgroundContainer = document.createElement('div');
-    backgroundContainer.classList.add('image-variants-background-container');
-    const pictureContainer = row.querySelector('div:first-child:has(picture)');
-    backgroundContainer.append(pictureContainer);
-    row.append(backgroundContainer);
+    const pictureEl = row.querySelector('picture');
+    if (pictureEl) {
+      const backgroundContainer = document.createElement('div');
+      backgroundContainer.classList.add('image-variants-background-container');
+      const pictureContainer = pictureEl.closest('div');
+      backgroundContainer.append(pictureContainer);
+      row.append(backgroundContainer);
+    }
   });
 }

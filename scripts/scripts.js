@@ -67,11 +67,11 @@ export function decorateVideoLinks(element = document) {
 // Function to get the current window size
 export function getWindowSize() {
   const windowWidth = window.innerWidth
-  || document.documentElement.clientWidth
-  || document.body.clientWidth;
+    || document.documentElement.clientWidth
+    || document.body.clientWidth;
   const windowHeight = window.innerHeight
-  || document.documentElement.clientHeight
-  || document.body.clientHeight;
+    || document.documentElement.clientHeight
+    || document.body.clientHeight;
   return {
     width: windowWidth,
     height: windowHeight,
@@ -240,6 +240,18 @@ export function getEnvType(hostname) {
     'main--sunstar-engineering--hlxsites.hlx.live': 'live',
   };
   return fqdnToEnvType[hostname] || 'dev';
+}
+
+export async function loadFragment(path) {
+  const resp = await fetch(`${path}.plain.html`);
+  if (resp.ok) {
+    const main = document.createElement('main');
+    main.innerHTML = await resp.text();
+    decorateMain(main);
+    await loadBlocks(main);
+    return main;
+  }
+  return null;
 }
 
 loadPage();

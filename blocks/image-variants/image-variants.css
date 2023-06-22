@@ -12,8 +12,8 @@
 .section.image-variants-container a.button.tertiary::after {
   content: url("../../icons/link.svg");
   position: relative;
-  top: 0.1rem;
   left: 0.3rem;
+  top: 0.1rem;
 }
 
 .section.image-variants-container > div {
@@ -46,15 +46,8 @@
   }
 
   .section.image-variants-container .para {
-    width: 70%;
-  }
-
-  .image-variants .image-variants-background-container {
-    height: 20rem;
-    align-items: center;
-    display: flex;
-    background-image: url("bg-imgs/timeline-triangle-background.png");
-    background-size: cover;
+    max-width: 50%;
+    padding: 0 1rem;
   }
 
   .image-variants .wide {
@@ -64,5 +57,43 @@
 
   .image-variants .narrow {
     display: none;
+  }
+
+  .image-variants .image-variants-2-cols.wide {
+    display: flex;
+    align-items: center;
+  }
+
+  .image-variants .image-variants-background-container {
+    background-image: url("bg-imgs/timeline-triangle-background.png");
+    background-size: cover;
+    background-position: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .image-variants .image-variants-background-container > div {
+    max-width: 1200px;
+    height: 20rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    display: flex;
+  }
+}
+
+@media (min-width: 1232px) {
+  .image-variants .image-variants-background-container {
+    height: 30rem;
+    max-width: 120rem;
+  }
+
+  .section.image-variants-container .para {
+    max-width: 54rem;
+  }
+
+  .section.image-variants-container .image-variants-wrapper {
+    width: inherit
   }
 }
