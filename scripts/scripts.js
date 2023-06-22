@@ -146,6 +146,30 @@ async function loadLazy(doc) {
   sampleRUM.observe(main.querySelectorAll('picture > img'));
 }
 
+function replaceZeroWithEmptyString(val) {
+  return val === '0' ? '' : val;
+}
+
+function fixExcelFilterZeroesInLine(line) {
+  line.description = replaceZeroWithEmptyString(line.description);
+  line.breadcrumbtitle = replaceZeroWithEmptyString(line.breadcrumbtitle);
+  line.newsdate = replaceZeroWithEmptyString(line.newsdate);
+}
+
+/**
+ * Results returned from {@link fetchIndex} come from a derived Excel sheet that is constructed
+ * with the FILTER function. This FILTER function has the unwanted side effect of returning '0' in
+ * cells that are empty in the original sheet.
+ *
+ * This function replaces those '0' values with empty cells again.
+ *
+ * @see fetchIndex
+ * @param {Object} data - the data returned from the fetchIndex function.
+ */
+export function fixExcelFilterZeroes(data) {
+  data.forEach((l) => fixExcelFilterZeroesInLine(l));
+}
+
 export async function fetchIndex(indexFile, pageSize = 500) {
   const handleIndex = async (offset) => {
     const resp = await fetch(`/${indexFile}.json?limit=${pageSize}&offset=${offset}`);
