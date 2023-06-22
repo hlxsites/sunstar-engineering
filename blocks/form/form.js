@@ -1,3 +1,5 @@
+import { loadScript } from '../../scripts/scripts.js';
+
 function ensureParagraph(el) {
   // add <p> if missing
   if (!el.querySelector('p')) {
@@ -170,19 +172,95 @@ function createValidateLabel(msg) {
 }
 
 let captchaElement;
+let userconsentElement;
+
+/**
+ * id of the reCaptcha service in the user consent manager (todo: make configurable via form?)
+ * @type {string}
+ */
+const reCaptchaUCID = 'Hko_qNsui-Q';
 
 /**
  * Checks if the captcha is allowed by the consent manager. returns true if there is no
- * captcha defined on the form.
- *
- * note: this relies on the fact that the consent manager removes the captcha if it is not
- *       consented.
+ * captcha defined on the form or if there is no consent manager loaded.
  */
 function hasCaptchaConsent() {
   if (!captchaElement) {
     return true;
   }
-  return !!document.getElementById('g-recaptcha-response');
+  if (!window.uc) {
+    // eslint-disable-next-line no-console
+    console.warn('consent manager not loaded. assuming captcha consent');
+    return true;
+  }
+  // eslint-disable-next-line no-restricted-syntax
+  for (const svc of window.uc.ucapi.getWhitelistedServices()) {
+    if (svc.split('|').includes(reCaptchaUCID)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function updateUserConsent() {
+  if (!userconsentElement) {
+    return;
+  }
+  if (hasCaptchaConsent()) {
+    userconsentElement.classList.add('hidden');
+  } else {
+    userconsentElement.classList.remove('hidden');
+  }
+}
+
+/**
+ * initializes the user consent note and links the buttons to the consent manager dialogs.
+ * @param {HTMLElement} note
+ */
+function initUserConsent(note) {
+  if (!note) {
+    return;
+  }
+  if (captchaElement) {
+    captchaElement.parentElement.appendChild(note);
+  } else {
+    note.remove();
+    return;
+  }
+  ensureParagraph(note);
+  note.classList.add('userconsent-note');
+  userconsentElement = note;
+
+  const detailsBtn = note.querySelector('a[href="#userconsent-details"]');
+  if (detailsBtn) {
+    detailsBtn.setAttribute('role', 'button');
+    detailsBtn.addEventListener('click', (evt) => {
+      evt.preventDefault();
+      window.uc.ucapi.showInfoModal(reCaptchaUCID);
+      return false;
+    });
+  }
+
+  const acceptBtn = note.querySelector('a[href="#userconsent-accept"]');
+  if (acceptBtn) {
+    acceptBtn.setAttribute('role', 'button');
+    acceptBtn.addEventListener('click', (evt) => {
+      evt.preventDefault();
+      window.uc.ucapi.setConsents([{ templateId: reCaptchaUCID, status: true }]);
+      return false;
+    });
+  }
+
+  // observe the captchaElement and update the user consent note visibility if it changes
+  // this works, because the consent manager adds the captcha when the consent changes.
+  const observer = new MutationObserver((mutations) => {
+    if (mutations.find(({ type }) => type === 'childList')) {
+      updateUserConsent();
+    }
+  });
+  observer.observe(captchaElement, {
+    childList: true,
+  });
 }
 
 function validateForm(form) {
@@ -230,13 +308,12 @@ function createCaptcha(fd) {
     resp.setAttribute('required', 'required');
   };
 
-  const script = document.createElement('script');
-  script.setAttribute('async', 'async');
-  script.setAttribute('defer', 'defer');
-  script.src = 'https://www.google.com/recaptcha/api.js?onload=captchaRenderCallback&render=explicit';
-  document.head.appendChild(script);
-
-  // todo: append captcha consent text if consent management doesn't allow captcha
+  window.addEventListener('consentmanager', () => {
+    loadScript('https://www.google.com/recaptcha/api.js?onload=captchaRenderCallback&render=explicit', {
+      async: 'async',
+      defer: 'defer',
+    });
+  });
 
   return captchaElement;
 }
@@ -253,8 +330,7 @@ async function createForm(formURL) {
     fd.Type = fd.Type || 'text';
     const fieldWrapper = document.createElement('div');
     const style = fd.Style ? ` form-${fd.Style}` : '';
-    const fieldId = `form-${fd.Type}-wrapper${style}`;
-    fieldWrapper.className = fieldId;
+    fieldWrapper.className = `form-${fd.Type}-wrapper${style}`;
     fieldWrapper.classList.add('field-wrapper');
 
     const append = (el) => {
@@ -321,4 +397,7 @@ export default async function decorate(block) {
     ensureParagraph(note);
     note.classList.add('form-note');
   }
+
+  // convert 3rd row to userconsent-note
+  initUserConsent(block.querySelector('div > div:nth-child(3) > div'));
 }

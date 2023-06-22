@@ -242,4 +242,36 @@ export async function loadFragment(path) {
   return null;
 }
 
+export async function loadScript(url, attrs = {}) {
+  console.log('loading', url);
+  const script = document.createElement('script');
+  script.src = url;
+  // eslint-disable-next-line no-restricted-syntax
+  for (const [name, value] of Object.entries(attrs)) {
+    script.setAttribute(name, value);
+  }
+  const loadingPromise = new Promise((resolve, reject) => {
+    script.onload = resolve;
+    script.onerror = reject;
+  });
+  document.head.append(script);
+  return loadingPromise;
+}
+
+export async function loadConsentManager() {
+  // load consent manager
+  // <script id="usercentrics-cmp" src="https://app.usercentrics.eu/browser-ui/latest/loader.js" data-settings-id="_2XSaYDrpo" async></script>
+  // <script type="application/javascript" src="https://privacy-proxy.usercentrics.eu/latest/uc-block.bundle.js"></script>
+  await Promise.all([
+    loadScript('https://app.usercentrics.eu/browser-ui/latest/loader.js', {
+      id: 'usercentrics-cmp',
+      'data-settings-id': '_2XSaYDrpo',
+      async: 'async',
+    }),
+    loadScript('https://privacy-proxy.usercentrics.eu/latest/uc-block.bundle.js'),
+  ]);
+  console.log('consent manager loaded');
+  window.dispatchEvent(new CustomEvent('consentmanager'));
+}
+
 loadPage();
