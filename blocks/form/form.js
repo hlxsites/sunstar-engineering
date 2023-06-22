@@ -193,6 +193,7 @@ function hasCaptchaConsent() {
     console.warn('consent manager not loaded. assuming captcha consent');
     return true;
   }
+  window.uc.reloadOnOptOut(reCaptchaUCID);
   // eslint-disable-next-line no-restricted-syntax
   for (const svc of window.uc.ucapi.getWhitelistedServices()) {
     if (svc.split('|').includes(reCaptchaUCID)) {
