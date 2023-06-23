@@ -1,0 +1,40 @@
+main .toc-wrapper {
+    margin-bottom: 2rem;
+}
+
+main .toc ul {
+    width: 240px;
+    background: var(--white);
+    margin: 0;
+}
+
+main .toc ul li {
+    border-top: none;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+}
+
+main .toc ul li a {
+    line-height: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    color: var(--secondary);
+}
+
+@media (min-width: 62rem) {
+    main .main-content .section-container {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: calc(872px + 32px);
+        padding-left: 16px;
+        padding-right: 16px;
+        position: relative;
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    main .main-content .section-container div:nth-child(2) {
+        width: calc(100% - 240px - 64px);
+    }
+}
