@@ -42,6 +42,11 @@ async function createAutoBreadcrumb(block, placeholders) {
   breadcrumbs.forEach((crumb) => {
     renderBreadcrumb(crumb, block);
   });
+
+  const breadcrumbContainer = document.querySelector('.section.breadcrumb-container');
+  if (breadcrumbContainer) {
+    breadcrumbContainer.classList.add('visible');
+  }
 }
 
 export default async function decorate(block) {

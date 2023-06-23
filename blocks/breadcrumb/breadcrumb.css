@@ -1,11 +1,14 @@
 .section.breadcrumb-container {
-    background: var(--transparent-blue-light-color);
     padding: 0;
     font-size: var(--body-font-size-xs);
     font-weight: var(--font-weight-medium);
     line-height: 1;
     display: none;
     height: 33.28px;
+}
+
+.section.breadcrumb-container.visible {
+    background: var(--transparent-blue-light-color);
 }
 
 .block.breadcrumb {
