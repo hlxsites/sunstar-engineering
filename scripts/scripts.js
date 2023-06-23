@@ -273,7 +273,6 @@ export async function loadFragment(path) {
 }
 
 export async function loadScript(url, attrs = {}) {
-  console.log('dynamically loading script', url);
   const script = document.createElement('script');
   script.src = url;
   // eslint-disable-next-line no-restricted-syntax
@@ -302,7 +301,6 @@ export async function loadConsentManager() {
     }),
     loadScript('https://privacy-proxy.usercentrics.eu/latest/uc-block.bundle.js'),
   ]);
-  console.log('consent manager loaded');
   window.dispatchEvent(new CustomEvent('consentmanager'));
 }
 
