@@ -1,4 +1,4 @@
-import { fetchIndex } from '../../scripts/scripts.js';
+import { fetchIndex, fixExcelFilterZeroes } from '../../scripts/scripts.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 
 function prependSlash(path) {
@@ -19,6 +19,7 @@ function renderBreadcrumb(breadcrumbs, block) {
 
 async function createAutoBreadcrumb(block, placeholders) {
   const pageIndex = (await fetchIndex('query-index')).data;
+  fixExcelFilterZeroes(pageIndex);
   const { pathname } = window.location;
   const pathSeparator = '/';
   // eslint-disable-next-line max-len
@@ -40,7 +41,9 @@ async function createAutoBreadcrumb(block, placeholders) {
     },
   ];
   breadcrumbs.forEach((crumb) => {
-    renderBreadcrumb(crumb, block);
+    if (crumb.name) {
+      renderBreadcrumb(crumb, block);
+    }
   });
 
   const breadcrumbContainer = document.querySelector('.section.breadcrumb-container');

@@ -1,65 +1,69 @@
 .section.breadcrumb-container {
-    padding: 0;
-    font-size: var(--body-font-size-xs);
-    font-weight: var(--font-weight-medium);
-    line-height: 1;
-    display: none;
-    height: 33.28px;
+  padding: 0;
+  font-size: var(--body-font-size-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  display: none;
+  height: 2.08rem;
 }
 
 .section.breadcrumb-container.visible {
-    background: var(--transparent-blue-light-color);
+  background: var(--transparent-blue-light-color);
 }
 
 .block.breadcrumb {
-    display: flex;
-    list-style: none;
-    padding: 10px 0;
+  display: flex;
+  list-style: none;
+  padding: 0.625rem 0;
 }
 
 .block.breadcrumb a {
-    color: var(--secondary);
+  color: var(--secondary);
 }
 
 .breadcrumb-item+.breadcrumb-item {
-    padding-left: 8px;
+  padding-left: 0.5rem;
 }
 
 .breadcrumb-item::before {
-    height: 12px;
-    width: 8px;
-    vertical-align: middle;
-    margin-right: 8px;
-    background-image: url('../../icons/angle-right.svg');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
+  height: 0.75rem;
+  width: 0.5rem;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+  background-image: url('../../icons/angle-right.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 
 .breadcrumb-item+.breadcrumb-item::before {
-    display: inline-block;
-    content: "";
+  display: inline-block;
+  content: "";
+}
+
+.breadcrumb-item:last-child {
+  color: var(--transparent-grey-color);
 }
 
 @media (min-width: 62rem) {
-    .section.breadcrumb-container {
-        display: block;
-    }
+  .section.breadcrumb-container {
+    display: block;
+  }
 
-    .block.breadcrumb {
-        max-width: 904px;
-        padding-left: 16px;
-        padding-right: 16px;
-    }
+  .block.breadcrumb {
+    max-width: 56.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
 @media (min-width: 77rem) {
-    .block.breadcrumb {
-        padding-left: 0;
-        padding-right: 0;
-    }
+  .block.breadcrumb {
+    padding-left: 0;
+    padding-right: 0;
+  }
 
-    main .breadcrumb.block {
-        max-width: var(--section-max-width);
-    }
+  main .breadcrumb.block {
+    max-width: var(--section-max-width);
+  }
 }

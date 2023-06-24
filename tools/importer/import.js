@@ -12,7 +12,9 @@
 /* global WebImporter */
 /* eslint-disable no-console, class-methods-use-this */
 
-const createMetadata = (main, document) => {
+import urls from './constants.js';
+
+const createMetadata = (main, document, url) => {
   const meta = {};
 
   const title = document.querySelector('title');
@@ -41,9 +43,9 @@ const createMetadata = (main, document) => {
     }
   }
 
-  const newsDate = document.querySelector('.news-details-container .news-date');
-  if (newsDate) {
-    meta.NewsDate = newsDate.textContent;
+  const { pathname } = new URL(url);
+  if (urls && urls[pathname.toLowerCase()]) {
+    meta.NewsDate = new Date(urls[pathname.toLowerCase()].publishedDate).getTime();
   }
 
   const block = WebImporter.Blocks.getMetadataBlock(document, meta);
@@ -301,7 +303,7 @@ export default {
       'noscript',
     ]);
     // create the metadata block and append it to the main element
-    createMetadata(main, document);
+    createMetadata(main, document, url);
     customImportLogic(document);
 
     return main;

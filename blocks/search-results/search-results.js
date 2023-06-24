@@ -1,4 +1,5 @@
 import { fetchIndex, fixExcelFilterZeroes, getSearchWidget } from '../../scripts/scripts.js';
+import { getFormattedDate } from '../../scripts/lib-franklin.js';
 
 export function getSearchParams(searchParams) {
   let curPage = new URLSearchParams(searchParams).get('pg');
@@ -135,26 +136,45 @@ async function searchPages(term, page) {
     link.href = line.path;
     const path = line.path || '';
     const parentPath = path && path.lastIndexOf('/') > -1 ? path.slice(0, path.lastIndexOf('/')) : '';
+    let parentSpan;
+    let childSpan;
 
     if (parentPath) {
-      const filtered = json.data.filter((x) => x.path === parentPath);
+      const parentfiltered = json.data.filter((x) => x.path === parentPath);
 
-      if (filtered && filtered.length && filtered[0].breadcrumbtitle) {
-        const p = document.createElement('p');
-        p.classList.add('parent-detail');
-        const span = document.createElement('span');
-        span.textContent = filtered[0].breadcrumbtitle;
-        p.appendChild(span);
-
-        if (filtered[0].newsdate) {
-          const dateSpan = document.createElement('span');
-          dateSpan.textContent = filtered[0].newsdate;
-          span.classList.add('news-date');
-          p.appendChild(dateSpan);
-        }
-
-        res.appendChild(p);
+      if (parentfiltered && parentfiltered.length && parentfiltered[0].breadcrumbtitle) {
+        parentSpan = document.createElement('span');
+        parentSpan.textContent = parentfiltered[0].breadcrumbtitle;
       }
+    }
+
+    if (path) {
+      const selfFiltered = json.data.filter((x) => x.path === path);
+
+      if (selfFiltered && selfFiltered.length && selfFiltered[0].newsdate) {
+        childSpan = document.createElement('span');
+        // TODO handle localization here
+        childSpan.textContent = getFormattedDate(new Date(Number(selfFiltered[0].newsdate)));
+      }
+    }
+
+    if (parentSpan && childSpan) {
+      const p = document.createElement('p');
+      p.classList.add('parent-detail');
+      parentSpan.classList.add('news-date');
+      p.appendChild(parentSpan);
+      p.appendChild(childSpan);
+      res.appendChild(p);
+    } else if (parentSpan) {
+      const p = document.createElement('p');
+      p.classList.add('parent-detail');
+      p.appendChild(parentSpan);
+      res.appendChild(p);
+    } else if (childSpan) {
+      const p = document.createElement('p');
+      p.classList.add('parent-detail');
+      p.appendChild(childSpan);
+      res.appendChild(p);
     }
 
     header.appendChild(link);
