@@ -12,6 +12,14 @@
     min-height: 100%;
 }
 
+.hero-banner img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    min-height: 100%;
+}
+
 .hero-banner {
     height: 512px;
     width: 100%;
@@ -114,6 +122,10 @@
     }
 
     .hero-banner video {
+        min-height: 160px;
+    }
+    
+    .hero-banner img {
         min-height: 160px;
     }
 
