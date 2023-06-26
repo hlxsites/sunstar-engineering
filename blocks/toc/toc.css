@@ -41,7 +41,7 @@ main .toc-container .section-container .main-content {
     padding: 0 1rem;
 }
 
-main .toc-container .section-container .toc.top ul {
+main .toc-container .section-container .toc.flat ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -50,17 +50,17 @@ main .toc-container .section-container .toc.top ul {
     margin-bottom: 2rem;
 }
 
-main .toc-container .section-container .toc.top ul li {
+main .toc-container .section-container .toc.flat ul li {
     padding: 5px 1rem;
     color: var(--secondary);
     border-right: 1px solid var(--overlay-background-color);
 }
 
-main .toc-container .section-container .toc.top ul li:last-child {
+main .toc-container .section-container .toc.flat ul li:last-child {
     border-right: none;
 }
 
-main .toc-container .section-container .toc.top ul li a {
+main .toc-container .section-container .toc.flat ul li a {
     display: unset;
     line-height: unset;
     color: var(--secondary);
@@ -108,17 +108,17 @@ main .section:not([id='']) {
         border-bottom: 1px solid var(--overlay-background-color);
     }
 
-    main .toc-wrapper.top {
+    main .toc-wrapper.flat {
         width: 100%;
         flex-basis: unset;
         margin-right: unset;
     }
 
-    main .toc.block.top ul li {
+    main .toc.block.flat ul li {
         border-top: unset;
     }
 
-    main .toc.block.top ul li:last-child {
+    main .toc.block.flat ul li:last-child {
         border-bottom: unset;
     }
 

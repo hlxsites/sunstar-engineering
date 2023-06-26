@@ -34,7 +34,7 @@ function buildTOCSide(ul) {
 }
 
 function buildTOCTop(ul, block) {
-  block.parentElement.classList.add('top');
+  block.parentElement.classList.add('flat');
   let others = false;
   let tocIndex = 0;
   [...document.querySelector('main').children].forEach((section, i) => {
@@ -58,7 +58,7 @@ function buildTOCTop(ul, block) {
 export default async function decorate(block) {
   const ul = block.querySelector('ul');
   block.replaceChildren(ul);
-  if (block.classList.contains('top')) {
+  if (block.classList.contains('flat')) {
     buildTOCTop(ul, block);
   } else {
     buildTOCSide(ul);
