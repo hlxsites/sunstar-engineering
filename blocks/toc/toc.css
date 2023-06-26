@@ -66,6 +66,14 @@ main .toc-container .section-container .toc.top ul li a {
     color: var(--secondary);
 }
 
+main .main-content h2 {
+    scroll-margin-top: 5rem;
+}
+
+main .section:not([id='']) {
+    scroll-margin-top: 11rem;
+}
+
 @media (min-width: 62rem) {
     main .toc-container .section-container {
         max-width: calc(872px + 32px);
@@ -85,7 +93,7 @@ main .toc-container .section-container .toc.top ul li a {
 
     main .toc.block ul.fixed {
         position: fixed;
-        top: 80px;
+        top: 5rem;
     }
 
     main .toc.block ul li {

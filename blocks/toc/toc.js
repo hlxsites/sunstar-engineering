@@ -8,12 +8,24 @@ function buildTOCSide(ul) {
       mainContent.append(div);
     }
   });
+
+  const h2 = mainContent.querySelectorAll('h2');
+  [...ul.children].forEach((liItem, i) => {
+    const h2Id = h2[i] !== null ? h2[i].id : '';
+    const aLink = document.createElement('a');
+    aLink.href = `#${h2Id}`;
+    aLink.innerText = liItem.innerText;
+    liItem.innerText = '';
+    liItem.append(aLink);
+  });
   sectionContainer.replaceChildren(tocWrapper);
   sectionContainer.append(mainContent);
 
   window.addEventListener('scroll', () => {
     if (document.documentElement.scrollTop > document.querySelector('main > .hero-vertical-tabs-container').offsetHeight
-      && document.documentElement.scrollTop < document.querySelector('main').offsetHeight - document.querySelector('header').offsetHeight - document.querySelector('main .toc-container ul').offsetHeight - 20) {
+      && document.documentElement.scrollTop < document.querySelector('main').offsetHeight
+      - document.querySelector('header').offsetHeight
+      - document.querySelector('main .toc-container ul').offsetHeight - 20) {
       ul.classList.add('fixed');
     } else {
       ul.classList.remove('fixed');
