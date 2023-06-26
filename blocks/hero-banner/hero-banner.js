@@ -1,3 +1,11 @@
+function fetchPosterURL($poster) {
+  const srcURL = new URL($poster.src);
+  const srcUSP = new URLSearchParams(srcURL.search);
+  srcUSP.set('format', 'webply');
+  srcUSP.set('width', '750');
+  return `${srcURL.pathname}?${srcUSP.toString()}`;
+}
+
 function decorateVideo(target) {
   const videoTag = document.createElement('video');
   const $poster = target.querySelector('img');
@@ -7,12 +15,13 @@ function decorateVideo(target) {
   videoTag.toggleAttribute('muted', true); /* not clear if this is needed in some browsers - TODO test */
   videoTag.toggleAttribute('playsinline', true);
   videoTag.toggleAttribute('loop', true);
-  videoTag.setAttribute('poster', $poster.src);
+  videoTag.setAttribute('poster', fetchPosterURL($poster));
   // videoTag.setAttribute('title', video.title);
   videoTag.innerHTML = `<source src="${videoURL}" type="video/mp4">`;
   target.innerHTML = '';
   if (videoURL == null) {
-    target.innerHTML = 'Could not find video, check your Hero Banner block';
+    target.innerHTML = '';
+    console.error('Video Source URL is not valid, Check hero-banner block');
   }
   target.appendChild(videoTag);
   videoTag.muted = true;
@@ -67,7 +76,7 @@ function decorateTextContent() {
 }
 
 export default function decorate($block) {
-  if ($block.querySelector('a') != null) {
+  if ($block.querySelector('a') !== null) {
     decorateVideo($block);
   } else {
     decorateBackGroundImage($block);
