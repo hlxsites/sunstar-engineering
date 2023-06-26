@@ -1,40 +1,122 @@
+main .toc-container .section-container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 main .toc-wrapper {
+    width: 100%;
+    flex-basis: 100%;
+    margin-right: 0;
     margin-bottom: 2rem;
 }
 
-main .toc ul {
+main .toc.block ul {
     width: 240px;
     background: var(--white);
     margin: 0;
 }
 
-main .toc ul li {
+main .toc.block ul li {
     border-top: none;
     margin-bottom: 1rem;
     padding: 0 1rem;
 }
 
-main .toc ul li a {
+main .toc.block ul li a {
     line-height: 1.5rem;
     display: inline-flex;
     align-items: center;
     color: var(--secondary);
 }
 
+main .toc-container .section-container .main-content {
+    width: 100%;
+    padding: 0 1rem;
+}
+
+main .toc-container .section-container .toc.top ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-left: 0;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+main .toc-container .section-container .toc.top ul li {
+    padding: 5px 1rem;
+    color: var(--secondary);
+    border-right: 1px solid var(--overlay-background-color);
+}
+
+main .toc-container .section-container .toc.top ul li:last-child {
+    border-right: none;
+}
+
+main .toc-container .section-container .toc.top ul li a {
+    display: unset;
+    line-height: unset;
+    color: var(--secondary);
+}
+
 @media (min-width: 62rem) {
-    main .main-content .section-container {
-        display: flex;
-        flex-wrap: wrap;
+    main .toc-container .section-container {
         max-width: calc(872px + 32px);
-        padding-left: 16px;
-        padding-right: 16px;
-        position: relative;
-        width: 100%;
-        margin-right: auto;
-        margin-left: auto;
     }
 
-    main .main-content .section-container div:nth-child(2) {
+    main .toc-wrapper {
+        width: 240px;
+        flex-basis: 240px;
+        margin-right: 4rem;
+        margin-bottom: 3rem;
+    }
+
+    main .toc-container .section-container .main-content {
         width: calc(100% - 240px - 64px);
+        padding: 0;
+    }
+
+    main .toc.block ul.fixed {
+        position: fixed;
+        top: 80px;
+    }
+
+    main .toc.block ul li {
+        padding: 20px 8px 20px 16px;
+        font-size: 16px;
+        letter-spacing: normal;
+        border-top: 1px solid var(--overlay-background-color);
+        margin-bottom: unset;
+    }
+
+    main .toc.block ul li:last-child {
+        border-bottom: 1px solid var(--overlay-background-color);
+    }
+
+    main .toc-wrapper.top {
+        width: 100%;
+        flex-basis: unset;
+        margin-right: unset;
+    }
+
+    main .toc.block.top ul li {
+        border-top: unset;
+    }
+
+    main .toc.block.top ul li:last-child {
+        border-bottom: unset;
+    }
+}
+
+@media (min-width: 77rem) {
+    main .toc-container .section-container {
+        max-width: 1200px;
     }
 }

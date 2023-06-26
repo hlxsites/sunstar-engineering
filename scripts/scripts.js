@@ -31,40 +31,12 @@ function buildHeroBlock(main) {
 }
 
 /**
- * Add outer div for main content for ordering TOC block and content part.
- * @param {Element} main The container element
- */
-function buildTOCBlock(main) {
-  const mainContent = document.createElement('div');
-  // mainContent.classList.add('main-content');
-  const content = document.createElement('div');
-  const toc = main.querySelector('.toc');
-  if (toc !== null) {
-    [...main.children].forEach((div) => {
-      if (div.querySelector('.toc') !== null) {
-        [...div.children].forEach((childDiv) => {
-          if (childDiv.classList.contains('toc')) {
-            mainContent.append(childDiv);
-          } else {
-            content.append(childDiv);
-          }
-        });
-        div.remove();
-      }
-    });
-    mainContent.append(content);
-    main.append(mainContent);
-  }
-}
-
-/**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
 function buildAutoBlocks(main) {
   try {
     buildHeroBlock(main);
-    buildTOCBlock(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
