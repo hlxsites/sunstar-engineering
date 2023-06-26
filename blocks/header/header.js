@@ -195,8 +195,7 @@ const navDecorators = { 'nav-top': decorateTopNav, 'nav-middle': decorateMiddleN
 export default async function decorate(block) {
   // fetch nav content
   const navMeta = getMetadata('nav');
-  // TODO: Revert tp /nav before merging
-  const navPath = navMeta || '/_drafts/satyam/nav';
+  const navPath = navMeta || '/nav';
   const resp = await fetch(`${navPath}.plain.html`);
 
   if (resp.ok) {

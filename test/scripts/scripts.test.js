@@ -70,4 +70,13 @@ describe('Scripts', () => {
     expect(data[1].breadcrumbtitle).to.equal('');
     expect(data[1].newsdate).to.equal('12345');
   });
+
+  it('Extracts the correct language from the path', () => {
+    let lang = scripts.getLanguageFromPath('/en/');
+    expect(lang).to.equal('en');
+    lang = scripts.getLanguageFromPath('/de/foo');
+    expect(lang).to.equal('en');
+    lang = scripts.getLanguageFromPath('/de/foo', true);
+    expect(lang).to.equal('de');
+  });
 });
