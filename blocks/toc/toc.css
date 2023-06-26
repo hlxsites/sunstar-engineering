@@ -67,7 +67,7 @@ main .toc-container .section-container .toc.top ul li a {
 }
 
 main .main-content h2 {
-    scroll-margin-top: 5rem;
+    scroll-margin-top: 13rem;
 }
 
 main .section:not([id='']) {
@@ -120,6 +120,10 @@ main .section:not([id='']) {
 
     main .toc.block.top ul li:last-child {
         border-bottom: unset;
+    }
+
+    main .main-content h2 {
+        scroll-margin-top: 5rem;
     }
 }
 
