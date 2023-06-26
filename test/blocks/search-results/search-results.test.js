@@ -158,6 +158,16 @@ describe('Search Results', () => {
   });
 
   it('Page generation', async () => {
+    const placeholders = {
+      resultstext: 'matches for',
+    };
+    window.placeholders = {
+      'translation-loaded': {},
+      translation: {
+        en: placeholders,
+      },
+    };
+
     const queryIndex = '/query-index.json';
     const mf = sinon.stub(window, 'fetch');
     mf.callsFake((v) => {
@@ -198,7 +208,7 @@ describe('Search Results', () => {
     const searchSummary = block.children[1];
     expect(searchSummary.nodeName).to.equal('H3');
     expect(searchSummary.classList.toString()).to.equal('search-summary');
-    expect(searchSummary.innerHTML).to.equal('2 results found for "<strong>tex</strong>"');
+    expect(searchSummary.innerHTML).to.equal('2 matches for "<strong>tex</strong>"');
 
     const res1 = block.children[2];
     expect(res1.nodeName).to.equal('DIV');
@@ -219,6 +229,74 @@ describe('Search Results', () => {
     expect(res2h3a.href.endsWith('/news/c/')).to.be.true;
 
     const pageWidget = block.children[4];
+    expect(pageWidget.className.toString()).to.equal('pagination');
+  });
+
+  it('Page generation alt language', async () => {
+    const placeholders = {
+      resultstext: 'の検索結果',
+      resultstext_postfix: '件',
+      searchtext: '検索',
+    };
+    window.placeholders = {
+      'translation-loaded': {},
+      translation: {
+        ja: placeholders,
+      },
+    };
+
+    const queryIndex = '/query-index.json';
+    const mf = sinon.stub(window, 'fetch');
+    mf.callsFake((v) => {
+      if (v.startsWith(queryIndex)) {
+        return {
+          ok: true,
+          json: () => ({
+            data: [
+              { path: '/ja/news/a/', title: 'a text', lastModified: 1685443971 },
+              { path: '/ja/news/b/', title: 'some b', lastModified: 1685443972 },
+              { path: '/ja/news/c/', title: 'c text', lastModified: 1685443973 },
+            ],
+          }),
+        };
+      }
+
+      return {
+        ok: false, json: () => ({ data: [] }), text: () => '',
+      };
+    });
+
+    const block = document.querySelector('.search-results');
+    const loc = {
+      search: '?s=a',
+      pathname: '/ja/search',
+    };
+
+    try {
+      await scripts.default(block, loc, true);
+    } finally {
+      mf.restore();
+    }
+
+    const searchForm = block.children[0];
+    expect(searchForm.nodeName).to.equal('FORM');
+    expect(searchForm.classList.toString()).to.equal('search');
+
+    const searchSummary = block.children[1];
+    expect(searchSummary.nodeName).to.equal('H3');
+    expect(searchSummary.classList.toString()).to.equal('search-summary');
+    expect(searchSummary.innerHTML).to.equal('「<strong>a</strong>」 の検索結果 1件');
+
+    const res1 = block.children[2];
+    expect(res1.nodeName).to.equal('DIV');
+    expect(res1.classList.toString()).to.equal('search-result');
+    const res1h3 = res1.children[0];
+    expect(res1h3.nodeName).to.equal('H3');
+    const res1h3a = res1h3.children[0];
+    expect(res1h3a.nodeName).to.equal('A');
+    expect(res1h3a.href.endsWith('/ja/news/a/')).to.be.true;
+
+    const pageWidget = block.children[3];
     expect(pageWidget.className.toString()).to.equal('pagination');
   });
 });

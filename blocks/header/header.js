@@ -159,7 +159,7 @@ function decorateBottomNav(nav, placeholders) {
   menuBackBtn.classList.add('menu-back-btn');
   menuBackBtn.innerHTML = `<span class="icon icon-angle-left"></span><a>${placeholders['back-to-menu']}</a>`;
   nav.prepend(menuBackBtn);
-  nav.append(getSearchWidget());
+  nav.append(getSearchWidget(placeholders));
 
   menuBackBtn.addEventListener('click', () => {
     const level1Open = nav.querySelector(':scope .menu-level-1.open');
@@ -199,8 +199,7 @@ export default async function decorate(block) {
   const resp = await fetch(`${navPath}.plain.html`);
 
   if (resp.ok) {
-    // TODO: localize
-    const placeholders = await fetchPlaceholders();
+    const placeholders = await fetchPlaceholders(getLanguage());
     block.innerHTML = '';
     const html = await resp.text();
     const fetchedNav = document.createElement('div');

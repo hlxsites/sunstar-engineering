@@ -1,5 +1,10 @@
-import { fetchIndex, fixExcelFilterZeroes, getSearchWidget } from '../../scripts/scripts.js';
-import { getFormattedDate } from '../../scripts/lib-franklin.js';
+import { fetchPlaceholders, getFormattedDate } from '../../scripts/lib-franklin.js';
+import {
+  fetchIndex,
+  fixExcelFilterZeroes,
+  getLanguage,
+  getSearchWidget,
+} from '../../scripts/scripts.js';
 
 export function getSearchParams(searchParams) {
   let curPage = new URLSearchParams(searchParams).get('pg');
@@ -107,8 +112,18 @@ export function addPagingWidget(
   div.appendChild(nav);
 }
 
-async function searchPages(term, page) {
-  const json = await fetchIndex('query-index');
+function formatSearchResultCount(num, placeholders, term) {
+  if (placeholders.resultstext_postfix) {
+    // This is for languages like Japanese
+    return `「<strong>${term}</strong>」 ${placeholders.resultstext} ${num}${placeholders.resultstext_postfix}`;
+  }
+  return `${num} ${placeholders.resultstext} "<strong>${term}</strong>"`;
+}
+
+async function searchPages(placeholders, term, page) {
+  const sheet = getLanguage() === 'en' ? undefined : `${getLanguage()}-search`;
+
+  const json = await fetchIndex('query-index', sheet);
   fixExcelFilterZeroes(json.data);
 
   const resultsPerPage = 10;
@@ -122,7 +137,7 @@ async function searchPages(term, page) {
 
   const summary = document.createElement('h3');
   summary.classList.add('search-summary');
-  summary.innerHTML = `${result.length} result${result.length === 1 ? '' : 's'} found for "<strong>${term}</strong>"`;
+  summary.innerHTML = formatSearchResultCount(result.length, placeholders, term);
   div.appendChild(summary);
 
   const curPage = result.slice(startResult, startResult + resultsPerPage);
@@ -198,14 +213,22 @@ async function searchPages(term, page) {
  * decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
-export default async function decorate(block, curLocation = window.location) {
+export default async function decorate(
+  block,
+  curLocation = window.location,
+  resetLanguageCache = false,
+) {
   const { searchTerm, curPage } = getSearchParams(curLocation.search);
+  const placeholders = await fetchPlaceholders(getLanguage(
+    curLocation.pathname,
+    resetLanguageCache,
+  ));
 
   block.innerHTML = '';
-  block.append(getSearchWidget(searchTerm, true));
+  block.append(getSearchWidget(placeholders, searchTerm, true));
 
   if (searchTerm) {
-    const results = await searchPages(searchTerm, curPage);
+    const results = await searchPages(placeholders, searchTerm, curPage);
     block.append(...results);
   }
 }

@@ -24,17 +24,26 @@ describe('Scripts', () => {
   });
 
   it('Creates the Search widget without value', () => {
-    const form = scripts.getSearchWidget();
-    expect(form.action.endsWith('/search')).to.be.true;
+    const placeholders = {
+      emptysearchtext: 'Cannot be empty',
+      searchtext: 'MySearch',
+    };
+
+    const form = scripts.getSearchWidget(placeholders);
+    expect(new URL(form.action).pathname).to.equal('/search');
 
     const div = form.children[0];
     const it = div.getElementsByClassName('search-text');
     expect(it[0].type).to.equal('text');
     expect(it[0].value).to.equal('');
+    expect(it[0].placeholder).to.equal('MySearch');
+    expect(it[0].oninvalid.toString().replace(/(\r\n|\n|\r)/gm, ''))
+      .to.equal('function oninvalid(event) {this.setCustomValidity(\'Cannot be empty\')}');
   });
 
   it('Creates the Search widget with value', () => {
-    const form = scripts.getSearchWidget('hello', true);
+    const form = scripts.getSearchWidget({}, 'hello', true, 'de');
+    expect(new URL(form.action).pathname).to.equal('/de/search');
 
     const div = form.children[0];
     const it = div.getElementsByClassName('search-text');

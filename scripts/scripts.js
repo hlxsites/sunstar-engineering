@@ -32,11 +32,16 @@ export function getLanguageFromPath(pathname, resetCache = false) {
       language = l;
     }
   }
+
+  if (language === undefined) {
+    language = 'en'; // default to English
+  }
+
   return language;
 }
 
-export function getLanguage() {
-  return getLanguageFromPath(window.location.pathname);
+export function getLanguage(curPath = window.location.pathname, resetCache = false) {
+  return getLanguageFromPath(curPath, resetCache);
 }
 /**
  * Builds hero block and prepends to main in a new section.
@@ -187,40 +192,44 @@ export function fixExcelFilterZeroes(data) {
   });
 }
 
-export async function fetchIndex(indexFile, pageSize = 500) {
+export async function fetchIndex(indexFile, sheet, pageSize = 500) {
+  const idxKey = indexFile.concat(sheet || '');
+
   const handleIndex = async (offset) => {
-    const resp = await fetch(`/${indexFile}.json?limit=${pageSize}&offset=${offset}`);
+    const sheetParam = sheet ? `&sheet=${sheet}` : '';
+
+    const resp = await fetch(`/${indexFile}.json?limit=${pageSize}&offset=${offset}${sheetParam}`);
     const json = await resp.json();
 
     const newIndex = {
       complete: (json.limit + json.offset) === json.total,
       offset: json.offset + pageSize,
       promise: null,
-      data: [...window.index[indexFile].data, ...json.data],
+      data: [...window.index[idxKey].data, ...json.data],
     };
 
     return newIndex;
   };
 
   window.index = window.index || {};
-  window.index[indexFile] = window.index[indexFile] || {
+  window.index[idxKey] = window.index[idxKey] || {
     data: [],
     offset: 0,
     complete: false,
     promise: null,
   };
 
-  if (window.index[indexFile].complete) {
-    return window.index[indexFile];
+  if (window.index[idxKey].complete) {
+    return window.index[idxKey];
   }
 
-  if (window.index[indexFile].promise) {
-    return window.index[indexFile].promise;
+  if (window.index[idxKey].promise) {
+    return window.index[idxKey].promise;
   }
 
-  window.index[indexFile].promise = handleIndex(window.index[indexFile].offset);
-  const newIndex = await (window.index[indexFile].promise);
-  window.index[indexFile] = newIndex;
+  window.index[idxKey].promise = handleIndex(window.index[idxKey].offset);
+  const newIndex = await (window.index[idxKey].promise);
+  window.index[idxKey] = newIndex;
 
   return newIndex;
 }
@@ -252,23 +261,24 @@ export function htmlToElement(html) {
   return div.firstElementChild;
 }
 
-function getSearchWidgetHTML(initialVal, searchbox) {
-  // TODO specify the correct language in the 'lang' input
-  // TODO specify the correct language in the oninvalid property
+function getSearchWidgetHTML(placeholders, initialVal, searchbox, lang) {
+  const langPrefix = lang === 'en' ? '' : `/${lang}`;
   const searchType = searchbox ? 'search' : 'text';
 
   return `
-    <form method="get" class="search" action="/search">
+    <form method="get" class="search" action="${langPrefix}/search">
       <div>
-        <input type="hidden" name="lang" value="en">
-        <input type="${searchType}" name="s" value="${initialVal ?? ''}" class="search-text" placeholder="Search" required="true" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('The Search field cannot be empty')">
+        <input type="${searchType}" name="s" value="${initialVal ?? ''}" class="search-text"
+          placeholder="${placeholders.searchtext}" required="true" oninput="this.setCustomValidity('')"
+          oninvalid="this.setCustomValidity('${placeholders.emptysearchtext}')">
         <button class="icon search-icon" aria-label="Search"></button>
       </div>
     </form>`;
 }
 
-export function getSearchWidget(initialVal, searchbox) {
-  return htmlToElement(getSearchWidgetHTML(initialVal, searchbox));
+export function getSearchWidget(placeholders, initialVal, searchbox, lang = getLanguage()) {
+  const widget = getSearchWidgetHTML(placeholders, initialVal, searchbox, lang);
+  return htmlToElement(widget);
 }
 
 /*
