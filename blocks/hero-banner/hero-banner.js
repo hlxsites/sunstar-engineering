@@ -6,10 +6,12 @@ function fetchPosterURL($poster) {
   return `${srcURL.pathname}?${srcUSP.toString()}`;
 }
 
-function decorateVideo(target) {
+function decorateVideo(mediaRow, target) {
+  const mediaDiv = document.createElement('div');
+  mediaDiv.classList.add('hero-banner-media-section');
   const videoTag = document.createElement('video');
-  const $poster = target.querySelector('img');
-  const $a = target.querySelector('a');
+  const $poster = mediaRow.querySelector('img');
+  const $a = mediaRow.querySelector('a');
   const videoURL = $a.href;
   videoTag.toggleAttribute('autoplay', true);
   videoTag.toggleAttribute('muted', true); /* not clear if this is needed in some browsers - TODO test */
@@ -23,63 +25,58 @@ function decorateVideo(target) {
     target.innerHTML = '';
     console.error('Video Source URL is not valid, Check hero-banner block');
   }
-  target.appendChild(videoTag);
+  mediaDiv.appendChild(videoTag);
+  target.appendChild(mediaDiv);
   videoTag.muted = true;
 }
 
-function decorateBackGroundImage(target) {
-  const pictureTag = target.querySelector('picture');
+function decorateBackGroundImage(mediaRow, target) {
+  const mediaDiv = document.createElement('div');
+  mediaDiv.classList.add('hero-banner-media-section');
+  const pictureTag = mediaRow.querySelector('picture');
   target.innerHTML = '';
-  target.appendChild(pictureTag);
+  mediaDiv.appendChild(pictureTag);
+  target.appendChild(mediaDiv);
 }
 
-function decorateTextContent() {
-  const heroBannerBlockDiv = document.querySelector('.section.full-width.hero-banner-container');
-  const contentDiv = heroBannerBlockDiv.querySelector('.default-content-wrapper');
-  if (contentDiv != null) {
-    const headingDiv = document.createElement('div');
+function decorateTextContent(headingRow, target) {
+  headingRow.classList.add('hero-banner-text-container');
+  const firstDiv = headingRow.querySelector('div');
+  firstDiv.classList.add('hero-banner-text-wrapper');
+  const pElement = firstDiv.querySelector('p');
+  if (pElement !== null) {
+    firstDiv.removeChild(pElement);
     const buttonDiv = document.createElement('div');
-    headingDiv.classList.add('hero-banner-text');
-    buttonDiv.classList.add('hero-banner-button');
-    if (contentDiv.querySelector('h6') != null) {
-      headingDiv.appendChild(contentDiv.querySelector('h6'));
-    }
-    if (contentDiv.querySelector('h2') != null) {
-      headingDiv.appendChild(contentDiv.querySelector('h2'));
-    }
-    if (contentDiv.querySelector('.button-container') != null) {
-      const pElement = contentDiv.querySelector('p');
-      if (pElement != null) {
-        const aElement = pElement.querySelector('a');
-        if (aElement != null) {
-          const aText = aElement.textContent;
-          if (aText != null) {
-            const spanTag = document.createElement('span');
-            spanTag.textContent = aText;
-            aElement.textContent = '';
-            buttonDiv.appendChild(aElement);
-            buttonDiv.appendChild(spanTag);
-          }
-        }
-      }
-    }
-    contentDiv.innerHTML = '';
-    const textDiv = document.createElement('div');
-    textDiv.classList.add('hero-banner-content');
-    textDiv.appendChild(headingDiv);
-    textDiv.appendChild(buttonDiv);
-    const contentMainDiv = document.createElement('div');
-    contentMainDiv.classList.add('hero-banner-text-container');
-    contentMainDiv.appendChild(textDiv);
-    contentDiv.appendChild(contentMainDiv);
+    buttonDiv.classList.add('hero-banner-button-container');
+    const aElement = pElement.querySelector('a');
+    const spanElement = document.createElement('span');
+    spanElement.textContent = aElement.textContent;
+    aElement.textContent = '';
+    buttonDiv.appendChild(aElement);
+    buttonDiv.appendChild(spanElement);
+    headingRow.appendChild(buttonDiv);
   }
+  const heroBannerWrapper = document.createElement('div');
+  heroBannerWrapper.classList.add('hero-banner-heading-container');
+  heroBannerWrapper.appendChild(headingRow);
+  const heroBannerMainDiv = document.createElement('div');
+  heroBannerMainDiv.classList.add('hero-banner-heading-section');
+  heroBannerMainDiv.appendChild(heroBannerWrapper);
+  target.appendChild(heroBannerMainDiv);
 }
 
 export default function decorate($block) {
-  if ($block.querySelector('a') !== null) {
-    decorateVideo($block);
-  } else {
-    decorateBackGroundImage($block);
+  const $rows = [...$block.children];
+  const $mediaRow = $rows.at(0);
+  const $contentRow = $rows.at(1);
+  if ($mediaRow !== null) {
+    if ($mediaRow.querySelector('a') !== null) {
+      decorateVideo($mediaRow, $block);
+    } else {
+      decorateBackGroundImage($mediaRow, $block);
+    }
   }
-  decorateTextContent();
+  if ($contentRow !== null) {
+    decorateTextContent($contentRow, $block);
+  }
 }
