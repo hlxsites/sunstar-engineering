@@ -69,6 +69,9 @@ export default async function decorate(block) {
         a.dataset.modal = modalId;
         const url = a.href;
         a.href = '#';
+        if (path.includes('videos')) {
+          a.classList.add('video-link');
+        }
         const hasSearchParam = new URL(url).search.length > 0;
         openModal(a, url, block, hasSearchParam);
       }

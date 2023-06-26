@@ -295,4 +295,36 @@ export async function loadFragment(path) {
   return null;
 }
 
+export async function loadScript(url, attrs = {}) {
+  const script = document.createElement('script');
+  script.src = url;
+  // eslint-disable-next-line no-restricted-syntax
+  for (const [name, value] of Object.entries(attrs)) {
+    script.setAttribute(name, value);
+  }
+  const loadingPromise = new Promise((resolve, reject) => {
+    script.onload = resolve;
+    script.onerror = reject;
+  });
+  document.head.append(script);
+  return loadingPromise;
+}
+
+/**
+ * Loads the user consent manager and dispatches a `consentmanager` window event when loaded.
+ * Note: that this is currently invoked in `delayed.js` and could be moved there.
+ * @returns {Promise<void>}
+ */
+export async function loadConsentManager() {
+  await Promise.all([
+    loadScript('https://app.usercentrics.eu/browser-ui/latest/loader.js', {
+      id: 'usercentrics-cmp',
+      'data-settings-id': '_2XSaYDrpo',
+      async: 'async',
+    }),
+    loadScript('https://privacy-proxy.usercentrics.eu/latest/uc-block.bundle.js'),
+  ]);
+  window.dispatchEvent(new CustomEvent('consentmanager'));
+}
+
 loadPage();
