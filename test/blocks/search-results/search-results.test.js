@@ -159,7 +159,7 @@ describe('Search Results', () => {
 
   it('Page generation', async () => {
     const placeholders = {
-      resultstext: 'matches for',
+      resultstext_postfix: 'matches for',
     };
     window.placeholders = {
       'translation-loaded': {},
@@ -208,7 +208,7 @@ describe('Search Results', () => {
     const searchSummary = block.children[1];
     expect(searchSummary.nodeName).to.equal('H3');
     expect(searchSummary.classList.toString()).to.equal('search-summary');
-    expect(searchSummary.innerHTML).to.equal('2 matches for "<strong>tex</strong>"');
+    expect(searchSummary.innerHTML.trim()).to.equal('2 matches for "<strong>tex</strong>"');
 
     const res1 = block.children[2];
     expect(res1.nodeName).to.equal('DIV');
@@ -234,7 +234,7 @@ describe('Search Results', () => {
 
   it('Page generation alt language', async () => {
     const placeholders = {
-      resultstext: 'の検索結果',
+      resultstext_prefix: 'の検索結果',
       resultstext_postfix: '件',
       searchtext: '検索',
     };

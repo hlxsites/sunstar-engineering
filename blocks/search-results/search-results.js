@@ -112,16 +112,19 @@ export function addPagingWidget(
   div.appendChild(nav);
 }
 
-function formatSearchResultCount(num, placeholders, term) {
-  if (placeholders.resultstext_postfix) {
-    // This is for languages like Japanese
-    return `「<strong>${term}</strong>」 ${placeholders.resultstext} ${num}${placeholders.resultstext_postfix}`;
+function formatSearchResultCount(num, placeholders, term, lang) {
+  if (lang === 'ja') {
+    return `「<strong>${term}</strong>」 ${placeholders.resultstext_prefix} ${num}${placeholders.resultstext_postfix}`;
   }
-  return `${num} ${placeholders.resultstext} "<strong>${term}</strong>"`;
+  if (lang === 'cn') {
+    return `"<strong>${term}</strong>" ${placeholders.resultstext_prefix} ${num}${placeholders.resultstext_postfix}`;
+  }
+  return `${placeholders.resultstext_prefix ?? ''} ${num} ${placeholders.resultstext_postfix} "<strong>${term}</strong>"`;
 }
 
 async function searchPages(placeholders, term, page) {
-  const sheet = getLanguage() === 'en' ? undefined : `${getLanguage()}-search`;
+  const lang = getLanguage();
+  const sheet = lang === 'en' ? undefined : `${lang}-search`;
 
   const json = await fetchIndex('query-index', sheet);
   fixExcelFilterZeroes(json.data);
@@ -137,7 +140,7 @@ async function searchPages(placeholders, term, page) {
 
   const summary = document.createElement('h3');
   summary.classList.add('search-summary');
-  summary.innerHTML = formatSearchResultCount(result.length, placeholders, term);
+  summary.innerHTML = formatSearchResultCount(result.length, placeholders, term, lang);
   div.appendChild(summary);
 
   const curPage = result.slice(startResult, startResult + resultsPerPage);
