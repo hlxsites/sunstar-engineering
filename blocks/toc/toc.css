@@ -18,7 +18,7 @@ main .toc-wrapper {
 }
 
 main .toc.block ul {
-    width: 240px;
+    width: 15rem;
     background: var(--white);
     margin: 0;
 }
@@ -76,18 +76,17 @@ main .section:not([id='']) {
 
 @media (min-width: 62rem) {
     main .toc-container .section-container {
-        max-width: calc(872px + 32px);
+        max-width: calc(54.5rem + 2rem);
     }
 
     main .toc-wrapper {
-        width: 240px;
-        flex-basis: 240px;
+        flex-basis: 15rem;
         margin-right: 4rem;
         margin-bottom: 3rem;
     }
 
     main .toc-container .section-container .main-content {
-        width: calc(100% - 240px - 64px);
+        width: calc(100% - 15rem - 4rem);
         padding: 0;
     }
 
@@ -97,8 +96,7 @@ main .section:not([id='']) {
     }
 
     main .toc.block ul li {
-        padding: 20px 8px 20px 16px;
-        font-size: 16px;
+        padding: 1.25rem 0.156rem 1.25rem 1rem;
         letter-spacing: normal;
         border-top: 1px solid var(--overlay-background-color);
         margin-bottom: unset;
@@ -129,6 +127,6 @@ main .section:not([id='']) {
 
 @media (min-width: 77rem) {
     main .toc-container .section-container {
-        max-width: 1200px;
+        max-width: 75rem;
     }
 }

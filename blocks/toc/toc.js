@@ -1,5 +1,5 @@
-function buildTOCSide(ul) {
-  const sectionContainer = document.querySelector('main > .toc-container > .section-container');
+function buildTOCSide(ul, block) {
+  const sectionContainer = block.closest('.section').querySelector(':scope > .section-container');
   const mainContent = document.createElement('div');
   mainContent.classList.add('main-content');
   const tocWrapper = document.querySelector('main > .toc-container > .section-container > .toc-wrapper');
@@ -61,6 +61,6 @@ export default async function decorate(block) {
   if (block.classList.contains('flat')) {
     buildTOCTop(ul, block);
   } else {
-    buildTOCSide(ul);
+    buildTOCSide(ul, block);
   }
 }
