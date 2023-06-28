@@ -51,6 +51,7 @@
   --transparent-blue-light-color: #F0F5F7FF;
   --transparent-white-color: #ffffff1e;
   --off-white: #ffffff80;
+  --muted-text: #ffffffb3;
 
   /* fonts */
   --body-font-family: "Noto Sans";
@@ -58,6 +59,7 @@
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
+  --body-font-size-l: 18px;
   --body-font-size-m: 16px;
   --body-font-size-s: 14px;
   --body-font-size-xs: 12px;

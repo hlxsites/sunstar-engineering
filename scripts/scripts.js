@@ -261,6 +261,27 @@ export function htmlToElement(html) {
   return div.firstElementChild;
 }
 
+/**
+ * This function finds an element with the given name specified as text in the block
+ * It then returns the sibling element _after_ it, which is the data associated with
+ * the named element in a MD/Document table.
+ *
+ * @param {HTMLElement} block The block to look in
+ * @param {string} name The name (case-insensitive)
+ * @returns The element after the element that contains the name as text
+ */
+export function getNamedValueFromTable(block, name) {
+  // This XPath finds the div that has the name. It uses the XPath translate function to make
+  // the lookup case-insensitive.
+  return document.evaluate(
+    `//div/text()[translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz') = '${name.toLowerCase()}']/parent::div/parent::div/div[2]`,
+    block,
+    null,
+    XPathResult.ANY_TYPE,
+    null,
+  ).iterateNext();
+}
+
 function getSearchWidgetHTML(placeholders, initialVal, searchbox, lang) {
   const langPrefix = lang === 'en' ? '' : `/${lang}`;
   const searchType = searchbox ? 'search' : 'text';
