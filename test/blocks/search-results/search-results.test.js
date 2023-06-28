@@ -168,17 +168,18 @@ describe('Search Results', () => {
       },
     };
 
-    const queryIndex = '/query-index.json';
+    const queryIndex = /query-index.json\\?(.*)&sheet=en-search/;
     const mf = sinon.stub(window, 'fetch');
     mf.callsFake((v) => {
-      if (v.startsWith(queryIndex)) {
+      if (queryIndex.test(v)) {
         return {
           ok: true,
           json: () => ({
             data: [
-              { path: '/news/a/', title: 'a text', lastModified: 1685443971 },
+              { path: '/news/a/', pagename: 'a text', lastModified: 1685443971 },
               { path: '/news/b/', title: 'some b', lastModified: 1685443972 },
-              { path: '/news/c/', title: 'c text', lastModified: 1685443973 },
+              { path: '/news/c/', breadcrumbtitle: 'c text', lastModified: 1685443973 },
+              { path: '/news/d/', description: 'text of d', lastModified: 1685443974 },
             ],
           }),
         };
@@ -208,7 +209,7 @@ describe('Search Results', () => {
     const searchSummary = block.children[1];
     expect(searchSummary.nodeName).to.equal('H3');
     expect(searchSummary.classList.toString()).to.equal('search-summary');
-    expect(searchSummary.innerHTML.trim()).to.equal('2 matches for "<strong>tex</strong>"');
+    expect(searchSummary.innerHTML.trim()).to.equal('3 matches for "<strong>tex</strong>"');
 
     const res1 = block.children[2];
     expect(res1.nodeName).to.equal('DIV');
@@ -228,7 +229,16 @@ describe('Search Results', () => {
     expect(res2h3a.nodeName).to.equal('A');
     expect(res2h3a.href.endsWith('/news/c/')).to.be.true;
 
-    const pageWidget = block.children[4];
+    const res3 = block.children[4];
+    expect(res3.nodeName).to.equal('DIV');
+    expect(res3.classList.toString()).to.equal('search-result');
+    const res3h3 = res3.children[0];
+    expect(res3h3.nodeName).to.equal('H3');
+    const res3h3a = res3h3.children[0];
+    expect(res3h3a.nodeName).to.equal('A');
+    expect(res3h3a.href.endsWith('/news/d/')).to.be.true;
+
+    const pageWidget = block.children[5];
     expect(pageWidget.className.toString()).to.equal('pagination');
   });
 
@@ -245,10 +255,10 @@ describe('Search Results', () => {
       },
     };
 
-    const queryIndex = '/query-index.json';
+    const queryIndex = /query-index.json\\?(.*)&sheet=ja-search/;
     const mf = sinon.stub(window, 'fetch');
     mf.callsFake((v) => {
-      if (v.startsWith(queryIndex)) {
+      if (queryIndex.test(v)) {
         return {
           ok: true,
           json: () => ({

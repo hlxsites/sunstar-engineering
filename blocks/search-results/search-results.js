@@ -123,8 +123,7 @@ function formatSearchResultCount(num, placeholders, term, lang) {
 }
 
 async function searchPages(placeholders, term, page) {
-  const lang = getLanguage();
-  const sheet = lang === 'en' ? undefined : `${lang}-search`;
+  const sheet = `${getLanguage()}-search`;
 
   const json = await fetchIndex('query-index', sheet);
   fixExcelFilterZeroes(json.data);
@@ -133,14 +132,14 @@ async function searchPages(placeholders, term, page) {
   const startResult = page * resultsPerPage;
 
   const result = json.data
-    .filter((entry) => `${entry.description} ${entry.title}`.toLowerCase()
+    .filter((entry) => `${entry.description} ${entry.pagename} ${entry.breadcrumbtitle} ${entry.title}`.toLowerCase()
       .includes(term.toLowerCase()));
 
   const div = document.createElement('div');
 
   const summary = document.createElement('h3');
   summary.classList.add('search-summary');
-  summary.innerHTML = formatSearchResultCount(result.length, placeholders, term, lang);
+  summary.innerHTML = formatSearchResultCount(result.length, placeholders, term, getLanguage());
   div.appendChild(summary);
 
   const curPage = result.slice(startResult, startResult + resultsPerPage);
@@ -150,7 +149,8 @@ async function searchPages(placeholders, term, page) {
     res.classList.add('search-result');
     const header = document.createElement('h3');
     const link = document.createElement('a');
-    setResultValue(link, line.title, term);
+    const searchTitle = line.pagename || line.breadcrumbtitle || line.title;
+    setResultValue(link, searchTitle, term);
     link.href = line.path;
     const path = line.path || '';
     const parentPath = path && path.lastIndexOf('/') > -1 ? path.slice(0, path.lastIndexOf('/')) : '';
