@@ -173,9 +173,10 @@ h5 {
 }
 
 h6 {
-  font-size: var(--heading-font-size-xxs);
+  font-size: var(--heading-font-size-xxxs);
   text-transform: uppercase;
   margin-bottom: 1rem;
+  color: var(--secondary);
 }
 
 p,
@@ -406,6 +407,11 @@ main .section.full-width>.section-container {
     font-weight: 300;
     margin: 0 auto 3rem;
   }
+
+  h6 {
+    font-size: var(--heading-font-size-xxs);
+  }
+
 
   main .section-container {
     max-width: calc(872px + 32px);
