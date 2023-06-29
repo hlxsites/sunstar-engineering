@@ -17,7 +17,6 @@ main .hero-horiz-tabs-text {
   padding-bottom: 72px;
   margin-left: 16px;
   margin-right: 32px;
-  min-width: 436px;
 }
 
 main .hero-horiz-tabs-img {
@@ -85,6 +84,7 @@ main .hero-horizontal-tabs nav a.current {
   main .hero-horiz-tabs-text {
     padding-top: 66px;
     margin-left: 0;
+    min-width: 436px;
   }
 
   main .hero-horiz-tabs-text > h6 {
