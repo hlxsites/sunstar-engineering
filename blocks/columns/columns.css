@@ -1,8 +1,5 @@
 .columns {
-  margin-top: 2rem;
-  margin-bottom: 4rem;
-  margin-left: 0;
-  margin-right: 0;
+  margin: 2rem 0 4rem;
 }
 
 .columns > div {
