@@ -483,6 +483,10 @@ header .lang-picker-item>a:hover {
 }
 
 @media (min-width: 77rem) {
+  header.header-wrapper.fixed {
+    box-shadow: 0 0.125rem 0.5rem 0 #3C46500F;
+  }
+
   header nav.nav-top {
     display: flex;
   }
