@@ -13,7 +13,7 @@ window.addEventListener('consentmanager', () => {
     preview: 'https://assets.adobedtm.com/467469cdd595/f9651373cafd/launch-8108dcbd2d02-staging.min.js',
     live: 'https://assets.adobedtm.com/467469cdd595/f9651373cafd/launch-9e812df82057.min.js',
   };
-  loadScript(adobeotmSrc[getEnvType(document.location.hostname)]);
+  loadScript(adobeotmSrc[getEnvType()]);
 });
 
 await loadConsentManager();

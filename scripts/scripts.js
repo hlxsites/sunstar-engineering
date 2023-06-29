@@ -284,7 +284,7 @@ export function getSearchWidget(placeholders, initialVal, searchbox, lang = getL
 /*
   * Returns the environment type based on the hostname.
 */
-export function getEnvType(hostname) {
+export function getEnvType(hostname = window.location.hostname) {
   const fqdnToEnvType = {
     'sunstar-engineering.com': 'live',
     'main--sunstar-engineering--hlxsites.hlx.page': 'preview',
@@ -326,12 +326,18 @@ export async function loadScript(url, attrs = {}) {
  * @returns {Promise<void>}
  */
 export async function loadConsentManager() {
+  const ccmConfig = {
+    id: 'usercentrics-cmp',
+    'data-settings-id': '_2XSaYDrpo',
+    async: 'async',
+  };
+
+  if (getEnvType() !== 'live') {
+    ccmConfig['data-version'] = 'preview';
+  }
+
   await Promise.all([
-    loadScript('https://app.usercentrics.eu/browser-ui/latest/loader.js', {
-      id: 'usercentrics-cmp',
-      'data-settings-id': '_2XSaYDrpo',
-      async: 'async',
-    }),
+    loadScript('https://app.usercentrics.eu/browser-ui/latest/loader.js', ccmConfig),
     loadScript('https://privacy-proxy.usercentrics.eu/latest/uc-block.bundle.js'),
   ]);
   window.dispatchEvent(new CustomEvent('consentmanager'));
