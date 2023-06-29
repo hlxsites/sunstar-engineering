@@ -93,6 +93,7 @@ function handleFormSubmit(event, urlList) {
       spinner.style.display = 'none';
     })
     .catch((error) => {
+      // eslint-disable-next-line no-console
       console.error('Error:', error);
       spinner.style.display = 'none';
     });
