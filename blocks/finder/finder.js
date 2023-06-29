@@ -5,13 +5,30 @@ const cachedResponses = {};
 function template() {
   return `
   <div class="container">
-    <h2>URL Filtering</h2>
-    <form id="filterForm" onsubmit="handleFormSubmit(event)">
+    <h2>Site Selector Search</h2>
+    <form id="filterForm">
       <div class="form-group">
-        <label for="desiredElement">Desired Element:</label>
-        <input type="text" id="desiredElement" name="desiredElement" required>
+        <label for="desiredSelector">Desired Selector:</label>
+        <input type="text" id="desiredSelector" name="desiredSelector" required>
+        Few Examples:
+        <table>
+          <tr>
+            <th>Item</th>
+            <th>Selector</th>
+          </tr>
+          <tr>
+            <td>Cards Block</td>
+            <td><pre>.cards</pre></td>
+          </tr>
+          <tr>
+            <td>Breadcrumb Block</td>
+            <td><pre>.breadcrumb</pre></td>
+          </tr>
+        </table>
       </div>
       <button type="submit">Filter URLs</button>
+      <h3>Results will appear below<h3>
+      <h6>For the first search on page load, the search results take time (~ 1 minute) to appear. Subsequent searches would be faster.</h6>
     </form>
     <div id="spinner" class="spinner"></div>
     <div id="resultContainer"></div>
@@ -44,9 +61,9 @@ async function searchForElement(url, selector) {
   element.innerHTML = html;
 
   // Modify the selector and condition based on your requirements
-  const desiredElement = element.querySelector(selector);
+  const desiredSelector = element.querySelector(selector);
 
-  return !!desiredElement;
+  return !!desiredSelector;
 }
 
 async function filterUrlsWithElement(urls, selector) {
@@ -68,8 +85,8 @@ function handleFormSubmit(event, urlList) {
   event.preventDefault();
 
   const form = event.target;
-  const input = form.elements.desiredElement;
-  const desiredElement = input.value;
+  const input = form.elements.desiredSelector;
+  const desiredSelector = input.value;
 
   const container = document.getElementById('resultContainer');
   const spinner = document.getElementById('spinner');
@@ -77,7 +94,7 @@ function handleFormSubmit(event, urlList) {
   container.textContent = '';
   spinner.style.display = 'block';
 
-  filterUrlsWithElement(urlList, desiredElement)
+  filterUrlsWithElement(urlList, desiredSelector)
     .then((filteredUrls) => {
       const resultList = document.createElement('ul');
       resultList.textContent = 'Filtered URLs:';

@@ -30,3 +30,7 @@
         transform: rotate(360deg);
     }
 }
+
+.finder table {
+    text-align: center;
+}
