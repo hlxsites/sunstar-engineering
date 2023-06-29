@@ -18,8 +18,14 @@ function template() {
   </div>    `;
 }
 
+function replaceIndex(path) {
+  if (path.endsWith('/index')) {
+    return path.slice(0, -6);
+  }
+  return path;
+}
 function pathToUrl(path) {
-  return `${window.location.origin}${path}`;
+  return `${window.location.origin}${replaceIndex(path)}`;
 }
 
 async function fetchHtml(url) {
