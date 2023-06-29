@@ -154,10 +154,10 @@ h1 {
 }
 
 h2 {
-  font-size: var(--heading-font-size-xl);
-  margin: 4rem 0 3rem;
+  font-size: var(--heading-font-size-m);
   font-weight: 500;
   line-height: 1.3em;
+  margin: 0 auto 2.5rem;
 }
 
 h3 {
@@ -173,8 +173,10 @@ h5 {
 }
 
 h6 {
-  font-size: var(--heading-font-size-xxs);
+  font-size: var(--heading-font-size-xxxs);
   text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: var(--secondary);
 }
 
 p,
@@ -400,6 +402,17 @@ main .section.full-width>.section-container {
 }
 
 @media (min-width:62rem) {
+  h2 {
+    font-size: var(--heading-font-size-xl);
+    font-weight: 300;
+    margin: 0 auto 3rem;
+  }
+
+  h6 {
+    font-size: var(--heading-font-size-xxs);
+  }
+
+
   main .section-container {
     max-width: calc(872px + 32px);
     margin-inline: auto;
