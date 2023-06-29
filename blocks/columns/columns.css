@@ -61,6 +61,7 @@
 
 .columns > div > div > p {
   margin: 2rem 0 3rem;
+  margin-top: 0;
 }
 
 .columns > div > div.non-singleton-img {
