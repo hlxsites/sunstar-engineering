@@ -1,0 +1,24 @@
+.contact-us.block {
+    text-align: center;
+    padding: 4rem 0;
+    margin: 5rem auto;
+    background-color: var(--transparent-blue-light-color);
+}
+
+.contact-us.block h2 {
+    margin-bottom: 0.5rem;
+}
+
+.contact-us.block p {
+    margin-bottom: 2rem;
+}
+
+@media (min-width:62rem) {
+    .contact-us.block h2 {
+        margin-bottom: 1rem;
+    }
+
+    .contact-us.block p {
+        margin-bottom: 1.5rem;
+    }
+}
