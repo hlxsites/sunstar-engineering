@@ -9,7 +9,10 @@ div.news-banner {
   font-weight: var(--font-weight-small);
   line-height: 14px;
   padding: 16px;
-  max-width: 1200px;
+}
+
+.news-banner a {
+  line-height: 21px;
 }
 
 .news-banner a:link,
@@ -35,6 +38,7 @@ div.news-banner {
     flex-direction: row;
     font-weight: var(--font-weight-medium);
     line-height: 24px;
+    max-width: 900px;
   }
 
   .news-banner span {
@@ -43,5 +47,11 @@ div.news-banner {
 
   .news-banner span:first-of-type {
     font-weight: var(--font-weight-small);
+  }
+}
+
+@media (min-width:77rem) {
+  div.news-banner {
+    max-width: 1200px;
   }
 }
