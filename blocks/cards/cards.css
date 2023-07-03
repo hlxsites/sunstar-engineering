@@ -102,15 +102,15 @@ main .block.cards {
     margin: 0;
 }
 
-.section.cards-container:not(a) {
+.section.cards-container.nolink {
     margin: 0;
 }
 
-main .block.cards.nolink {
+main .nolink .block.cards {
     margin: 0 auto 2rem;
 }
 
-.cards.nolink>ul>li {
+.nolink .cards>ul>li {
     display: flex;
     flex-direction: row;
     box-shadow: none;
@@ -120,15 +120,15 @@ main .block.cards.nolink {
     text-align: left;
 }
 
-.cards.nolink>ul>li:last-child {
+.nolink .cards>ul>li:last-child {
     margin: 0;
 }
 
-.cards.nolink>ul>li:hover {
+.nolink .cards>ul>li:hover {
     box-shadow: none;
 }
 
-.cards.nolink .cards-card-image {
+.nolink .cards .cards-card-image {
     margin: 0;
     padding: 0;
     width: 5rem;
@@ -136,7 +136,7 @@ main .block.cards.nolink {
     height: 5rem;
 }
 
-.cards.nolink>ul>li>.cards-card-body>h6 {
+.nolink .cards>ul>li>.cards-card-body>h6 {
     text-align: left;
     text-transform: unset;
 }
@@ -146,7 +146,7 @@ main .block.cards.nolink {
         margin: 5rem 0;
     }
 
-    .section.cards-container:not(a) {
+    .section.cards-container.nolink {
         margin: 0 0 1rem;
     }
 
@@ -189,11 +189,11 @@ main .block.cards.nolink {
         height: 100%;
     }
 
-    main .block.cards.nolink {
+    main .nolink .block.cards {
         margin: 0;
     }
 
-    .cards.nolink>ul>li {
+    .nolink .cards>ul>li {
         display: flex;
         flex-direction: column;
         box-shadow: none;
@@ -203,7 +203,7 @@ main .block.cards.nolink {
         padding: 0;
     }
 
-    .cards.nolink .cards-card-image {
+    .nolink .cards .cards-card-image {
         margin: auto;
         width: 7.5rem;
         height: 7.5rem;
