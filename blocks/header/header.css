@@ -580,6 +580,11 @@ header .lang-picker-item>a:hover {
     margin: 0 auto;
   }
 
+  header nav.nav-bottom .menu-level-1-item .dropdown-menu>.dropdown-menu-header h2 {
+    margin: 56px 0 80px;
+    font-size: 40px;
+  }
+
   header nav.nav-bottom .menu-level-1-item .dropdown-menu>.dropdown-menu-header h2 .icon {
     display: none;
   }
@@ -608,6 +613,7 @@ header .lang-picker-item>a:hover {
   /* stylelint-disable-next-line no-descending-specificity */
   header nav.nav-bottom .menu-level-2-item>a {
     display: unset;
+    line-height: 1.5;
   }
 
   header nav.nav-bottom .menu-level-2-item-header,
@@ -621,10 +627,16 @@ header .lang-picker-item>a:hover {
     position: unset;
     width: auto;
     height: auto;
+    margin-top: 6px;
   }
 
   header nav.nav-bottom .menu-level-3-item {
     border-bottom: unset;
+    height: 2.55rem;
+  }
+
+  header nav.nav-bottom .menu-level-3-item>a:hover {
+    color: var(--muted-text);
   }
 
   header nav.nav-bottom .menu-level-3-item>a::before {
@@ -637,6 +649,9 @@ header .lang-picker-item>a:hover {
     background: #009cbd;
   }
 
+  header nav.nav-bottom .menu-level-3-item:last-of-type>a::before {
+    height: 1.375rem;
+  }
 
   header form.search div {
     min-width: 200px;
