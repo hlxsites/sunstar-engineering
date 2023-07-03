@@ -403,6 +403,102 @@ main .section.full-width>.section-container {
   padding-right: 0;
 }
 
+/* START Brands Top Section START */
+main .section.brands-top {
+  padding-top: 3rem;
+}
+
+main .section.brands-top h2 {
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  line-height: 1.3em;
+  font-weight: 500;
+
+}
+
+main .section.brands-top h6 {
+  color: #007CADB3;
+  font-size: 12px;
+}
+
+main .section.brands-top p {
+  text-align: center;
+  max-width: 720px;
+  display: inline-block;
+  line-height: 1.5;
+  margin-bottom: 3rem;
+  letter-spacing: 0.1px;
+}
+
+/* END Brands Top Section END */
+
+/* START Brand Description Section START */
+main .section.brand-description {
+  margin-bottom: 120px;
+  padding: 0 1rem;
+}
+
+main .section.brand-description em {
+  font-size: 14px;
+  color: #3C4650B3;
+  font-style: normal;
+}
+
+
+main .section.brand-description .icon {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+
+main .section.brand-description img {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+
+main .section.brand-description p:first-of-type img {
+  max-width: 200px;
+  zoom: 1;
+}
+
+main .section.brand-description h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 1.5rem;
+  line-height: 1.3em;
+  font-weight: 500;
+}
+
+main .section.brand-description h3 {
+  margin-top: 3.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1.3em;
+  color: var(--link-color);
+}
+
+main .section.brand-description p {
+  margin-bottom: 1.5rem;
+}
+
+main .section.brand-description .button-container {
+  margin-bottom: 1.5rem;
+}
+
+main .section.brand-description a.button.primary {
+  display: inline-block;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.5em;
+  background-color: unset;
+  color: var(--secondary);
+}
+
+/* END Brand Description Section END */
+
 @media (min-width:62rem) {
   h2 {
     font-size: var(--heading-font-size-xl);
@@ -414,6 +510,43 @@ main .section.full-width>.section-container {
     font-size: var(--heading-font-size-xxs);
   }
 
+
+  /* START Brands Top Section START */
+
+  main .section.brands-top h6 {
+    font-size: 14px;
+  }
+
+  main .section.brands-top h2 {
+    font-weight: 300;
+    font-size: 2.25rem;
+  }
+
+  /* END Brands Top Section END */
+
+  /* START Brand Description Section START */
+
+  main .section.brand-description {
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 872px;
+  }
+
+  main .section.brand-description img {
+    zoom: 0.5;
+    max-width: unset;
+  }
+
+  main .section.brand-description h2 {
+    font-weight: 300;
+    font-size: 2.25rem;
+  }
+
+
+  /* END Brand Description Section END */
 
   main .section-container {
     max-width: calc(872px + 32px);
