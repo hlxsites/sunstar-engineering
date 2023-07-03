@@ -267,10 +267,23 @@ function createCardsBlockFromSection(document) {
   });
 }
 
+function addListBlock(document) {
+  const newsSection = document.querySelector('.section-news');
+  if (newsSection) {
+    const titleArea = document.querySelector('.title-area');
+    titleArea.remove();
+    const cells = [['List (News)']];
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    newsSection.after(document.createElement('hr'));
+    newsSection.replaceWith(table);
+  }
+}
+
 function customImportLogic(doc) {
   removeCookiesBanner(doc);
 
   addBreadCrumb(doc);
+  addListBlock(doc);
   addCarouselItems(doc);
 
   createCardsBlockFromSection(doc);
