@@ -294,7 +294,10 @@ export default {
    * @returns {HTMLElement} The root element to be transformed
    */
 
-  preprocess: ({ document, url, html, params }) => {
+  preprocess: ({
+    // eslint-disable-next-line no-unused-vars
+    document, url, html, params,
+  }) => {
     const schemaDetails = document.querySelector('head script.aioseo-schema');
     const metadataDetails = {};
 
@@ -303,7 +306,7 @@ export default {
       const graphNode = jsonSchema['@graph'];
 
       if (graphNode) {
-        graphNode.forEach(node => {
+        graphNode.forEach((node) => {
           const nodeType = node['@type'];
 
           if (nodeType === 'BreadcrumbList' && node.itemListElement && node.itemListElement.length) {
@@ -314,7 +317,7 @@ export default {
               metadataDetails.PageName = lastItemDetails.name;
             }
           }
-        })
+        });
       }
 
       params.preProcessMetadata = metadataDetails;
