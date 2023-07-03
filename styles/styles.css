@@ -535,10 +535,12 @@ main .section.brand-description a.button.primary {
     max-width: 54.5rem;
   }
 
-  main .section.brand-description img {
+  main .section.brand-description img,
+  main .section.brand-description p:first-of-type img {
     zoom: 0.5;
     max-width: unset;
   }
+
 
   main .section.brand-description h2 {
     font-weight: var(--font-weight-small);
