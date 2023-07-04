@@ -430,6 +430,10 @@ main .section.brands-top p {
   letter-spacing: 0.1px;
 }
 
+main .section.brands-top > .section-container {
+  padding: 0 1rem;
+}
+
 /* END Brands Top Section END */
 
 /* START Brand Description Section START */
