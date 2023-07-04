@@ -437,7 +437,7 @@ main .section.brands-top p {
   letter-spacing: 0.1px;
 }
 
-main .section.brands-top > .section-container {
+main .section.brands-top>.section-container {
   padding: 0 1rem;
 }
 
@@ -521,10 +521,13 @@ main .section.spaced h2 {
 
 main .section.spaced h3 {
   margin: 3rem 0;
+  color: var(--text-color);
 }
 
 main .section.spaced p {
   margin-bottom: 2rem;
+  letter-spacing: 0;
+  line-height: 27.2px;
 }
 
 main .section.spaced ul {
@@ -574,6 +577,10 @@ main .section.margin-bottom>.section-container {
     font-size: var(--heading-font-size-xl);
     font-weight: var(--font-weight-small);
     margin: 0 auto 3rem;
+  }
+
+  h3 {
+    font-size: var(--heading-font-size-m);
   }
 
   h6 {
