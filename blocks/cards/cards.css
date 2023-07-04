@@ -217,6 +217,14 @@ main .nolink .block.cards {
         margin: 0 1rem;
     }
 
+    .cards>ul>li:first-of-type {
+        margin-left: 0;
+    }
+
+    .cards>ul>li:last-of-type {
+        margin-right: 0;
+    }
+
     .cards>ul>li>a.button {
         padding: 20px 0 0;
     }
