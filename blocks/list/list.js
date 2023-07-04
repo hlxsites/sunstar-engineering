@@ -1,5 +1,7 @@
-import { fetchIndex, fixExcelFilterZeroes, getLanguage } from '../../scripts/scripts.js';
-import { getFormattedDate, addPagingWidget } from '../../scripts/lib-franklin.js';
+import {
+  fetchIndex, fixExcelFilterZeroes, getLanguage, addPagingWidget,
+} from '../../scripts/scripts.js';
+import { getFormattedDate } from '../../scripts/lib-franklin.js';
 
 const blockJson = {
   news: {
@@ -81,10 +83,6 @@ async function getResults(page, block, blockType) {
   return div.children;
 }
 
-/**
- * decorates the header, mainly the nav
- * @param {Element} block The header block element
- */
 export default async function decorate(block, curLocation = window.location) {
   const { curPage } = getParams(curLocation.search);
   const blockType = Array.from(block.classList).filter((x) => ['list', 'block'].indexOf(x) === -1)[0];

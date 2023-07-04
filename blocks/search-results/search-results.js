@@ -1,9 +1,10 @@
-import { fetchPlaceholders, getFormattedDate, addPagingWidget } from '../../scripts/lib-franklin.js';
+import { fetchPlaceholders, getFormattedDate } from '../../scripts/lib-franklin.js';
 import {
   fetchIndex,
   fixExcelFilterZeroes,
   getLanguage,
   getSearchWidget,
+  addPagingWidget,
 } from '../../scripts/scripts.js';
 
 export function getSearchParams(searchParams) {
