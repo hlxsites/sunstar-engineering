@@ -403,6 +403,24 @@ main .section.full-width>.section-container {
   padding-right: 0;
 }
 
+main .section.contact-us>.section-container {
+  padding: 5rem 0;
+  background-color: var(--transparent-blue-light-color);
+  text-align: center;
+}
+
+main .section.contact-us h2 {
+  margin-bottom: 0.5rem;
+}
+
+main .section.contact-us p.button-container {
+  margin-top: 2rem;
+}
+
+main .section.margin-bottom>.section-container {
+  margin-bottom: 5rem;
+}
+
 @media (min-width:62rem) {
   h2 {
     font-size: var(--heading-font-size-xl);
@@ -420,6 +438,18 @@ main .section.full-width>.section-container {
     margin-inline: auto;
     padding-left: 16px;
     padding-right: 16px
+  }
+
+  main .section.margin-bottom>.section-container {
+    margin-bottom: 7.5rem;
+  }
+
+  main .section.contact-us h2 {
+    margin-top: 1rem;
+  }
+
+  main .section.contact-us p.button-container {
+    margin-top: 1.5rem;
   }
 }
 
