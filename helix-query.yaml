@@ -22,6 +22,9 @@ indices:
       newsdate:
         select: head > meta[name="newsdate"]
         value: attribute(el, "content")
+      pagename:
+        select: head > meta[name="pagename"]
+        value: attribute(el, "content")
       robots:
         select: head > meta[name="robots"]
         value: attribute(el, "content")

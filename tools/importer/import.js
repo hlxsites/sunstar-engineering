@@ -14,7 +14,7 @@
 
 import urls from './constants.js';
 
-const createMetadata = (main, document, url) => {
+const createMetadata = (main, document, params, url) => {
   const meta = {};
 
   const title = document.querySelector('title');
@@ -46,6 +46,10 @@ const createMetadata = (main, document, url) => {
   const { pathname } = new URL(url);
   if (urls && urls[pathname.toLowerCase()]) {
     meta.NewsDate = new Date(urls[pathname.toLowerCase()].publishedDate).getTime();
+  }
+
+  if (params.preProcessMetadata && Object.keys(params.preProcessMetadata).length) {
+    Object.assign(meta, params.preProcessMetadata);
   }
 
   const block = WebImporter.Blocks.getMetadataBlock(document, meta);
@@ -289,6 +293,37 @@ export default {
    * @param {object} params Object containing some parameters given by the import process.
    * @returns {HTMLElement} The root element to be transformed
    */
+
+  preprocess: ({
+    // eslint-disable-next-line no-unused-vars
+    document, url, html, params,
+  }) => {
+    const schemaDetails = document.querySelector('head script.aioseo-schema');
+    const metadataDetails = {};
+
+    if (schemaDetails) {
+      const jsonSchema = JSON.parse(schemaDetails.innerText);
+      const graphNode = jsonSchema['@graph'];
+
+      if (graphNode) {
+        graphNode.forEach((node) => {
+          const nodeType = node['@type'];
+
+          if (nodeType === 'BreadcrumbList' && node.itemListElement && node.itemListElement.length) {
+            const lastItem = node.itemListElement[node.itemListElement.length - 1];
+            const lastItemDetails = lastItem.item;
+
+            if (lastItemDetails) {
+              metadataDetails.PageName = lastItemDetails.name;
+            }
+          }
+        });
+      }
+
+      params.preProcessMetadata = metadataDetails;
+    }
+  },
+
   transformDOM: ({
     // eslint-disable-next-line no-unused-vars
     document, url, html, params,
@@ -303,7 +338,7 @@ export default {
       'noscript',
     ]);
     // create the metadata block and append it to the main element
-    createMetadata(main, document, url);
+    createMetadata(main, document, params, url);
     customImportLogic(document);
 
     return main;
