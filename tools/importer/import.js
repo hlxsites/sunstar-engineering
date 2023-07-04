@@ -247,7 +247,14 @@ function createCardsBlockFromSection(document) {
       const headerContainer = contentCards[0];
       const cardsContainer = contentCards[1];
       Array.from(cardsContainer.children).forEach((card) => {
-        const img = card.querySelector('img');
+        let img = card.querySelector('img');
+        const imgSrc = img.getAttribute('src');
+        if (imgSrc.includes('.svg')) {
+          // extract the svg file name
+          const svgFileName = imgSrc.split('/').pop().split('.')[0];
+          // replace the img tag with an icon
+          img = `:${svgFileName}:`;
+        }
         const title = card.querySelector('h6').textContent;
         card.replaceChildren(title);
         block.push([img, card]);
