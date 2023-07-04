@@ -189,13 +189,6 @@ function convertBackgroundImgsToForegroundImgs(sourceNode, targetNode = sourceNo
   // workaround for inability of importer to handle styles
   // with whitespace in the url
   [...bgImgs].forEach((bgImg) => {
-    bgImg.getAttribute('style').split(';').forEach((style) => {
-      const [prop, value] = style.split(':');
-      if (prop === 'background-image') {
-        const withoutSpaces = value.replace(/\s/g, '');
-        bgImg.style.backgroundImage = withoutSpaces;
-      }
-    });
     WebImporter.DOMUtils.replaceBackgroundByImg(bgImg, targetNode);
   });
 }
@@ -212,17 +205,19 @@ function createColumnBlockFromSection(document) {
        * two columns
        * isn't a hero section
        * doesn't have an embed
+       * doesn't have lists
      */
     const heroParent = Array.from(section.parentElement.classList)
       .filter((s) => /hero/.test(s)).length;
     const hasEmbed = !!section.querySelector('.wp-block-embed');
+    const hasLists = !!section.querySelector('ul');
     const contentColumns = Array.from(section.children)
       .filter(
         (el) => (el.tagName === 'DIV'
           || el.tagName === 'FIGURE'
           || el.tagName === 'IMG'),
       );
-    if (!heroParent && !hasEmbed && contentColumns
+    if (!heroParent && !hasEmbed && !hasLists && contentColumns
       && contentColumns.length === 2
       && section.children.length === 2
       && section.querySelectorAll('p').length !== 0) {
@@ -242,7 +237,7 @@ function createColumnBlockFromSection(document) {
 }
 
 /**
- * Creates a column block from a section if it contains two columns _only_
+ * Creates a cards block from a section
  * @param {HTMLDocument} document The document
  */
 function createCardsBlockFromSection(document) {
