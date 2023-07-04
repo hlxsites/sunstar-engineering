@@ -12,9 +12,7 @@
 /* global WebImporter */
 /* eslint-disable no-console, class-methods-use-this */
 
-import urls from './constants.js';
-
-const createMetadata = (main, document, params, url) => {
+const createMetadata = (main, document, params) => {
   const meta = {};
 
   const title = document.querySelector('title');
@@ -41,11 +39,6 @@ const createMetadata = (main, document, params, url) => {
       const breadcrumbText = breadcrumbItems[breadcrumbItems.length - 1].textContent.trim();
       meta.BreadcrumbTitle = breadcrumbText;
     }
-  }
-
-  const { pathname } = new URL(url);
-  if (urls && urls[pathname.toLowerCase()]) {
-    meta.NewsDate = new Date(urls[pathname.toLowerCase()].publishedDate).getTime();
   }
 
   if (params.preProcessMetadata && Object.keys(params.preProcessMetadata).length) {
@@ -321,6 +314,7 @@ export default {
       if (graphNode) {
         graphNode.forEach((node) => {
           const nodeType = node['@type'];
+          const { pathname } = new URL(url);
 
           if (nodeType === 'BreadcrumbList' && node.itemListElement && node.itemListElement.length) {
             const lastItem = node.itemListElement[node.itemListElement.length - 1];
@@ -329,6 +323,8 @@ export default {
             if (lastItemDetails) {
               metadataDetails.PageName = lastItemDetails.name;
             }
+          } else if (nodeType === 'WebPage' && pathname.includes('/news') && node.datePublished) {
+            metadataDetails.NewsDate = new Date(node.datePublished).getTime();
           }
         });
       }
@@ -351,7 +347,7 @@ export default {
       'noscript',
     ]);
     // create the metadata block and append it to the main element
-    createMetadata(main, document, params, url);
+    createMetadata(main, document, params);
     customImportLogic(document);
 
     return main;
