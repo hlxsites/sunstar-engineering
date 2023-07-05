@@ -1,8 +1,11 @@
+const mobileBreakpoint = 992;
+let heroImage = false;
+
 function fetchPosterURL($poster) {
   const srcURL = new URL($poster.src);
   const srcUSP = new URLSearchParams(srcURL.search);
   srcUSP.set('format', 'webply');
-  srcUSP.set('width', '750');
+  srcUSP.set('width', window.innerWidth < mobileBreakpoint ? 750 : 2000);
   return `${srcURL.pathname}?${srcUSP.toString()}`;
 }
 
@@ -14,12 +17,11 @@ function decorateVideo(mediaRow, target) {
   const $a = mediaRow.querySelector('a');
   const videoURL = $a.href;
   videoTag.toggleAttribute('autoplay', true);
-  videoTag.toggleAttribute('muted', true); /* not clear if this is needed in some browsers - TODO test */
+  videoTag.toggleAttribute('muted', true);
   videoTag.toggleAttribute('playsinline', true);
   videoTag.toggleAttribute('loop', true);
   videoTag.setAttribute('poster', fetchPosterURL($poster));
-  // videoTag.setAttribute('title', video.title);
-  videoTag.innerHTML = `<source src="${videoURL}" type="video/mp4">`;
+  videoTag.setAttribute('src', `${videoURL}`);
   target.innerHTML = '';
   if (videoURL == null) {
     target.innerHTML = '';
@@ -44,7 +46,7 @@ function decorateTextContent(headingRow, target) {
   const firstDiv = headingRow.querySelector('div');
   firstDiv.classList.add('hero-banner-text-wrapper');
   const pElement = firstDiv.querySelector('p');
-  if (pElement !== null) {
+  if (pElement && pElement.childElementCount === 1 && pElement.firstElementChild.tagName === 'A') {
     firstDiv.removeChild(pElement);
     const buttonDiv = document.createElement('div');
     buttonDiv.classList.add('hero-banner-button-container');
@@ -69,14 +71,31 @@ export default function decorate($block) {
   const $rows = [...$block.children];
   const $mediaRow = $rows.at(0);
   const $contentRow = $rows.at(1);
-  if ($mediaRow !== null) {
+  if ($mediaRow) {
     if ($mediaRow.querySelector('a') !== null) {
       decorateVideo($mediaRow, $block);
     } else {
+      heroImage = true;
       decorateBackGroundImage($mediaRow, $block);
     }
   }
-  if ($contentRow !== null) {
+  if ($contentRow) {
     decorateTextContent($contentRow, $block);
   }
 }
+
+window.addEventListener('resize', () => {
+  if (!heroImage) {
+    const videoElement = document.querySelector('div.hero-banner-media-section video');
+    const posterURL = new URL(videoElement.poster);
+    if (posterURL) {
+      if (window.innerWidth < 992) {
+        posterURL.searchParams.set('width', '750');
+        videoElement.setAttribute('poster', posterURL.href);
+      } else {
+        posterURL.searchParams.set('width', '2000');
+        videoElement.setAttribute('poster', posterURL.href);
+      }
+    }
+  }
+});
