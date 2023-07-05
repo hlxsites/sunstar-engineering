@@ -122,7 +122,7 @@
 }
 
 .search-result p.parent-detail {
-  color: #3C46507F;
+  color: var(--light-grey);
   font-size: var(--font-size-small);
   margin-bottom: 0.875rem;
   display: inline-block;

@@ -1,0 +1,103 @@
+.list-container {
+  margin: 1rem;
+}
+
+.list h2 {
+  font-size: var(--heading-font-size-l);
+  margin-bottom: 1.5rem;
+  margin-top: 2rem;
+}
+
+.list .result {
+  border-bottom: 0.063rem solid var(--transparent-grey-light-color);
+  padding-top: 1.625rem;
+  padding-bottom: 1.75rem;
+}
+
+.list .result:first-of-type {
+  border-top: 0.063rem solid var(--transparent-grey-light-color);
+}
+
+.list .result h3 {
+  line-height: 1.6rem;
+  padding-bottom: 0.75rem;
+}
+
+.list .result a {
+  color: var(--secondary);
+  font-family: var(--body-font-family);
+  font-size: var(--heading-font-size-s);
+  font-weight: var(--font-weight-medium);
+}
+
+.list ul.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.25rem;
+  margin-bottom: 6.25rem;
+}
+
+.list .pagination a {
+  border-right: 0.063rem solid var(--overlay-background-color);
+  font-size: var(--font-size-small);
+  color: var(--secondary);
+  padding: 0.438rem 1.25rem;
+}
+
+.list .pagination li:nth-of-type(2) a {
+  border-left: 0.063rem solid var(--overlay-background-color);
+}
+
+.list .pagination li.page {
+  background-color: var(--gray);
+  background-repeat: no-repeat;
+  background-position: center;
+   /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask: url('/icons/search-arrow.svg') no-repeat center;
+  mask: url('/icons/search-arrow.svg') no-repeat center;
+}
+
+.list .pagination li.prev.page {
+  /* Horizontal flip the image */
+  transform: scaleX(-1);
+}
+
+.list .pagination li.page.disabled {
+  background-color: #bcbcbc;
+}
+
+.list .pagination li a:hover, .list .pagination li.active a {
+  background-color: var(--secondary);
+  border-color: var(--secondary);
+  color: var(--white);
+}
+
+.list .pagination li.page.disabled a:hover {
+  background-color: inherit;
+}
+
+.result p.parent-detail {
+  color: var(--light-grey);
+  font-size: var(--font-size-small);
+  margin-bottom: 0.875rem;
+  display: inline-block;
+  line-height: 1;
+}
+
+.result p.parent-detail span.news-date {
+  padding-right: 0.5rem;
+  margin-right: 0.5rem;
+  border-right: 0.063rem solid var(--transparent-grey-light-color);
+}
+
+@media (min-width: 62rem) {
+  .list h2 {
+    font-size: var(--heading-font-size-xl);
+    margin-top: 4rem;
+    margin-bottom: 3rem;
+  }
+
+  .list .result a {
+    font-size: var(--heading-font-size-m);
+  }
+}

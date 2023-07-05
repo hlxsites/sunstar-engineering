@@ -12,9 +12,7 @@
 /* global WebImporter */
 /* eslint-disable no-console, class-methods-use-this */
 
-import urls from './constants.js';
-
-const createMetadata = (main, document, params, url) => {
+const createMetadata = (main, document, params) => {
   const meta = {};
 
   const title = document.querySelector('title');
@@ -41,11 +39,6 @@ const createMetadata = (main, document, params, url) => {
       const breadcrumbText = breadcrumbItems[breadcrumbItems.length - 1].textContent.trim();
       meta.BreadcrumbTitle = breadcrumbText;
     }
-  }
-
-  const { pathname } = new URL(url);
-  if (urls && urls[pathname.toLowerCase()]) {
-    meta.NewsDate = new Date(urls[pathname.toLowerCase()].publishedDate).getTime();
   }
 
   if (params.preProcessMetadata && Object.keys(params.preProcessMetadata).length) {
@@ -189,13 +182,6 @@ function convertBackgroundImgsToForegroundImgs(sourceNode, targetNode = sourceNo
   // workaround for inability of importer to handle styles
   // with whitespace in the url
   [...bgImgs].forEach((bgImg) => {
-    bgImg.getAttribute('style').split(';').forEach((style) => {
-      const [prop, value] = style.split(':');
-      if (prop === 'background-image') {
-        const withoutSpaces = value.replace(/\s/g, '');
-        bgImg.style.backgroundImage = withoutSpaces;
-      }
-    });
     WebImporter.DOMUtils.replaceBackgroundByImg(bgImg, targetNode);
   });
 }
@@ -212,17 +198,19 @@ function createColumnBlockFromSection(document) {
        * two columns
        * isn't a hero section
        * doesn't have an embed
+       * doesn't have lists
      */
     const heroParent = Array.from(section.parentElement.classList)
       .filter((s) => /hero/.test(s)).length;
     const hasEmbed = !!section.querySelector('.wp-block-embed');
+    const hasLists = !!section.querySelector('ul');
     const contentColumns = Array.from(section.children)
       .filter(
         (el) => (el.tagName === 'DIV'
           || el.tagName === 'FIGURE'
           || el.tagName === 'IMG'),
       );
-    if (!heroParent && !hasEmbed && contentColumns
+    if (!heroParent && !hasEmbed && !hasLists && contentColumns
       && contentColumns.length === 2
       && section.children.length === 2
       && section.querySelectorAll('p').length !== 0) {
@@ -242,7 +230,7 @@ function createColumnBlockFromSection(document) {
 }
 
 /**
- * Creates a column block from a section if it contains two columns _only_
+ * Creates a cards block from a section
  * @param {HTMLDocument} document The document
  */
 function createCardsBlockFromSection(document) {
@@ -271,10 +259,23 @@ function createCardsBlockFromSection(document) {
   });
 }
 
+function addListBlock(document) {
+  const newsSection = document.querySelector('.section-news');
+  if (newsSection) {
+    const titleArea = document.querySelector('.title-area');
+    titleArea.remove();
+    const cells = [['List (News)']];
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    newsSection.after(document.createElement('hr'));
+    newsSection.replaceWith(table);
+  }
+}
+
 function customImportLogic(doc) {
   removeCookiesBanner(doc);
 
   addBreadCrumb(doc);
+  addListBlock(doc);
   addCarouselItems(doc);
 
   createCardsBlockFromSection(doc);
@@ -308,6 +309,7 @@ export default {
       if (graphNode) {
         graphNode.forEach((node) => {
           const nodeType = node['@type'];
+          const { pathname } = new URL(url);
 
           if (nodeType === 'BreadcrumbList' && node.itemListElement && node.itemListElement.length) {
             const lastItem = node.itemListElement[node.itemListElement.length - 1];
@@ -316,6 +318,8 @@ export default {
             if (lastItemDetails) {
               metadataDetails.PageName = lastItemDetails.name;
             }
+          } else if (nodeType === 'WebPage' && pathname.includes('/news') && node.datePublished) {
+            metadataDetails.NewsDate = new Date(node.datePublished).getTime();
           }
         });
       }
@@ -338,7 +342,7 @@ export default {
       'noscript',
     ]);
     // create the metadata block and append it to the main element
-    createMetadata(main, document, params, url);
+    createMetadata(main, document, params);
     customImportLogic(document);
 
     return main;
