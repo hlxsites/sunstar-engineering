@@ -87,7 +87,6 @@ main .form .invalid>select:focus {
 main .form label {
   width: 100%;
   display: block;
-  font-size: var(--body-font-size-xs);
   box-sizing: border-box;
   font-size: var(--body-font-size-m);
   font-weight: var(--font-weight-bold);
