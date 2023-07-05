@@ -13,7 +13,17 @@ main .section.form-container {
   padding-left: 0;
   margin-right: auto;
   margin-left: auto;
+}
+
+main .section.form-container .default-content-wrapper,
+main .form {
   max-width: 560px;
+  margin: 0 auto;
+}
+
+main .section.narrow .form {
+  padding: 0 1rem;
+  margin-left: 0;
 }
 
 main .form input,
@@ -77,10 +87,10 @@ main .form .invalid>select:focus {
 main .form label {
   width: 100%;
   display: block;
-  font-size: var(--body-font-size-xs);
-  text-transform: uppercase;
   box-sizing: border-box;
-  font-weight: 800;
+  font-size: var(--body-font-size-m);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
 }
 
 main .form label>span {

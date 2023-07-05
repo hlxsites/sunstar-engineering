@@ -178,17 +178,10 @@ function removeCookiesBanner(document) {
  * @param {Node} targetNode The node to use for inlining the images
  */
 function convertBackgroundImgsToForegroundImgs(sourceNode, targetNode = sourceNode) {
-  const bgImgs = sourceNode.querySelectorAll('.background-image');
+  const bgImgs = sourceNode.querySelectorAll('.background-image, .mobile-content');
   // workaround for inability of importer to handle styles
   // with whitespace in the url
   [...bgImgs].forEach((bgImg) => {
-    bgImg.getAttribute('style').split(';').forEach((style) => {
-      const [prop, value] = style.split(':');
-      if (prop === 'background-image') {
-        const withoutSpaces = value.replace(/\s/g, '');
-        bgImg.style.backgroundImage = withoutSpaces;
-      }
-    });
     WebImporter.DOMUtils.replaceBackgroundByImg(bgImg, targetNode);
   });
 }
@@ -205,17 +198,19 @@ function createColumnBlockFromSection(document) {
        * two columns
        * isn't a hero section
        * doesn't have an embed
+       * doesn't have lists
      */
     const heroParent = Array.from(section.parentElement.classList)
       .filter((s) => /hero/.test(s)).length;
     const hasEmbed = !!section.querySelector('.wp-block-embed');
+    const hasLists = !!section.querySelector('ul');
     const contentColumns = Array.from(section.children)
       .filter(
         (el) => (el.tagName === 'DIV'
           || el.tagName === 'FIGURE'
           || el.tagName === 'IMG'),
       );
-    if (!heroParent && !hasEmbed && contentColumns
+    if (!heroParent && !hasEmbed && !hasLists && contentColumns
       && contentColumns.length === 2
       && section.children.length === 2
       && section.querySelectorAll('p').length !== 0) {
@@ -235,7 +230,7 @@ function createColumnBlockFromSection(document) {
 }
 
 /**
- * Creates a column block from a section if it contains two columns _only_
+ * Creates a cards block from a section
  * @param {HTMLDocument} document The document
  */
 function createCardsBlockFromSection(document) {
@@ -252,7 +247,14 @@ function createCardsBlockFromSection(document) {
       const headerContainer = contentCards[0];
       const cardsContainer = contentCards[1];
       Array.from(cardsContainer.children).forEach((card) => {
-        const img = card.querySelector('img');
+        let img = card.querySelector('img');
+        const imgSrc = img.getAttribute('src');
+        if (imgSrc.includes('.svg')) {
+          // extract the svg file name
+          const svgFileName = imgSrc.split('/').pop().split('.')[0];
+          // replace the img tag with an icon
+          img = `:${svgFileName}:`;
+        }
         const title = card.querySelector('h6').textContent;
         card.replaceChildren(title);
         block.push([img, card]);
@@ -276,6 +278,50 @@ function addListBlock(document) {
   }
 }
 
+/**
+ * Creates an image-variants block from a section if it contains different
+ * images for wide (desktop) and narrow (mobile) devices
+ * @param {HTMLDocument} document The document
+ */
+function createImgVariantsBlockFromSection(document) {
+  document.querySelectorAll('div.section-container .mobile-content').forEach((node) => {
+    const nextElement = node.nextElementSibling;
+    const parent = node.parentElement;
+    const nextSection = parent.closest('section').nextElementSibling;
+    const nextSectionImg = nextSection.querySelector('.content-image');
+    if (nextSectionImg) {
+      const block = [['Image Variants']];
+
+      const narrowItem = [];
+      narrowItem.push('Narrow');
+      narrowItem.push(node);
+      block.push(narrowItem);
+
+      const wideItem = [];
+      wideItem.push('Wide');
+      wideItem.push(nextSectionImg);
+      const hasBackground = !!nextSection.querySelector('.content-bg');
+      if (hasBackground) {
+        wideItem[0] += ', background';
+      }
+      block.push(wideItem);
+
+      const table = WebImporter.DOMUtils.createTable(block, document);
+      convertBackgroundImgsToForegroundImgs(table, document);
+      parent.insertBefore(table, nextElement);
+
+      parent.before(document.createElement('hr'));
+      const sectionStyling = { Style: 'Centered' };
+      if (hasBackground) {
+        sectionStyling.Style += ', Full Width';
+      }
+      const sectionMetadata = createSectionMetadata(sectionStyling, document);
+      nextSection.after(sectionMetadata);
+      sectionMetadata.after(document.createElement('hr'));
+    }
+  });
+}
+
 function customImportLogic(doc) {
   removeCookiesBanner(doc);
 
@@ -285,6 +331,7 @@ function customImportLogic(doc) {
 
   createCardsBlockFromSection(doc);
   createColumnBlockFromSection(doc);
+  createImgVariantsBlockFromSection(doc);
   extractEmbed(doc);
   convertBackgroundImgsToForegroundImgs(doc);
 }
