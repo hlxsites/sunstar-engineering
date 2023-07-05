@@ -21,7 +21,10 @@ function decorateVideo(mediaRow, target) {
   videoTag.toggleAttribute('playsinline', true);
   videoTag.toggleAttribute('loop', true);
   videoTag.setAttribute('poster', fetchPosterURL($poster));
-  videoTag.setAttribute('src', `${videoURL}`);
+  const source = document.createElement('source');
+  source.setAttribute('src', `${videoURL}`);
+  source.setAttribute('type', 'video/mp4');
+  videoTag.append(source);
   target.innerHTML = '';
   if (videoURL == null) {
     target.innerHTML = '';
