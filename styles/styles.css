@@ -520,7 +520,7 @@ main .section.spaced h2 {
 }
 
 main .section.spaced h3 {
-  margin: 3rem 0;
+  margin: 2rem 0;
   color: var(--text-color);
 }
 
