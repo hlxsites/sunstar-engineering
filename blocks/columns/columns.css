@@ -72,6 +72,69 @@
   margin: 0 1rem;
 }
 
+.columns-container.contacts-and-links .section-container {
+  margin-top: 74px;
+  margin-bottom: 214px;
+}
+
+.columns-container.contacts-and-links h3 {
+  font-size: 2rem;
+  margin-top: 54px;
+  margin-bottom: 40px;
+}
+
+.columns.top-down {
+  margin: 40px 0 0;
+}
+
+.columns.top-down > div {
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.columns.top-down.columns-2-cols {
+  max-width: 790px;
+}
+
+.columns.top-down.columns-3-cols {
+  max-width: 1200px;
+}
+
+.columns.plain-links > div > div,
+.columns.plain-links > div > div > p {
+    font-size: var(--body-font-size-s);
+    margin-left: 0;
+}
+
+.columns.plain-links > div > div > p:last-of-type {
+  margin-bottom: 0;
+}
+
+.columns.plain-links > div h6 {
+  color: var(--link-color);
+  border-bottom: 1px var(--transparent-grey-light-color) solid;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding-bottom: 0.5rem;
+  text-transform: unset;
+}
+
+.columns.plain-links > div li {
+  height: 2.5rem;
+}
+
+.columns.plain-links > div a {
+  font-size: var(--body-font-size-m);
+  color: var(--secondary);
+}
+
+.columns.plain-links a.button.primary {
+  display: inline-block;
+  font-weight: var(--font-weight-medium);
+  background-color: unset;
+  color: var(--secondary);
+}
+
 @media (min-width: 62rem) {
   .columns {
     margin-bottom: 7.5rem;
@@ -108,5 +171,4 @@
     order: unset;
     flex-basis: 50%;
   }
-
 }
