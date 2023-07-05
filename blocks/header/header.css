@@ -172,7 +172,7 @@ header nav.nav-bottom .menu-level-1-item>a {
   justify-content: space-between;
 }
 
-header nav.nav-bottom .menu-level-1-item:first-of-type >a::after {
+header nav.nav-bottom .menu-level-1-item:first-of-type>a::after {
   content: "";
   display: inline-flex;
   position: absolute;
@@ -189,7 +189,7 @@ header nav.nav-bottom .menu-level-1-item:first-of-type >a::after {
 /* stylelint-disable-next-line no-descending-specificity */
 header nav.nav-bottom .menu-level-1-item>.dropdown-menu {
   display: none;
-  width: 100vw;
+  width: 100%;
   height: 30rem;
   position: absolute;
   top: 0;
@@ -420,7 +420,74 @@ header form.search button.search-icon {
   right: 16px;
 }
 
+/* Lang picker Styles */
+header .lang-picker {
+  position: relative;
+  padding: 1rem 0;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+header .lang-picker>a::after {
+  content: "";
+  height: 1rem;
+  width: 0.75rem;
+  margin-left: 0.25rem;
+  display: inline-flex;
+  background-image: url("../../icons/arrow-down.svg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  vertical-align: bottom;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+header .lang-picker>ul {
+  display: none;
+  color: var(--link-color);
+  position: absolute;
+  margin: 0;
+  background: var(--secondary);
+  border-radius: 0;
+  padding: 0;
+  width: calc(100% - 3rem);
+  box-shadow: 0 2px 8px 0 var(--transparent-grey-color);
+  right: 0;
+  left: auto;
+  top: var(--nav-top-height);
+  z-index: 100;
+  font-size: 1rem;
+  text-align: left;
+  list-style: none;
+  border: 1px solid #00000026;
+  float: left;
+  min-width: 10rem;
+}
+
+header .lang-picker:hover>ul {
+  display: block;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+header .lang-picker-item>a {
+  font-size: var(--body-font-size-s);
+  font-weight: var(--font-weight-medium);
+  color: var(--white);
+  padding: 11px 0 11px 32px;
+  display: block;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+header .lang-picker-item>a:hover {
+  background: var(--primary);
+}
+
 @media (min-width: 77rem) {
+  header.header-wrapper.fixed {
+    box-shadow: 0 0.125rem 0.5rem 0 #3C46500F;
+    border-bottom: 1px solid var(--transparent-grey-light-color);
+  }
+
   header nav.nav-top {
     display: flex;
   }
@@ -475,7 +542,7 @@ header form.search button.search-icon {
     white-space: nowrap;
   }
 
-  header nav.nav-bottom .menu-level-1-item:first-of-type >a::after {
+  header nav.nav-bottom .menu-level-1-item:first-of-type>a::after {
     content: "";
     height: 15px;
     width: 12px;
@@ -492,7 +559,7 @@ header form.search button.search-icon {
 
   header nav.nav-bottom .menu-level-1-item>a:hover {
     color: var(--link-hover-color);
-    border-bottom: 0.25rem solid var(--primary);
+    border-bottom: 0.25rem solid var(--secondary);
   }
 
   header nav.nav-bottom .menu-level-1-item:hover>.dropdown-menu {
@@ -511,6 +578,11 @@ header form.search button.search-icon {
     align-items: center;
     width: 75rem;
     margin: 0 auto;
+  }
+
+  header nav.nav-bottom .menu-level-1-item .dropdown-menu>.dropdown-menu-header h2 {
+    margin: 56px 0 80px;
+    font-size: 40px;
   }
 
   header nav.nav-bottom .menu-level-1-item .dropdown-menu>.dropdown-menu-header h2 .icon {
@@ -541,6 +613,7 @@ header form.search button.search-icon {
   /* stylelint-disable-next-line no-descending-specificity */
   header nav.nav-bottom .menu-level-2-item>a {
     display: unset;
+    line-height: 1.5;
   }
 
   header nav.nav-bottom .menu-level-2-item-header,
@@ -554,10 +627,16 @@ header form.search button.search-icon {
     position: unset;
     width: auto;
     height: auto;
+    margin-top: 6px;
   }
 
   header nav.nav-bottom .menu-level-3-item {
     border-bottom: unset;
+    height: 2.55rem;
+  }
+
+  header nav.nav-bottom .menu-level-3-item>a:hover {
+    color: var(--muted-text);
   }
 
   header nav.nav-bottom .menu-level-3-item>a::before {
@@ -570,6 +649,9 @@ header form.search button.search-icon {
     background: #009cbd;
   }
 
+  header nav.nav-bottom .menu-level-3-item:last-of-type>a::before {
+    height: 1.375rem;
+  }
 
   header form.search div {
     min-width: 200px;

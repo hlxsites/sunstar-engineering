@@ -1,9 +1,28 @@
 import { fetchPlaceholders, getMetadata } from '../../scripts/lib-franklin.js';
-import { getSearchWidget, getWindowSize } from '../../scripts/scripts.js';
+import { getLanguage, getSearchWidget, getWindowSize } from '../../scripts/scripts.js';
 
 function decorateSocial(social) {
   social.classList.add('social');
   social.innerHTML = social.innerHTML.replace(/\[social\]/, '');
+}
+
+function decorateLangPicker(langPicker) {
+  const lang = getLanguage() || '';
+  let langName = 'English'; // default to English
+  langPicker.classList.add('lang-picker');
+  langPicker.innerHTML = langPicker.innerHTML.replace(/\[languages\]/, '');
+  langPicker.querySelectorAll(':scope>ul>li').forEach((li) => {
+    li.classList.add('lang-picker-item');
+    if (li.querySelector('a').getAttribute('href') === `/${lang}/`
+    || li.querySelector('a').getAttribute('href') === `/${lang}`) {
+      langName = li.querySelector('a').innerHTML;
+      li.remove();
+    }
+  });
+  const a = document.createElement('a');
+  a.setAttribute('href', '#');
+  a.textContent = langName;
+  langPicker.prepend(a);
 }
 
 /* Add levels to the menu items */
@@ -110,6 +129,8 @@ function decorateTopNav(nav) {
   nav.querySelectorAll(':scope>ul>li').forEach((li) => {
     if (li.textContent.trim() === '[social]') {
       decorateSocial(li);
+    } else if (li.textContent.includes('[languages]')) {
+      decorateLangPicker(li);
     }
   });
 }
@@ -138,7 +159,7 @@ function decorateBottomNav(nav, placeholders) {
   menuBackBtn.classList.add('menu-back-btn');
   menuBackBtn.innerHTML = `<span class="icon icon-angle-left"></span><a>${placeholders['back-to-menu']}</a>`;
   nav.prepend(menuBackBtn);
-  nav.append(getSearchWidget());
+  nav.append(getSearchWidget(placeholders));
 
   menuBackBtn.addEventListener('click', () => {
     const level1Open = nav.querySelector(':scope .menu-level-1.open');
@@ -178,8 +199,7 @@ export default async function decorate(block) {
   const resp = await fetch(`${navPath}.plain.html`);
 
   if (resp.ok) {
-    // TODO: localize
-    const placeholders = await fetchPlaceholders();
+    const placeholders = await fetchPlaceholders(getLanguage());
     block.innerHTML = '';
     const html = await resp.text();
     const fetchedNav = document.createElement('div');

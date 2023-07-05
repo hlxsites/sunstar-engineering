@@ -257,7 +257,7 @@ footer .copyright p>a:last-child {
   footer .social>div>div {
     display: flex;
     flex-direction: column;
-    margin-top: 10px;
+    margin-top: 0.625rem;
   }
 
   footer .groups {

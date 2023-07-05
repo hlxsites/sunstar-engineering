@@ -1,0 +1,33 @@
+main .image-collage  {
+  columns: 1;
+  column-gap: 2rem;
+  padding-inline: 1rem;
+}
+
+main .image-collage > div {
+  display: inline-block;
+  break-inside: avoid-column;
+  page-break-inside: avoid;
+}
+
+main .image-collage > div > div:first-of-type {
+  padding-top: 26px;
+  padding-bottom: 14px;
+}
+
+main .image-collage img {
+  width: calc(100vw - 2rem);
+}
+
+main .image-collage * {
+  font-size: var(--font-size-small);
+  color: #6D757C;
+}
+
+@media (min-width: 62rem) {
+  main .image-collage  {
+    columns: 2;
+    padding-left: 270px;
+    padding-right: 0;
+  }
+}

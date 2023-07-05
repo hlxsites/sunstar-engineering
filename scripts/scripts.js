@@ -14,7 +14,35 @@ import {
 } from './lib-franklin.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
+const LANGUAGES = new Set(['en', 'de', 'cn', 'th', 'id', 'it', 'ja']);
 
+let language;
+
+export function getLanguageFromPath(pathname, resetCache = false) {
+  if (resetCache) {
+    language = undefined;
+  }
+
+  if (language !== undefined) return language;
+
+  const segs = pathname.split('/');
+  if (segs.length > 1) {
+    const l = segs[1];
+    if (LANGUAGES.has(l)) {
+      language = l;
+    }
+  }
+
+  if (language === undefined) {
+    language = 'en'; // default to English
+  }
+
+  return language;
+}
+
+export function getLanguage(curPath = window.location.pathname, resetCache = false) {
+  return getLanguageFromPath(curPath, resetCache);
+}
 /**
  * Builds hero block and prepends to main in a new section.
  * @param {Element} main The container element
@@ -164,40 +192,44 @@ export function fixExcelFilterZeroes(data) {
   });
 }
 
-export async function fetchIndex(indexFile, pageSize = 500) {
+export async function fetchIndex(indexFile, sheet, pageSize = 500) {
+  const idxKey = indexFile.concat(sheet || '');
+
   const handleIndex = async (offset) => {
-    const resp = await fetch(`/${indexFile}.json?limit=${pageSize}&offset=${offset}`);
+    const sheetParam = sheet ? `&sheet=${sheet}` : '';
+
+    const resp = await fetch(`/${indexFile}.json?limit=${pageSize}&offset=${offset}${sheetParam}`);
     const json = await resp.json();
 
     const newIndex = {
       complete: (json.limit + json.offset) === json.total,
       offset: json.offset + pageSize,
       promise: null,
-      data: [...window.index[indexFile].data, ...json.data],
+      data: [...window.index[idxKey].data, ...json.data],
     };
 
     return newIndex;
   };
 
   window.index = window.index || {};
-  window.index[indexFile] = window.index[indexFile] || {
+  window.index[idxKey] = window.index[idxKey] || {
     data: [],
     offset: 0,
     complete: false,
     promise: null,
   };
 
-  if (window.index[indexFile].complete) {
-    return window.index[indexFile];
+  if (window.index[idxKey].complete) {
+    return window.index[idxKey];
   }
 
-  if (window.index[indexFile].promise) {
-    return window.index[indexFile].promise;
+  if (window.index[idxKey].promise) {
+    return window.index[idxKey].promise;
   }
 
-  window.index[indexFile].promise = handleIndex(window.index[indexFile].offset);
-  const newIndex = await (window.index[indexFile].promise);
-  window.index[indexFile] = newIndex;
+  window.index[idxKey].promise = handleIndex(window.index[idxKey].offset);
+  const newIndex = await (window.index[idxKey].promise);
+  window.index[idxKey] = newIndex;
 
   return newIndex;
 }
@@ -229,29 +261,51 @@ export function htmlToElement(html) {
   return div.firstElementChild;
 }
 
-function getSearchWidgetHTML(initialVal, searchbox) {
-  // TODO specify the correct language in the 'lang' input
-  // TODO specify the correct language in the oninvalid property
+/**
+ * This function finds an element with the given name specified as text in the block
+ * It then returns the sibling element _after_ it, which is the data associated with
+ * the named element in a MD/Document table.
+ *
+ * @param {HTMLElement} block The block to look in
+ * @param {string} name The name (case-insensitive)
+ * @returns The element after the element that contains the name as text
+ */
+export function getNamedValueFromTable(block, name) {
+  // This XPath finds the div that has the name. It uses the XPath translate function to make
+  // the lookup case-insensitive.
+  return document.evaluate(
+    `//div/text()[translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz') = '${name.toLowerCase()}']/parent::div/parent::div/div[2]`,
+    block,
+    null,
+    XPathResult.ANY_TYPE,
+    null,
+  ).iterateNext();
+}
+
+function getSearchWidgetHTML(placeholders, initialVal, searchbox, lang) {
+  const langPrefix = lang === 'en' ? '' : `/${lang}`;
   const searchType = searchbox ? 'search' : 'text';
 
   return `
-    <form method="get" class="search" action="/search">
+    <form method="get" class="search" action="${langPrefix}/search">
       <div>
-        <input type="hidden" name="lang" value="en">
-        <input type="${searchType}" name="s" value="${initialVal ?? ''}" class="search-text" placeholder="Search" required="true" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('The Search field cannot be empty')">
+        <input type="${searchType}" name="s" value="${initialVal ?? ''}" class="search-text"
+          placeholder="${placeholders.searchtext}" required="true" oninput="this.setCustomValidity('')"
+          oninvalid="this.setCustomValidity('${placeholders.emptysearchtext}')">
         <button class="icon search-icon" aria-label="Search"></button>
       </div>
     </form>`;
 }
 
-export function getSearchWidget(initialVal, searchbox) {
-  return htmlToElement(getSearchWidgetHTML(initialVal, searchbox));
+export function getSearchWidget(placeholders, initialVal, searchbox, lang = getLanguage()) {
+  const widget = getSearchWidgetHTML(placeholders, initialVal, searchbox, lang);
+  return htmlToElement(widget);
 }
 
 /*
   * Returns the environment type based on the hostname.
 */
-export function getEnvType(hostname) {
+export function getEnvType(hostname = window.location.hostname) {
   const fqdnToEnvType = {
     'sunstar-engineering.com': 'live',
     'main--sunstar-engineering--hlxsites.hlx.page': 'preview',
@@ -270,6 +324,118 @@ export async function loadFragment(path) {
     return main;
   }
   return null;
+}
+
+export async function loadScript(url, attrs = {}) {
+  const script = document.createElement('script');
+  script.src = url;
+  // eslint-disable-next-line no-restricted-syntax
+  for (const [name, value] of Object.entries(attrs)) {
+    script.setAttribute(name, value);
+  }
+  const loadingPromise = new Promise((resolve, reject) => {
+    script.onload = resolve;
+    script.onerror = reject;
+  });
+  document.head.append(script);
+  return loadingPromise;
+}
+
+/**
+ * Add a paging widget to the div. The paging widget looks like this:
+ * <pre><code>
+ * &lt; 1 2 3 &gt;
+ * </code></pre>
+ * The numbers are hyperlinks to the repective pages and the &lt; and &gt;
+ * buttons are links to next and previous pages. If this is the first page
+ * then the &lt; link has the style 'disabled' and if this is the lase one
+ * the &gt; link is disabled.
+ * @param {HTMLElement} div - The div to add the widget to
+ * @param {number} curpage - The current page number (starting at 0)
+ * @param {number} totalPages - The total number of pages
+ * @param {Document} doc - The current Document
+ * @param {Location} curLocation - THe current window.location to use
+ */
+export function addPagingWidget(
+  div,
+  curpage,
+  totalPages,
+  doc = document,
+  curLocation = window.location,
+) {
+  const queryParams = new URLSearchParams(curLocation.search);
+  const nav = doc.createElement('ul');
+  nav.classList.add('pagination');
+
+  if (totalPages > 1) {
+    const lt = doc.createElement('li');
+    lt.classList.add('page');
+    lt.classList.add('prev');
+    const lta = doc.createElement('a');
+    if (curpage === 0) {
+      lt.classList.add('disabled');
+    } else {
+      queryParams.set('pg', curpage - 1);
+      lta.href = `${curLocation.pathname}?${queryParams}`;
+    }
+    lt.appendChild(lta);
+    nav.appendChild(lt);
+
+    for (let i = 0; i < totalPages; i += 1) {
+      const numli = doc.createElement('li');
+      if (i === curpage) {
+        numli.classList.add('active');
+      }
+
+      const a = doc.createElement('a');
+      a.innerText = i + 1;
+
+      queryParams.set('pg', i);
+      a.href = `${curLocation.pathname}?${queryParams}`;
+      numli.appendChild(a);
+
+      nav.appendChild(numli);
+    }
+
+    const rt = doc.createElement('li');
+    rt.classList.add('page');
+    rt.classList.add('next');
+    const rta = doc.createElement('a');
+    if (curpage === totalPages - 1) {
+      rt.classList.add('disabled');
+    } else {
+      queryParams.set('pg', curpage + 1);
+      rta.href = `${curLocation.pathname}?${queryParams}`;
+    }
+
+    rt.appendChild(rta);
+    nav.appendChild(rt);
+  }
+
+  div.appendChild(nav);
+}
+
+/**
+ * Loads the user consent manager and dispatches a `consentmanager` window event when loaded.
+ * Note: that this is currently invoked in `delayed.js` and could be moved there.
+ * @returns {Promise<void>}
+ */
+export async function loadConsentManager() {
+  const ccmConfig = {
+    id: 'usercentrics-cmp',
+    'data-settings-id': '_2XSaYDrpo',
+    async: 'async',
+  };
+
+  if (getEnvType() !== 'live') {
+    ccmConfig['data-version'] = 'preview';
+  }
+
+  await Promise.all([
+    loadScript('https://app.usercentrics.eu/browser-ui/latest/loader.js', ccmConfig),
+    loadScript('https://privacy-proxy.usercentrics.eu/latest/uc-block.bundle.js'),
+  ]);
+  window.dispatchEvent(new CustomEvent('consentmanager'));
 }
 
 loadPage();

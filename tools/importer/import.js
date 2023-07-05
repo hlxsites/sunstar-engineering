@@ -12,7 +12,7 @@
 /* global WebImporter */
 /* eslint-disable no-console, class-methods-use-this */
 
-const createMetadata = (main, document) => {
+const createMetadata = (main, document, params) => {
   const meta = {};
 
   const title = document.querySelector('title');
@@ -41,9 +41,8 @@ const createMetadata = (main, document) => {
     }
   }
 
-  const newsDate = document.querySelector('.news-details-container .news-date');
-  if (newsDate) {
-    meta.NewsDate = newsDate.textContent;
+  if (params.preProcessMetadata && Object.keys(params.preProcessMetadata).length) {
+    Object.assign(meta, params.preProcessMetadata);
   }
 
   const block = WebImporter.Blocks.getMetadataBlock(document, meta);
@@ -265,10 +264,23 @@ function createCardsBlockFromSection(document) {
   });
 }
 
+function addListBlock(document) {
+  const newsSection = document.querySelector('.section-news');
+  if (newsSection) {
+    const titleArea = document.querySelector('.title-area');
+    titleArea.remove();
+    const cells = [['List (News)']];
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    newsSection.after(document.createElement('hr'));
+    newsSection.replaceWith(table);
+  }
+}
+
 function customImportLogic(doc) {
   removeCookiesBanner(doc);
 
   addBreadCrumb(doc);
+  addListBlock(doc);
   addCarouselItems(doc);
 
   createCardsBlockFromSection(doc);
@@ -287,6 +299,40 @@ export default {
    * @param {object} params Object containing some parameters given by the import process.
    * @returns {HTMLElement} The root element to be transformed
    */
+
+  preprocess: ({
+    // eslint-disable-next-line no-unused-vars
+    document, url, html, params,
+  }) => {
+    const schemaDetails = document.querySelector('head script.aioseo-schema');
+    const metadataDetails = {};
+
+    if (schemaDetails) {
+      const jsonSchema = JSON.parse(schemaDetails.innerText);
+      const graphNode = jsonSchema['@graph'];
+
+      if (graphNode) {
+        graphNode.forEach((node) => {
+          const nodeType = node['@type'];
+          const { pathname } = new URL(url);
+
+          if (nodeType === 'BreadcrumbList' && node.itemListElement && node.itemListElement.length) {
+            const lastItem = node.itemListElement[node.itemListElement.length - 1];
+            const lastItemDetails = lastItem.item;
+
+            if (lastItemDetails) {
+              metadataDetails.PageName = lastItemDetails.name;
+            }
+          } else if (nodeType === 'WebPage' && pathname.includes('/news') && node.datePublished) {
+            metadataDetails.NewsDate = new Date(node.datePublished).getTime();
+          }
+        });
+      }
+
+      params.preProcessMetadata = metadataDetails;
+    }
+  },
+
   transformDOM: ({
     // eslint-disable-next-line no-unused-vars
     document, url, html, params,
@@ -301,7 +347,7 @@ export default {
       'noscript',
     ]);
     // create the metadata block and append it to the main element
-    createMetadata(main, document);
+    createMetadata(main, document, params);
     customImportLogic(document);
 
     return main;

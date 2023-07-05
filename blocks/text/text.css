@@ -1,0 +1,10 @@
+main .block.text.narrow {
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 37.5rem;
+    text-align: left;
+    margin-bottom: 3.5rem;
+}

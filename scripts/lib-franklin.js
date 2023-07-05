@@ -639,6 +639,37 @@ export function setup() {
   }
 }
 
+export function getFormattedDate(date, locale = 'en') {
+  // TODO handle localization here
+  const defaultLocaleOption = { year: 'numeric', month: 'short', day: 'numeric' };
+  const default2DigitDayLocaleOption = { year: 'numeric', month: 'long', day: '2-digit' };
+
+  const dateLocaleMap = {
+    en: {
+      locale: 'en-GB',
+      options: defaultLocaleOption,
+      format: (formattedDate) => {
+        const [day, month, year] = formattedDate.split(' ');
+        return `${month} ${day}, ${year}`;
+      },
+    },
+    ja: { locale: 'ja-JP', options: defaultLocaleOption },
+    cn: { locale: 'zh-CN', options: defaultLocaleOption },
+    id: { locale: 'id-ID', options: default2DigitDayLocaleOption },
+    de: { locale: 'de-DE', options: default2DigitDayLocaleOption },
+    it: { locale: 'it-IT', options: { year: 'numeric', month: 'short', day: '2-digit' } },
+    th: { locale: 'th-TH', options: default2DigitDayLocaleOption },
+  };
+
+  if (dateLocaleMap[locale]) {
+    // eslint-disable-next-line
+    const formattedDate = date.toLocaleDateString(dateLocaleMap[locale].locale, dateLocaleMap[locale].options);
+    // eslint-disable-next-line
+    return dateLocaleMap[locale].format ? dateLocaleMap[locale].format(formattedDate) : formattedDate;
+  }
+  return date;
+}
+
 /**
  * Auto initializiation.
  */
