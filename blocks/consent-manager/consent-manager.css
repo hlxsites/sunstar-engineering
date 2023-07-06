@@ -1,4 +1,4 @@
-.consent-manager {
+div.consent-manager.block {
   /* this is to offset the left-padding in all the content inside the embedded element styles */
   margin-left: -15px;
 }
