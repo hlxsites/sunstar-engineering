@@ -85,16 +85,11 @@ main .block.cards {
     height: 100%;
 }
 
-.cards .cards-card-image span.icon {
-    width: 100%;
-    height: 100%;
-}
-
+.cards .cards-card-image span.icon,
 .cards .cards-card-image span.icon svg {
     width: 100%;
     height: 100%;
 }
-
 .cards .cards-card-body u {
     text-decoration: none;
 }
