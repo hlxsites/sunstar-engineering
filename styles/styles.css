@@ -552,6 +552,19 @@ main .section.spaced>.section-container {
   padding: 0 1rem;
 }
 
+/* section - contacts and links from global-network */
+main .section.contacts-and-links  {
+  margin-top: 74px;
+  margin-bottom: 214px;
+  margin-left: 16px;
+}
+
+main .section.contacts-and-links h3 {
+  font-size: var(--heading-font-size-m);
+  margin-top: 54px;
+  margin-bottom: 40px;
+}
+
 /* section - contact-us */
 main .section.contact-us>.section-container {
   padding: 5rem 0;
@@ -652,6 +665,11 @@ main .section.margin-bottom>.section-container {
     margin-right: auto;
     margin-left: auto;
     max-width: 54.5rem;
+  }
+
+  /* section - contacts and links from global-network */
+  main .section.contacts-and-links h3 {
+    font-size: var(--heading-font-size-l);
   }
 
   /* section - contact-us */

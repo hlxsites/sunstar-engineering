@@ -72,17 +72,6 @@
   margin: 0 1rem;
 }
 
-.columns-container.contacts-and-links .section-container {
-  margin-top: 74px;
-  margin-bottom: 214px;
-}
-
-.columns-container.contacts-and-links h3 {
-  font-size: 2rem;
-  margin-top: 54px;
-  margin-bottom: 40px;
-}
-
 .columns.top-down {
   margin: 40px 0 0;
 }
@@ -124,7 +113,7 @@
 }
 
 .columns.plain-links > div a {
-  font-size: var(--body-font-size-m);
+  font-size: var(--body-font-size-s);
   color: var(--secondary);
 }
 
@@ -170,5 +159,10 @@
     flex: 1;
     order: unset;
     flex-basis: 50%;
+  }
+
+  .columns.plain-links > div a {
+    font-size: var(--body-font-size-m);
+    line-height: 1.2;
   }
 }
