@@ -274,6 +274,7 @@ button {
   justify-content: center;
   line-height: 1;
   border-radius: 2px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 a.button.primary {
@@ -401,8 +402,10 @@ main img {
 main .section-container {
   max-width: 100%;
   padding-left: 0;
-  padding-right: 0
+  padding-right: 0;
 }
+
+
 
 /* section - full-width */
 main .section.full-width>.section-container {

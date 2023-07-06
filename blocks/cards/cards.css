@@ -1,5 +1,6 @@
 .section.cards-container {
     margin: 4rem 0 5rem;
+    padding: 0 1rem;
 }
 
 .section.cards-container h1,
@@ -13,8 +14,6 @@
 
 main .block.cards {
     margin: 0 auto 3.75rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
 }
 
 .cards>ul {
@@ -144,6 +143,10 @@ main .nolink .block.cards {
 @media screen and (min-width: 62rem) {
     .section.cards-container {
         margin: 5rem 0;
+    }
+
+    .section.cards-container h2 {
+        max-width: 56.25rem;
     }
 
     .section.cards-container.nolink {
