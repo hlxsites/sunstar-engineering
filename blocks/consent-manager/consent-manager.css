@@ -10,14 +10,14 @@ div.consent-manager.block {
 
 /* might be removed after https://github.com/hlxsites/sunstar-engineering/issues/198 */
 .consent-manager h4 {
-  color: black;
-  font-weight: 500;
+  color: var(--text-color);
+  font-weight: var(--font-weight-medium);
 }
 
 /* might be removed after https://github.com/hlxsites/sunstar-engineering/issues/198 */
 .consent-manager h5 {
-  color: black;
-  font-weight: 500;
+  color: var(--text-color);
+  font-weight: var(--font-weight-medium);
 }
 
 .consent-manager a:any-link {
