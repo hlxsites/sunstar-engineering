@@ -8,13 +8,8 @@ function startTimer(block) {
 function commonOnClick(block, newIndex) {
   const activeEles = block.querySelectorAll('.active');
   const newEles = block.querySelectorAll(`[index='${newIndex}']`);
-
-  activeEles.forEach((activeEle) => {
-    activeEle.classList.remove('active');
-    if (!activeEle.classList.contains('swiper-pagination-bullet')) {
-      activeEle.classList.remove('unhide');
-    }
-  });
+  const swiperWrapper = document.querySelector('.swiper-wrapper');
+  let activeEleWidth = null;
 
   newEles.forEach((newEle) => {
     newEle.classList.add('active');
@@ -22,6 +17,24 @@ function commonOnClick(block, newIndex) {
       newEle.classList.add('unhide');
     }
   });
+
+  activeEles.forEach((activeEle) => {
+    activeEle.classList.remove('active');
+    if (!activeEle.classList.contains('swiper-pagination-bullet')) {
+      activeEle.classList.remove('unhide');
+      if (Array.from(activeEle.classList).indexOf('image-item') !== -1) {
+        activeEleWidth = activeEle.clientWidth;
+      }
+    }
+  });
+
+  if (window.screen.width >= 992 && activeEleWidth) {
+    // Have to add screen width check because for large screen and
+    // for small screen carousel behaves differently
+    swiperWrapper.style.transform = `translate3d(-${(newIndex) * activeEleWidth}px, 0, 0)`;
+  } else {
+    swiperWrapper.style.transform = `translate3d(-${(newIndex) * window.screen.width}px, 0, 0)`;
+  }
 }
 
 function getPrevOrNextSwip(swipType, block, totalLength) {
@@ -92,6 +105,9 @@ export default async function decorate(block) {
   const blockChildren = [...block.children];
   const totalLength = blockChildren.length;
 
+  const pictureBlockWrapper = document.createElement('div');
+  pictureBlockWrapper.classList.add('swiper-wrapper');
+
   blockChildren.forEach((element, index) => {
     const innerChilds = [...element.children];
     if (index === 0) {
@@ -105,8 +121,10 @@ export default async function decorate(block) {
     innerChilds[1].setAttribute('index', index);
 
     textBlocks.appendChild(innerChilds[0]);
-    pictureBlocks.appendChild(innerChilds[1]);
+    pictureBlockWrapper.appendChild(innerChilds[1]);
   });
+
+  pictureBlocks.appendChild(pictureBlockWrapper);
 
   const container = document.createElement('div');
   container.classList.add('carousel-items-container');
