@@ -1,3 +1,8 @@
+.consent-manager {
+  /* this is to offset the left-padding in all the content inside the embedded element styles */
+  margin-left: -15px;
+}
+
 .consent-manager button {
   /* make sure the parent element contains the correct font size for the EMs to work. */
   font-size: var(--body-font-size-m);
