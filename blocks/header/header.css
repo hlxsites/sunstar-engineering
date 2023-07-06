@@ -614,6 +614,8 @@ header .lang-picker-item>a:hover {
   header nav.nav-bottom .menu-level-2-item>a {
     display: unset;
     line-height: 1.5;
+    margin-top: unset;
+    margin-bottom: unset;
   }
 
   header nav.nav-bottom .menu-level-2-item-header,
