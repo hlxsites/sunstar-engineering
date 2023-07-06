@@ -1,11 +1,10 @@
-const mobileBreakpoint = 992;
-let heroImage = false;
+/* eslint-disable no-console */
 
 function fetchPosterURL($poster) {
   const srcURL = new URL($poster.src);
   const srcUSP = new URLSearchParams(srcURL.search);
   srcUSP.set('format', 'webply');
-  srcUSP.set('width', window.innerWidth < mobileBreakpoint ? 750 : 2000);
+  srcUSP.set('width', 750);
   return `${srcURL.pathname}?${srcUSP.toString()}`;
 }
 
@@ -78,7 +77,6 @@ export default function decorate($block) {
     if ($mediaRow.querySelector('a') !== null) {
       decorateVideo($mediaRow, $block);
     } else {
-      heroImage = true;
       decorateBackGroundImage($mediaRow, $block);
     }
   }
@@ -86,19 +84,3 @@ export default function decorate($block) {
     decorateTextContent($contentRow, $block);
   }
 }
-
-window.addEventListener('resize', () => {
-  if (!heroImage) {
-    const videoElement = document.querySelector('div.hero-banner-media-section video');
-    const posterURL = new URL(videoElement.poster);
-    if (posterURL) {
-      if (window.innerWidth < 992) {
-        posterURL.searchParams.set('width', '750');
-        videoElement.setAttribute('poster', posterURL.href);
-      } else {
-        posterURL.searchParams.set('width', '2000');
-        videoElement.setAttribute('poster', posterURL.href);
-      }
-    }
-  }
-});

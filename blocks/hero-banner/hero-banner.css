@@ -32,12 +32,12 @@
     max-width: 100%;
 }
 
-.hero-banner-container .hero-banner-heading-container {
+.hero-banner .hero-banner-heading-container {
     position: relative;
     top: 0;
 }
 
-.hero-banner-container .hero-banner-text-container {
+.hero-banner .hero-banner-text-container {
     background: var(--primary);
     color: var(--white);
     min-height: auto;
@@ -62,7 +62,7 @@
 }
 
 .hero-banner-text-wrapper h2 {
-    font-weight: 300;
+    font-weight: var(--font-weight-small);
     font-size: var(--heading-font-size-m);
     line-height: 2rem;
     color: var(--white);
@@ -70,7 +70,7 @@
     margin: 0;
 }
 
-.hero-banner-container .hero-banner-button-container span {
+.hero-banner .hero-banner-button-container span {
     font-size: var(--heading-font-size-xxs);
     margin-left: 0.5rem;
     line-height: 1;
@@ -91,7 +91,7 @@
     background-position: center;
 }
 
-.hero-banner-container .hero-banner-button-container {
+.hero-banner .hero-banner-button-container {
     flex-basis: 100%;
     width: 100%;
     justify-content: left;
@@ -101,7 +101,7 @@
     flex-wrap: wrap;  
 }
 
-.hero-banner-container .hero-banner-text-wrapper {
+.hero-banner .hero-banner-text-wrapper {
     flex-basis: 100%;
     width: 100%;
     margin-bottom: 1.5rem;
@@ -129,14 +129,14 @@
         max-width: 75rem;
     }
 
-    .hero-banner-container .hero-banner-heading-container {
+    .hero-banner .hero-banner-heading-container {
         position: absolute;
         top: 20.5rem;
     }
 
-    .hero-banner-container .hero-banner-text-container::before {
+    .hero-banner .hero-banner-text-container::before {
         content: "";
-        background: #00587C;
+        background: var(--primary);
         height: 100%;
         width: 100%;
         position: absolute;
@@ -144,13 +144,13 @@
         right: 100%;
     }
 
-    .hero-banner-container .hero-banner-text-container {
+    .hero-banner .hero-banner-text-container {
         min-height: 16.125rem;
         width: 63.75rem;
         margin-bottom: -2rem;
     }
 
-    .hero-banner-container .hero-banner-text-wrapper {
+    .hero-banner .hero-banner-text-wrapper {
         flex-basis: calc(100% - 11.625rem);
         margin-bottom: unset;
     }
@@ -170,12 +170,12 @@
         line-height: 1.3em;
     }
 
-    .hero-banner-container .hero-banner-button-container {
+    .hero-banner .hero-banner-button-container {
         flex-basis: 11.625rem;
         justify-content: center;
     }
 
-    .hero-banner-container .hero-banner-button-container span {
+    .hero-banner .hero-banner-button-container span {
         width: 100%;
         font-size: var(--heading-font-size-xxs);
         margin-left: unset;
