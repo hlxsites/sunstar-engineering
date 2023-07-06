@@ -1,0 +1,29 @@
+div.consent-manager.block {
+  /* this is to offset the left-padding in all the content inside the embedded element styles */
+  margin-left: -15px;
+}
+
+.consent-manager button {
+  /* make sure the parent element contains the correct font size for the EMs to work. */
+  font-size: var(--body-font-size-m);
+}
+
+/* might be removed after https://github.com/hlxsites/sunstar-engineering/issues/198 */
+.consent-manager h4 {
+  color: var(--text-color);
+  font-weight: var(--font-weight-medium);
+}
+
+/* might be removed after https://github.com/hlxsites/sunstar-engineering/issues/198 */
+.consent-manager h5 {
+  color: var(--text-color);
+  font-weight: var(--font-weight-medium);
+}
+
+.consent-manager a:any-link {
+  color: var(--primary);
+}
+
+.consent-manager ul {
+  padding-inline-start: 40px;
+}

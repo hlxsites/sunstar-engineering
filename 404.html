@@ -6,6 +6,16 @@
   <script type="text/javascript">
     window.isErrorPage = true;
     window.errorCode = '404';
+
+    // If the URL requested ends with a slash, e.g. is something
+    // like global-network/asia/ redirect to global-network/asia
+    // i.e. the trailing slash is removed.
+    if (window.location.href.endsWith('/')) {
+      window.stop(); // Stop processing this page, make sure no 404 rendering is done
+
+      const newLoc = window.location.href.slice(0, -1);
+      window.location.replace(newLoc);
+    }
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta property="og:title" content="Page not found">

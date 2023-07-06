@@ -11,7 +11,7 @@ export default function decorate(block) {
     const a = li.querySelector('a');
 
     const addCardChildrenClasses = (div) => {
-      if (div.children.length === 1 && div.querySelector('picture')) {
+      if (div.children.length === 1 && (div.querySelector(':scope>picture') || div.querySelector(':scope>.icon'))) {
         div.className = 'cards-card-image';
       } else {
         div.className = 'cards-card-body';

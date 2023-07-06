@@ -59,6 +59,39 @@ function createSectionMetadata(cfg, doc) {
   return WebImporter.DOMUtils.createTable(cells, doc);
 }
 
+function addHeroHorizontalTabs(doc) {
+  const heroTab = doc.querySelector('.hero-tab');
+  const heroCont = heroTab.previousElementSibling;
+
+  if (heroTab.tagName !== 'SECTION' || heroCont.tagName !== 'SECTION') {
+    return;
+  }
+
+  const cells = [['Hero-horizontal-tabs']];
+  const ul = doc.createElement('ul');
+  heroTab.querySelectorAll('a').forEach((a) => {
+    const li = doc.createElement('li');
+    const newa = doc.createElement('a');
+    newa.href = a.href;
+    newa.textContent = a.textContent;
+    li.appendChild(newa);
+    ul.appendChild(li);
+  });
+  cells.push(['Tabs', ul]);
+
+  const img = heroCont.querySelector('.img-content');
+  cells.push(['Image', img]);
+  const info = heroCont.querySelector('.info-content');
+  cells.push(['Contents', info]);
+
+  const table = WebImporter.DOMUtils.createTable(cells, doc);
+
+  heroTab.after(doc.createElement('hr'));
+  heroTab.after(createSectionMetadata({ Style: 'Full Width ' }, doc));
+  heroTab.replaceWith(table);
+  heroCont.remove();
+}
+
 function addCarouselItems(document) {
   const heroSlider = document.querySelector('.hero-one-slider');
 
@@ -328,6 +361,7 @@ function customImportLogic(doc) {
   addBreadCrumb(doc);
   addListBlock(doc);
   addCarouselItems(doc);
+  addHeroHorizontalTabs(doc);
 
   createCardsBlockFromSection(doc);
   createColumnBlockFromSection(doc);
