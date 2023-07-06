@@ -110,6 +110,7 @@
 
 .columns.plain-links > div li {
   height: 2.5rem;
+  list-style: none;
 }
 
 .columns.plain-links > div a {
