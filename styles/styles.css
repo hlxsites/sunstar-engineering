@@ -686,9 +686,3 @@ main .section.margin-bottom>.section-container {
 main .section-container.highlight {
   background-color: var(--highlight-background-color);
 }
-
-/* section - career */
-main h3#current-openings + ul {
-  list-style: none;
-  padding-inline-start: 0;
-}
