@@ -299,6 +299,10 @@ button.secondary {
   color: var(--text-color)
 }
 
+main a:hover {
+  text-decoration: underline;
+}
+
 main input {
   font-size: 1.25rem;
   width: 100%;
@@ -393,10 +397,6 @@ main img {
 .section.centered div {
   align-items: center;
   text-align: center;
-}
-
-main a:hover {
-  text-decoration: underline;
 }
 
 main .section-container {
