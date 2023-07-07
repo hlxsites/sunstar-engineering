@@ -15,7 +15,7 @@
     overflow: hidden;
 }
 
-.hero-banner video,img {
+.hero-banner video,.hero-banner img {
     width: 100%;
     height: auto;
     object-fit: cover;
@@ -98,7 +98,7 @@
     align-items: center;
     align-content: center;
     display: inline-flex;
-    flex-wrap: wrap;  
+    flex-wrap: wrap;
 }
 
 .hero-banner .hero-banner-text-wrapper {
@@ -124,7 +124,7 @@
     .hero-banner video,img {
         min-height: 100%;
     }
-    
+
     .hero-banner .hero-banner-heading-section {
         max-width: 75rem;
     }

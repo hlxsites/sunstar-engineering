@@ -390,6 +390,10 @@ main img {
 /* START Section Styles START */
 
 /* section - centered */
+.section.centered {
+  margin: 0 auto;
+}
+
 .section.centered div {
   align-items: center;
   text-align: center;

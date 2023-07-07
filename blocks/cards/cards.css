@@ -79,6 +79,10 @@ main .block.cards {
     padding-top: 0;
 }
 
+.cards .cards-card-body p {
+    text-align: left;
+}
+
 .cards .cards-card-image img {
     width: 100%;
     height: 100%;
@@ -104,10 +108,6 @@ main .block.cards {
 
 .cards .cards-card-body div {
     height: 100%;
-    margin: 0;
-}
-
-.section.cards-container.nolink {
     margin: 0;
 }
 
@@ -153,10 +153,6 @@ main .nolink .block.cards {
 
     .section.cards-container h2 {
         max-width: 56.25rem;
-    }
-
-    .section.cards-container.nolink {
-        margin: 0 0 1rem;
     }
 
     main .block.cards {
@@ -211,6 +207,11 @@ main .nolink .block.cards {
         margin: 0 1.25rem 1rem;
         padding: 0;
     }
+
+    .nolink .cards>ul>li>.cards-card-body>h6 {
+        text-align: unset;
+    }
+
 
     .nolink .cards .cards-card-image {
         margin: auto;
