@@ -533,6 +533,7 @@ main .section.spaced p {
 
 main .section.spaced ul {
   margin-bottom: 4rem;
+  padding-inline-start: 19px;
 }
 
 main .section.spaced li {
@@ -684,4 +685,10 @@ main .section.margin-bottom>.section-container {
 /* section metadata */
 main .section-container.highlight {
   background-color: var(--highlight-background-color);
+}
+
+/* section - career */
+main h3#current-openings + ul {
+  list-style: none;
+  padding-inline-start: 0;
 }
