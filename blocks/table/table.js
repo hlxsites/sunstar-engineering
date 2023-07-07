@@ -1,5 +1,5 @@
 function buildMutipleTables(block) {
-  const mainContent = block.closest('.section').querySelector(':scope > .section-container > .main-content');
+  const mainContent = block.parentNode.parentNode;
   if (mainContent.querySelectorAll(':scope > .flat-table').length < 2) return;
   const mainChildren = [...mainContent.children];
   const mainTmp = document.createElement('div');
