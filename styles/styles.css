@@ -395,6 +395,10 @@ main img {
   text-align: center;
 }
 
+main a:hover {
+  text-decoration: underline;
+}
+
 main .section-container {
   max-width: 100%;
   padding-left: 0;
