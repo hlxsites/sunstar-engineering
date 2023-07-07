@@ -17,16 +17,25 @@ main .toc-wrapper {
     margin-bottom: 2rem;
 }
 
+main .toc-wrapper.flat {
+    margin-bottom: 120px;
+}
+
 main .toc.block ul {
     width: 15rem;
     background: var(--white);
     margin: 0;
+    list-style: none;
 }
 
 main .toc.block ul li {
     border-top: none;
     margin-bottom: 1rem;
     padding: 0 1rem;
+}
+
+main .toc.flat.block ul li {
+    margin-bottom: 0;
 }
 
 main .toc.block ul li a {
@@ -47,7 +56,6 @@ main .toc-container .section-container .toc.flat ul {
     justify-content: center;
     padding-left: 0;
     width: 100%;
-    margin-bottom: 2rem;
 }
 
 main .toc-container .section-container .toc.flat ul li {
