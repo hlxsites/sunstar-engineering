@@ -164,6 +164,10 @@ main .nolink .block.cards {
         flex-flow: row nowrap;
     }
 
+    main .block.cards.horizontal-content > ul > li {
+        flex-direction: row;
+    }
+
     .cards>ul>li {
         width: 162px;
         height: 222px;
@@ -182,6 +186,11 @@ main .nolink .block.cards {
         margin: 0;
         padding-top: 10px;
     }
+
+    .cards .cards-card-body p {
+        text-align: unset;
+    }
+
 
     .cards .cards-card-image {
         margin: auto;
