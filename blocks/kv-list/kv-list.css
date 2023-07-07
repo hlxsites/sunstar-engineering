@@ -17,6 +17,7 @@ div.kv-list  {
   background-color: unset;
   color: var(--secondary);
   height: unset;
+  justify-content: left;
 }
 
 @media (min-width: 62rem) {
