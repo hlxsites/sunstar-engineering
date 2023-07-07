@@ -510,6 +510,7 @@ main .section.brand-description a.button.primary {
   line-height: 1.5em;
   background-color: unset;
   color: var(--secondary);
+  height: 0;
 }
 
 /* END Brand Description Section END */
