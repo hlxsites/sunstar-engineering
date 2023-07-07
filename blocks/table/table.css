@@ -1,45 +1,50 @@
-main .table {
+main .table.block h3 {
+    font-size: 1rem !important;
+    margin-bottom: 0.5rem !important;
+}
+
+main .table .table-item {
     display: grid;
     grid-auto-flow: column;
     grid-template-columns: auto repeat(calc(var(--row) - 1), minmax(50px, max-content));
     grid-template-rows: repeat(var(--col), auto);
     grid-gap: 1px;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     border: 1px solid var(--transparent-grey-light-color);
     background-color: var(--transparent-grey-light-color);
 }
 
-main .table div {
+main .table .table-item div {
     font-size: var(--body-font-size-s);
     line-height: 1.7em;
     font-weight: var(--font-weight-medium);
-    padding: 0.5em 0.6em;
+    padding: 0.5em 1em;
     text-align: center;
     vertical-align: middle;
     background-color: var(--white);
 }
 
-main .table.fixed {
+main .table.fixed .table-item {
     display: inline-grid;
     grid-auto-flow: row;
     grid-template-columns: repeat(var(--col), auto);
     grid-template-rows: repeat(var(--row), auto);
 }
 
-main .table.fixed div {
+main .table.fixed .table-item div {
     padding: 0.5em 1em;
 }
 
-main .table .table-head {
+main .table .table-item .table-head {
     text-align: left;
     background: var(--transparent-blue-light-color);
 }
 
-main .table.fixed .table-head {
+main .table.fixed .table-item .table-head {
     text-align: center;
 }
 
-main .table sup {
+main .table .table-item sup {
     top: -0.5em;
     position: relative;
     font-size: 75%;
@@ -47,20 +52,36 @@ main .table sup {
     vertical-align: baseline;
 }
 
+main .multiple-table {
+    display: flex;
+    flex-flow: column nowrap;
+    margin-bottom: 28px;
+}
+
+main .multiple-table .flat-table {
+    flex-basis: 100%;
+    flex-grow: 1;
+    min-width: 0;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+
 @media (min-width: 62rem) {
-    main .table {
+    main .multiple-table {
+        display: flex;
+        flex-flow: row nowrap;
+        margin-bottom: 28px;
+    }
+
+    main .table .table-item {
         display: inline-grid;
         grid-auto-flow: row;
         grid-template-columns: repeat(var(--col), auto);
         grid-template-rows: repeat(var(--row), auto);
-        margin-bottom: 2rem;
     }
 
-    main .table div {
-        padding: 0.5em 1em;
-    }
-
-    main .table .table-head {
+    main .table .table-item .table-head {
         text-align: center;
     }
 }
