@@ -299,6 +299,10 @@ button.secondary {
   color: var(--text-color)
 }
 
+main a:hover {
+  text-decoration: underline;
+}
+
 main input {
   font-size: 1.25rem;
   width: 100%;
@@ -510,6 +514,7 @@ main .section.brand-description a.button.primary {
   line-height: 1.5em;
   background-color: unset;
   color: var(--secondary);
+  height: 0;
 }
 
 /* END Brand Description Section END */
@@ -537,6 +542,7 @@ main .section.spaced p {
 
 main .section.spaced ul {
   margin-bottom: 4rem;
+  padding-inline-start: 19px;
 }
 
 main .section.spaced li {
@@ -556,7 +562,7 @@ main .section.spaced>.section-container {
 }
 
 /* section - contacts and links from global-network */
-main .section.contacts-and-links  {
+main .section.contacts-and-links {
   margin-top: 74px;
   margin-bottom: 214px;
   margin-left: 16px;

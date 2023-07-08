@@ -5,6 +5,14 @@ footer {
   overflow: hidden;
 }
 
+footer a:hover {
+  text-decoration: underline;
+}
+
+footer ul {
+  list-style: none;
+}
+
 footer .primary ul {
   display: none;
 }

@@ -1,0 +1,30 @@
+div.kv-list  {
+  margin-top: 3.375rem;
+  margin-bottom: 10.75rem;
+  padding-left: 1rem;
+}
+
+.kv-list h3 {
+  color: var(--link-color);
+  font-size: var(--heading-font-size-s);
+  font-weight: var(--font-weight-bold);
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.kv-list.plain-links a.button.primary {
+  font-weight: var(--font-weight-medium);
+  background-color: unset;
+  color: var(--secondary);
+  height: unset;
+}
+
+@media (min-width: 62rem) {
+  div.kv-list  {
+    padding-left: 0;
+  }
+
+  .kv-list h3 {
+    font-size: var(--heading-font-size-m);
+  }
+}
