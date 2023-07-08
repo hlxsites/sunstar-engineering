@@ -8,14 +8,17 @@ function buildMutipleTables(block) {
       || (mainChildren[i].classList.contains('flat-table') && !mainChildren[i - 1].classList.contains('flat-table'))) {
       const multiTable = document.createElement('div');
       multiTable.classList.add('multiple-table');
-      multiTable.append(mainChildren[i]);
       for (let j = i; j < mainChildren.length; j += 1) {
-        if (mainChildren[j].classList.contains('flat-table')
-          && mainChildren[j + 1].classList.contains('flat-table')) {
+        const currentIsFlatTable = mainChildren[j].classList.contains('flat-table');
+        if (currentIsFlatTable && j === mainChildren.length - 1) {
+          multiTable.append(mainChildren[j]);
+          break;
+        }
+        const nextIsFlatTable = mainChildren[j + 1].classList.contains('flat-table');
+        if (currentIsFlatTable && nextIsFlatTable) {
           multiTable.append(mainChildren[j]);
         }
-        if (mainChildren[j].classList.contains('flat-table')
-          && !mainChildren[j + 1].classList.contains('flat-table')) {
+        if (currentIsFlatTable && !nextIsFlatTable) {
           multiTable.append(mainChildren[j]);
           i = j;
           break;
