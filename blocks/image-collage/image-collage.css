@@ -10,9 +10,18 @@ main .image-collage>div {
   page-break-inside: avoid;
 }
 
+main .image-collage.tradition>div {
+  margin-bottom: 1.5rem;
+}
+
 main .image-collage>div>div:first-of-type {
   padding-top: 26px;
   padding-bottom: 14px;
+}
+
+main .image-collage.tradition>div>div:first-of-type {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 main .image-collage img {
