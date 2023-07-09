@@ -61,6 +61,9 @@ function createSectionMetadata(cfg, doc) {
 
 function addHeroHorizontalTabs(doc) {
   const heroTab = doc.querySelector('.hero-tab');
+  if (!heroTab) {
+    return;
+  }
   const heroCont = heroTab.previousElementSibling;
 
   if (heroTab.tagName !== 'SECTION' || heroCont.tagName !== 'SECTION') {
@@ -355,6 +358,30 @@ function createImgVariantsBlockFromSection(document) {
   });
 }
 
+function changeNewsSocial(document) {
+  const socialShare = document.querySelector('.social-share');
+  if (socialShare) {
+    const socialLinks = socialShare.querySelectorAll('a');
+    if (socialLinks && socialLinks.length) {
+      const cells = [['Social']];
+
+      socialLinks.forEach((x) => {
+        const img = x.querySelector('img');
+        if (img) {
+          const url = img.src;
+          const startIndex = url.lastIndexOf('/') + 1;
+          const extensionIndex = url.lastIndexOf('.svg');
+          const filename = url.substring(startIndex, extensionIndex);
+          cells.push([filename, x.href]);
+        }
+      });
+
+      const table = WebImporter.DOMUtils.createTable(cells, document);
+      socialShare.replaceWith(table);
+    }
+  }
+}
+
 function customImportLogic(doc) {
   removeCookiesBanner(doc);
 
@@ -368,6 +395,7 @@ function customImportLogic(doc) {
   createImgVariantsBlockFromSection(doc);
   extractEmbed(doc);
   convertBackgroundImgsToForegroundImgs(doc);
+  changeNewsSocial(doc);
 }
 
 export default {

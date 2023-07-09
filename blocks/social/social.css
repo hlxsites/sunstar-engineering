@@ -1,0 +1,113 @@
+.block.social {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+
+}
+
+main .section.social-container a {
+  color: var(--secondary);
+}
+
+main .section.social-container {
+  max-width: 45rem;
+  padding: 0 1rem;
+  margin: 0 auto;
+  margin-bottom: 7.5rem;
+}
+
+main .section.social-container .section-container {
+  max-width: 45rem;
+  margin-right: auto;
+  margin-left: unset;
+}
+
+main .section.social-container p {
+  margin-bottom: 1.5rem;
+}
+
+.section.social-container h1 {
+  font-weight: var(--font-weight-medium);
+  font-size: var(--heading-font-size-m);
+  line-height: 1.3em;
+  margin: 2rem 0 1.5rem;
+}
+
+.block.social>span {
+  display: none;
+}
+
+.block.social .icon-linkedin {
+  background-image: url("../../icons/linkedin.svg");
+}
+
+.block.social .icon-facebook {
+  background-image: url("../../icons/facebook.svg");
+}
+
+.block.social .icon {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.block.social .icon-twitter {
+  background-image: url("../../icons/twitter.svg");
+}
+
+main .section.social-container h1 + p {
+  font-size: var(--font-size-xsmall);
+  margin-bottom: 1.5rem;
+  color: var(--light-grey);
+}
+
+@media (min-width: 62rem) {
+  main .section.social-container .section-container {
+    position: relative;
+  }
+
+  main .section.social-container {
+    max-width: 54.5rem;
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: auto;
+  }
+
+  main .section.social-container h1 {
+    font-size: 2.25rem;
+    line-height: 1.3em;
+    margin: 5rem 0 2rem;
+  }
+
+  .block.social {
+    flex-direction: column;
+    gap: 1rem;
+    top: 2.5rem;
+    position: absolute;
+    right: -7.813rem;
+  }
+
+  .block.social>span {
+    display: block;
+    color: var(--light-grey);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-small);
+    line-height: 1;
+  }
+
+  main .section.social-container h1 + p {
+    font-size: var(--font-size-small);
+    margin-bottom: 2rem;
+  }
+}
+
+@media (min-width:77rem) {
+  main .section.social-container {
+    max-width: 54.5rem;
+  }
+
+  .block.social {
+    right: -10rem;
+  }
+}
