@@ -24,6 +24,10 @@ main .table .table-item div {
     background-color: var(--white);
 }
 
+main .section .table.block p {
+    margin-bottom: 0;
+}
+
 main .table.fixed .table-item {
     display: inline-grid;
     grid-auto-flow: row;
