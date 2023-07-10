@@ -1,0 +1,27 @@
+main .cards ul>li {
+    height: unset;
+}
+
+main .cards h6 {
+    font-size: 16px;
+    letter-spacing: 0;
+    color: #3C4650;
+    margin-bottom: 8px;
+
+}
+
+main .cards p {
+    margin: 0 auto;
+    font-size: 14px;
+    color: rgba(60, 70, 80, 0.7);
+}
+
+
+@media (min-width: 62rem) {
+    main .cards h6 {
+        margin-bottom: 1rem;
+        font-size: 18px;
+        letter-spacing: 0;
+        color: #3C4650;
+    }
+}

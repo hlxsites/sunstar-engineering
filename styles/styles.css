@@ -148,9 +148,10 @@ h5,
 h6 {
   color: var(--primary);
   font-family: var(--heading-font-family);
-  line-height: 1.25;
+  line-height: 1.2;
   scroll-margin: calc(var(--nav-height) + 1em);
   margin: 0;
+  font-weight: var(--font-weight-medium);
 }
 
 h1 {
@@ -183,6 +184,7 @@ h6 {
   text-transform: uppercase;
   margin-bottom: 1rem;
   color: var(--secondary);
+  font-weight: var(--font-weight-bold);
 }
 
 p,
@@ -253,8 +255,9 @@ main pre {
 }
 
 a:any-link {
-  color: var(--link-color);
   text-decoration: none;
+  color: #007CAD;
+  background-color: transparent;
 }
 
 /* buttons */

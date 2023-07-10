@@ -120,6 +120,12 @@ export function decorateMain(main) {
   decorateBlocks(main);
 }
 
+function decoratePageStyles() {
+  const { pathname } = window.location;
+  const pageStyle = `styles/pages${pathname}`;
+  loadCSS(`${`${window.location.protocol}//${window.location.host}`}/${pageStyle}.css`);
+}
+
 /**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
@@ -127,6 +133,7 @@ export function decorateMain(main) {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
+  decoratePageStyles();
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);

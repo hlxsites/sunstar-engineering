@@ -8,3 +8,38 @@ main .block.text.narrow {
     text-align: left;
     margin-bottom: 3.5rem;
 }
+
+main .block.text h3 {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+main .block.text.black h2,
+main .block.text.black h3 {
+    color: var(--link-color);
+}
+
+main .block.text.left-mobile-only h3,
+main .block.text.left-mobile-only h2,
+main .block.text.left h2 {
+    text-align: left;
+    margin-left: 0;
+}
+
+main .block.text h4 {
+    font-size: 2rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+@media(min-width: 62rem) {
+    main .block.text h3 {
+        font-size: var(--heading-font-size-m);
+    }
+
+    main .block.text.left-mobile-only h3,
+    main .block.text.left-mobile-only h2 {
+        text-align: unset;
+        margin-left: unset;
+    }
+}
