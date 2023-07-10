@@ -709,3 +709,42 @@ main .section.margin-bottom>.section-container {
 main .section-container.highlight {
   background-color: var(--highlight-background-color);
 }
+
+/** section - thank-you */
+main .section.thank-you {
+  text-align: left;
+  margin: 64px auto 120px;
+}
+
+main .section.thank-you div.section-container {
+  padding: 0 16px;
+}
+
+main .section.thank-you h2 {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+main .section.thank-you p {
+  font-size: 1rem;
+  line-height: 1.5em;
+  font-weight: 500;
+}
+
+@media (min-width:62rem) {
+  main .section.thank-you {
+    text-align: center;
+    margin: 120px auto 240px;
+  }
+
+  main .section.thank-you h2 {
+    font-size: 52px;
+    margin-bottom: 5rem;
+  }
+
+  main .section.thank-you p {
+    font-size: 1.5rem;
+    line-height: 1em;
+  }
+}
