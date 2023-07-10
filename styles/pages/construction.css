@@ -1,3 +1,11 @@
+.cards .cards-card-body p {
+    text-align: left;
+}
+
+.cards .cards-card-body p {
+    text-align: left;
+}
+
 main .cards ul>li {
     height: unset;
 }
@@ -16,6 +24,52 @@ main .cards p {
     color: rgba(60, 70, 80, 0.7);
 }
 
+main .block.cards.horizontal-content>ul>li,
+main .block.cards.horizontal-content>ul>li>a {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 80px;
+    align-items: center;
+}
+
+main .block.cards.horizontal-content .cards-card-image img {
+    width: 47px;
+    height: 47px;
+}
+
+main .block.cards.horizontal-content .cards-card-body h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #007CAD;
+    text-decoration: none;
+    background-color: transparent;
+    text-align: left;
+}
+
+main .block.text h3 {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+main .block.text.black h2,
+main .block.text.black h3 {
+    color: var(--link-color);
+}
+
+main .block.text.left-mobile-only h3,
+main .block.text.left-mobile-only h2,
+main .block.text.left h2 {
+    text-align: left;
+    margin-left: 0;
+}
+
+main .block.text h4 {
+    font-size: 2rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
 
 @media (min-width: 62rem) {
     main .cards h6 {
@@ -24,4 +78,46 @@ main .cards p {
         letter-spacing: 0;
         color: #3C4650;
     }
+
+    main .block.cards.horizontal-content>ul>li {
+        padding: 0 40px;
+    }
+
+    main .block.cards.horizontal-content>ul>li,
+    main .block.cards.horizontal-content>ul>li>a {
+        height: 120px;
+    }
+
+    main .block.cards.horizontal-content .cards-card-body {
+        padding-top: unset;
+    }
+
+    main .block.cards.horizontal-content .cards-card-body h4 {
+        font-size: 2rem;
+        font-weight: 500;
+    }
+
+
+    main .block.cards.horizontal-content .cards-card-image {
+        width: auto;
+        height: auto;
+        margin: 0;
+        margin-right: 40px;
+
+    }
+
+    .cards .cards-card-body p {
+        text-align: unset;
+    }
+
+    main .block.text h3 {
+        font-size: var(--heading-font-size-m);
+    }
+
+    main .block.text.left-mobile-only h3,
+    main .block.text.left-mobile-only h2 {
+        text-align: unset;
+        margin-left: unset;
+    }
+
 }
