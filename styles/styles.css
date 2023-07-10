@@ -148,10 +148,9 @@ h5,
 h6 {
   color: var(--primary);
   font-family: var(--heading-font-family);
-  line-height: 1.2;
+  line-height: 1.25;
   scroll-margin: calc(var(--nav-height) + 1em);
   margin: 0;
-  font-weight: var(--font-weight-medium);
 }
 
 h1 {
@@ -184,7 +183,6 @@ h6 {
   text-transform: uppercase;
   margin-bottom: 1rem;
   color: var(--secondary);
-  font-weight: var(--font-weight-bold);
 }
 
 p,
@@ -255,9 +253,8 @@ main pre {
 }
 
 a:any-link {
+  color: var(--link-color);
   text-decoration: none;
-  color: #007CAD;
-  background-color: transparent;
 }
 
 /* buttons */
@@ -300,10 +297,6 @@ button.secondary {
   background-color: unset;
   border: 2px solid currentcolor;
   color: var(--text-color)
-}
-
-main a:hover {
-  text-decoration: underline;
 }
 
 main input {
@@ -397,10 +390,6 @@ main img {
 /* START Section Styles START */
 
 /* section - centered */
-.section.centered {
-  margin: 0 auto;
-}
-
 .section.centered div {
   align-items: center;
   text-align: center;
@@ -517,7 +506,6 @@ main .section.brand-description a.button.primary {
   line-height: 1.5em;
   background-color: unset;
   color: var(--secondary);
-  height: 0;
 }
 
 /* END Brand Description Section END */
@@ -545,7 +533,6 @@ main .section.spaced p {
 
 main .section.spaced ul {
   margin-bottom: 4rem;
-  padding-inline-start: 19px;
 }
 
 main .section.spaced li {
@@ -565,24 +552,16 @@ main .section.spaced>.section-container {
 }
 
 /* section - contacts and links from global-network */
-main .section.contacts-and-links {
+main .section.contacts-and-links  {
   margin-top: 74px;
   margin-bottom: 214px;
   margin-left: 16px;
 }
 
 main .section.contacts-and-links h3 {
-  margin-bottom: 1.5rem;
-  margin-top: 3rem;
-}
-
-main .section.contacts-and-links div.columns.top-down {
-  margin-top: 0;
-  margin-bottom: 2rem;
-}
-
-main .section.contacts-and-links .columns > div > div.non-singleton-img {
-  margin-bottom: 2rem;
+  font-size: var(--heading-font-size-m);
+  margin-top: 54px;
+  margin-bottom: 40px;
 }
 
 /* section - contact-us */
@@ -600,32 +579,6 @@ main .section.contact-us p.button-container {
   margin-top: 2rem;
 }
 
-/* section metadata */
-main .section-container.highlight {
-  background-color: var(--highlight-background-color);
-}
-
-/** section - thank-you */
-main .section.thank-you {
-  text-align: left;
-  margin: 64px auto 120px;
-}
-
-main .section.thank-you div.section-container {
-  padding: 0 16px;
-}
-
-main .section.thank-you h2 {
-  font-size: 2rem;
-  font-weight: var(--font-weight-medium);
-  margin-bottom: 1.5rem;
-}
-
-main .section.thank-you p {
-  font-size: 1rem;
-  line-height: 1.5em;
-  font-weight: var(--font-weight-medium);
-}
 
 /* END Section Styles END */
 
@@ -732,21 +685,6 @@ main .section.margin-bottom>.section-container {
     margin-bottom: 7.5rem;
   }
 
-  main .section.thank-you {
-    text-align: center;
-    margin: 120px auto 240px;
-  }
-
-  main .section.thank-you h2 {
-    font-size: 52px;
-    margin-bottom: 5rem;
-  }
-
-  main .section.thank-you p {
-    font-size: 1.5rem;
-    line-height: 1em;
-  }
-
 }
 
 @media (min-width:77rem) {
@@ -759,4 +697,9 @@ main .section.margin-bottom>.section-container {
     margin-left: auto;
     max-width: 1200px
   }
+}
+
+/* section metadata */
+main .section-container.highlight {
+  background-color: var(--highlight-background-color);
 }
