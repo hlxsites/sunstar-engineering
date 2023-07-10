@@ -299,6 +299,10 @@ button.secondary {
   color: var(--text-color)
 }
 
+main a:hover {
+  text-decoration: underline;
+}
+
 main input {
   font-size: 1.25rem;
   width: 100%;
@@ -506,6 +510,7 @@ main .section.brand-description a.button.primary {
   line-height: 1.5em;
   background-color: unset;
   color: var(--secondary);
+  height: 0;
 }
 
 /* END Brand Description Section END */
@@ -533,6 +538,7 @@ main .section.spaced p {
 
 main .section.spaced ul {
   margin-bottom: 4rem;
+  padding-inline-start: 19px;
 }
 
 main .section.spaced li {
@@ -552,16 +558,24 @@ main .section.spaced>.section-container {
 }
 
 /* section - contacts and links from global-network */
-main .section.contacts-and-links  {
+main .section.contacts-and-links {
   margin-top: 74px;
   margin-bottom: 214px;
   margin-left: 16px;
 }
 
 main .section.contacts-and-links h3 {
-  font-size: var(--heading-font-size-m);
-  margin-top: 54px;
-  margin-bottom: 40px;
+  margin-bottom: 1.5rem;
+  margin-top: 3rem;
+}
+
+main .section.contacts-and-links div.columns.top-down {
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+main .section.contacts-and-links .columns > div > div.non-singleton-img {
+  margin-bottom: 2rem;
 }
 
 /* section - contact-us */
@@ -702,4 +716,43 @@ main .section.margin-bottom>.section-container {
 /* section metadata */
 main .section-container.highlight {
   background-color: var(--highlight-background-color);
+}
+
+/** section - thank-you */
+main .section.thank-you {
+  text-align: left;
+  margin: 64px auto 120px;
+}
+
+main .section.thank-you div.section-container {
+  padding: 0 16px;
+}
+
+main .section.thank-you h2 {
+  font-size: 2rem;
+  font-weight: var(--font-weight-medium);
+  margin-bottom: 1.5rem;
+}
+
+main .section.thank-you p {
+  font-size: 1rem;
+  line-height: 1.5em;
+  font-weight: var(--font-weight-medium);
+}
+
+@media (min-width:62rem) {
+  main .section.thank-you {
+    text-align: center;
+    margin: 120px auto 240px;
+  }
+
+  main .section.thank-you h2 {
+    font-size: 52px;
+    margin-bottom: 5rem;
+  }
+
+  main .section.thank-you p {
+    font-size: 1.5rem;
+    line-height: 1em;
+  }
 }
