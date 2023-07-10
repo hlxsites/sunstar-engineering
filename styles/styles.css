@@ -35,7 +35,7 @@
   --danger: #EB0000;
   --light: #f8f9fa;
   --dark: #343a40;
-  --link-color: #3C4650;
+  --link-color: #007CAD;
   --card-text-color: var(--secondary);
   --link-hover-color: var(--secondary);
   --background-color: var(--white);
@@ -114,6 +114,7 @@
 
 
 body {
+  color: #3C4650;
   font-size: var(--body-font-size-m);
   font-family: var(--body-font-family);
   font-variant-ligatures: common-ligatures;
@@ -146,11 +147,11 @@ h3,
 h4,
 h5,
 h6 {
-  color: var(--primary);
   font-family: var(--heading-font-family);
   line-height: 1.25;
   scroll-margin: calc(var(--nav-height) + 1em);
   margin: 0;
+  font-weight: var(--font-weight-medium);
 }
 
 h1 {
@@ -183,6 +184,7 @@ h6 {
   text-transform: uppercase;
   margin-bottom: 1rem;
   color: var(--secondary);
+  font-weight: 700;
 }
 
 p,

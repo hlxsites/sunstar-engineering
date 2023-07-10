@@ -1,16 +1,24 @@
-.cards .cards-card-body p {
+body.construction .section.cards-container.centered.narrow {
+    margin: auto;
+}
+
+body.construction  main .block.cards {
+    margin: 0;
+}
+
+body.construction .cards .cards-card-body p {
     text-align: left;
 }
 
-.cards .cards-card-body p {
+body.construction .cards .cards-card-body p {
     text-align: left;
 }
 
-main .cards ul>li {
+body.construction main .cards ul>li {
     height: unset;
 }
 
-main .cards h6 {
+body.construction main .cards h6 {
     font-size: 16px;
     letter-spacing: 0;
     color: #3C4650;
@@ -18,14 +26,14 @@ main .cards h6 {
 
 }
 
-main .cards p {
+body.construction main .cards p {
     margin: 0 auto;
     font-size: 14px;
     color: rgba(60, 70, 80, 0.7);
 }
 
-main .block.cards.horizontal-content>ul>li,
-main .block.cards.horizontal-content>ul>li>a {
+body.construction main .block.cards.horizontal-content>ul>li,
+body.construction main .block.cards.horizontal-content>ul>li>a {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -33,12 +41,12 @@ main .block.cards.horizontal-content>ul>li>a {
     align-items: center;
 }
 
-main .block.cards.horizontal-content .cards-card-image img {
+body.construction main .block.cards.horizontal-content .cards-card-image img {
     width: 47px;
     height: 47px;
 }
 
-main .block.cards.horizontal-content .cards-card-body h4 {
+body.construction main .block.cards.horizontal-content .cards-card-body h4 {
     font-size: 14px;
     font-weight: 700;
     color: #007CAD;
@@ -47,58 +55,93 @@ main .block.cards.horizontal-content .cards-card-body h4 {
     text-align: left;
 }
 
-main .block.text h3 {
+body.construction main .block.text h3 {
     font-size: 1rem;
     font-weight: 500;
 }
 
-main .block.text.black h2,
-main .block.text.black h3 {
-    color: var(--link-color);
-}
-
-main .block.text.left-mobile-only h3,
-main .block.text.left-mobile-only h2,
-main .block.text.left h2 {
+body.construction main .block.text.left-mobile-only h3,
+body.construction main .block.text.left-mobile-only h2,
+body.construction main .block.text.left h2 {
     text-align: left;
     margin-left: 0;
 }
 
-main .block.text h4 {
+body.construction main .block.text h4 {
     font-size: 2rem;
     margin: 0 auto;
     text-align: center;
 }
 
+body.construction main .block.text.arc-solution h4 {
+    font-size: 1rem;
+    text-align: right;
+}
+
+body.construction .features-detail h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 2rem 1rem 4rem;
+    text-align: left;
+    line-height: 24px
+}
+
+body.construction .arc-solution h2 {
+    margin-bottom:2.5rem;
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+body.construction .features h2 {
+    width: auto;
+    text-align: left;
+    margin: 0 1rem 1.5rem 1rem;
+    color: #00587C;
+}
+
 
 @media (min-width: 62rem) {
-    main .cards h6 {
+    body.construction main .cards h6 {
         margin-bottom: 1rem;
         font-size: 18px;
         letter-spacing: 0;
         color: #3C4650;
     }
 
-    main .block.cards.horizontal-content>ul>li {
-        padding: 0 40px;
+    body.construction main .block.cards>ul>li {
+        margin: 0;
     }
 
-    main .block.cards.horizontal-content>ul>li,
-    main .block.cards.horizontal-content>ul>li>a {
+    body.construction main .block.cards>ul>li .cards-card-image{
+        margin: 0;
         height: 120px;
     }
 
-    main .block.cards.horizontal-content .cards-card-body {
+    body.construction main .block.cards>ul>li h6 {
+        text-align: center;
+    }
+
+    body.construction main .block.cards.horizontal-content>ul>li {
+        width: calc(100% / 2 - 16px);
+        padding: 0 40px;
+    }
+
+    body.construction main .block.cards.horizontal-content>ul>li,
+    body.construction main .block.cards.horizontal-content>ul>li>a {
+        height: 120px;
+    }
+
+    body.construction main .block.cards.horizontal-content .cards-card-body {
         padding-top: unset;
     }
 
-    main .block.cards.horizontal-content .cards-card-body h4 {
+    body.construction main .block.cards.horizontal-content .cards-card-body h4 {
         font-size: 2rem;
         font-weight: 500;
     }
 
 
-    main .block.cards.horizontal-content .cards-card-image {
+    body.construction main .block.cards.horizontal-content .cards-card-image {
         width: auto;
         height: auto;
         margin: 0;
@@ -106,18 +149,42 @@ main .block.text h4 {
 
     }
 
-    .cards .cards-card-body p {
+    body.construction .cards .cards-card-body p {
         text-align: unset;
     }
 
-    main .block.text h3 {
+    body.construction main .block.text h3 {
         font-size: var(--heading-font-size-m);
     }
 
-    main .block.text.left-mobile-only h3,
-    main .block.text.left-mobile-only h2 {
+    body.construction main .block.text.left-mobile-only h3,
+    body.construction main .block.text.left-mobile-only h2 {
         text-align: unset;
         margin-left: unset;
+    }
+
+    body.construction main .block.text.arc-solution h4 {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    body.construction .features-detail h3 {
+        max-width: 800px;
+        text-align: center;
+        margin: 0 auto 96px;
+        color: #3C4650;
+        line-height: 1.3em;
+    }
+
+    body.construction .features h2 {
+        max-width: 900px;
+        text-align: center;
+        margin: 0 auto 4rem;
+    }
+
+    body.construction .arc-solution h2 {
+        font-size: 42px;
+        margin-bottom: 4rem;
     }
 
 
