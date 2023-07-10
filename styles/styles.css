@@ -565,9 +565,17 @@ main .section.contacts-and-links {
 }
 
 main .section.contacts-and-links h3 {
-  font-size: var(--heading-font-size-m);
-  margin-top: 54px;
-  margin-bottom: 40px;
+  margin-bottom: 1.5rem;
+  margin-top: 3rem;
+}
+
+main .section.contacts-and-links div.columns.top-down {
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+main .section.contacts-and-links .columns > div > div.non-singleton-img {
+  margin-bottom: 2rem;
 }
 
 /* section - contact-us */
