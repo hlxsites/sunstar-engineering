@@ -722,14 +722,14 @@ main .section.thank-you div.section-container {
 
 main .section.thank-you h2 {
   font-size: 2rem;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   margin-bottom: 1.5rem;
 }
 
 main .section.thank-you p {
   font-size: 1rem;
   line-height: 1.5em;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
 }
 
 @media (min-width:62rem) {
