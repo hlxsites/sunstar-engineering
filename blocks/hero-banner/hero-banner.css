@@ -80,7 +80,7 @@
     width: auto;
 }
 
-.hero-banner-button-container a.button.primary {
+.hero-banner .hero-banner-button-container a.button.primary {
     background-image: url("../../icons/play.svg");
     height: 3.125rem;
     width: 3.125rem;
@@ -127,7 +127,9 @@
     }
 
     .hero-banner .hero-banner-heading-section {
-        max-width: 75rem;
+        padding-left: 1rem ;
+        padding-right: 1rem;
+        max-width: 54.5rem;
     }
 
     .hero-banner .hero-banner-heading-container {
@@ -135,29 +137,22 @@
         top: 20.5rem;
     }
 
-    .hero-banner .hero-banner-text-container::before {
-        content: "";
-        background: var(--primary);
-        height: 100%;
-        width: 100%;
-        position: absolute;
-        top: 0;
-        right: 100%;
-    }
-
     .hero-banner .hero-banner-text-container {
         min-height: 16.125rem;
-        width: 63.75rem;
-        margin-bottom: -2rem;
-        padding: 0;
+        width: 50rem;
+        margin-bottom: -5.125rem;
+        flex-wrap: unset;
+        padding: unset;
+        
     }
 
     .hero-banner .hero-banner-text-wrapper {
         flex-basis: calc(100% - 11.625rem);
         margin-bottom: unset;
+        width: unset;
     }
 
-    .hero-banner-button-container a.button.primary {
+    .hero-banner .hero-banner-button-container a.button.primary {
         margin-bottom: 0.5rem;
         height: 5.125rem;
         width: 5.125rem;
@@ -175,11 +170,39 @@
     .hero-banner .hero-banner-button-container {
         flex-basis: 11.625rem;
         justify-content: center;
+        width: unset;
+        align-items: unset;
+        align-content: unset;
     }
 
     .hero-banner .hero-banner-button-container span {
         width: 100%;
         font-size: var(--heading-font-size-xxs);
         margin-left: unset;
+    }
+}
+
+@media (min-width: 48rem) {
+    .hero-banner .hero-banner-text-container::before {
+        content: "";
+        background: var(--primary);
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        right: 100%;
+    }
+}
+
+@media (min-width: 77rem) {
+    .hero-banner .hero-banner-heading-section{
+        padding-left: 0;
+        padding-right: 0;
+        max-width: 75rem;
+    }
+    
+    .hero-banner .hero-banner-text-container {
+        width: 63.75rem;
+        margin-bottom: -2rem;
     }
 }
