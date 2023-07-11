@@ -11,6 +11,7 @@ import {
   waitForLCP,
   loadBlocks,
   loadCSS,
+  getMetadata,
 } from './lib-franklin.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
@@ -121,9 +122,11 @@ export function decorateMain(main) {
 }
 
 function decoratePageStyles() {
-  const { pathname } = window.location;
-  const pageStyle = `styles/pages${pathname}`;
-  loadCSS(`${`${window.location.protocol}//${window.location.host}`}/${pageStyle}.css`);
+  const pageStyle = getMetadata('page-style');
+  if (pageStyle && pageStyle.trim().length > 0) {
+    loadCSS(`${`${window.location.protocol}//${window.location.host}`}/styles/pages/${pageStyle.toLowerCase()}.css`);
+    document.body.classList.add(pageStyle.toLowerCase());
+  }
 }
 
 /**
