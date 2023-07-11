@@ -127,6 +127,7 @@ export function decorateMain(main) {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
+  loadCSS(`${`${window.location.protocol}//${window.location.host}`}/styles/section-styles.css`);
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
