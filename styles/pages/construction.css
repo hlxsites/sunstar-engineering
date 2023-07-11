@@ -130,11 +130,6 @@ body.construction main .block.text.left h2 {
         padding: 0 2.5rem;
     }
 
-    body.construction main .block.cards.horizontal-content>ul>li,
-    body.construction main .block.cards.horizontal-content>ul>li>a {
-        height: 7.5rem;
-    }
-
     body.construction main .block.text.arc-solution h4 {
         font-size: var(--heading-font-size-l);
         text-align: center;
@@ -153,7 +148,7 @@ body.construction main .block.text.left h2 {
     }
 
     body.construction main .block.cards.horizontal-content .cards-card-body h4 {
-        font-size: var(--heading-font-size-l);
+        font-size: var(--heading-font-size-m);
         font-weight: var(--font-weight-medium);
     }
 
@@ -162,8 +157,6 @@ body.construction main .block.text.left h2 {
         width: auto;
         height: auto;
         margin: 0;
-        margin-right: 2.5rem;
-
     }
 
     body.construction .cards .cards-card-body p {
@@ -189,6 +182,22 @@ body.construction main .block.text.left h2 {
     body.construction main .block.text.left-mobile-only h2 {
         text-align: unset;
         margin-left: unset;
+    }
+
+}
+
+@media (min-width: 77rem) {
+    body.construction main .block.cards.horizontal-content .cards-card-body h4 {
+        font-size: var(--heading-font-size-l);
+    }
+
+    body.construction main .block.cards.horizontal-content>ul>li,
+    body.construction main .block.cards.horizontal-content>ul>li>a {
+        height: 7.5rem;
+    }
+
+    body.construction main .block.cards.horizontal-content .cards-card-image {
+        margin-right: 2.5rem;
     }
 
 }
