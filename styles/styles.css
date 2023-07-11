@@ -185,7 +185,7 @@ h6 {
   text-transform: uppercase;
   margin-bottom: 1rem;
   color: var(--secondary);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
 }
 
 p,
