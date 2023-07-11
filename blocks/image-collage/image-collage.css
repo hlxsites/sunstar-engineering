@@ -10,7 +10,7 @@ main .image-collage>div {
   page-break-inside: avoid;
 }
 
-main .image-collage.tradition>div {
+main .image-collage[class*='boxy-col-']>div {
   margin-bottom: 1.5rem;
 }
 
@@ -19,7 +19,7 @@ main .image-collage>div>div:first-of-type {
   padding-bottom: 14px;
 }
 
-main .image-collage.tradition>div>div:first-of-type {
+main .image-collage[class*='boxy-col-']>div>div:first-of-type {
   padding-top: 0;
   padding-bottom: 0;
 }
@@ -39,24 +39,32 @@ main .image-collage * {
     padding: unset;
   }
 
-  main .image-collage.tradition {
+  main .image-collage[class*='boxy-col-'] {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
   }
 
 
-  main .image-collage.tradition::after {
+  main .image-collage[class*='boxy-col-']::after {
     content: "";
     flex: auto;
   }
 
-  main .image-collage.tradition>div {
+  main .image-collage.boxy-col-1>div,
+  main .image-collage.boxy-col-2>div {
     flex: 0 0 calc(100% / 2 - 2rem);
+  }
+
+  main .image-collage.boxy-col-3>div {
+    flex: 0 0 calc(100% / 3 - 2rem);
+  }
+
+  main .image-collage[class*='boxy-col-']>div {
     margin-bottom: 2rem;
   }
 
-  main .image-collage.tradition>div>div:first-of-type {
+  main .image-collage[class*='boxy-col-']>div>div:first-of-type {
     padding: unset;
   }
 }
