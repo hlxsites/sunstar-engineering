@@ -569,15 +569,15 @@ main .section.contacts-and-links {
   margin-right: 1rem;
 }
 
+main .section.contacts-and-links h3 {
+  margin-bottom: 1.5rem;
+  margin-top: 3rem;
+}
+
 @media (min-width: 62rem) {
   main .section.contacts-and-links {
     margin-top: 74px;
     margin-bottom: 214px;
-  }
-
-  main .section.contacts-and-links h3 {
-    margin-bottom: 1.5rem;
-    margin-top: 3rem;
   }
 
   main .section.contacts-and-links div.columns.top-down {

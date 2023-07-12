@@ -89,16 +89,6 @@
   max-width: 790px;
 }
 
-.columns.collapse.top-down.columns-2-cols {
-  max-width: 100%;
-}
-
-@media (min-width: 62rem) {
-  .columns.collapse.top-down.columns-2-cols {
-    max-width: 790px;
-  }
-}
-
 .columns.top-down.columns-3-cols {
   max-width: 1200px;
 }
@@ -144,8 +134,16 @@
 }
 
 @media (max-width: 61rem) {
+  .columns.collapse.top-down.columns-2-cols {
+    max-width: 100%;
+  }
+
   .columns.plain-links.collapse > div > div {
     width: 100%;
+  }
+
+  .columns.plain-links.collapse > div > div:last-child {
+    margin-bottom: 3rem;
   }
 
   .columns.plain-links.collapse > div h6::after {
