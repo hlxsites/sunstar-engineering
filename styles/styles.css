@@ -150,6 +150,7 @@ h3,
 h4,
 h5,
 h6 {
+  color: var(--primary);
   font-family: var(--heading-font-family);
   line-height: 1.25;
   scroll-margin: calc(var(--nav-height) + 1em);

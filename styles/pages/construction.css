@@ -53,6 +53,10 @@ body.construction .arc-solution h2 {
     font-weight: var(--font-weight-small);
 }
 
+body.construction .arc-solution.black h2 {
+    color: var(--text-color);
+}
+
 body.construction .features h2 {
     width: auto;
     text-align: left;
