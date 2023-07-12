@@ -238,4 +238,8 @@
   .columns.plain-links.collapse ul {
     display: block;
   }
+
+  .columns.plain-links.collapse > div h6 {
+    margin-bottom: 1rem;
+  }
 }
