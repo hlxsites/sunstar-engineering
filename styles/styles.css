@@ -583,49 +583,6 @@ main .section.contacts-and-links .columns>div>div.non-singleton-img {
   margin-bottom: 2rem;
 }
 
-/* section - main-content */
-main .section .main-content h2 {
-  margin-top: 0;
-  color: var(--primary);
-  border-bottom: 4px solid var(--text-h2-underline-color);
-  padding-bottom: 1rem;
-  margin-bottom: 2rem;
-}
-
-main .section .main-content h3 {
-  margin-bottom: 1.5rem;
-  font-size: 1.25rem;
-  line-height: 1.3em;
-  color: var(--text-color);
-  font-weight: 500;
-}
-
-main .section .main-content p {
-  margin-bottom: 1.5rem;
-}
-
-main .section .main-content a {
-  color: var(--secondary);
-  background-color: transparent;
-}
-
-main .section .main-content a:hover {
-  text-decoration: underline;
-}
-
-main .section .main-content ul {
-  padding-inline-start: 1.25rem;
-  margin-bottom: 1.5rem;
-}
-
-main .section .main-content ul li {
-  margin-bottom: 1rem;
-}
-
-main .section .main-content ul li:last-child {
-  margin-bottom: 0;
-}
-
 /* section - contact-us */
 main .section.contact-us>.section-container {
   padding: 5rem 0;
@@ -635,6 +592,7 @@ main .section.contact-us>.section-container {
 
 main .section.contact-us h2 {
   margin-bottom: 0.5rem;
+  color: var(--primary);
 }
 
 main .section.contact-us p.button-container {
@@ -648,6 +606,10 @@ main .section.contact-us .button-container a:hover {
 /* section - about-us */
 main .section.about-us>.section-container {
   text-align: center;
+}
+
+main .section.about-us h2 {
+  color: var(--primary);
 }
 
 main .section.about-us p.button-container {
@@ -749,16 +711,6 @@ main .section.margin-bottom {
     font-size: var(--heading-font-size-l);
   }
 
-  /* section - main-content */
-  main .section .main-content h2 {
-    padding-bottom: 1.5rem;
-    margin-bottom: 3rem;
-  }
-
-  main .section .main-content ul {
-    margin-bottom: 2rem;
-  }
-
   /* section - contact-us */
   main .section.contact-us h2 {
     margin-top: 1rem;
@@ -777,7 +729,6 @@ main .section.margin-bottom {
   main .section.margin-bottom {
     margin-bottom: 7.5rem;
   }
-
 }
 
 @media (min-width:77rem) {

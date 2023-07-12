@@ -150,7 +150,7 @@ main .nolink .block.cards {
     text-transform: unset;
     font-size: var(--body-font-size-m);
     font-weight: var(--font-weight-bolder);
-    color: var(--link-color);
+    color: var(--text-color);
 }
 
 @media screen and (min-width: 62rem) {

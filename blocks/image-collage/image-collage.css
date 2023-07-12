@@ -4,6 +4,10 @@ main .image-collage {
   padding-inline: 1rem;
 }
 
+main .image-collage[class*='boxy-col-'] {
+  padding-inline: 0;
+}
+
 main .image-collage>div {
   display: inline-block;
   break-inside: avoid-column;
@@ -42,7 +46,7 @@ main .image-collage * {
   main .image-collage[class*='boxy-col-'] {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
   }
 
 
@@ -54,10 +58,12 @@ main .image-collage * {
   main .image-collage.boxy-col-1>div,
   main .image-collage.boxy-col-2>div {
     flex: 0 0 calc(100% / 2 - 2rem);
+    /* width: calc(100% / 2 - 2rem); */
   }
 
   main .image-collage.boxy-col-3>div {
     flex: 0 0 calc(100% / 3 - 2rem);
+    /* width: calc(100% / 3 - 2rem); */
   }
 
   main .image-collage[class*='boxy-col-']>div {
