@@ -1,18 +1,27 @@
-main .image-collage  {
+main .image-collage {
   columns: 1;
   column-gap: 2rem;
   padding-inline: 1rem;
 }
 
-main .image-collage > div {
+main .image-collage>div {
   display: inline-block;
   break-inside: avoid-column;
   page-break-inside: avoid;
 }
 
-main .image-collage > div > div:first-of-type {
+main .image-collage[class*='boxy-col-']>div {
+  margin-bottom: 1.5rem;
+}
+
+main .image-collage>div>div:first-of-type {
   padding-top: 26px;
   padding-bottom: 14px;
+}
+
+main .image-collage[class*='boxy-col-']>div>div:first-of-type {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 main .image-collage img {
@@ -25,9 +34,37 @@ main .image-collage * {
 }
 
 @media (min-width: 62rem) {
-  main .image-collage  {
+  main .image-collage {
     columns: 2;
-    padding-left: 270px;
-    padding-right: 0;
+    padding: unset;
+  }
+
+  main .image-collage[class*='boxy-col-'] {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+
+  main .image-collage[class*='boxy-col-']::after {
+    content: "";
+    flex: auto;
+  }
+
+  main .image-collage.boxy-col-1>div,
+  main .image-collage.boxy-col-2>div {
+    flex: 0 0 calc(100% / 2 - 2rem);
+  }
+
+  main .image-collage.boxy-col-3>div {
+    flex: 0 0 calc(100% / 3 - 2rem);
+  }
+
+  main .image-collage[class*='boxy-col-']>div {
+    margin-bottom: 2rem;
+  }
+
+  main .image-collage[class*='boxy-col-']>div>div:first-of-type {
+    padding: unset;
   }
 }
