@@ -6,11 +6,19 @@
   --form-input-border-color: rgba(0 0 0 / 0%);
   --form-select-border-color: rgba(60 70 80 / 50%);
   --form-input-focus-color: #007CAD;
+  --form-input-disabled: #e9ecef;
 }
 
-main .section.form-container .default-content-wrapper,
-main .form {
+main .form,
+main .section.form-container .default-content-wrapper {
   max-width: 560px;
+}
+
+main .section.form-container .default-content-wrapper {
+  margin: auto;
+}
+ 
+main .form {
   margin: 0 auto 120px;
 }
 
@@ -46,8 +54,18 @@ main .form textarea {
 }
 
 main .form select {
+  appearance: none;
   background-color: var(--form-select-bg-color);
   border: 1px solid var(--form-select-border-color);
+  background-image: url('./arrow-down-primary.svg');
+  background-position: calc(100% - 20px) center;
+  background-repeat: no-repeat;
+  background-size: 24px;
+}
+
+main .form select:disabled {
+  background-color: var(--form-input-disabled);
+  opacity: 1;
 }
 
 main .form textarea {
