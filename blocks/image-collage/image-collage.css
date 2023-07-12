@@ -49,10 +49,15 @@ main .image-collage * {
     justify-content: center;
   }
 
-
-  main .image-collage[class*='boxy-col-']::after {
+  main .image-collage.boxy-col-1::after,
+  main .image-collage.boxy-col-2::after {
     content: "";
-    flex: auto;
+    flex: 0 0 calc(100% / 2 - 2rem);
+  }
+
+  main .image-collage.boxy-col-3::after {
+    content: "";
+    flex: 0 0 calc(100% / 3 - 2rem);
   }
 
   main .image-collage.boxy-col-1>div,
