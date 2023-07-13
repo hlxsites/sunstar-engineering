@@ -10,7 +10,7 @@ function buildTaglist(taglist, ul, tagTitle) {
   });
 
   document.addEventListener('click', (evt) => {
-    if (!evt.target.classList.contains('hero-vertical-tabs-taglist-mobile')
+    if (!evt.target.classList.contains('hero-vertical-tabs-taglist-vertical')
       && ul.classList.contains('visible')) {
       ul.classList.remove('visible');
       taglist.classList.remove('visible');
@@ -50,7 +50,7 @@ function buildImageAndContent(heroImage, block) {
 function buildUl(ul, block) {
   let textContent = '';
   block.querySelectorAll('ul li').forEach((li) => {
-    if (li.querySelectorAll('strong').length !== 0) {
+    if (li.querySelector('strong') !== null) {
       const aLink = li.querySelectorAll('a')[0];
       textContent = aLink.textContent;
       li.innerHTML = '';
@@ -68,9 +68,9 @@ export default async function decorate(block) {
   const heroImage = document.createElement('div');
   const taglistMenu = document.createElement('div');
   const ul = document.createElement('ul');
-  taglistDropdown.classList.add('hero-vertical-tabs-taglist-mobile');
+  taglistDropdown.classList.add('hero-vertical-tabs-taglist-vertical');
   heroImage.classList.add('hero-vertical-tabs-background-image');
-  taglistMenu.classList.add('hero-vertical-tabs-taglist-pc');
+  taglistMenu.classList.add('hero-vertical-tabs-taglist-horizontal');
   const tagTitle = buildUl(ul, block);
   const ulPc = ul.cloneNode(true);
   taglistMenu.append(ulPc);
