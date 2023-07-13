@@ -53,7 +53,8 @@ body.construction .arc-solution h2 {
     font-weight: var(--font-weight-small);
 }
 
-body.construction .arc-solution.black h2 {
+body.construction .arc-solution.black h2,
+body.construction .features-detail.black h3 {
     color: var(--text-color);
 }
 
@@ -185,7 +186,7 @@ body.construction main .block.text.left h2 {
     body.construction main .block.text.left-mobile-only h3,
     body.construction main .block.text.left-mobile-only h2 {
         text-align: unset;
-        margin-left: unset;
+        margin-inline: auto;
     }
 
 }
