@@ -50,6 +50,7 @@ async function createAutoBreadcrumb(block, placeholders) {
   if (breadcrumbContainer) {
     breadcrumbContainer.classList.add('visible');
   }
+  block.classList.add('visible');
 }
 
 export default async function decorate(block) {

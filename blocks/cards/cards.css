@@ -108,7 +108,12 @@ main .block.cards {
 }
 
 .section.cards-container.nolink {
-    margin: 0;
+    margin-bottom: 5rem;
+}
+
+main .section.nolink h2 {
+    text-align: left;
+    margin: 0 auto 1.5rem;
 }
 
 main .nolink .block.cards {
@@ -144,6 +149,9 @@ main .nolink .block.cards {
 .nolink .cards>ul>li>.cards-card-body>h6 {
     text-align: left;
     text-transform: unset;
+    font-size: var(--body-font-size-m);
+    font-weight: var(--font-weight-bolder);
+    color: var(--text-color);
 }
 
 @media screen and (min-width: 62rem) {
@@ -156,7 +164,7 @@ main .nolink .block.cards {
     }
 
     .section.cards-container.nolink {
-        margin: 0 0 1rem;
+        margin-bottom: 7.5rem;
     }
 
     main .block.cards {
@@ -202,20 +210,44 @@ main .nolink .block.cards {
         margin: 0;
     }
 
+    main .section.nolink h2 {
+        text-align: center;
+        margin: 0 auto 4rem;
+    }
+
     .nolink .cards>ul>li {
         display: flex;
         flex-direction: column;
         box-shadow: none;
-        width: 16.5rem;
+        width: calc(100% / 3 - 50px);
         height: 100%;
-        margin: 0 1.25rem 1rem;
+        margin: 0 1.25rem;
         padding: 0;
+    }
+
+    .nolink .cards>ul>li:first-of-type {
+        margin-left: 0;
+    }
+
+    .nolink .cards>ul>li:last-child {
+        margin-left: 1.25rem;
     }
 
     .nolink .cards .cards-card-image {
         margin: auto;
         width: 7.5rem;
         height: 7.5rem;
+    }
+
+    .nolink .cards .cards-card-body {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .nolink .cards>ul>li>.cards-card-body>h6 {
+        text-align: center;
+        font-size: var(--body-font-size-l);
+        font-weight: var(--font-weight-bold);
     }
 }
 
@@ -246,5 +278,9 @@ main .nolink .block.cards {
     .cards .cards-card-body {
         padding-top: 20px;
         font-size: 1rem;
+    }
+
+    .nolink .cards>ul>li {
+        width: 16.5rem;
     }
 }

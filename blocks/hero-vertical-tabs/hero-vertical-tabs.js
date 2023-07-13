@@ -1,33 +1,16 @@
-function buildTaglist(taglist, block) {
-  const taglistLeft = document.createElement('div');
-  taglistLeft.classList.add('hero-vertical-tabs-dropdown-left');
-  taglist.append(taglistLeft);
-
-  const strongElements = block.querySelectorAll('ul strong a');
+function buildTaglist(taglist, ul, tagTitle) {
   const tagListTitle = document.createElement('div');
   tagListTitle.classList.add('hero-vertical-tabs-dropdown-title');
-  tagListTitle.textContent = strongElements[0].textContent;
+  tagListTitle.textContent = tagTitle;
   taglist.append(tagListTitle);
-
-  const ul = document.createElement('ul');
   ul.classList.add('hero-vertical-tabs-dropdown');
-  block.querySelectorAll('ul li').forEach((li) => {
-    if (li.querySelectorAll('strong').length !== 0) {
-      const aLink = li.querySelectorAll('a')[0];
-      li.innerHTML = '';
-      li.append(aLink);
-      li.classList.add('active');
-      ul.append(li);
-    }
-    ul.append(li);
-  });
   taglist.addEventListener('click', () => {
     ul.classList.toggle('visible');
     taglist.classList.toggle('visible');
   });
 
   document.addEventListener('click', (evt) => {
-    if (!evt.target.classList.contains('hero-vertical-tabs-taglist')
+    if (!evt.target.classList.contains('hero-vertical-tabs-taglist-vertical')
       && ul.classList.contains('visible')) {
       ul.classList.remove('visible');
       taglist.classList.remove('visible');
@@ -47,23 +30,53 @@ function buildTaglist(taglist, block) {
 }
 
 function buildImageAndContent(heroImage, block) {
-  const imageContent = document.createElement('div');
-  imageContent.classList.add('hero-vertical-tabs-content');
+  const content = document.createElement('div');
+  content.classList.add('hero-vertical-tabs-content');
   if ([...block.children][2] != null && [...[...block.children][2].children][1] != null) {
-    imageContent.append([...[...block.children][2].children][1]);
+    content.append([...[...block.children][2].children][1]);
   }
   const picture = block.querySelectorAll('picture')[0];
-  heroImage.append(picture);
+  const imageContent = document.createElement('div');
+  imageContent.classList.add('hero-vertical-tabs-bg-right');
+  const backgroundLeft = document.createElement('div');
+  backgroundLeft.classList.add('hero-vertical-tabs-bg-left');
+
+  imageContent.append(picture);
+  imageContent.append(content);
+  heroImage.append(backgroundLeft);
   heroImage.append(imageContent);
 }
 
+function buildUl(ul, block) {
+  let textContent = '';
+  block.querySelectorAll('ul li').forEach((li) => {
+    if (li.querySelector('strong') !== null) {
+      const aLink = li.querySelectorAll('a')[0];
+      textContent = aLink.textContent;
+      li.innerHTML = '';
+      li.append(aLink);
+      li.classList.add('active');
+      ul.append(li);
+    }
+    ul.append(li);
+  });
+  return textContent;
+}
+
 export default async function decorate(block) {
-  const taglist = document.createElement('div');
+  const taglistDropdown = document.createElement('div');
   const heroImage = document.createElement('div');
-  taglist.classList.add('hero-vertical-tabs-taglist');
+  const taglistMenu = document.createElement('div');
+  const ul = document.createElement('ul');
+  taglistDropdown.classList.add('hero-vertical-tabs-taglist-vertical');
   heroImage.classList.add('hero-vertical-tabs-background-image');
-  buildTaglist(taglist, block);
+  taglistMenu.classList.add('hero-vertical-tabs-taglist-horizontal');
+  const tagTitle = buildUl(ul, block);
+  const ulPc = ul.cloneNode(true);
+  taglistMenu.append(ulPc);
+  buildTaglist(taglistDropdown, ul, tagTitle);
   buildImageAndContent(heroImage, block);
-  block.replaceChildren(taglist);
+  block.replaceChildren(taglistDropdown);
   block.append(heroImage);
+  block.append(taglistMenu);
 }

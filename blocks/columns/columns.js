@@ -47,4 +47,23 @@ export default function decorate(block) {
       }
     });
   });
+
+  // style headings if collapse is enabled
+  const collapseEnabled = block.classList.contains('collapse');
+  if (collapseEnabled) {
+    [...block.children].forEach((row) => {
+      const headings = row.querySelectorAll('h6');
+      if (headings.length) {
+        [...headings].forEach((h) => {
+          h.parentElement.addEventListener('click', () => {
+            h.classList.toggle('active');
+            const list = h.nextElementSibling;
+            if (list) {
+              list.classList.toggle('active');
+            }
+          });
+        });
+      }
+    });
+  }
 }

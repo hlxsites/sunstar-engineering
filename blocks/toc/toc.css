@@ -34,6 +34,10 @@ main .toc.block ul li {
     padding: 0 1rem;
 }
 
+main .toc.block ul li:last-child {
+    margin-bottom: 0;
+}
+
 main .toc.flat.block ul li {
     margin-bottom: 0;
 }

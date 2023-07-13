@@ -12,9 +12,12 @@
 }
 
 .block.breadcrumb {
-  display: flex;
   list-style: none;
   padding: 0.625rem 0;
+}
+
+.block.breadcrumb.visible {
+  display: flex;
 }
 
 .block.breadcrumb a {

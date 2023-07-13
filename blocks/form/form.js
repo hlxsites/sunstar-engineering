@@ -20,6 +20,9 @@ function createSelect(fd) {
     ph.setAttribute('disabled', '');
     select.append(ph);
   }
+  if (fd.State && fd.State === 'disabled') {
+    select.setAttribute('disabled', '');
+  }
   const values = fd.Values ? fd.Values.split(',') : [];
 
   fd.Options.split(',').forEach((o, i) => {
@@ -30,6 +33,12 @@ function createSelect(fd) {
   });
   if (fd.Mandatory) {
     select.setAttribute('required', 'required');
+  }
+  if (fd.Enable) {
+    select.addEventListener('change', () => {
+      const enable = document.getElementById(fd.Enable);
+      enable.removeAttribute('disabled');
+    });
   }
   return select;
 }
