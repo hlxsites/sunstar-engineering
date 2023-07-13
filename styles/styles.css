@@ -116,6 +116,9 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   font-size: var(--body-font-size-m);
