@@ -70,6 +70,7 @@
   /* heading sizes */
   --heading-font-size-xxl: 48px;
   --heading-font-size-xl: 42px;
+  --heading-font-size-mxl: 36px;
   --heading-font-size-l: 32px;
   --heading-font-size-m: 24px;
   --heading-font-size-s: 20px;
@@ -583,7 +584,7 @@ main .section.about-us .button-container a:hover {
 
 /* section - static */
 main .section.static {
-  margin-bottom: 120px;
+  margin-bottom: 7.5rem;
 }
 
 main .section.static .section-container {
@@ -592,15 +593,15 @@ main .section.static .section-container {
 }
 
 main .section.static .section-container h1 {
-  font-size: 2rem;
+  font-size: var(--heading-font-size-l);
   margin: 3rem 0 2rem;
-  color: #00587C;
-  font-weight: 500;
+  color: var(--primary);
+  font-weight: var(--font-weight-medium);
 }
 
 main .section.static .section-container h2 {
-  font-size: 1.5rem;
-  font-weight: 500;
+  font-size: var(--heading-font-size-m);
+  font-weight: var(--font-weight-medium);
   margin: 4rem 0 1.5rem;
 }
 
@@ -771,12 +772,12 @@ main .section.thank-you p {
   }
 
   main .section.static .section-container h1 {
-    font-size: 3rem;
+    font-size: var(--heading-font-size-xxl);
     margin: 4rem 0 1.5rem;
   }
 
   main .section.static .section-container h2 {
-    font-size: 2.25rem;
+    font-size: var(--heading-font-size-mxl);
   }
 
   /* END Section Styles END */
