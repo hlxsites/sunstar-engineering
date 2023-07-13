@@ -113,6 +113,7 @@ main .block.cards {
 
 main .section.nolink h2 {
     text-align: left;
+    margin: 0 auto 1.5rem;
 }
 
 main .nolink .block.cards {
@@ -211,6 +212,7 @@ main .nolink .block.cards {
 
     main .section.nolink h2 {
         text-align: center;
+        margin: 0 auto 4rem;
     }
 
     .nolink .cards>ul>li {
@@ -223,14 +225,23 @@ main .nolink .block.cards {
         padding: 0;
     }
 
+    .nolink .cards>ul>li:first-of-type {
+        margin-left: 0;
+    }
+
     .nolink .cards>ul>li:last-child {
-        margin: 0 1.25rem;
+        margin-left: 1.25rem;
     }
 
     .nolink .cards .cards-card-image {
         margin: auto;
         width: 7.5rem;
         height: 7.5rem;
+    }
+
+    .nolink .cards .cards-card-body {
+        padding-left: 0;
+        padding-right: 0;
     }
 
     .nolink .cards>ul>li>.cards-card-body>h6 {
