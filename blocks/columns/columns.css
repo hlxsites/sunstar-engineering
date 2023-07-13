@@ -142,10 +142,10 @@
     width: 100%;
   }
 
-  .columns.plain-links.collapse > div > div:last-child {
-    margin-bottom: 3rem;
+  .columns.plain-links.collapse:not(.continuation) > div > div:first-child {
+    margin-top: 3rem;
   }
-
+  
   .columns.plain-links.collapse > div h6::after {
     content: '';
     position: absolute;

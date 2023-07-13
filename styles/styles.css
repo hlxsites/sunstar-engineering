@@ -565,8 +565,7 @@ main .section.spaced>.section-container {
 
 /* section - contacts and links from global-network */
 main .section.contacts-and-links {
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin: 74px 1rem 214px;
 }
 
 main .section.contacts-and-links h3 {
@@ -575,11 +574,6 @@ main .section.contacts-and-links h3 {
 }
 
 @media (min-width: 62rem) {
-  main .section.contacts-and-links {
-    margin-top: 74px;
-    margin-bottom: 214px;
-  }
-
   main .section.contacts-and-links div.columns.top-down {
     margin-top: 0;
     margin-bottom: 2rem;
