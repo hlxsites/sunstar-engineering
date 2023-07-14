@@ -2,6 +2,10 @@
   margin: 2rem 0 4rem;
 }
 
+.columns.crop-image {
+  margin-bottom: 0;
+}
+
 .columns > div {
   display: flex;
   align-items: flex-start;
@@ -47,6 +51,14 @@
   order: 0;
 }
 
+.columns.invert-image-order-in-narrow-view > div > .columns-img-col {
+  order: 2;
+}
+
+.columns.crop-image img {
+  object-fit: cover;
+}
+
 .columns > div > .columns-img-col img {
   display: block;
 }
@@ -64,8 +76,21 @@
   margin-top: 0;
 }
 
+.columns.overlap-text-with-image > div > div > p {
+  margin-bottom: 2rem;
+}
+
 .columns > div > div.non-singleton-img {
   margin: 0 1rem;
+}
+
+.columns.crop-image > div {
+  align-items: stretch;
+}
+
+.columns.overlap-text-with-image > div > div.non-singleton-img {
+  margin-bottom: -5.25rem;
+  z-index: 1;
 }
 
 .columns.collapse > div > div.non-singleton-img {
@@ -95,8 +120,8 @@
 
 .columns.plain-links > div > div,
 .columns.plain-links > div > div > p {
-    font-size: var(--body-font-size-s);
-    margin-left: 0;
+  font-size: var(--body-font-size-s);
+  margin-left: 0;
 }
 
 .columns.plain-links > div > div > p:last-of-type {
@@ -222,10 +247,22 @@
     gap: 3rem;
   }
 
+  .columns > div > .columns-img-col {
+    order: unset;
+  }
+
   .columns > div > div {
     flex: 1;
     order: unset;
     flex-basis: 50%;
+  }
+
+  .columns.invert-image-order-in-narrow-view > div > .columns-img-col {
+    order: unset;
+  }
+
+  .columns.overlap-text-with-image > div > div.non-singleton-img {
+    margin-bottom: unset;
   }
 
   .columns.plain-links > div a {
