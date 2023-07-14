@@ -36,7 +36,7 @@ const embedYoutube = (url) => {
   return embedHTML;
 };
 
-const loadEmbed = (block, link) => {
+const loadEmbed = (block, grandChilds, link) => {
   if (block.classList.contains('embed-is-loaded')) {
     return;
   }
@@ -58,21 +58,30 @@ const loadEmbed = (block, link) => {
     block.classList = 'block embed';
   }
   block.classList.add('embed-is-loaded');
+
+  if (grandChilds.length === 2) {
+    // This handles video with caption
+    const captionDiv = grandChilds[1];
+    captionDiv.classList.add('caption');
+    block.appendChild(captionDiv);
+  }
 };
 
 export default function decorate(block) {
   const link = block.querySelector('a').href;
+  const childDiv = block.querySelector('div');
+  const grandChilds = childDiv ? childDiv.querySelectorAll('div') : [];
   block.textContent = '';
 
   if (block.closest('body')) {
     const observer = new IntersectionObserver((entries) => {
       if (entries.some((e) => e.isIntersecting)) {
         observer.disconnect();
-        loadEmbed(block, link);
+        loadEmbed(block, grandChilds, link);
       }
     });
     observer.observe(block);
   } else {
-    loadEmbed(block, link);
+    loadEmbed(block, grandChilds, link);
   }
 }

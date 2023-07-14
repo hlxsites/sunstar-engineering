@@ -70,6 +70,7 @@
   /* heading sizes */
   --heading-font-size-xxl: 48px;
   --heading-font-size-xl: 42px;
+  --heading-font-size-mxl: 36px;
   --heading-font-size-l: 32px;
   --heading-font-size-m: 24px;
   --heading-font-size-s: 20px;
@@ -108,14 +109,6 @@
   --font-size-xsmall: 12px;
 }
 
-@media (min-width: 77rem) {
-  :root {
-    --nav-top-height: 42px;
-    --nav-middle-height: 26px;
-    --nav-bottom-height: 52px;
-  }
-}
-
 html {
   scroll-behavior: smooth;
 }
@@ -139,12 +132,6 @@ body.appear {
 
 body.no-scroll {
   overflow-y: hidden;
-}
-
-@media (min-width: 77rem) {
-  body.no-scroll {
-    overflow-y: auto;
-  }
 }
 
 h1,
@@ -393,29 +380,19 @@ main img {
   width: 20px;
 }
 
-@media (min-width:77rem) {
-  .icon.icon-sunstar-logo {
-    width: 175px;
-    height: 26px;
-    display: inline-flex;
-  }
-}
-
 /* START Section Styles START */
+
+main .section .section-container {
+  max-width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
 
 /* section - centered */
 .section.centered div {
   align-items: center;
   text-align: center;
 }
-
-main .section-container {
-  max-width: 100%;
-  padding-left: 0;
-  padding-right: 0;
-}
-
-
 
 /* section - full-width */
 main .section.full-width>.section-container {
@@ -424,7 +401,7 @@ main .section.full-width>.section-container {
   padding-right: 0;
 }
 
-/* START Brands Top Section START */
+/* section - brands-top */
 main .section.brands-top {
   padding-top: 3rem;
 }
@@ -455,9 +432,7 @@ main .section.brands-top>.section-container {
   padding: 0 1rem;
 }
 
-/* END Brands Top Section END */
-
-/* START Brand Description Section START */
+/* section - brands-description */
 main .section.brand-description {
   margin-bottom: 7.5rem;
   padding: 0 1rem;
@@ -523,8 +498,6 @@ main .section.brand-description a.button.primary {
   height: 0;
 }
 
-/* END Brand Description Section END */
-
 /* section - spaced */
 main .section.spaced {
   padding-top: 5rem;
@@ -577,17 +550,6 @@ main .section.contacts-and-links h3 {
   margin-top: 3rem;
 }
 
-@media (min-width: 62rem) {
-  main .section.contacts-and-links div.columns.top-down {
-    margin-top: 0;
-    margin-bottom: 2rem;
-  }
-
-  main .section.contacts-and-links .columns>div>div.non-singleton-img {
-    margin-bottom: 2rem;
-  }
-}
-
 /* section - contact-us */
 main .section.contact-us>.section-container {
   padding: 5rem 0;
@@ -625,11 +587,64 @@ main .section.about-us .button-container a:hover {
   text-decoration: none;
 }
 
-/* END Section Styles END */
+/* section - static */
+main .section.static {
+  margin-bottom: 7.5rem;
+}
 
+main .section.static .section-container {
+  padding: 2rem 1rem;
+  margin-bottom: 5rem;
+}
+
+main .section.static .section-container h1 {
+  font-size: var(--heading-font-size-l);
+  margin: 3rem 0 2rem;
+  color: var(--primary);
+  font-weight: var(--font-weight-medium);
+}
+
+main .section.static .section-container h2 {
+  font-size: var(--heading-font-size-m);
+  font-weight: var(--font-weight-medium);
+  margin: 4rem 0 1.5rem;
+}
+
+/* section - margin-bottom */
 main .section.margin-bottom {
   margin-bottom: 5rem;
 }
+
+/* section - highlight */
+main .section .section-container.highlight {
+  background-color: var(--highlight-background-color);
+}
+
+/** section - thank-you */
+main .section.thank-you {
+  text-align: left;
+  margin: 64px auto 120px;
+}
+
+main .section.thank-you div.section-container {
+  padding: 0 16px;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+main .section.thank-you h2 {
+  font-size: 2rem;
+  font-weight: var(--font-weight-medium);
+  margin-bottom: 1.5rem;
+}
+
+main .section.thank-you p {
+  font-size: 1rem;
+  line-height: 1.5em;
+  font-weight: var(--font-weight-medium);
+}
+
+/* END Section Styles END */
+
 
 @media (min-width:62rem) {
   h2 {
@@ -647,8 +662,16 @@ main .section.margin-bottom {
   }
 
 
-  /* START Brands Top Section START */
+  /* START Section Styles START */
 
+  main .section .section-container {
+    max-width: calc(872px + 32px);
+    margin-inline: auto;
+    padding-left: 16px;
+    padding-right: 16px
+  }
+
+  /* section - brands-top */
   main .section.brands-top h6 {
     font-size: var(--font-size-small);
   }
@@ -658,10 +681,7 @@ main .section.margin-bottom {
     font-size: 2.25rem;
   }
 
-  /* END Brands Top Section END */
-
-  /* START Brand Description Section START */
-
+  /* section - brands-description */
   main .section.brand-description {
     width: 100%;
     padding-right: 0;
@@ -681,17 +701,6 @@ main .section.margin-bottom {
   main .section.brand-description h2 {
     font-weight: var(--font-weight-small);
     font-size: 2.25rem;
-  }
-
-
-  /* END Brand Description Section END */
-
-  /* START Section Styles START */
-  main .section-container {
-    max-width: calc(872px + 32px);
-    margin-inline: auto;
-    padding-left: 16px;
-    padding-right: 16px
   }
 
   /* section - spaced */
@@ -730,52 +739,23 @@ main .section.margin-bottom {
     margin-top: 1rem;
   }
 
-  /* END Section Styles END */
+  /* section - margin-bottom */
   main .section.margin-bottom {
     margin-bottom: 7.5rem;
   }
-}
 
-@media (min-width:77rem) {
-  main .section-container {
-    position: relative;
-    width: 100%;
-    padding-right: 0;
-    padding-left: 0;
-    margin-right: auto;
-    margin-left: auto;
-    max-width: 1200px
+
+  /* secton - contacts-and-links */
+  main .section.contacts-and-links div.columns.top-down {
+    margin-top: 0;
+    margin-bottom: 2rem;
   }
-}
 
-/* section metadata */
-main .section-container.highlight {
-  background-color: var(--highlight-background-color);
-}
+  main .section.contacts-and-links .columns>div>div.non-singleton-img {
+    margin-bottom: 2rem;
+  }
 
-/** section - thank-you */
-main .section.thank-you {
-  text-align: left;
-  margin: 64px auto 120px;
-}
-
-main .section.thank-you div.section-container {
-  padding: 0 16px;
-}
-
-main .section.thank-you h2 {
-  font-size: 2rem;
-  font-weight: var(--font-weight-medium);
-  margin-bottom: 1.5rem;
-}
-
-main .section.thank-you p {
-  font-size: 1rem;
-  line-height: 1.5em;
-  font-weight: var(--font-weight-medium);
-}
-
-@media (min-width:62rem) {
+  /* section - thank-you */
   main .section.thank-you {
     text-align: center;
     margin: 120px auto 240px;
@@ -789,5 +769,49 @@ main .section.thank-you p {
   main .section.thank-you p {
     font-size: 1.5rem;
     line-height: 1em;
+  }
+
+  /* section - static */
+  main .section.static .section-container {
+    padding: 2rem 0;
+  }
+
+  main .section.static .section-container h1 {
+    font-size: var(--heading-font-size-xxl);
+    margin: 4rem 0 1.5rem;
+  }
+
+  main .section.static .section-container h2 {
+    font-size: var(--heading-font-size-mxl);
+  }
+
+  /* END Section Styles END */
+}
+
+@media (min-width: 77rem) {
+  :root {
+    --nav-top-height: 42px;
+    --nav-middle-height: 26px;
+    --nav-bottom-height: 52px;
+  }
+
+  body.no-scroll {
+    overflow-y: auto;
+  }
+
+  .icon.icon-sunstar-logo {
+    width: 175px;
+    height: 26px;
+    display: inline-flex;
+  }
+
+  main .section .section-container {
+    position: relative;
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 1200px
   }
 }

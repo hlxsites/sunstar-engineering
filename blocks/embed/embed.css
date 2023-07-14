@@ -1,8 +1,7 @@
 main .embed {
   width: unset;
   text-align: center;
-  max-width: 50rem;
-  margin: 2rem auto 0;
+  margin: 2rem auto;
 }
   
 main .embed > div {
@@ -61,14 +60,10 @@ main .embed .embed-placeholder-play button::before {
   left: 0.438rem;
 }
 
-main .embed-container .default-content-wrapper {
-  display: flex;
-  justify-content: center;
-}
-
-main .embed-container p {
+main .embed .caption {
   margin-top: 0.813rem;
   font-size: 0.88rem;
   line-height: 1.7em;
+  margin-bottom: 1em;
   color: var(--gray);
 }
