@@ -45,7 +45,7 @@
 }
 
 .breadcrumb-item:last-child {
-  color: var(--transparent-grey-color);
+  color: var(--light-black);
 }
 
 @media (min-width: 62rem) {
