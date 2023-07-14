@@ -1,0 +1,70 @@
+/* news detail fig caption */
+body div p:has(picture) + p {
+    color: #6D757C;
+    font-size: 12px;
+    text-align: center;
+    margin-top: -1rem; /* distance between fig and fig caption = regular paragraph spacing(1.5) - 1 = 0.5rem */
+    margin-bottom: 2rem; /* distance to next paragraph */
+}
+
+
+div div.section-container {
+    max-width: 720px;
+}
+
+/* main news header */
+div div.section-container div.default-content-wrapper h1:first-child{
+    margin: 5rem 0 2rem;
+    color: #00587C;
+    font-weight: 500;
+    font-size: 2.25rem;
+    line-height: 1.3em;
+}
+
+div.social-wrapper div.social {
+    width: 45px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    top: 40px;
+}
+
+div div.section-container div.default-content-wrapper p {
+    margin-bottom: 1.5rem;
+}
+
+/* date */
+div div.section-container div.default-content-wrapper p:first-child{
+    font-weight: 500;
+    color: rgb(60 70 80 / 50%);
+    font-size: 14px;
+    margin-bottom: 2rem;
+    display: inline-block;
+    width: 100%;
+    line-height: 1;
+    box-sizing: border-box;
+}
+
+
+/* news secondary header */
+div div.section-container div.default-content-wrapper h1:not(:first-child){
+    color: #00587C;
+    font-weight: 700;
+    font-size: 1rem !important;
+    margin-bottom: 0.5rem !important;
+    line-height: 1.3em;
+}
+
+
+
+/* news detail fig  */
+body div picture{
+    width: 100%;
+    max-height: 100%;
+    vertical-align: middle;
+    box-sizing: border-box;
+    aspect-ratio: auto 755 / 350;
+}
+
