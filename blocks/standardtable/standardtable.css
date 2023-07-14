@@ -1,0 +1,52 @@
+.standardtable {
+  width: 100%;
+  overflow-x: auto;
+}
+  
+.standardtable table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  font-size: var(--body-font-size-s);
+}
+  
+@media (min-width: 62rem) {
+  .standardtable table {
+    font-size: var(--body-font-size-m);
+  }
+}
+  
+.standardtable table thead {
+  color: var(--primary);
+}
+
+.standardtable table thead tr {
+  border-top: 1px solid;
+  border-bottom: 3px solid;
+}
+  
+.standardtable table tbody tr {
+  border-bottom: 1px solid;
+}
+  
+.standardtable table th {
+  font-weight: 700;
+  color: var(--primary);
+}
+  
+.standardtable table th,
+.standardtable table td {
+  padding: 0.25rem 0.5rem;
+  text-align: left;
+}
+  
+/* striped variant */
+.standardtable.striped tbody tr:nth-child(odd) {
+  background-color: var(--overlay-background-color);
+}
+  
+/* bordered variant */
+.standardtable.bordered table th,
+.standardtable.bordered table td {
+  border: 1px solid;
+}

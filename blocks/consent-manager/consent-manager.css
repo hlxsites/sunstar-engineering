@@ -27,3 +27,8 @@ div.consent-manager.block {
 .consent-manager ul {
   padding-inline-start: 40px;
 }
+
+.consent-manager .uc-embed-list {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
