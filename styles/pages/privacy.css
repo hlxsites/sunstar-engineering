@@ -63,3 +63,8 @@
 .privacy main .standardtable table {
   margin-bottom: 1.5rem;
 }
+
+.privacy main .section.narrow {
+  max-width: 45rem;
+  margin-inline: auto;
+}
