@@ -18,12 +18,11 @@
   
 .standardtable table thead {
   color: var(--primary);
-  border-bottom: 3px solid;
 }
 
 .standardtable table thead tr {
-  border-top: 2px solid;
-  border-bottom: 2px solid;
+  border-top: 1px solid;
+  border-bottom: 3px solid;
 }
   
 .standardtable table tbody tr {
