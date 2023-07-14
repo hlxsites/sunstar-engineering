@@ -51,7 +51,7 @@
   order: 0;
 }
 
-.columns.bottom-image-in-narrow-view > div > .columns-img-col {
+.columns.invert-image-order-in-narrow-view > div > .columns-img-col {
   order: 2;
 }
 
@@ -257,7 +257,7 @@
     flex-basis: 50%;
   }
 
-  .columns.bottom-image-in-narrow-view > div > .columns-img-col {
+  .columns.invert-image-order-in-narrow-view > div > .columns-img-col {
     order: unset;
   }
 
