@@ -88,7 +88,7 @@
   align-items: stretch;
 }
 
-.columns.overlap-image-in-narrow-view > div > div.non-singleton-img {
+.columns.overlap-text-with-image > div > div.non-singleton-img {
   margin-bottom: -5.25rem;
   z-index: 1;
 }
@@ -261,7 +261,7 @@
     order: unset;
   }
 
-  .columns.overlap-image-in-narrow-view > div > div.non-singleton-img {
+  .columns.overlap-text-with-image > div > div.non-singleton-img {
     margin-bottom: unset;
   }
 
