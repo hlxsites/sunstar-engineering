@@ -50,7 +50,7 @@
     position: relative;
     display: flex;
     flex-flow: column wrap;
-    align-items: center;
+    align-items: flex-start;
     z-index: 1;
     background: var(--primary);
     list-style: none;
@@ -69,6 +69,7 @@
 .hero-vertical-tabs .hero-vertical-tabs-taglist-vertical ul li a {
     color: var(--tab-content-color);
     font-weight: var(--font-weight-medium);
+    padding-left: 13px;
 }
 
 .hero-vertical-tabs .hero-vertical-tabs-taglist-vertical ul li a:hover,
