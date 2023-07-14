@@ -109,6 +109,10 @@
   --font-size-xsmall: 12px;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-size: var(--body-font-size-m);
   font-family: var(--body-font-family);
@@ -352,6 +356,7 @@ main img {
 
 .icon svg {
   height: 100%;
+  width: 100%;
 }
 
 .icon.icon-sunstar-logo {

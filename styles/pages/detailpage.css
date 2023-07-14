@@ -40,6 +40,23 @@ body.detailpage .main-content ul li:last-child {
     margin-bottom: 0;
 }
 
+body.detailpage .columns>div>div.non-singleton-img {
+    margin: unset;
+}
+
+body.detailpage .main-content .columns {
+    margin: 0 0 1.75rem;
+}
+
+body.detailpage .main-content .columns>div {
+    align-items: flex-start;
+}
+
+body.detailpage .main-content .columns ul {
+    margin-bottom: 1rem;
+    font-size: var(--body-font-size-s);
+}
+
 @media (min-width: 62rem) {
     body.detailpage .main-content h2 {
         padding-bottom: 1.5rem;
